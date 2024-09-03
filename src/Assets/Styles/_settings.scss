@@ -1,0 +1,47 @@
+$landingLight: #fffaf7;
+$landingShadows: rgba(255, 250, 247, 0.4);
+$landing1: #7589e2;
+$landing2: rgb(72, 82, 214, 0.3);
+$landingDark: #4b3366;
+
+@font-face {
+  font-family: "font1";
+  src: url(../Fonts/Roboto/Roboto-Regular.ttf);
+}
+@font-face {
+  font-family: "font2";
+  src: url(../Fonts/Poppins/Poppins-Black.ttf);
+}
+
+$font1: "font1", sans-serif;
+$font2: "font2", sans-serif;
+
+@mixin justify($content) {
+  display: flex;
+  justify-content: $content;
+  align-items: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline: none;
+}
+
+body {
+  height: 100vh;
+  background: url(../img/landing-background.jpg) bottom/cover;
+  font-family: $font1;
+}
+
+.root {
+  width: 100%;
+  height: 100vh;
+}
+
+.offscreen {
+  position: absolute;
+  left: -999999px;
+}

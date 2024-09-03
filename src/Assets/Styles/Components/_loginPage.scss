@@ -1,0 +1,31 @@
+.login-form {
+  display: grid;
+  place-items: center;
+  gap: 20px;
+
+  .input {
+    width: 60%;
+  }
+
+  .eye-login {
+    position: absolute;
+  }
+
+  .btn-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas:
+      "memo reset"
+      "login login";
+  }
+
+  .memorized-user {
+    grid-area: memo;
+  }
+  .btn2 {
+    grid-area: reset;
+  }
+  .btn1 {
+    grid-area: login;
+  }
+}

@@ -1,0 +1,26 @@
+.landing-main {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "p p"
+    "sign-up sign-in";
+  place-items: center;
+  text-align: center;
+  text-shadow: 2px 3px 3px $landingShadows;
+  letter-spacing: 1px;
+  line-height: 23px;
+
+  .description {
+    grid-area: p;
+    margin-bottom: 35px;
+  }
+
+  .sign-up {
+    grid-area: sign-up;
+  }
+
+  .sign-in {
+    grid-area: sign-in;
+  }
+}

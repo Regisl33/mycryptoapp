@@ -1,0 +1,55 @@
+.landing-container {
+  color: $landingLight;
+
+  header {
+    height: 15vh;
+    background: $landing2;
+    position: relative;
+    backdrop-filter: blur(5px);
+    @include justify(center);
+
+    h1 {
+      letter-spacing: 2px;
+      font-family: $font2;
+      text-shadow: 2px 3px 3px $landingShadows;
+    }
+
+    .header-btn-container {
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .landing-main-container {
+    @include justify(center);
+    height: 80vh;
+
+    .main {
+      background: $landing2;
+      backdrop-filter: blur(15px);
+      border: 1px solid $landingLight;
+      border-radius: 20px;
+      width: 60%;
+      padding: 30px;
+      box-shadow: 1px 2px 9px 1px $landingShadows;
+    }
+  }
+
+  footer {
+    height: 5vh;
+    @include justify(center);
+    background: $landing2;
+    backdrop-filter: blur(5px);
+    letter-spacing: 1px;
+
+    p {
+      text-shadow: 2px 3px 3px $landingShadows;
+    }
+
+    .copyright {
+      margin-left: 25px;
+    }
+  }
+}

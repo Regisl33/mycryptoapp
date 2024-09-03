@@ -1,51 +1,83 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
-const LoginPage = () => {
+type propsType = {
+  setDisplay: React.Dispatch<
+    React.SetStateAction<"account" | "login" | "password" | "home" | "security">
+  >;
+};
+
+const LoginPage = ({ setDisplay }: propsType) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPasseord] = useState(false);
+  const [memorizeUser, setMemorizeUser] = useState(false);
+
+  const HandleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (memorizeUser) {
+      //Cookies
+    }
+  };
 
   return (
-    <main>
-      <form>
-        <h1>Welcome to your crypto-app</h1>
-        <div className="input-container">
-          <label className="offscreen" htmlFor="username">
-            Username
-          </label>
+    <form className="main login-form">
+      <label className="offscreen" htmlFor="username">
+        Username
+      </label>
+      <input
+        className="input"
+        type="text"
+        id="username"
+        placeholder="Username"
+        value={username}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setUsername(e.target.value)
+        }
+        required
+      />
+      <label className="offscreen" htmlFor="password">
+        Password
+      </label>
+      <input
+        className="input"
+        type={showPassword ? "text" : "password"}
+        id="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setPassword(e.target.value)
+        }
+        required
+      />
+      <div
+        className="eye-container eye-login"
+        onClick={() => setShowPasseord(!showPassword)}
+      >
+        {showPassword ? <IoEyeOff /> : <IoEye />}
+      </div>
+      <div className="btn-container">
+        <div className="memorized-user">
+          <label htmlFor="memUser">Remember Me</label>
           <input
-            type="text"
-            id="username"
-            placeholder="Username"
-            value={username}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setUsername(e.target.value)
-            }
+            type="checkbox"
+            id="memUser"
+            checked={memorizeUser ? true : false}
+            onClick={() => setMemorizeUser(!memorizeUser)}
           />
-          <label className="offscreen" htmlFor="password">
-            Password
-          </label>
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setPassword(e.target.value)
-            }
-          />
-          <div
-            className="eye-container"
-            onClick={() => setShowPasseord(!showPassword)}
-          >
-            {showPassword ? <IoEyeOff /> : <IoEye />}
-          </div>
-          <input type="submit" value="Login" />
-          <a href="#">Forgot password</a>
         </div>
-      </form>
-    </main>
+        <button className="btn2" onClick={() => setDisplay("password")}>
+          Forgot Password
+        </button>
+        <input
+          className="btn1"
+          type="submit"
+          value="Login"
+          onSubmit={(e: FormEvent) => HandleSubmit(e)}
+        />
+      </div>
+    </form>
   );
 };
 

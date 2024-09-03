@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./Components/LoginPage";
 import Home from "./Components/Home";
+import LandingPage from "./Components/LandingPage";
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={isLoggedIn ? <Home /> : <LandingPage />} />
       </Routes>
     </BrowserRouter>
   );
