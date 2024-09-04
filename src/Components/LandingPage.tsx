@@ -18,7 +18,7 @@ const LandingPage = () => {
       case "login":
         return <LoginPage setDisplay={setDisplay} />;
       case "account":
-        return <CreateAccount />;
+        return <CreateAccount setDisplay={setDisplay} />;
       case "password":
         return <PasswordReset />;
       case "security":

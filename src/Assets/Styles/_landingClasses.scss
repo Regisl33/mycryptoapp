@@ -9,7 +9,7 @@
   box-shadow: 1px 2px 9px 1px $landingShadows;
   margin-top: 15px;
   padding: 25px 35px;
-  transition: 0.4 ease-in-out;
+  transition: 0.4s ease-in-out;
   font-size: 1.2rem;
 
   &::before {
@@ -65,6 +65,7 @@
 
 .input {
   background: none;
+  width: 100%;
   border: none;
   border-bottom: 1px solid $landingLight;
   padding: 10px;
@@ -80,4 +81,12 @@
   &::placeholder {
     color: $landingLight;
   }
+}
+
+.eye-container {
+  position: absolute;
+  top: 50%;
+  left: 90%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }

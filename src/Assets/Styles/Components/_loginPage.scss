@@ -1,31 +1,59 @@
 .login-form {
-  display: grid;
-  place-items: center;
-  gap: 20px;
+  @include justify(center);
 
-  .input {
-    width: 60%;
+  .form-container {
+    width: 50%;
+    display: grid;
+    place-items: center;
+    gap: 20px;
   }
 
-  .eye-login {
-    position: absolute;
+  input,
+  button,
+  .password-container,
+  .btn-container {
+    width: 100%;
+    margin: 0;
+  }
+
+  .password-container {
+    position: relative;
   }
 
   .btn-container {
+    margin-top: 10px;
+    font-size: 1.1rem;
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-areas:
       "memo reset"
       "login login";
-  }
+    gap: 25px 0;
 
-  .memorized-user {
-    grid-area: memo;
-  }
-  .btn2 {
-    grid-area: reset;
-  }
-  .btn1 {
-    grid-area: login;
+    .memorized-user {
+      grid-area: memo;
+      @include justify(space-around);
+      flex-direction: column;
+
+      input[type="checkbox"] {
+        border: transparent 1px solid;
+        background: $landingLight;
+        height: 25px;
+        width: 25px;
+        border-radius: 50px;
+        margin-top: 5px;
+
+        &:hover {
+          transform: scale(110%);
+        }
+      }
+    }
+    .btn2 {
+      grid-area: reset;
+      font-size: 1rem;
+    }
+    .btn1 {
+      grid-area: login;
+    }
   }
 }
