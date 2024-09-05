@@ -28,6 +28,7 @@ const CreateAccount = ({ setDisplay }: propsType) => {
           Username
         </label>
         <input
+          autoComplete="off"
           className="input"
           type="text"
           id="username"
@@ -42,6 +43,7 @@ const CreateAccount = ({ setDisplay }: propsType) => {
           Email
         </label>
         <input
+          autoComplete="off"
           className="input"
           type="text"
           id="email"
@@ -57,6 +59,7 @@ const CreateAccount = ({ setDisplay }: propsType) => {
             Password
           </label>
           <input
+            autoComplete="off"
             className="input"
             type={showPassword ? "text" : "password"}
             id="password"
@@ -79,6 +82,7 @@ const CreateAccount = ({ setDisplay }: propsType) => {
             Confirm your password
           </label>
           <input
+            autoComplete="off"
             className="input"
             type={showConfirmPassword ? "text" : "password"}
             id="confirmPassword"
@@ -99,7 +103,7 @@ const CreateAccount = ({ setDisplay }: propsType) => {
         <button
           type="submit"
           className="btn1"
-          onSubmit={(e: FormEvent) => handleSubmit(e)}
+          onClick={(e: FormEvent) => handleSubmit(e)}
         >
           Next
         </button>
