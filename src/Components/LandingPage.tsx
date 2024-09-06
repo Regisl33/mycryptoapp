@@ -2,13 +2,21 @@ import { useState } from "react";
 import LandingMain from "./LandingMain";
 import LoginPage from "./LoginPage";
 import CreateAccount from "./CreateAccount";
-import PasswordReset from "./PasswordReset";
 import SecurityQuestions from "./SecurityQuestions";
+import ForgotPassword from "./ForgotPassword";
+import ResetVerification from "./ResetVerification";
+import ResetPassword from "./ResetPassword";
 
 const LandingPage = () => {
   const year = new Date().getFullYear();
   const [display, setDisplay] = useState<
-    "home" | "login" | "password" | "account" | "security"
+    | "home"
+    | "login"
+    | "password"
+    | "account"
+    | "security"
+    | "verification"
+    | "reset"
   >("home");
 
   const setMainDisplay = () => {
@@ -20,9 +28,13 @@ const LandingPage = () => {
       case "account":
         return <CreateAccount setDisplay={setDisplay} />;
       case "password":
-        return <PasswordReset />;
+        return <ForgotPassword setDisplay={setDisplay} />;
       case "security":
-        return <SecurityQuestions />;
+        return <SecurityQuestions setDisplay={setDisplay} />;
+      case "verification":
+        return <ResetVerification setDisplay={setDisplay} />;
+      case "reset":
+        return <ResetPassword setDisplay={setDisplay} />;
       default:
         return <LandingMain setDisplay={setDisplay} />;
     }

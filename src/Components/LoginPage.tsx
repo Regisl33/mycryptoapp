@@ -1,13 +1,21 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
-type propsType = {
+export type propsTypeSetDisplay = {
   setDisplay: React.Dispatch<
-    React.SetStateAction<"account" | "login" | "password" | "home" | "security">
+    React.SetStateAction<
+      | "account"
+      | "login"
+      | "password"
+      | "home"
+      | "security"
+      | "verification"
+      | "reset"
+    >
   >;
 };
 
-const LoginPage = ({ setDisplay }: propsType) => {
+const LoginPage = ({ setDisplay }: propsTypeSetDisplay) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPasseord] = useState(false);
@@ -28,6 +36,7 @@ const LoginPage = ({ setDisplay }: propsType) => {
           Username
         </label>
         <input
+          autoComplete="off"
           className="input"
           type="text"
           id="username"
@@ -36,13 +45,13 @@ const LoginPage = ({ setDisplay }: propsType) => {
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setUsername(e.target.value)
           }
-          required
         />
         <div className="password-container">
           <label className="offscreen" htmlFor="password">
             Password
           </label>
           <input
+            autoComplete="off"
             className="input"
             type={showPassword ? "text" : "password"}
             id="password"
@@ -51,7 +60,6 @@ const LoginPage = ({ setDisplay }: propsType) => {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setPassword(e.target.value)
             }
-            required
           />
           <div
             className="eye-container"

@@ -1,12 +1,7 @@
 import React from "react";
+import { propsTypeSetDisplay } from "./LoginPage";
 
-type propsType = {
-  setDisplay: React.Dispatch<
-    React.SetStateAction<"account" | "login" | "password" | "home" | "security">
-  >;
-};
-
-const LandingMain = ({ setDisplay }: propsType) => {
+const LandingMain = ({ setDisplay }: propsTypeSetDisplay) => {
   return (
     <main className="main landing-main">
       <p className="description">

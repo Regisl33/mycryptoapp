@@ -1,6 +1,7 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { propsTypeSetDisplay } from "./LoginPage";
 
-const SecurityQuestions = () => {
+const SecurityQuestions = ({ setDisplay }: propsTypeSetDisplay) => {
   const [question1, setQuestion1] = useState("");
   const [question2, setQuestion2] = useState("");
   const [question3, setQuestion3] = useState("");
@@ -14,7 +15,16 @@ const SecurityQuestions = () => {
     setIsSubmited(true);
   };
 
-  return (
+  const handleReturnLogin = () => {
+    setDisplay("login");
+  };
+
+  const content = isSubmited ? (
+    <p>
+      Your account has been created with succes!
+      <u onClick={() => handleReturnLogin()}>Click Here to Login!</u>
+    </p>
+  ) : (
     <form className="main">
       <div className="form-container">
         <label className="offscreen" htmlFor="question1Select">
@@ -126,6 +136,8 @@ const SecurityQuestions = () => {
       </div>
     </form>
   );
+
+  return content;
 };
 
 export default SecurityQuestions;

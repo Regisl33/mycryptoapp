@@ -1,13 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import { propsTypeSetDisplay } from "./LoginPage";
 
-type propsType = {
-  setDisplay: React.Dispatch<
-    React.SetStateAction<"account" | "login" | "password" | "home" | "security">
-  >;
-};
-
-const CreateAccount = ({ setDisplay }: propsType) => {
+const CreateAccount = ({ setDisplay }: propsTypeSetDisplay) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -33,7 +28,6 @@ const CreateAccount = ({ setDisplay }: propsType) => {
           type="text"
           id="username"
           placeholder="Username"
-          required
           value={username}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setUsername(e.target.value)
@@ -48,7 +42,6 @@ const CreateAccount = ({ setDisplay }: propsType) => {
           type="text"
           id="email"
           placeholder="Email"
-          required
           value={email}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setEmail(e.target.value)
@@ -64,7 +57,6 @@ const CreateAccount = ({ setDisplay }: propsType) => {
             type={showPassword ? "text" : "password"}
             id="password"
             placeholder="Password"
-            required
             value={password}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setPassword(e.target.value)
@@ -87,7 +79,6 @@ const CreateAccount = ({ setDisplay }: propsType) => {
             type={showConfirmPassword ? "text" : "password"}
             id="confirmPassword"
             placeholder="Confirm your password"
-            required
             value={confirmPassword}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setConfirmPassword(e.target.value)
