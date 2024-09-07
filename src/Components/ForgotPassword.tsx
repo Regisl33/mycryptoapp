@@ -11,7 +11,7 @@ const ForgotPassword = ({ setDisplay }: propsTypeSetDisplay) => {
 
   const content = (
     <form className="main">
-      <div className="forgot-form-container">
+      <div className="form-container">
         <label className="offscreen" htmlFor="passwordReset">
           Enter your email adress
         </label>

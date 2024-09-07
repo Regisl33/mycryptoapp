@@ -11,8 +11,8 @@ const ResetVerification = ({ setDisplay }: propsTypeSetDisplay) => {
 
   const content = (
     <form className="main">
-      <div className="reset-form-container">
-        <h3>Question?</h3>
+      <div className="form-container">
+        <h3 className="security-question title">Question?</h3>
         <label className="offscreen" htmlFor="securityAnswer"></label>
         <input
           type="text"
@@ -25,7 +25,7 @@ const ResetVerification = ({ setDisplay }: propsTypeSetDisplay) => {
             setSecurityAnswer(e.target.value)
           }
         />
-        <button type="button" className="btn2">
+        <button type="button" className="btn2 swap-question">
           Try another question
         </button>
         <button

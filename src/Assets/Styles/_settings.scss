@@ -45,3 +45,9 @@ body {
   position: absolute;
   left: -999999px;
 }
+.title {
+  font-family: $font2;
+  text-shadow: 2px 3px 3px $landingShadows;
+  letter-spacing: 1;
+  text-align: center;
+}

@@ -43,7 +43,7 @@ const LandingPage = () => {
   return (
     <div className="landing-container">
       <header>
-        <h1>Welcome to CryptoMaster</h1>
+        <h1 className="title">Welcome to CryptoMaster</h1>
         {display !== "home" ? null : (
           <div className="header-btn-container">
             <button className="btn2" onClick={() => setDisplay("login")}>

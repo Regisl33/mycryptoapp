@@ -1,0 +1,107 @@
+//Login Page
+.form-container {
+  width: 60%;
+  display: grid;
+  place-items: center;
+  gap: 20px;
+  //Security-Question-Options
+  option {
+    background: $landingDark;
+  }
+}
+
+.password-container,
+.btn-container {
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.btn-container {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-areas:
+    "memo reset"
+    "login login";
+  gap: 25px 0;
+
+  .memorized-user {
+    grid-area: memo;
+    @include justify(space-around);
+    flex-direction: column;
+
+    input[type="checkbox"] {
+      border: transparent 1px solid;
+      background: $landingLight;
+      height: 25px;
+      width: 25px;
+      border-radius: 50px;
+      margin-top: 5px;
+
+      &:hover {
+        transform: scale(110%);
+      }
+    }
+  }
+  .btn2 {
+    grid-area: reset;
+    font-size: 1rem;
+  }
+  .btn1 {
+    grid-area: login;
+  }
+}
+
+//landing Page
+.landing-main {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "p p"
+    "sign-up sign-in";
+  place-items: center;
+  text-align: center;
+  text-shadow: 2px 3px 3px $landingShadows;
+  letter-spacing: 1px;
+  line-height: 23px;
+
+  @media screen and (max-width: 600px) {
+    font-size: 0.8rem;
+  }
+
+  .description {
+    grid-area: p;
+    margin-bottom: 35px;
+
+    @media screen and (max-width: 900px) {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 6;
+      overflow: hidden;
+    }
+  }
+
+  .sign-up {
+    grid-area: sign-up;
+  }
+
+  .sign-in {
+    grid-area: sign-in;
+  }
+}
+//Reset password security question
+.security-question {
+  margin-bottom: 25px;
+}
+
+.swap-question {
+  place-self: start;
+  margin-top: 35px;
+}
+//Password-Reset
+.password-reset-title {
+  margin-bottom: 40px;
+}

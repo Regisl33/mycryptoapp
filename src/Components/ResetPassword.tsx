@@ -15,15 +15,19 @@ const ResetPassword = ({ setDisplay }: propsTypeSetDisplay) => {
   };
 
   const content = isSubmited ? (
-    <p>
-      Your password has been reset!
-      <u onClick={() => setDisplay("login")}>Click here to login</u>
-    </p>
+    <div className="main">
+      <p>
+        Your password has been reset!
+        <u className="hot-Link" onClick={() => setDisplay("login")}>
+          Click here to login
+        </u>
+      </p>
+    </div>
   ) : (
     <form className="main">
-      <div className="password-reset-container">
+      <div className="form-container">
+        <h2 className="password-reset-title title">Enter your new password</h2>
         <div className="password-container">
-          <h2>Enter your new password</h2>
           <label className="offscreen" htmlFor="resetPassword">
             Enter your password
           </label>
@@ -60,12 +64,12 @@ const ResetPassword = ({ setDisplay }: propsTypeSetDisplay) => {
               setPasswordConfirm(e.target.value)
             }
           />
-        </div>
-        <div
-          className="eye-container"
-          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-        >
-          {showConfirmPassword ? <IoEyeOff /> : <IoEye />}
+          <div
+            className="eye-container"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+          >
+            {showConfirmPassword ? <IoEyeOff /> : <IoEye />}
+          </div>
         </div>
         <button
           type="submit"
