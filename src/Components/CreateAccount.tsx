@@ -18,7 +18,9 @@ const CreateAccount = ({ setDisplay }: propsTypeSetDisplay) => {
   return (
     <form className="main create-form">
       <div className="form-container">
-        <h2 className="title">Enter your information to create your account</h2>
+        <h2 className="title account-title">
+          Enter your information to create your account
+        </h2>
         <label className="offscreen" htmlFor="username">
           Username
         </label>

@@ -1,8 +1,10 @@
 .landing-container {
   color: $landingLight;
-
+  //General Paragraphs setting
   p {
     text-shadow: 2px 3px 3px $landingShadows;
+    text-align: center;
+    letter-spacing: 1px;
   }
 
   header {
@@ -15,7 +17,7 @@
     h1 {
       letter-spacing: 2px;
     }
-
+    //Sign In/Up Header Buttons
     .header-btn-container {
       position: absolute;
       top: 50%;
@@ -27,7 +29,7 @@
       }
     }
   }
-
+  //Main Display
   .landing-main-container {
     @include justify(center);
     height: 80vh;
@@ -38,7 +40,6 @@
     @include justify(center);
     background: $landing2;
     backdrop-filter: blur(5px);
-    letter-spacing: 1px;
 
     @media screen and (max-width: 450px) {
       font-size: 0.8rem;

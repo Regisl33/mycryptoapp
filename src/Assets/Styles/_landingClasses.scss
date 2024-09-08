@@ -1,124 +1,146 @@
-.btn1 {
-  background: none;
-  border: 1px solid $landingLight;
-  color: $landingLight;
-  cursor: pointer;
-  border-radius: 15px;
-  position: relative;
-  font-family: inherit;
-  box-shadow: 1px 2px 9px 1px $landingShadows;
-  margin-top: 15px;
-  padding: 25px 35px;
-  transition: 0.4s ease-in-out;
-  font-size: 1.2rem;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 15px;
-    background: $landing1;
-    height: 0;
-    width: 0;
-    transition: 0.4s ease-in-out;
-    z-index: -1;
+//Making sure i can reuse those class outside the landing page
+.landing-container {
+  //Main container
+  .main {
+    background: $landing2;
+    backdrop-filter: blur(15px);
+    border: 1px solid $landingLight;
+    border-radius: 20px;
+    width: 60%;
+    padding: 30px;
+    box-shadow: 1px 2px 9px 1px $landingShadows;
+    @include justify(center);
   }
-  &:hover {
-    transform: scale(105%);
-  }
-  &:hover::before {
-    height: 100%;
-    width: 100%;
-  }
-}
-
-.btn2 {
-  background: none;
-  border: 1px solid $landingLight;
-  color: $landingLight;
-  padding: 15px 25px;
-  margin: 10px;
-  cursor: pointer;
-  border-radius: 10px;
-  position: relative;
-  font-size: 1.1rem;
-  font-family: inherit;
-  box-shadow: 1px 2px 9px 1px $landingShadows;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0;
-    background: $landing1;
-    transition: 0.4s ease-in-out;
-    border-radius: 10px;
-    z-index: -1;
-  }
-  &:hover::before {
-    width: 100%;
-  }
-}
-
-.input {
-  background: none;
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid $landingLight;
-  padding: 10px;
-  font-size: 1.1rem;
-  font-family: inherit;
-  letter-spacing: 1px;
-  color: $landingLight;
-  transition: 0.3s ease-in-out;
-
-  &:focus {
-    transform: scale(105%);
-  }
-
-  &::placeholder {
+  //Buttons
+  .btn1 {
+    background: none;
+    border: 1px solid $landingLight;
     color: $landingLight;
-  }
-}
+    cursor: pointer;
+    border-radius: 15px;
+    position: relative;
+    font-family: inherit;
+    box-shadow: 1px 2px 9px 1px $landingShadows;
+    margin-top: 15px;
+    padding: 25px 35px;
+    transition: 0.4s ease-in-out;
+    font-size: 1.2rem;
 
-.eye-container {
-  position: absolute;
-  top: 50%;
-  left: 90%;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-.password-container,
-.confirm-password-container {
-  position: relative;
-  width: 100%;
-}
-.main {
-  background: $landing2;
-  backdrop-filter: blur(15px);
-  border: 1px solid $landingLight;
-  border-radius: 20px;
-  width: 60%;
-  padding: 30px;
-  box-shadow: 1px 2px 9px 1px $landingShadows;
-  @include justify(center);
-}
-.hot-Link {
-  margin-left: 5px;
-  cursor: pointer;
-}
-.select {
-  background: none;
-  border: none;
-  border-bottom: 1px solid $landingLight;
-  padding: 10px;
-  color: $landingLight;
-  width: 100%;
-  font-size: inherit;
-  font-family: inherit;
-  cursor: pointer;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 15px;
+      background: $landing1;
+      height: 0;
+      width: 0;
+      transition: 0.4s ease-in-out;
+      z-index: -1;
+    }
+    &:hover {
+      transform: scale(105%);
+    }
+    &:hover::before {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .btn2 {
+    background: none;
+    border: 1px solid $landingLight;
+    color: $landingLight;
+    padding: 15px 25px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    position: relative;
+    font-size: 1.1rem;
+    font-family: inherit;
+    box-shadow: 1px 2px 9px 1px $landingShadows;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      background: $landing1;
+      transition: 0.4s ease-in-out;
+      border-radius: 10px;
+      z-index: -1;
+    }
+    &:hover::before {
+      width: 100%;
+    }
+  }
+  //Input and Select
+  .input {
+    background: none;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid $landingLight;
+    padding: 10px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    letter-spacing: 1px;
+    color: $landingLight;
+    transition: 0.3s ease-in-out;
+
+    &:focus {
+      transform: scale(105%);
+    }
+
+    &::placeholder {
+      color: $landingLight;
+    }
+  }
+  .select-container {
+    position: relative;
+    width: 100%;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 90%;
+      transform: translateY(-50%);
+      z-index: -1;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .select {
+      background: none;
+      border: none;
+      border-bottom: 1px solid $landingLight;
+      padding: 10px;
+      color: $landingLight;
+      width: 100%;
+      font-size: inherit;
+      font-family: inherit;
+      cursor: pointer;
+      appearance: none;
+    }
+  }
+  //Password Eye
+  .password-container,
+  .confirm-password-container {
+    position: relative;
+    width: 100%;
+
+    .eye-container {
+      position: absolute;
+      top: 50%;
+      left: 90%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  }
+  //Underlined Login Link
+  .hot-Link {
+    margin-left: 5px;
+    cursor: pointer;
+  }
 }

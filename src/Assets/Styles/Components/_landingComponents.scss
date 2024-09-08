@@ -4,21 +4,27 @@
   display: grid;
   place-items: center;
   gap: 20px;
+
+  @media screen and (max-width: 950px) {
+    width: 90%;
+  }
   //Security-Question-Options
   option {
-    background: $landingDark;
+    background: $landing1;
+
+    @media screen and (max-width: 1250px) {
+      font-size: 0.8rem;
+    }
+    @media screen and (max-width: 700px) {
+      font-size: 0.6rem;
+    }
   }
 }
-
-.password-container,
+//Remember/Forgot/Login Button
 .btn-container {
-  width: 100%;
-  margin: 0;
   position: relative;
-}
-
-.btn-container {
-  margin-top: 10px;
+  width: 100%;
+  margin-top: 10px 0;
   font-size: 1.1rem;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -27,11 +33,20 @@
     "login login";
   gap: 25px 0;
 
+  @media screen and (max-width: 600px) {
+    width: 90%;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "memo"
+      "reset"
+      "login";
+  }
+  //Remember Me Container
   .memorized-user {
     grid-area: memo;
     @include justify(space-around);
     flex-direction: column;
-
+    //Remember Me Checkbox
     input[type="checkbox"] {
       border: transparent 1px solid;
       background: $landingLight;
@@ -53,7 +68,6 @@
     grid-area: login;
   }
 }
-
 //landing Page
 .landing-main {
   display: grid;
@@ -92,6 +106,7 @@
     grid-area: sign-in;
   }
 }
+//Other Minor Styling Changes
 //Reset password security question
 .security-question {
   margin-bottom: 25px;
@@ -104,4 +119,10 @@
 //Password-Reset
 .password-reset-title {
   margin-bottom: 40px;
+}
+//create-account
+.account-title {
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }
