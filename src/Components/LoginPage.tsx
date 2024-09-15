@@ -1,19 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
-
-export type propsTypeSetDisplay = {
-  setDisplay: React.Dispatch<
-    React.SetStateAction<
-      | "account"
-      | "login"
-      | "password"
-      | "home"
-      | "security"
-      | "verification"
-      | "reset"
-    >
-  >;
-};
+import { propsTypeSetDisplay } from "../Types/LandingTypes";
 
 const LoginPage = ({ setDisplay }: propsTypeSetDisplay) => {
   const [username, setUsername] = useState("");
@@ -30,7 +17,7 @@ const LoginPage = ({ setDisplay }: propsTypeSetDisplay) => {
   };
 
   return (
-    <form className="main login-form">
+    <form className="main">
       <div className="form-container">
         <label className="offscreen" htmlFor="username">
           Username

@@ -1,8 +1,23 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { propsTypeSetDisplay } from "./LoginPage";
+import { userType } from "../Types/LandingTypes";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
-const SecurityQuestions = ({ setDisplay }: propsTypeSetDisplay) => {
+type propsType = {
+  setDisplay: React.Dispatch<
+    React.SetStateAction<
+      | "account"
+      | "login"
+      | "password"
+      | "home"
+      | "security"
+      | "verification"
+      | "reset"
+    >
+  >;
+  user: userType;
+};
+
+const SecurityQuestions = ({ setDisplay, user }: propsType) => {
   const [question1, setQuestion1] = useState("");
   const [question2, setQuestion2] = useState("");
   const [question3, setQuestion3] = useState("");
@@ -33,118 +48,6 @@ const SecurityQuestions = ({ setDisplay }: propsTypeSetDisplay) => {
     setDisplay("login");
   };
 
-  const handleQuestion = (i: number): string | undefined => {
-    try {
-      if (i) {
-        switch (i) {
-          case 0:
-            return "First Question";
-          case 1:
-            return "Second Question";
-          case 2:
-            return "Third Question";
-          default:
-            throw new Error("Unknown case in sécurity question switch");
-        }
-      } else {
-        throw new Error(
-          "Didn't receive 'I' parameter in the loop function (security Quesiton Loop)"
-        );
-      }
-    } catch (err) {
-      if (err instanceof Error) {
-        console.log(err.message);
-      }
-    }
-  };
-
-  const handleValue = (i: number): string | undefined => {
-    try {
-      if (i) {
-        switch (i) {
-          case 0:
-            return answer1;
-          case 1:
-            return answer2;
-          case 2:
-            return answer3;
-          default:
-            throw new Error("Unknown case in sécurity question value switch");
-        }
-      } else {
-        throw new Error(
-          "Didn't receive 'I' parameter in the loop function (security Quesiton value Loop)"
-        );
-      }
-    } catch (err) {
-      if (err instanceof Error) {
-        console.log(err.message);
-      }
-    }
-  };
-
-  const handleChange = (i: number, value: string) => {
-    try {
-      if (i || value) {
-        switch (i) {
-          case 0:
-            setAnswer1(value);
-            break;
-          case 1:
-            setAnswer2(value);
-            break;
-          case 2:
-            setAnswer3(value);
-            break;
-          default:
-            throw new Error("Unknown case in sécurity question change switch");
-        }
-      } else {
-        throw new Error(
-          "Didn't receive 'I' parameter in the loop function (security Quesiton change Loop)"
-        );
-      }
-    } catch (err) {
-      if (err instanceof Error) {
-        console.log(err.message);
-      }
-    }
-  };
-
-  const returnContent = () => {
-    for (let i: number = 0; i < 3; i++) {
-      return (
-        <>
-          <label className="offscreen" htmlFor={`question${i}Select`}>
-            {handleQuestion(i)}
-          </label>
-          <select
-            className="select"
-            name={`question${i}Select`}
-            id={`question${i}Select`}
-          >
-            {options.map((option: string, index: number) => (
-              <option selected={i === index ? true : false} value={index}>
-                {option}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            className="input"
-            autoComplete="off"
-            id={`question${i}Input`}
-            placeholder="Enter your Answer"
-            value={handleValue(i)}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleChange(i, e.target.value)
-            }
-          />
-        </>
-      );
-    }
-  };
-
   const content = isSubmited ? (
     <div className="main">
       <p>
@@ -167,24 +70,11 @@ const SecurityQuestions = ({ setDisplay }: propsTypeSetDisplay) => {
             name="question1Select"
             id="question1Select"
           >
-            <option value="0">
-              What is the name of your best friend from high school?
-            </option>
-            <option selected value="1">
-              What is your mother's maiden name?
-            </option>
-            <option value="2">What was the name of your first pet?</option>
-            <option value="3">
-              What is the name of the street you grew up on?
-            </option>
-            <option value="4">What is your father's middle name?</option>
-            <option value="5">What was your childhood nickname?</option>
-            <option value="6">What is your favorite color?</option>
-            <option value="7">
-              What was the name of your elementary school?
-            </option>
-            <option value="8">In what city were you born?</option>
-            <option value="9">What was your first car?</option>
+            {options.map((option: string, index: number) => (
+              <option selected={index === 0 ? true : false} value={index}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
         <input
@@ -209,22 +99,11 @@ const SecurityQuestions = ({ setDisplay }: propsTypeSetDisplay) => {
             name="question2Select"
             id="question2Select"
           >
-            <option selected value="0">
-              What is the name of your best friend from high school?
-            </option>
-            <option value="1">What is your mother's maiden name?</option>
-            <option value="2">What was the name of your first pet?</option>
-            <option value="3">
-              What is the name of the street you grew up on?
-            </option>
-            <option value="4">What is your father's middle name?</option>
-            <option value="5">What was your childhood nickname?</option>
-            <option value="6">What is your favorite color?</option>
-            <option value="7">
-              What was the name of your elementary school?
-            </option>
-            <option value="8">In what city were you born?</option>
-            <option value="9">What was your first car?</option>
+            {options.map((option: string, index: number) => (
+              <option selected={index === 1 ? true : false} value={index}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
         <input
@@ -249,24 +128,11 @@ const SecurityQuestions = ({ setDisplay }: propsTypeSetDisplay) => {
             name="question3Select"
             id="question3Select"
           >
-            <option value="0">
-              What is the name of your best friend from high school?
-            </option>
-            <option value="1">What is your mother's maiden name?</option>
-            <option selected value="2">
-              What was the name of your first pet?
-            </option>
-            <option value="3">
-              What is the name of the street you grew up on?
-            </option>
-            <option value="4">What is your father's middle name?</option>
-            <option value="5">What was your childhood nickname?</option>
-            <option value="6">What is your favorite color?</option>
-            <option value="7">
-              What was the name of your elementary school?
-            </option>
-            <option value="8">In what city were you born?</option>
-            <option value="9">What was your first car?</option>
+            {options.map((option: string, index: number) => (
+              <option selected={index === 2 ? true : false} value={index}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
         <input

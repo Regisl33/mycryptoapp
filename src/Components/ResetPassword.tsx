@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { propsTypeSetDisplay } from "./LoginPage";
+import { propsTypeSetDisplay } from "../Types/LandingTypes";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
 const ResetPassword = ({ setDisplay }: propsTypeSetDisplay) => {

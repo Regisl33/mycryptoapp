@@ -1,5 +1,5 @@
 import React from "react";
-import { propsTypeSetDisplay } from "./LoginPage";
+import { propsTypeSetDisplay } from "../Types/LandingTypes";
 
 const LandingMain = ({ setDisplay }: propsTypeSetDisplay) => {
   return (

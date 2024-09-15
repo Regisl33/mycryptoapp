@@ -6,6 +6,7 @@ import SecurityQuestions from "./SecurityQuestions";
 import ForgotPassword from "./ForgotPassword";
 import ResetVerification from "./ResetVerification";
 import ResetPassword from "./ResetPassword";
+import { userType } from "../Types/LandingTypes";
 
 const LandingPage = () => {
   const year = new Date().getFullYear();
@@ -18,6 +19,11 @@ const LandingPage = () => {
     | "verification"
     | "reset"
   >("home");
+  const [user, setUser] = useState<userType>({
+    username: "",
+    email: "",
+    password: "",
+  });
 
   const setMainDisplay = () => {
     switch (display) {
@@ -26,11 +32,11 @@ const LandingPage = () => {
       case "login":
         return <LoginPage setDisplay={setDisplay} />;
       case "account":
-        return <CreateAccount setDisplay={setDisplay} />;
+        return <CreateAccount setDisplay={setDisplay} setUser={setUser} />;
       case "password":
         return <ForgotPassword setDisplay={setDisplay} />;
       case "security":
-        return <SecurityQuestions setDisplay={setDisplay} />;
+        return <SecurityQuestions setDisplay={setDisplay} user={user} />;
       case "verification":
         return <ResetVerification setDisplay={setDisplay} />;
       case "reset":

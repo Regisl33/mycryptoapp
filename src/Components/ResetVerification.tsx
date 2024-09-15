@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { propsTypeSetDisplay } from "./LoginPage";
+import { propsTypeSetDisplay } from "../Types/LandingTypes";
 
 const ResetVerification = ({ setDisplay }: propsTypeSetDisplay) => {
   const [securityAnswer, setSecurityAnswer] = useState("");

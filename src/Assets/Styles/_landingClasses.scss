@@ -39,12 +39,16 @@
       transition: 0.4s ease-in-out;
       z-index: -1;
     }
-    &:hover {
+    &:hover:enabled {
       transform: scale(105%);
     }
-    &:hover::before {
+    &:hover:enabled::before {
       height: 100%;
       width: 100%;
+    }
+    &:disabled {
+      opacity: 0.3;
+      cursor: default;
     }
   }
   .btn2 {
@@ -72,8 +76,12 @@
       border-radius: 10px;
       z-index: -1;
     }
-    &:hover::before {
+    &:hover:enabled::before {
       width: 100%;
+    }
+    &:disabled {
+      opacity: 0.3;
+      cursor: default;
     }
   }
   //Input and Select
@@ -142,5 +150,12 @@
   .hot-Link {
     margin-left: 5px;
     cursor: pointer;
+  }
+  //Error Paragraph
+  .error-text {
+    background: red;
+  }
+  .error-input {
+    border-bottom: 1px solid red;
   }
 }

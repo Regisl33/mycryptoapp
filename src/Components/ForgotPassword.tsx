@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { propsTypeSetDisplay } from "./LoginPage";
+import { propsTypeSetDisplay } from "../Types/LandingTypes";
 
 const ForgotPassword = ({ setDisplay }: propsTypeSetDisplay) => {
   const [email, setEmail] = useState("");
