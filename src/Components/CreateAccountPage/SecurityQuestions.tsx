@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { userType } from "../Types/LandingTypes";
+import { userType } from "../../Types/LandingTypes";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import Create_Select1 from "./Create_Select1";
 
 type propsType = {
   setDisplay: React.Dispatch<
@@ -17,6 +18,19 @@ type propsType = {
   user: userType;
 };
 
+export const options: string[] = [
+  "What is the name of your best friend from high school?",
+  "What is your mother's maiden name?",
+  "What was the name of your first pet?",
+  "What is the name of the street you grew up on?",
+  ">What is your father's middle name?",
+  "What was your childhood nickname?",
+  "What is your favorite color?",
+  "What was the name of your elementary school?",
+  "In what city were you born?",
+  "What was your first car?",
+];
+
 const SecurityQuestions = ({ setDisplay, user }: propsType) => {
   const [question1, setQuestion1] = useState("");
   const [question2, setQuestion2] = useState("");
@@ -26,21 +40,9 @@ const SecurityQuestions = ({ setDisplay, user }: propsType) => {
   const [answer3, setAnswer3] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);
 
-  const options: string[] = [
-    "What is the name of your best friend from high school?",
-    "What is your mother's maiden name?",
-    "What was the name of your first pet?",
-    "What is the name of the street you grew up on?",
-    ">What is your father's middle name?",
-    "What was your childhood nickname?",
-    "What is your favorite color?",
-    "What was the name of your elementary school?",
-    "In what city were you born?",
-    "What was your first car?",
-  ];
-
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    console.log(e);
     setIsSubmited(true);
   };
 
@@ -60,35 +62,13 @@ const SecurityQuestions = ({ setDisplay, user }: propsType) => {
   ) : (
     <form className="main">
       <div className="form-container">
-        <label className="offscreen" htmlFor="question1Select">
-          First Question
-        </label>
-        <div className="select-container">
-          <RiArrowDropDownLine />
-          <select
-            className="select"
-            name="question1Select"
-            id="question1Select"
-          >
-            {options.map((option: string, index: number) => (
-              <option selected={index === 0 ? true : false} value={index}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-        <input
-          type="text"
-          className="input"
-          required
-          autoComplete="off"
-          id="question1Input"
-          placeholder="Enter your Answer"
-          value={answer1}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setAnswer1(e.target.value)
-          }
+        <Create_Select1
+          answer1={answer1}
+          answer2={answer2}
+          answer3={answer3}
+          setAnswer1={setAnswer1}
         />
+
         <label className="offscreen" htmlFor="question2Select">
           First Question
         </label>
@@ -100,7 +80,11 @@ const SecurityQuestions = ({ setDisplay, user }: propsType) => {
             id="question2Select"
           >
             {options.map((option: string, index: number) => (
-              <option selected={index === 1 ? true : false} value={index}>
+              <option
+                key={index}
+                selected={index === 1 ? true : false}
+                value={index}
+              >
                 {option}
               </option>
             ))}
@@ -129,7 +113,11 @@ const SecurityQuestions = ({ setDisplay, user }: propsType) => {
             id="question3Select"
           >
             {options.map((option: string, index: number) => (
-              <option selected={index === 2 ? true : false} value={index}>
+              <option
+                key={index}
+                selected={index === 2 ? true : false}
+                value={index}
+              >
                 {option}
               </option>
             ))}
