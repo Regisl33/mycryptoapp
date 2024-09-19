@@ -1,9 +1,9 @@
 import { FormEvent, useState } from "react";
 import { userType } from "../../Types/LandingTypes";
-import Create_Username from "./Create_Username";
-import Create_Email from "./Create_Email";
-import Create_Password from "./Create_Password";
-import Create_Confirm_Password from "./Create_Confirm_Password";
+import CreateUsername from "./CreateUsername";
+import CreateEmail from "./CreateEmail";
+import CreatePassword from "./CreatePassword";
+import CreateConfirm_Password from "./CreateConfirmPassword";
 
 type propsType = {
   setDisplay: React.Dispatch<
@@ -20,7 +20,7 @@ type propsType = {
   setUser: React.Dispatch<React.SetStateAction<userType>>;
 };
 
-const CreateAccount = ({ setDisplay, setUser }: propsType) => {
+const Create_Account = ({ setDisplay, setUser }: propsType) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -62,25 +62,25 @@ const CreateAccount = ({ setDisplay, setUser }: propsType) => {
         <h2 className="title account-title">
           Enter your information to create your account
         </h2>
-        <Create_Username
+        <CreateUsername
           username={username}
           setUsername={setUsername}
           usernameValid={usernameValid}
           setUsernameValid={setUsernameValid}
         />
-        <Create_Email
+        <CreateEmail
           email={email}
           setEmail={setEmail}
           emailValid={emailValid}
           setEmailValid={setEmailValid}
         />
-        <Create_Password
+        <CreatePassword
           password={password}
           setPassword={setPassword}
           passwordValid={passwordValid}
           setPasswordValid={setPasswordValid}
         />
-        <Create_Confirm_Password
+        <CreateConfirm_Password
           confirmPassword={confirmPassword}
           password={password}
           setConfirmPassword={setConfirmPassword}
@@ -100,4 +100,4 @@ const CreateAccount = ({ setDisplay, setUser }: propsType) => {
   return Create_Account_Form;
 };
 
-export default CreateAccount;
+export default Create_Account;

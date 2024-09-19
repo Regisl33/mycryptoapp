@@ -1,152 +1,139 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import { userType } from "../../Types/LandingTypes";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import Create_Select1 from "./Create_Select1";
+import { FormEvent, useEffect, useState } from "react";
+import {
+  useAddUserMutation,
+  useGetAllUsersQuery,
+} from "../../Features/LandingPage/UserSlice";
+import { fullUserType, SecQuestionPropsType } from "../../Types/LandingTypes";
+import CreateSelect1 from "./CreateSelect1";
+import CreateSelect2 from "./CreateSelect2";
+import CreateSelect3 from "./CreateSelect3";
+import HandleReturnLogin from "./HandleReturnLogin";
+import { optionType, options } from "./Options";
 
-type propsType = {
-  setDisplay: React.Dispatch<
-    React.SetStateAction<
-      | "account"
-      | "login"
-      | "password"
-      | "home"
-      | "security"
-      | "verification"
-      | "reset"
-    >
-  >;
-  user: userType;
-};
-
-export const options: string[] = [
-  "What is the name of your best friend from high school?",
-  "What is your mother's maiden name?",
-  "What was the name of your first pet?",
-  "What is the name of the street you grew up on?",
-  ">What is your father's middle name?",
-  "What was your childhood nickname?",
-  "What is your favorite color?",
-  "What was the name of your elementary school?",
-  "In what city were you born?",
-  "What was your first car?",
-];
-
-const SecurityQuestions = ({ setDisplay, user }: propsType) => {
+const Security_Questions = ({ setDisplay, user }: SecQuestionPropsType) => {
   const [question1, setQuestion1] = useState("");
   const [question2, setQuestion2] = useState("");
   const [question3, setQuestion3] = useState("");
   const [answer1, setAnswer1] = useState("");
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const { data: userData } = useGetAllUsersQuery("User");
+  const [addUser] = useAddUserMutation();
+
+  const getFullQuestion = (id: string): string => {
+    let fullOption: string = "";
+    options.map((option: optionType) =>
+      parseInt(id) === option.value ? (fullOption = option.text) : null
+    );
+    return fullOption;
+  };
+
+  useEffect(() => {
+    if (
+      question1 !== question2 &&
+      question1 !== "0" &&
+      question2 !== question3 &&
+      question2 !== "0" &&
+      question3 !== question1 &&
+      question3 !== "0" &&
+      answer1.length > 0 &&
+      answer2.length > 0 &&
+      answer3.length > 0
+    ) {
+      setIsValid(true);
+      setErrorMessage("");
+    } else {
+      setErrorMessage("Please Select 3 différents questions!");
+      setIsValid(false);
+    }
+  }, [question1, question2, question3, answer1, answer2, answer3]);
+
+  const postData = async (user: fullUserType) => {
+    if (user) {
+      try {
+        await addUser(user).unwrap();
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log("Post Data is incorrect");
+    }
+  };
+
+  const handle_Submit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(e);
+    let fullQuestion1: string = getFullQuestion(question1);
+    let fullQuestion2: string = getFullQuestion(question2);
+    let fullQuestion3: string = getFullQuestion(question3);
+    let fullUser: fullUserType = {
+      id: userData?.ids ? userData?.ids.length : 0,
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      questions: {
+        question1: fullQuestion1,
+        question2: fullQuestion2,
+        question3: fullQuestion3,
+        answer1,
+        answer2,
+        answer3,
+      },
+    };
+    await postData(fullUser);
     setIsSubmited(true);
   };
 
-  const handleReturnLogin = () => {
-    setDisplay("login");
-  };
-
-  const content = isSubmited ? (
-    <div className="main">
-      <p>
-        Your account has been created with succes!
-        <u className="hot-Link" onClick={() => handleReturnLogin()}>
-          Click Here to Login!
-        </u>
-      </p>
-    </div>
+  const Security_Questions_Form = isSubmited ? (
+    <HandleReturnLogin
+      setDisplay={setDisplay}
+      text="Your account has been created with succes!"
+    />
   ) : (
     <form className="main">
       <div className="form-container">
-        <Create_Select1
+        <CreateSelect1
           answer1={answer1}
-          answer2={answer2}
-          answer3={answer3}
           setAnswer1={setAnswer1}
+          question1={question1}
+          setQuestion1={setQuestion1}
         />
-
-        <label className="offscreen" htmlFor="question2Select">
-          First Question
-        </label>
-        <div className="select-container">
-          <RiArrowDropDownLine />
-          <select
-            className="select"
-            name="question2Select"
-            id="question2Select"
-          >
-            {options.map((option: string, index: number) => (
-              <option
-                key={index}
-                selected={index === 1 ? true : false}
-                value={index}
-              >
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-        <input
-          type="text"
-          className="input"
-          required
-          autoComplete="off"
-          id="question2Input"
-          placeholder="Enter your Answer"
-          value={answer2}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setAnswer2(e.target.value)
-          }
+        <CreateSelect2
+          answer2={answer2}
+          setAnswer2={setAnswer2}
+          question2={question2}
+          setQuestion2={setQuestion2}
         />
-        <label className="offscreen" htmlFor="question3Select">
-          First Question
-        </label>
-        <div className="select-container">
-          <RiArrowDropDownLine />
-          <select
-            className="select"
-            name="question3Select"
-            id="question3Select"
-          >
-            {options.map((option: string, index: number) => (
-              <option
-                key={index}
-                selected={index === 2 ? true : false}
-                value={index}
-              >
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-        <input
-          type="text"
-          className="input"
-          required
-          autoComplete="off"
-          id="question3Input"
-          placeholder="Enter your Answer"
-          value={answer3}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setAnswer3(e.target.value)
-          }
+        <CreateSelect3
+          answer3={answer3}
+          setAnswer3={setAnswer3}
+          question3={question3}
+          setQuestion3={setQuestion3}
         />
         <button
           type="submit"
           className="btn1"
-          onClick={(e: FormEvent) => handleSubmit(e)}
+          disabled={!isValid}
+          onClick={(e: FormEvent) => handle_Submit(e)}
         >
           Create Account
         </button>
+        <p className="error-text">
+          {errorMessage.length > 0 &&
+          answer1.length > 0 &&
+          answer2.length > 0 &&
+          answer3.length > 0
+            ? errorMessage
+            : null}
+        </p>
       </div>
     </form>
   );
 
-  return content;
+  return Security_Questions_Form;
 };
 
-export default SecurityQuestions;
+export default Security_Questions;

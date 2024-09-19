@@ -45,9 +45,9 @@ const Create_Confirm_Password = ({
         {showPassword ? <IoEyeOff /> : <IoEye />}
       </div>
       <p className="error-text">
-        {confirmPassword === password
-          ? ""
-          : "Your Password confirmation doesn't match your password"}
+        {confirmPassword.length > 0 && confirmPassword !== password
+          ? "Your Password confirmation doesn't match your password"
+          : ""}
       </p>
     </div>
   );

@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { propsTypeSetDisplay } from "../Types/LandingTypes";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import HandleReturnLogin from "./CreateAccountPage/HandleReturnLogin";
 
 const ResetPassword = ({ setDisplay }: propsTypeSetDisplay) => {
   const [password, setPassword] = useState("");
@@ -15,14 +16,10 @@ const ResetPassword = ({ setDisplay }: propsTypeSetDisplay) => {
   };
 
   const content = isSubmited ? (
-    <div className="main">
-      <p>
-        Your password has been reset!
-        <u className="hot-Link" onClick={() => setDisplay("login")}>
-          Click here to login
-        </u>
-      </p>
-    </div>
+    <HandleReturnLogin
+      setDisplay={setDisplay}
+      text="Your password has been reset!"
+    />
   ) : (
     <form className="main">
       <div className="form-container">

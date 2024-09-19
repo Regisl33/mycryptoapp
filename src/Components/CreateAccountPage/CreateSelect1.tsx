@@ -1,19 +1,19 @@
 import { ChangeEvent } from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { options } from "./SecurityQuestions";
+import { optionType, options } from "./Options";
 
 type Create_Select1_Props_Type = {
   answer1: string;
-  answer2: string;
-  answer3: string;
   setAnswer1: React.Dispatch<React.SetStateAction<string>>;
+  question1: string;
+  setQuestion1: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const Create_Select1 = ({
   answer1,
-  answer2,
-  answer3,
   setAnswer1,
+  question1,
+  setQuestion1,
 }: Create_Select1_Props_Type) => {
   const Create_Select1_Select = (
     <>
@@ -22,22 +22,28 @@ const Create_Select1 = ({
       </label>
       <div className="select-container">
         <RiArrowDropDownLine />
-        <select className="select" name="question1Select" id="question1Select">
-          {options.map((option: string, index: number) => (
-            <option
-              key={index}
-              selected={index === 0 ? true : false}
-              value={index}
-            >
-              {option}
+        <select
+          className="select"
+          name="question1Select"
+          id="question1Select"
+          onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+            setQuestion1(e.target.value)
+          }
+        >
+          {options.map((option: optionType) => (
+            <option key={option.value} value={option.value}>
+              {option.text}
             </option>
           ))}
         </select>
       </div>
       <input
         type="text"
-        className="input"
-        required
+        className={
+          question1.length > 0 && answer1.length === 0
+            ? "input error-input"
+            : "input"
+        }
         autoComplete="off"
         id="question1Input"
         placeholder="Enter your Answer"
@@ -46,9 +52,14 @@ const Create_Select1 = ({
           setAnswer1(e.target.value)
         }
       />
+      <p className="error-text">
+        {question1.length > 0 && answer1.length === 0
+          ? "Please Enter An Answer"
+          : ""}
+      </p>
     </>
   );
-  return <div></div>;
+  return Create_Select1_Select;
 };
 
 export default Create_Select1;

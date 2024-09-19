@@ -23,7 +23,8 @@ const Create_Username = ({
       if (userApiData?.ids) {
         if (userApiData.ids.length > 0) {
           userApiData.ids.map((id) =>
-            userApiData.entities[id].username === username
+            userApiData.entities[id].username ===
+            e.target.value.toLowerCase().trim()
               ? setUsernameValid(false)
               : setUsernameValid(true)
           );
