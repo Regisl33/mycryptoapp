@@ -11,9 +11,9 @@ import HandleReturnLogin from "./HandleReturnLogin";
 import { optionType, options } from "./Options";
 
 const Security_Questions = ({ setDisplay, user }: SecQuestionPropsType) => {
-  const [question1, setQuestion1] = useState("");
-  const [question2, setQuestion2] = useState("");
-  const [question3, setQuestion3] = useState("");
+  const [question1, setQuestion1] = useState("0");
+  const [question2, setQuestion2] = useState("0");
+  const [question3, setQuestion3] = useState("0");
   const [answer1, setAnswer1] = useState("");
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");

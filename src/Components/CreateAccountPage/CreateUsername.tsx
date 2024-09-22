@@ -17,6 +17,22 @@ const Create_Username = ({
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
   const [inputError, setInputError] = useState("");
 
+  const usernameRegex = /^[a-zA-Z0-9]+$/;
+
+  const addErrorMessage = (value: string) => {
+    setUsernameValid(false);
+    if (usernameRegex.test(value)) {
+      setInputError("This username already exist");
+    } else {
+      setInputError("Username can only contain alphanumeric characters");
+    }
+  };
+
+  const removeErrorMessage = () => {
+    setUsernameValid(true);
+    setInputError("");
+  };
+
   const handle_Change_Username = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value.toLowerCase().trim());
     if (e.target.value.toLowerCase().trim().length > 0) {
@@ -25,8 +41,10 @@ const Create_Username = ({
           userApiData.ids.map((id) =>
             userApiData.entities[id].username ===
             e.target.value.toLowerCase().trim()
-              ? setUsernameValid(false)
-              : setUsernameValid(true)
+              ? addErrorMessage(e.target.value.toLowerCase().trim())
+              : usernameRegex.test(e.target.value.toLowerCase().trim())
+              ? removeErrorMessage()
+              : addErrorMessage(e.target.value.toLowerCase().trim())
           );
         } else {
           setUsernameValid(true);
@@ -65,11 +83,7 @@ const Create_Username = ({
         }
       />
       <p className="error-text">
-        {usernameValid || username.length === 0
-          ? ""
-          : inputError.length > 0
-          ? inputError
-          : "This username already exist"}
+        {usernameValid || username.length === 0 ? "" : inputError}
       </p>
     </>
   );

@@ -40,7 +40,7 @@ const Create_Select3 = ({
       <input
         type="text"
         className={
-          question3.length > 0 && answer3.length === 0
+          question3 !== "0" && answer3.length === 0
             ? "input error-input"
             : "input"
         }
@@ -53,7 +53,7 @@ const Create_Select3 = ({
         }
       />
       <p className="error-text">
-        {question3.length > 0 && answer3.length === 0
+        {question3 !== "0" && answer3.length === 0
           ? "Please Enter An Answer"
           : ""}
       </p>
