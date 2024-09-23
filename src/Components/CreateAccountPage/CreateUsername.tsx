@@ -62,7 +62,7 @@ const Create_Username = ({
     } else {
       setInputError("");
     }
-  }, [isError]);
+  }, [isError, error]);
 
   const Create_Username_Input = (
     <>

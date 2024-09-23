@@ -1,60 +1,62 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import { IoEye, IoEyeOff } from "react-icons/io5";
+import { FormEvent, useEffect, useState } from "react";
 import { propsTypeSetDisplay } from "../Types/LandingTypes";
+import { useGetAllUsersQuery } from "../Features/LandingPage/UserSlice";
+import LoginPassword from "./LoginPassword";
+import LoginUsername from "./LoginUsername";
 
 const LoginPage = ({ setDisplay }: propsTypeSetDisplay) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPasseord] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isValid, setIsValid] = useState(false);
   const [memorizeUser, setMemorizeUser] = useState(false);
+
+  const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
+
+  const HandleLogin = () => {
+    setErrorMessage("");
+    console.log(username);
+  };
 
   const HandleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if (userApiData?.ids) {
+      let accountID = userApiData.ids.filter(
+        (id) => userApiData.entities[id].username === username
+      );
+      if (accountID.length > 0) {
+        userApiData.entities[accountID[0]].password === password
+          ? HandleLogin()
+          : setErrorMessage("incorrect password!");
+      } else {
+        setErrorMessage("We couldn't find an account with this username");
+      }
+    } else {
+      setErrorMessage("Sorry, we couldn't reach the server, please try again");
+    }
 
     if (memorizeUser) {
       //Cookies
     }
   };
 
-  return (
+  useEffect(() => {
+    if (isError) {
+      setErrorMessage("Sorry, we couldn't reach the server, please try again");
+      setIsValid(false);
+      console.log(error);
+    } else if (username.length > 0 && password.length > 0) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  }, [isError, username, password, error]);
+
+  const LoginForm = (
     <form className="main">
       <div className="form-container">
-        <label className="offscreen" htmlFor="username">
-          Username
-        </label>
-        <input
-          autoComplete="off"
-          className="input"
-          type="text"
-          id="username"
-          placeholder="Username"
-          value={username}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setUsername(e.target.value)
-          }
-        />
-        <div className="password-container">
-          <label className="offscreen" htmlFor="password">
-            Password
-          </label>
-          <input
-            autoComplete="off"
-            className="input"
-            type={showPassword ? "text" : "password"}
-            id="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setPassword(e.target.value)
-            }
-          />
-          <div
-            className="eye-container"
-            onClick={() => setShowPasseord(!showPassword)}
-          >
-            {showPassword ? <IoEyeOff /> : <IoEye />}
-          </div>
-        </div>
+        <LoginUsername username={username} setUsername={setUsername} />
+        <LoginPassword password={password} setPassword={setPassword} />
         <div className="btn-container">
           <div className="memorized-user">
             <label htmlFor="memUser">Remember Me</label>
@@ -71,14 +73,18 @@ const LoginPage = ({ setDisplay }: propsTypeSetDisplay) => {
           <button
             className="btn1"
             type="submit"
-            onSubmit={(e: FormEvent) => HandleSubmit(e)}
+            disabled={!isValid}
+            onClick={(e: FormEvent) => HandleSubmit(e)}
           >
             Login
           </button>
         </div>
+        <p className="error-text">{errorMessage}</p>
       </div>
     </form>
   );
+
+  return LoginForm;
 };
 
 export default LoginPage;
