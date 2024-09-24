@@ -3,8 +3,24 @@ import { propsTypeSetDisplay } from "../Types/LandingTypes";
 import { useGetAllUsersQuery } from "../Features/LandingPage/UserSlice";
 import LoginPassword from "./LoginPassword";
 import LoginUsername from "./LoginUsername";
+import Home from "./Home";
 
-const LoginPage = ({ setDisplay }: propsTypeSetDisplay) => {
+type propsType = {
+  setDisplay: React.Dispatch<
+    React.SetStateAction<
+      | "verification"
+      | "home"
+      | "password"
+      | "reset"
+      | "login"
+      | "account"
+      | "security"
+    >
+  >;
+  setSelectedID: React.Dispatch<React.SetStateAction<number | undefined>>;
+};
+
+const LoginPage = ({ setDisplay, setSelectedID }: propsType) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -13,9 +29,15 @@ const LoginPage = ({ setDisplay }: propsTypeSetDisplay) => {
 
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
 
-  const HandleLogin = () => {
+  const HandleLogin = (id: number) => {
     setErrorMessage("");
-    console.log(username);
+    setSelectedID(id);
+    if (memorizeUser) {
+      window.localStorage.selectedID = id;
+    } else {
+      window.localStorage.selectedID = null;
+    }
+    return <Home userID={id} />;
   };
 
   const HandleSubmit = (e: FormEvent) => {
@@ -26,17 +48,13 @@ const LoginPage = ({ setDisplay }: propsTypeSetDisplay) => {
       );
       if (accountID.length > 0) {
         userApiData.entities[accountID[0]].password === password
-          ? HandleLogin()
+          ? HandleLogin(userApiData.entities[accountID[0]].id)
           : setErrorMessage("incorrect password!");
       } else {
         setErrorMessage("We couldn't find an account with this username");
       }
     } else {
       setErrorMessage("Sorry, we couldn't reach the server, please try again");
-    }
-
-    if (memorizeUser) {
-      //Cookies
     }
   };
 

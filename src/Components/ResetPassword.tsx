@@ -1,9 +1,23 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { propsTypeSetDisplay } from "../Types/LandingTypes";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import HandleReturnLogin from "./CreateAccountPage/HandleReturnLogin";
 
-const ResetPassword = ({ setDisplay }: propsTypeSetDisplay) => {
+type propsType = {
+  setDisplay: React.Dispatch<
+    React.SetStateAction<
+      | "password"
+      | "account"
+      | "login"
+      | "home"
+      | "security"
+      | "verification"
+      | "reset"
+    >
+  >;
+  selectedID: number | undefined;
+};
+
+const ResetPassword = ({ setDisplay, selectedID }: propsType) => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);

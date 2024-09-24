@@ -1,7 +1,22 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { propsTypeSetDisplay } from "../Types/LandingTypes";
 
-const ResetVerification = ({ setDisplay }: propsTypeSetDisplay) => {
+type propsType = {
+  setDisplay: React.Dispatch<
+    React.SetStateAction<
+      | "password"
+      | "account"
+      | "login"
+      | "home"
+      | "security"
+      | "verification"
+      | "reset"
+    >
+  >;
+  selectedID: number | undefined;
+};
+
+const ResetVerification = ({ setDisplay, selectedID }: propsType) => {
   const [securityAnswer, setSecurityAnswer] = useState("");
 
   const handleSubmit = (e: FormEvent) => {

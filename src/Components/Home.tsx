@@ -1,6 +1,10 @@
 import React from "react";
 
-const Home = () => {
+type propsType = {
+  userID: number;
+};
+
+const Home = ({ userID }: propsType) => {
   return <div></div>;
 };
 

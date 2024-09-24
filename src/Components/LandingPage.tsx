@@ -10,6 +10,7 @@ import { userType } from "../Types/LandingTypes";
 
 const LandingPage = () => {
   const year = new Date().getFullYear();
+  const [selectedID, setSelectedID] = useState<number>();
   const [display, setDisplay] = useState<
     | "home"
     | "login"
@@ -30,17 +31,28 @@ const LandingPage = () => {
       case "home":
         return <LandingMain setDisplay={setDisplay} />;
       case "login":
-        return <LoginPage setDisplay={setDisplay} />;
+        return (
+          <LoginPage setDisplay={setDisplay} setSelectedID={setSelectedID} />
+        );
       case "account":
         return <CreateAccount setDisplay={setDisplay} setUser={setUser} />;
       case "password":
-        return <ForgotPassword setDisplay={setDisplay} />;
+        return (
+          <ForgotPassword
+            setDisplay={setDisplay}
+            setSelectedID={setSelectedID}
+          />
+        );
       case "security":
         return <SecurityQuestions setDisplay={setDisplay} user={user} />;
       case "verification":
-        return <ResetVerification setDisplay={setDisplay} />;
+        return (
+          <ResetVerification setDisplay={setDisplay} selectedID={selectedID} />
+        );
       case "reset":
-        return <ResetPassword setDisplay={setDisplay} />;
+        return (
+          <ResetPassword setDisplay={setDisplay} selectedID={selectedID} />
+        );
       default:
         return <LandingMain setDisplay={setDisplay} />;
     }

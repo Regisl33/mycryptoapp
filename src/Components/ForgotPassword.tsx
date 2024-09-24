@@ -2,15 +2,26 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { propsTypeSetDisplay } from "../Types/LandingTypes";
 import { useGetAllUsersQuery } from "../Features/LandingPage/UserSlice";
 
-const ForgotPassword = ({ setDisplay }: propsTypeSetDisplay) => {
+type propsType = {
+  setDisplay: React.Dispatch<
+    React.SetStateAction<
+      | "verification"
+      | "home"
+      | "password"
+      | "reset"
+      | "login"
+      | "account"
+      | "security"
+    >
+  >;
+  setSelectedID: React.Dispatch<React.SetStateAction<number | undefined>>;
+};
+
+const ForgotPassword = ({ setDisplay, setSelectedID }: propsType) => {
   const [inputValue, setInputValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
-
-  const handleReset = () => {
-    setErrorMessage("");
-  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -18,21 +29,25 @@ const ForgotPassword = ({ setDisplay }: propsTypeSetDisplay) => {
       setErrorMessage("Sorry, we couldn't reach the server, please try again");
       console.log(error);
     } else if (userApiData?.ids) {
-      let accountID = userApiData.ids.filter(
-        (id) =>
-          userApiData.entities[id].email ||
-          userApiData.entities[id].username === inputValue
+      let accountID: number | null = null;
+      userApiData.ids.map((id) =>
+        userApiData.entities[id].email ||
+        userApiData.entities[id].username === inputValue
+          ? (accountID = id)
+          : console.log(id)
       );
 
-      if (accountID.length > 0) {
-        //Logik
+      if (accountID) {
+        console.log(accountID);
+        setErrorMessage("");
+        setSelectedID(userApiData.entities[accountID].id);
+        setDisplay("verification");
       } else {
         setErrorMessage("We couldn't find your account");
       }
     } else {
       setErrorMessage("Sorry, we couldn't reach the server, please try again");
     }
-    setDisplay("verification");
   };
 
   const content = (
@@ -52,6 +67,7 @@ const ForgotPassword = ({ setDisplay }: propsTypeSetDisplay) => {
             setInputValue(e.target.value.toLowerCase().trim())
           }
         />
+        <p className="error-text">{errorMessage}</p>
         <button
           type="submit"
           className="btn1"
