@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
-import LandingPage from "./Components/LandingPage";
+import LandingPage from "./Components/LoginPages/LandingPage";
 import { fetchCoinData } from "./Features/CoinGeeckoData/CoinDataSlice";
 
 const App = () => {

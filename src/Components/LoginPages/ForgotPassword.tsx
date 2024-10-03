@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { propsTypeSetDisplay } from "../Types/LandingTypes";
-import { useGetAllUsersQuery } from "../Features/LandingPage/UserSlice";
+import { propsTypeSetDisplay } from "../../Types/LandingTypes";
+import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
 
 type propsType = {
   setDisplay: React.Dispatch<

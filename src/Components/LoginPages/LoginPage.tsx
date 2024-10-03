@@ -1,9 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
-import { propsTypeSetDisplay } from "../Types/LandingTypes";
-import { useGetAllUsersQuery } from "../Features/LandingPage/UserSlice";
+import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
 import LoginPassword from "./LoginPassword";
 import LoginUsername from "./LoginUsername";
-import Home from "./Home";
 
 type propsType = {
   setDisplay: React.Dispatch<

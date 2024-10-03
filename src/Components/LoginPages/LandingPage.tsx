@@ -1,12 +1,12 @@
 import { useState } from "react";
 import LandingMain from "./LandingMain";
 import LoginPage from "./LoginPage";
-import CreateAccount from "./CreateAccountPage/CreateAccount";
-import SecurityQuestions from "./CreateAccountPage/SecurityQuestions";
+import CreateAccount from "../CreateAccountPage/CreateAccount";
+import SecurityQuestions from "../CreateAccountPage/SecurityQuestions";
 import ForgotPassword from "./ForgotPassword";
 import ResetVerification from "./ResetVerification";
 import ResetPassword from "./ResetPassword";
-import { userType } from "../Types/LandingTypes";
+import { userType } from "../../Types/LandingTypes";
 
 type propsType = {
   selectedID: number | undefined;
