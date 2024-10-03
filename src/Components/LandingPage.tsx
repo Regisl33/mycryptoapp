@@ -8,9 +8,14 @@ import ResetVerification from "./ResetVerification";
 import ResetPassword from "./ResetPassword";
 import { userType } from "../Types/LandingTypes";
 
-const LandingPage = () => {
+type propsType = {
+  selectedID: number | undefined;
+  setSelectedID: React.Dispatch<React.SetStateAction<number | undefined>>;
+};
+
+const LandingPage = ({ selectedID, setSelectedID }: propsType) => {
   const year = new Date().getFullYear();
-  const [selectedID, setSelectedID] = useState<number>();
+
   const [display, setDisplay] = useState<
     | "home"
     | "login"

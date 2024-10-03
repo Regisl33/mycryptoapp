@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { propsTypeSetDisplay } from "../Types/LandingTypes";
 
 type propsType = {
   setDisplay: React.Dispatch<

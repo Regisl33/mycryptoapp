@@ -37,7 +37,6 @@ const LoginPage = ({ setDisplay, setSelectedID }: propsType) => {
     } else {
       window.localStorage.selectedID = null;
     }
-    return <Home userID={id} />;
   };
 
   const HandleSubmit = (e: FormEvent) => {

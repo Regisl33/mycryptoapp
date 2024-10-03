@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import UserApi from "../Api/UserApi";
+import coinSlice from "../Features/CoinGeeckoData/CoinDataSlice";
 
 const store = configureStore({
-  reducer: { [UserApi.reducerPath]: UserApi.reducer },
+  reducer: {
+    [UserApi.reducerPath]: UserApi.reducer,
+    coinData: coinSlice,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(UserApi.middleware),
 });

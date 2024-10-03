@@ -2,13 +2,17 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
 import LandingPage from "./Components/LandingPage";
+import { fetchCoinData } from "./Features/CoinGeeckoData/CoinDataSlice";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [selectedID, setSelectedID] = useState<number>();
 
   useEffect(() => {
-    if (window.localStorage.selectedID) {
+    if (window.localStorage.selectedID !== null) {
       setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
     }
   }, []);
 
@@ -19,9 +23,18 @@ const App = () => {
           path="*"
           element={
             isLoggedIn ? (
-              <Home userID={window.localStorage.selectedID} />
+              <Home
+                userID={
+                  window.localStorage.selectedID
+                    ? window.localStorage.selectedID
+                    : selectedID
+                }
+              />
             ) : (
-              <LandingPage />
+              <LandingPage
+                selectedID={selectedID}
+                setSelectedID={setSelectedID}
+              />
             )
           }
         />
