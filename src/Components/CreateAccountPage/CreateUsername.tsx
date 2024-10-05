@@ -1,19 +1,19 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
 
-type Create_Username_Props_Type = {
+type CreateUsernamePropsType = {
   username: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   usernameValid: boolean;
   setUsernameValid: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Create_Username = ({
+const CreateUsername = ({
   username,
   setUsername,
   usernameValid,
   setUsernameValid,
-}: Create_Username_Props_Type) => {
+}: CreateUsernamePropsType) => {
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
   const [inputError, setInputError] = useState("");
 
@@ -33,7 +33,7 @@ const Create_Username = ({
     setInputError("");
   };
 
-  const handle_Change_Username = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value.toLowerCase().trim());
     if (e.target.value.toLowerCase().trim().length > 0) {
       if (userApiData?.ids) {
@@ -64,7 +64,7 @@ const Create_Username = ({
     }
   }, [isError, error]);
 
-  const Create_Username_Input = (
+  const CreateUsernameInput = (
     <>
       <label className="offscreen" htmlFor="username">
         Username
@@ -78,16 +78,14 @@ const Create_Username = ({
         id="username"
         placeholder="Username"
         value={username}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          handle_Change_Username(e)
-        }
+        onChange={(e: ChangeEvent<HTMLInputElement>) => handleChangeUsername(e)}
       />
       <p className="error-text">
         {usernameValid || username.length === 0 ? "" : inputError}
       </p>
     </>
   );
-  return Create_Username_Input;
+  return CreateUsernameInput;
 };
 
-export default Create_Username;
+export default CreateUsername;

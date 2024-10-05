@@ -1,17 +1,3 @@
-export type propsTypeSetDisplay = {
-  setDisplay: React.Dispatch<
-    React.SetStateAction<
-      | "account"
-      | "login"
-      | "password"
-      | "home"
-      | "security"
-      | "verification"
-      | "reset"
-    >
-  >;
-};
-
 export type userType = {
   username: string;
   email: string;
@@ -27,12 +13,24 @@ export type securityQuestionsType = {
   answer3: String;
 };
 
+export type passwordChangeType = {
+  id: number;
+  oldPassword: string;
+  resetDate: number;
+};
+export type userOptions = {
+  darkMode: boolean;
+  favorites: string[];
+};
+
 export type fullUserType = {
   id: number;
   username: string;
   email: string;
   password: string;
   questions: securityQuestionsType;
+  options?: userOptions;
+  passwordHistory?: passwordChangeType;
 };
 
 export type actionType = {
@@ -43,29 +41,4 @@ export type actionType = {
 export type userStateType = {
   user: userType;
   fullUser: fullUserType;
-};
-
-const userStateType = {
-  user: {
-    username: "",
-    email: "",
-    password: "",
-  },
-  fullUser: {
-    username: "",
-    email: "",
-    password: "",
-    questions: {
-      question1: "",
-      question2: "",
-      question3: "",
-      answer1: "",
-      answer2: "",
-      answer3: "",
-    },
-  },
-};
-
-export type SecQuestionPropsType = {
-  user: userType;
 };

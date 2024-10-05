@@ -1,19 +1,19 @@
 import { ChangeEvent, useState, useEffect } from "react";
 import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
 
-type Create_Email_Props_Type = {
+type CreateEmailPropsType = {
   email: string;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   emailValid: boolean;
   setEmailValid: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Create_Email = ({
+const CreateEmail = ({
   email,
   setEmail,
   emailValid,
   setEmailValid,
-}: Create_Email_Props_Type) => {
+}: CreateEmailPropsType) => {
   const [inputError, setInputError] = useState("");
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
   const emailRegex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
@@ -32,7 +32,7 @@ const Create_Email = ({
     setInputError("");
   };
 
-  const handle_Change_Email = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value.toLowerCase().trim());
     if (e.target.value.toLowerCase().trim().length > 0) {
       if (userApiData?.ids) {
@@ -65,7 +65,7 @@ const Create_Email = ({
     }
   }, [isError, error]);
 
-  const Create_Email_Input = (
+  const CreateEmailInput = (
     <>
       <label className="offscreen" htmlFor="email">
         Email
@@ -79,7 +79,7 @@ const Create_Email = ({
         id="email"
         placeholder="Email"
         value={email}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => handle_Change_Email(e)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => handleChangeEmail(e)}
       />
       <p className="error-text">
         {emailValid || email.length === 0 ? "" : inputError}
@@ -87,7 +87,7 @@ const Create_Email = ({
     </>
   );
 
-  return Create_Email_Input;
+  return CreateEmailInput;
 };
 
-export default Create_Email;
+export default CreateEmail;

@@ -23,7 +23,7 @@ const ResetVerification = () => {
           className="input"
           value={securityAnswer}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setSecurityAnswer(e.target.value)
+            setSecurityAnswer(e.target.value.toLowerCase())
           }
         />
         <button type="button" className="btn2 swap-question">
@@ -33,6 +33,7 @@ const ResetVerification = () => {
           type="submit"
           className="btn1"
           onClick={(e: FormEvent) => handleSubmit(e)}
+          disabled={securityAnswer.length === 0 ? true : false}
         >
           Reset Password
         </button>

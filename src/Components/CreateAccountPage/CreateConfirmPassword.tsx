@@ -1,24 +1,24 @@
 import { ChangeEvent, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
-type Create_Confirm_Password_Props_Type = {
+type CreateConfirmPasswordPropsType = {
   confirmPassword: string;
   password: string;
   setConfirmPassword: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Create_Confirm_Password = ({
+const CreateConfirmPassword = ({
   confirmPassword,
   password,
   setConfirmPassword,
-}: Create_Confirm_Password_Props_Type) => {
+}: CreateConfirmPasswordPropsType) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const handle_Confirm_Change = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleConfirmChange = (e: ChangeEvent<HTMLInputElement>) => {
     setConfirmPassword(e.target.value.trim());
   };
 
-  return (
+  const confirmPasswordInput = (
     <div className="confirm-password-container">
       <label className="offscreen" htmlFor="confirmPassword">
         Confirm your password
@@ -34,9 +34,7 @@ const Create_Confirm_Password = ({
         id="confirmPassword"
         placeholder="Confirm your password"
         value={confirmPassword}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          handle_Confirm_Change(e)
-        }
+        onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmChange(e)}
       />
       <div
         className="eye-container"
@@ -51,6 +49,8 @@ const Create_Confirm_Password = ({
       </p>
     </div>
   );
+
+  return confirmPasswordInput;
 };
 
-export default Create_Confirm_Password;
+export default CreateConfirmPassword;

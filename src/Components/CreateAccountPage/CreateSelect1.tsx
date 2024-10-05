@@ -2,20 +2,20 @@ import { ChangeEvent } from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { optionType, options } from "./Options";
 
-type Create_Select1_Props_Type = {
+type CreateSelect1PropsType = {
   answer1: string;
   setAnswer1: React.Dispatch<React.SetStateAction<string>>;
   question1: string;
   setQuestion1: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Create_Select1 = ({
+const CreateSelect1 = ({
   answer1,
   setAnswer1,
   question1,
   setQuestion1,
-}: Create_Select1_Props_Type) => {
-  const Create_Select1_Select = (
+}: CreateSelect1PropsType) => {
+  const CreateSelect1Select = (
     <>
       <label className="offscreen" htmlFor="question1Select">
         First Question
@@ -49,7 +49,7 @@ const Create_Select1 = ({
         placeholder="Enter your Answer"
         value={answer1}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          setAnswer1(e.target.value)
+          setAnswer1(e.target.value.toLowerCase())
         }
       />
       <p className="error-text">
@@ -59,7 +59,7 @@ const Create_Select1 = ({
       </p>
     </>
   );
-  return Create_Select1_Select;
+  return CreateSelect1Select;
 };
 
-export default Create_Select1;
+export default CreateSelect1;

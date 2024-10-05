@@ -1,25 +1,25 @@
 import { ChangeEvent, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
-type Create_Password_Props_Type = {
+type CreatePasswordPropsType = {
   password: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   passwordValid: boolean;
   setPasswordValid: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Create_Password = ({
+const CreatePassword = ({
   password,
   setPassword,
   passwordValid,
   setPasswordValid,
-}: Create_Password_Props_Type) => {
+}: CreatePasswordPropsType) => {
   const [showPassword, setShowPassword] = useState(false);
   const passwordRegex = new RegExp(
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
   );
 
-  const handle_Change_Password = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value.trim());
     if (e.target.value.trim().length > 0) {
       passwordRegex.test(e.target.value.trim())
@@ -30,7 +30,7 @@ const Create_Password = ({
     }
   };
 
-  const Create_Password_Input = (
+  const CreatePasswordInput = (
     <div className="password-container">
       <label className="offscreen" htmlFor="password">
         Password
@@ -44,9 +44,7 @@ const Create_Password = ({
         id="password"
         placeholder="Password"
         value={password}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          handle_Change_Password(e)
-        }
+        onChange={(e: ChangeEvent<HTMLInputElement>) => handleChangePassword(e)}
       />
       <div
         className="eye-container"
@@ -62,7 +60,7 @@ const Create_Password = ({
     </div>
   );
 
-  return Create_Password_Input;
+  return CreatePasswordInput;
 };
 
-export default Create_Password;
+export default CreatePassword;

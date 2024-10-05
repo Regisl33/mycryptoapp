@@ -3,14 +3,18 @@ import {
   useAddUserMutation,
   useGetAllUsersQuery,
 } from "../../Features/LandingPage/UserSlice";
-import { fullUserType, SecQuestionPropsType } from "../../Types/LandingTypes";
+import { fullUserType, userType } from "../../Types/LandingTypes";
 import CreateSelect1 from "./CreateSelect1";
 import CreateSelect2 from "./CreateSelect2";
 import CreateSelect3 from "./CreateSelect3";
 import HandleReturnLogin from "./HandleReturnLogin";
 import { optionType, options } from "./Options";
 
-const Security_Questions = ({ user }: SecQuestionPropsType) => {
+export type SecQuestionPropsType = {
+  user: userType;
+};
+
+const SecurityQuestions = ({ user }: SecQuestionPropsType) => {
   const [question1, setQuestion1] = useState("0");
   const [question2, setQuestion2] = useState("0");
   const [question3, setQuestion3] = useState("0");
@@ -64,7 +68,7 @@ const Security_Questions = ({ user }: SecQuestionPropsType) => {
     }
   };
 
-  const handle_Submit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     let fullQuestion1: string = getFullQuestion(question1);
     let fullQuestion2: string = getFullQuestion(question2);
@@ -87,7 +91,7 @@ const Security_Questions = ({ user }: SecQuestionPropsType) => {
     setIsSubmited(true);
   };
 
-  const Security_Questions_Form = isSubmited ? (
+  const SecurityQuestionsForm = isSubmited ? (
     <HandleReturnLogin text="Your account has been created with succes!" />
   ) : (
     <form className="main">
@@ -114,7 +118,7 @@ const Security_Questions = ({ user }: SecQuestionPropsType) => {
           type="submit"
           className="btn1"
           disabled={!isValid}
-          onClick={(e: FormEvent) => handle_Submit(e)}
+          onClick={(e: FormEvent) => handleSubmit(e)}
         >
           Create Account
         </button>
@@ -130,7 +134,7 @@ const Security_Questions = ({ user }: SecQuestionPropsType) => {
     </form>
   );
 
-  return Security_Questions_Form;
+  return SecurityQuestionsForm;
 };
 
-export default Security_Questions;
+export default SecurityQuestions;

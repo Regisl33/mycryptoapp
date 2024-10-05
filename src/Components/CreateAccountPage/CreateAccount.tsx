@@ -4,12 +4,13 @@ import CreateUsername from "./CreateUsername";
 import CreateEmail from "./CreateEmail";
 import CreatePassword from "./CreatePassword";
 import CreateConfirm_Password from "./CreateConfirmPassword";
+import { useNavigate } from "react-router-dom";
 
 type propsType = {
   setUser: React.Dispatch<React.SetStateAction<userType>>;
 };
 
-const Create_Account = ({ setUser }: propsType) => {
+const CreateAccount = ({ setUser }: propsType) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -18,7 +19,9 @@ const Create_Account = ({ setUser }: propsType) => {
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
 
-  const handle_Valid_Form = (): boolean => {
+  const navigate = useNavigate();
+
+  const handleValidForm = (): boolean => {
     if (
       usernameValid &&
       emailValid &&
@@ -31,7 +34,7 @@ const Create_Account = ({ setUser }: propsType) => {
     }
   };
 
-  const handle_Submit = (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setUser({
       username,
@@ -42,9 +45,10 @@ const Create_Account = ({ setUser }: propsType) => {
     setEmail("");
     setPassword("");
     setConfirmPassword("");
+    navigate("/security-question");
   };
 
-  const Create_Account_Form = (
+  const CreateAccountForm = (
     <form className="main">
       <div className="form-container">
         <h2 className="title account-title">
@@ -76,8 +80,8 @@ const Create_Account = ({ setUser }: propsType) => {
         <button
           type="submit"
           className="btn1"
-          onClick={(e: FormEvent) => handle_Submit(e)}
-          disabled={handle_Valid_Form()}
+          onClick={(e: FormEvent) => handleSubmit(e)}
+          disabled={handleValidForm()}
         >
           Next
         </button>
@@ -85,7 +89,7 @@ const Create_Account = ({ setUser }: propsType) => {
     </form>
   );
 
-  return Create_Account_Form;
+  return CreateAccountForm;
 };
 
-export default Create_Account;
+export default CreateAccount;
