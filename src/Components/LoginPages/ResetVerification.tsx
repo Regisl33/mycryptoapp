@@ -1,26 +1,13 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-type propsType = {
-  setDisplay: React.Dispatch<
-    React.SetStateAction<
-      | "password"
-      | "account"
-      | "login"
-      | "home"
-      | "security"
-      | "verification"
-      | "reset"
-    >
-  >;
-  selectedID: number | undefined;
-};
-
-const ResetVerification = ({ setDisplay, selectedID }: propsType) => {
+const ResetVerification = () => {
   const [securityAnswer, setSecurityAnswer] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setDisplay("reset");
+    navigate("/password-reset");
   };
 
   const content = (

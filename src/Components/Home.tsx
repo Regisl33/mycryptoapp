@@ -3,11 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import TodayRecap from "./TodayRecap";
 
-type propsType = {
-  userID: number;
-};
-
-const Home = ({ userID }: propsType) => {
+const Home = () => {
   return (
     <main>
       <Header />

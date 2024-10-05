@@ -1,84 +1,31 @@
-import { useState } from "react";
-import LandingMain from "./LandingMain";
-import LoginPage from "./LoginPage";
-import CreateAccount from "../CreateAccountPage/CreateAccount";
-import SecurityQuestions from "../CreateAccountPage/SecurityQuestions";
-import ForgotPassword from "./ForgotPassword";
-import ResetVerification from "./ResetVerification";
-import ResetPassword from "./ResetPassword";
-import { userType } from "../../Types/LandingTypes";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 
-type propsType = {
-  selectedID: number | undefined;
-  setSelectedID: React.Dispatch<React.SetStateAction<number | undefined>>;
-};
-
-const LandingPage = ({ selectedID, setSelectedID }: propsType) => {
+const LandingPage = () => {
   const year = new Date().getFullYear();
-
-  const [display, setDisplay] = useState<
-    | "home"
-    | "login"
-    | "password"
-    | "account"
-    | "security"
-    | "verification"
-    | "reset"
-  >("home");
-  const [user, setUser] = useState<userType>({
-    username: "",
-    email: "",
-    password: "",
-  });
-
-  const setMainDisplay = () => {
-    switch (display) {
-      case "home":
-        return <LandingMain setDisplay={setDisplay} />;
-      case "login":
-        return (
-          <LoginPage setDisplay={setDisplay} setSelectedID={setSelectedID} />
-        );
-      case "account":
-        return <CreateAccount setDisplay={setDisplay} setUser={setUser} />;
-      case "password":
-        return (
-          <ForgotPassword
-            setDisplay={setDisplay}
-            setSelectedID={setSelectedID}
-          />
-        );
-      case "security":
-        return <SecurityQuestions setDisplay={setDisplay} user={user} />;
-      case "verification":
-        return (
-          <ResetVerification setDisplay={setDisplay} selectedID={selectedID} />
-        );
-      case "reset":
-        return (
-          <ResetPassword setDisplay={setDisplay} selectedID={selectedID} />
-        );
-      default:
-        return <LandingMain setDisplay={setDisplay} />;
-    }
-  };
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className="landing-container">
       <header>
         <h1 className="title">Welcome to CryptoMaster</h1>
-        {display !== "home" ? null : (
+        {location.pathname === "/" ? (
           <div className="header-btn-container">
-            <button className="btn2" onClick={() => setDisplay("login")}>
+            <button className="btn2" onClick={() => navigate("/login")}>
               Sign In
             </button>
-            <button className="btn2" onClick={() => setDisplay("account")}>
+            <button
+              className="btn2"
+              onClick={() => navigate("/create-account")}
+            >
               Sign Up
             </button>
           </div>
-        )}
+        ) : null}
       </header>
-      <div className="landing-main-container">{setMainDisplay()}</div>
+      <div className="landing-main-container">
+        <Outlet />
+      </div>
       <footer>
         <p>Powered by Coingecko Api</p>
         <p className="copyright">All right reserved &copy; {year}</p>

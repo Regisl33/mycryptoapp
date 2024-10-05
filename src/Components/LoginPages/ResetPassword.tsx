@@ -17,7 +17,7 @@ type propsType = {
   selectedID: number | undefined;
 };
 
-const ResetPassword = ({ setDisplay, selectedID }: propsType) => {
+const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);
@@ -30,10 +30,7 @@ const ResetPassword = ({ setDisplay, selectedID }: propsType) => {
   };
 
   const content = isSubmited ? (
-    <HandleReturnLogin
-      setDisplay={setDisplay}
-      text="Your password has been reset!"
-    />
+    <HandleReturnLogin text="Your password has been reset!" />
   ) : (
     <form className="main">
       <div className="form-container">

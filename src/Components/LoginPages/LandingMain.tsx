@@ -1,7 +1,7 @@
-import React from "react";
-import { propsTypeSetDisplay } from "../../Types/LandingTypes";
+import { useNavigate } from "react-router-dom";
 
-const LandingMain = ({ setDisplay }: propsTypeSetDisplay) => {
+const LandingMain = () => {
+  const navigate = useNavigate();
   return (
     <main className="main">
       <div className="landing-main">
@@ -20,7 +20,7 @@ const LandingMain = ({ setDisplay }: propsTypeSetDisplay) => {
           <p>
             Don't have an account yet? <br /> Create one now!
           </p>
-          <button className="btn1" onClick={() => setDisplay("account")}>
+          <button className="btn1" onClick={() => navigate("/create-account")}>
             Sign Up
           </button>
         </div>
@@ -28,7 +28,7 @@ const LandingMain = ({ setDisplay }: propsTypeSetDisplay) => {
           <p>
             Already have an account? <br /> Sign In Here!
           </p>
-          <button className="btn1" onClick={() => setDisplay("login")}>
+          <button className="btn1" onClick={() => navigate("/login")}>
             Sign In
           </button>
         </div>

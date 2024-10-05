@@ -1,25 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { propsTypeSetDisplay } from "../../Types/LandingTypes";
 import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
+import { useNavigate } from "react-router-dom";
 
-type propsType = {
-  setDisplay: React.Dispatch<
-    React.SetStateAction<
-      | "verification"
-      | "home"
-      | "password"
-      | "reset"
-      | "login"
-      | "account"
-      | "security"
-    >
-  >;
-  setSelectedID: React.Dispatch<React.SetStateAction<number | undefined>>;
-};
-
-const ForgotPassword = ({ setDisplay, setSelectedID }: propsType) => {
+const ForgotPassword = () => {
   const [inputValue, setInputValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
 
@@ -38,10 +25,8 @@ const ForgotPassword = ({ setDisplay, setSelectedID }: propsType) => {
       );
 
       if (accountID) {
-        console.log(accountID);
         setErrorMessage("");
-        setSelectedID(userApiData.entities[accountID].id);
-        setDisplay("verification");
+        navigate("/security-verification");
       } else {
         setErrorMessage("We couldn't find your account");
       }

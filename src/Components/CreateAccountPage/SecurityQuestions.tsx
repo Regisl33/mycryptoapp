@@ -10,7 +10,7 @@ import CreateSelect3 from "./CreateSelect3";
 import HandleReturnLogin from "./HandleReturnLogin";
 import { optionType, options } from "./Options";
 
-const Security_Questions = ({ setDisplay, user }: SecQuestionPropsType) => {
+const Security_Questions = ({ user }: SecQuestionPropsType) => {
   const [question1, setQuestion1] = useState("0");
   const [question2, setQuestion2] = useState("0");
   const [question3, setQuestion3] = useState("0");
@@ -88,10 +88,7 @@ const Security_Questions = ({ setDisplay, user }: SecQuestionPropsType) => {
   };
 
   const Security_Questions_Form = isSubmited ? (
-    <HandleReturnLogin
-      setDisplay={setDisplay}
-      text="Your account has been created with succes!"
-    />
+    <HandleReturnLogin text="Your account has been created with succes!" />
   ) : (
     <form className="main">
       <div className="form-container">

@@ -2,34 +2,21 @@ import { FormEvent, useEffect, useState } from "react";
 import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
 import LoginPassword from "./LoginPassword";
 import LoginUsername from "./LoginUsername";
+import { useNavigate } from "react-router-dom";
 
-type propsType = {
-  setDisplay: React.Dispatch<
-    React.SetStateAction<
-      | "verification"
-      | "home"
-      | "password"
-      | "reset"
-      | "login"
-      | "account"
-      | "security"
-    >
-  >;
-  setSelectedID: React.Dispatch<React.SetStateAction<number | undefined>>;
-};
-
-const LoginPage = ({ setDisplay, setSelectedID }: propsType) => {
+const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [memorizeUser, setMemorizeUser] = useState(false);
 
+  const navigate = useNavigate();
+
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
 
   const HandleLogin = (id: number) => {
     setErrorMessage("");
-    setSelectedID(id);
     if (memorizeUser) {
       window.localStorage.selectedID = id;
     } else {
@@ -82,7 +69,7 @@ const LoginPage = ({ setDisplay, setSelectedID }: propsType) => {
               onClick={() => setMemorizeUser(!memorizeUser)}
             />
           </div>
-          <button className="btn2" onClick={() => setDisplay("password")}>
+          <button className="btn2" onClick={() => navigate("/forgot-password")}>
             Forgot Password
           </button>
           <button

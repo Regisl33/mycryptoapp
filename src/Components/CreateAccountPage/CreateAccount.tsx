@@ -6,21 +6,10 @@ import CreatePassword from "./CreatePassword";
 import CreateConfirm_Password from "./CreateConfirmPassword";
 
 type propsType = {
-  setDisplay: React.Dispatch<
-    React.SetStateAction<
-      | "account"
-      | "login"
-      | "password"
-      | "home"
-      | "security"
-      | "verification"
-      | "reset"
-    >
-  >;
   setUser: React.Dispatch<React.SetStateAction<userType>>;
 };
 
-const Create_Account = ({ setDisplay, setUser }: propsType) => {
+const Create_Account = ({ setUser }: propsType) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -53,7 +42,6 @@ const Create_Account = ({ setDisplay, setUser }: propsType) => {
     setEmail("");
     setPassword("");
     setConfirmPassword("");
-    setDisplay("security");
   };
 
   const Create_Account_Form = (

@@ -67,16 +67,5 @@ const userStateType = {
 };
 
 export type SecQuestionPropsType = {
-  setDisplay: React.Dispatch<
-    React.SetStateAction<
-      | "account"
-      | "login"
-      | "password"
-      | "home"
-      | "security"
-      | "verification"
-      | "reset"
-    >
-  >;
   user: userType;
 };
