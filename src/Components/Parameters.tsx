@@ -1,6 +1,10 @@
 import React from "react";
 
-const Parameters = () => {
+type propsType = {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Parameters = ({ setIsLoggedIn }: propsType) => {
   return <div></div>;
 };
 

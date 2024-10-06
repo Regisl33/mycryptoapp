@@ -4,7 +4,11 @@ import LoginPassword from "./LoginPassword";
 import LoginUsername from "./LoginUsername";
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+type propsType = {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const LoginPage = ({ setIsLoggedIn }: propsType) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -20,8 +24,12 @@ const LoginPage = () => {
     if (memorizeUser) {
       window.localStorage.selectedID = id;
     } else {
-      window.localStorage.selectedID = null;
+      if (window.localStorage.selectedID) {
+        window.localStorage.removeItem("selectedID");
+      }
     }
+    navigate(`/home:${id}`);
+    setIsLoggedIn(true);
   };
 
   const HandleSubmit = (e: FormEvent) => {

@@ -18,21 +18,23 @@ const CreateEmail = ({
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
   const emailRegex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
 
-  const addErrorMessage = (value: string) => {
-    setEmailValid(false);
-    if (emailRegex.test(value)) {
-      setInputError("This E-Mail Adress is already link to an account");
+  const handleErrorMessage = (value: string, isUnique: boolean) => {
+    if (isUnique) {
+      if (emailRegex.test(value)) {
+        setEmailValid(true);
+        setInputError("");
+      } else {
+        setInputError("Please Enter a Valid Email Adress");
+        setEmailValid(false);
+      }
     } else {
-      setInputError("Please Enter a Valid E-Mail Adress");
+      setInputError("This email is already linked to an account");
+      setEmailValid(false);
     }
   };
 
-  const removeErrorMessage = () => {
-    setEmailValid(true);
-    setInputError("");
-  };
-
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    let isUnique = true;
     setEmail(e.target.value.toLowerCase().trim());
     if (e.target.value.toLowerCase().trim().length > 0) {
       if (userApiData?.ids) {
@@ -40,10 +42,8 @@ const CreateEmail = ({
           userApiData.ids.map((id) =>
             userApiData.entities[id].email ===
             e.target.value.toLowerCase().trim()
-              ? addErrorMessage(e.target.value.toLowerCase().trim())
-              : emailRegex.test(e.target.value.toLowerCase().trim())
-              ? removeErrorMessage()
-              : addErrorMessage(e.target.value.toLowerCase().trim())
+              ? (isUnique = false)
+              : null
           );
         } else {
           setEmailValid(true);
@@ -54,6 +54,7 @@ const CreateEmail = ({
     } else {
       setEmailValid(false);
     }
+    handleErrorMessage(e.target.value.toLowerCase().trim(), isUnique);
   };
 
   useEffect(() => {

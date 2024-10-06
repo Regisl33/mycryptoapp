@@ -19,21 +19,23 @@ const CreateUsername = ({
 
   const usernameRegex = /^[a-zA-Z0-9]+$/;
 
-  const addErrorMessage = (value: string) => {
-    setUsernameValid(false);
-    if (usernameRegex.test(value)) {
-      setInputError("This username already exist");
+  const handleErrorMessage = (value: string, isUnique: boolean) => {
+    if (isUnique) {
+      if (usernameRegex.test(value)) {
+        setUsernameValid(true);
+        setInputError("");
+      } else {
+        setInputError("Username can only contain alphanumeric characters");
+        setUsernameValid(false);
+      }
     } else {
-      setInputError("Username can only contain alphanumeric characters");
+      setInputError("This username already exist");
+      setUsernameValid(false);
     }
   };
 
-  const removeErrorMessage = () => {
-    setUsernameValid(true);
-    setInputError("");
-  };
-
   const handleChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
+    let isUnique = true;
     setUsername(e.target.value.toLowerCase().trim());
     if (e.target.value.toLowerCase().trim().length > 0) {
       if (userApiData?.ids) {
@@ -41,18 +43,19 @@ const CreateUsername = ({
           userApiData.ids.map((id) =>
             userApiData.entities[id].username ===
             e.target.value.toLowerCase().trim()
-              ? addErrorMessage(e.target.value.toLowerCase().trim())
-              : usernameRegex.test(e.target.value.toLowerCase().trim())
-              ? removeErrorMessage()
-              : addErrorMessage(e.target.value.toLowerCase().trim())
+              ? (isUnique = false)
+              : null
           );
         } else {
           setUsernameValid(true);
         }
+      } else {
+        setUsernameValid(false);
       }
     } else {
       setUsernameValid(false);
     }
+    handleErrorMessage(e.target.value.toLowerCase().trim(), isUnique);
   };
 
   useEffect(() => {

@@ -18,7 +18,6 @@ import ErrorNotFoundPage from "./Components/ErrorNotFoundPage";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [selectedID, setSelectedID] = useState<number>();
 
   const [user, setUser] = useState<userType>({
     username: "",
@@ -26,35 +25,40 @@ const App = () => {
     password: "",
   });
 
-  const userID = useParams();
+  const { userID } = useParams();
   const coinID = useParams();
 
-  // useEffect(() => {
-  //   if (window.localStorage.selectedID !== null) {
-  //     setIsLoggedIn(true);
-  //   } else {
-  //     setIsLoggedIn(false);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (window.localStorage.selectedID) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   return (
     <BrowserRouter>
       <Routes>
         {isLoggedIn ? (
           <>
-            <Route path="/:userID" element={<Home />}>
-              <Route path=":userID/settings" element={<Parameters />} />
-              <Route path=":userID/table" element={<AllCoinsDataTable />} />
-              <Route path=":userID/search" element={<SearchPage />} />
-            </Route>
-            <Route path="/coin:coinID" element={<IndividualCoinData />} />
+            <Route path="/home" element={<Home />} />
+            <Route
+              path="/settings"
+              element={<Parameters setIsLoggedIn={setIsLoggedIn} />}
+            />
+            <Route path="/table" element={<AllCoinsDataTable />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/coin" element={<IndividualCoinData />} />
             <Route path="*" element={<ErrorNotFoundPage />} />
           </>
         ) : (
           <>
             <Route path="/" element={<LandingPage />}>
               <Route path="/" index element={<LandingMain />} />
-              <Route path="/login" element={<LoginPage />} />
+              <Route
+                path="/login"
+                element={<LoginPage setIsLoggedIn={setIsLoggedIn} />}
+              />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route
                 path="/security-verification"

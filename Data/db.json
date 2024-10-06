@@ -15,7 +15,7 @@
       }
     },
     {
-      "id": 1,
+      "id": "1",
       "username": "test1",
       "email": "test1@test.com",
       "password": "Test123!",
@@ -23,6 +23,20 @@
         "question1": "What is the name of your best friend from high school?",
         "question2": "What is the name of the street you grew up on?",
         "question3": "What is your father's middle name?",
+        "answer1": "test",
+        "answer2": "test",
+        "answer3": "test"
+      }
+    },
+    {
+      "id": 2,
+      "username": "test12",
+      "email": "test2@test.com",
+      "password": "Test123!",
+      "questions": {
+        "question1": "What is your mother's maiden name?",
+        "question2": "What is your father's middle name?",
+        "question3": "What was the name of your elementary school?",
         "answer1": "test",
         "answer2": "test",
         "answer3": "test"
