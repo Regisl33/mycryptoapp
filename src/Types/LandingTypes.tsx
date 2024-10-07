@@ -19,8 +19,9 @@ export type passwordChangeType = {
   resetDate: number;
 };
 export type userOptions = {
-  darkMode: boolean;
-  favorites: string[];
+  darkMode?: boolean;
+  color?: string;
+  favorites?: string[];
 };
 
 export type fullUserType = {

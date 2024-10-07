@@ -37,3 +37,7 @@ export type coinDataType = {
   price_change_percentage_30d_in_currency: number;
   price_change_percentage_7d_in_currency: number;
 };
+
+export type currentIDPropsType = {
+  currentID: number | undefined;
+};

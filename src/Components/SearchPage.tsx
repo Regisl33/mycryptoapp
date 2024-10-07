@@ -1,6 +1,7 @@
 import React from "react";
+import { currentIDPropsType } from "../Types/AppTypes";
 
-const SearchPage = () => {
+const SearchPage = ({ currentID }: currentIDPropsType) => {
   return <div></div>;
 };
 

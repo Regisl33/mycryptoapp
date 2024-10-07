@@ -1,7 +1,8 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { currentIDPropsType } from "../../Types/AppTypes";
 
-const ResetVerification = () => {
+const ResetVerification = ({ currentID }: currentIDPropsType) => {
   const [securityAnswer, setSecurityAnswer] = useState("");
   const navigate = useNavigate();
 

@@ -1,6 +1,7 @@
 import React from "react";
+import { currentIDPropsType } from "../Types/AppTypes";
 
-const IndividualCoinData = () => {
+const IndividualCoinData = ({ currentID }: currentIDPropsType) => {
   return <div></div>;
 };
 

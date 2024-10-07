@@ -1,6 +1,10 @@
-import React from "react";
+import { fullUserType } from "../Types/LandingTypes";
 
-const Favorites = () => {
+type propsType = {
+  user: fullUserType | undefined;
+};
+
+const Favorites = ({ user }: propsType) => {
   return <div></div>;
 };
 

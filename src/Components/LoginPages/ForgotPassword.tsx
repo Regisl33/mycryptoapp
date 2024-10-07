@@ -2,7 +2,11 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
 import { useNavigate } from "react-router-dom";
 
-const ForgotPassword = () => {
+type propsType = {
+  setCurrentID: React.Dispatch<React.SetStateAction<number | undefined>>;
+};
+
+const ForgotPassword = ({ setCurrentID }: propsType) => {
   const [inputValue, setInputValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -12,26 +16,31 @@ const ForgotPassword = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (isError) {
-      setErrorMessage("Sorry, we couldn't reach the server, please try again");
-      console.log(error);
-    } else if (userApiData?.ids) {
-      let accountID: number | null = null;
-      userApiData.ids.map((id) =>
-        userApiData.entities[id].email ||
-        userApiData.entities[id].username === inputValue
-          ? (accountID = id)
-          : console.log(id)
-      );
+    let accountID: number | null = null;
+    if (!isError) {
+      if (userApiData?.ids) {
+        userApiData.ids.map((id) =>
+          userApiData.entities[id].email ||
+          userApiData.entities[id].username === inputValue
+            ? (accountID = id)
+            : null
+        );
 
-      if (accountID) {
-        setErrorMessage("");
-        navigate("/security-verification");
+        if (accountID) {
+          setErrorMessage("");
+          setCurrentID(accountID);
+          navigate("/security-verification");
+        } else {
+          setErrorMessage("We couldn't find your account");
+        }
       } else {
-        setErrorMessage("We couldn't find your account");
+        setErrorMessage(
+          "Sorry, we couldn't reach the server, please try again"
+        );
       }
     } else {
       setErrorMessage("Sorry, we couldn't reach the server, please try again");
+      console.log(error);
     }
   };
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
@@ -8,7 +7,7 @@ const Navigation = () => {
         <NavLink to="/">
           <li>Home</li>
         </NavLink>
-        <NavLink to="/Table">
+        <NavLink to="/table">
           <li>Coin Table</li>
         </NavLink>
         <NavLink to="/search">

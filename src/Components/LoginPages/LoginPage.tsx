@@ -6,9 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 type propsType = {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentID: React.Dispatch<React.SetStateAction<number | undefined>>;
 };
 
-const LoginPage = ({ setIsLoggedIn }: propsType) => {
+const LoginPage = ({ setIsLoggedIn, setCurrentID }: propsType) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -28,7 +29,8 @@ const LoginPage = ({ setIsLoggedIn }: propsType) => {
         window.localStorage.removeItem("selectedID");
       }
     }
-    navigate(`/home:${id}`);
+    setCurrentID(id);
+    navigate("/home");
     setIsLoggedIn(true);
   };
 

@@ -2,8 +2,9 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import HandleReturnLogin from "../CreateAccountPage/HandleReturnLogin";
 import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
+import { currentIDPropsType } from "../../Types/AppTypes";
 
-const ResetPassword = () => {
+const ResetPassword = ({ currentID }: currentIDPropsType) => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);

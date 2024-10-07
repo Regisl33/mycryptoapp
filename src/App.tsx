@@ -18,19 +18,19 @@ import ErrorNotFoundPage from "./Components/ErrorNotFoundPage";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [currentID, setCurrentID] = useState<number>();
   const [user, setUser] = useState<userType>({
     username: "",
     email: "",
     password: "",
   });
 
-  const { userID } = useParams();
-  const coinID = useParams();
+  const { coinID } = useParams();
 
   useEffect(() => {
     if (window.localStorage.selectedID) {
       setIsLoggedIn(true);
+      setCurrentID(window.localStorage.selectedID);
     } else {
       setIsLoggedIn(false);
     }
@@ -41,14 +41,29 @@ const App = () => {
       <Routes>
         {isLoggedIn ? (
           <>
-            <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<Home currentID={currentID} />} />
             <Route
               path="/settings"
-              element={<Parameters setIsLoggedIn={setIsLoggedIn} />}
+              element={
+                <Parameters
+                  setIsLoggedIn={setIsLoggedIn}
+                  setCurrentID={setCurrentID}
+                  currentID={currentID}
+                />
+              }
             />
-            <Route path="/table" element={<AllCoinsDataTable />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/coin" element={<IndividualCoinData />} />
+            <Route
+              path="/table"
+              element={<AllCoinsDataTable currentID={currentID} />}
+            />
+            <Route
+              path="/search"
+              element={<SearchPage currentID={currentID} />}
+            />
+            <Route
+              path="/coin"
+              element={<IndividualCoinData currentID={currentID} />}
+            />
             <Route path="*" element={<ErrorNotFoundPage />} />
           </>
         ) : (
@@ -57,14 +72,25 @@ const App = () => {
               <Route path="/" index element={<LandingMain />} />
               <Route
                 path="/login"
-                element={<LoginPage setIsLoggedIn={setIsLoggedIn} />}
+                element={
+                  <LoginPage
+                    setIsLoggedIn={setIsLoggedIn}
+                    setCurrentID={setCurrentID}
+                  />
+                }
               />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route
+                path="/forgot-password"
+                element={<ForgotPassword setCurrentID={setCurrentID} />}
+              />
               <Route
                 path="/security-verification"
-                element={<ResetVerification />}
+                element={<ResetVerification currentID={currentID} />}
               />
-              <Route path="/password-reset" element={<ResetPassword />} />
+              <Route
+                path="/password-reset"
+                element={<ResetPassword currentID={currentID} />}
+              />
               <Route
                 path="/create-account"
                 element={<Create_Account setUser={setUser} />}
