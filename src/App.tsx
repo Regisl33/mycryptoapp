@@ -15,6 +15,8 @@ import AllCoinsDataTable from "./Components/AllCoinsDataTable";
 import SearchPage from "./Components/SearchPage";
 import IndividualCoinData from "./Components/IndividualCoinData";
 import ErrorNotFoundPage from "./Components/ErrorNotFoundPage";
+import { fetchCoinData } from "./Features/CoinGeeckoData/CoinDataSlice";
+import { useAppDispatch } from "./Store/Store";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,9 +27,12 @@ const App = () => {
     password: "",
   });
 
+  const dispatch = useAppDispatch();
+
   const { coinID } = useParams();
 
   useEffect(() => {
+    dispatch(fetchCoinData());
     if (window.localStorage.selectedID) {
       setIsLoggedIn(true);
       setCurrentID(window.localStorage.selectedID);

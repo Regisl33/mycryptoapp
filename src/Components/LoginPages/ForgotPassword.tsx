@@ -14,17 +14,35 @@ const ForgotPassword = ({ setCurrentID }: propsType) => {
 
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
 
+  const usernameRegex = /^[a-zA-Z0-9]+$/;
+  const emailRegex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    let emailMatch: boolean = false;
+    let userMatch: boolean = false;
     let accountID: number | null = null;
     if (!isError) {
       if (userApiData?.ids) {
-        userApiData.ids.map((id) =>
-          userApiData.entities[id].email ||
-          userApiData.entities[id].username === inputValue
-            ? (accountID = id)
-            : null
-        );
+        emailRegex.test(inputValue)
+          ? (emailMatch = true)
+          : usernameRegex.test(inputValue)
+          ? (userMatch = true)
+          : setErrorMessage("Please enter a valid Email or Username");
+
+        if (emailMatch) {
+          userApiData.ids.map((emailID) =>
+            userApiData.entities[emailID].email === inputValue
+              ? (accountID = emailID)
+              : null
+          );
+        } else if (userMatch) {
+          userApiData.ids.map((userID) =>
+            userApiData.entities[userID].username === inputValue
+              ? (accountID = userID)
+              : null
+          );
+        }
 
         if (accountID) {
           setErrorMessage("");

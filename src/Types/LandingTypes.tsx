@@ -5,12 +5,12 @@ export type userType = {
 };
 
 export type securityQuestionsType = {
-  question1: String;
-  question2: String;
-  question3: String;
-  answer1: String;
-  answer2: String;
-  answer3: String;
+  question1: string;
+  question2: string;
+  question3: string;
+  answer1: string;
+  answer2: string;
+  answer3: string;
 };
 
 export type passwordChangeType = {
