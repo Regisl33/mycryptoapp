@@ -14,7 +14,6 @@ export type securityQuestionsType = {
 };
 
 export type passwordChangeType = {
-  id: number;
   oldPassword: string;
   resetDate: number;
 };

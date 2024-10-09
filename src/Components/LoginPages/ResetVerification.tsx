@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { currentIDPropsType } from "../../Types/AppTypes";
 import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
@@ -15,26 +15,38 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
   const getQuestions = (): string[] => {
     let questionsArray: string[] = [];
     if (!isError) {
-      if (userApiData?.ids) {
-        userApiData.ids.map((id) => {
-          if (id === currentID) {
-            questionsArray = [
-              userApiData.entities[id].questions.question1,
-              userApiData.entities[id].questions.question2,
-              userApiData.entities[id].questions.question3,
-            ];
-          } else {
-            console.log(id);
-          }
-        });
+      if (userApiData?.entities && currentID) {
+        questionsArray = [
+          userApiData.entities[currentID].questions.question1,
+          userApiData.entities[currentID].questions.question2,
+          userApiData.entities[currentID].questions.question3,
+        ];
       } else {
-        setErrorMessage("We couldn't reach the server");
+        console.log(
+          "This Error Should Never Occur Due To Previous Verification But if it Does it because we couldn't get Api Data or the user ID"
+        );
       }
     } else {
       setErrorMessage("We couldn't reach the server");
       console.log(error);
     }
     return questionsArray;
+  };
+
+  const getAnswers = (): string[] => {
+    let answersArray: string[] = [];
+    if (userApiData?.entities && currentID) {
+      answersArray = [
+        userApiData.entities[currentID].questions.answer1,
+        userApiData.entities[currentID].questions.answer2,
+        userApiData.entities[currentID].questions.answer3,
+      ];
+    } else {
+      console.log(
+        "This Error Should Never Occur Due To Previous Verification But if it Does it because we couldn't get Api Data or the user ID"
+      );
+    }
+    return answersArray;
   };
 
   const handleQuestionSwitch = () => {
@@ -49,8 +61,24 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    let questions = getQuestions();
+    let answers = getAnswers();
+    let questionPos: number = 3;
 
-    navigate("/password-reset");
+    questions.map((question: string, index: number) =>
+      question === activeQuestion
+        ? (questionPos = index)
+        : console.log(question)
+    );
+
+    if (answers[questionPos] === securityAnswer) {
+      navigate("/password-reset");
+      setErrorMessage("");
+    } else {
+      setErrorMessage(
+        "We couldn't validate your identity, try another question"
+      );
+    }
   };
 
   useEffect(() => {

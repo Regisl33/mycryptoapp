@@ -1,8 +1,9 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import HandleReturnLogin from "../CreateAccountPage/HandleReturnLogin";
 import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
 import { currentIDPropsType } from "../../Types/AppTypes";
+import { useNavigate } from "react-router";
 
 const ResetPassword = ({ currentID }: currentIDPropsType) => {
   const [password, setPassword] = useState("");
@@ -13,6 +14,8 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
+
+  const navigate = useNavigate();
 
   const passwordRegex = new RegExp(
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
@@ -43,8 +46,38 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmited(true);
+
+    if (userApiData?.entities && currentID) {
+      if (userApiData.entities[currentID].passwordHistory) {
+        if (
+          userApiData.entities[currentID].passwordHistory?.oldPassword ||
+          userApiData.entities[currentID].password === password
+        ) {
+          setErrorMessage(
+            "You must use different password then the last 2 passwords you've used"
+          );
+        } else {
+          setIsSubmited(true);
+        }
+      } else {
+        setIsSubmited(true);
+      }
+    } else {
+      console.log(
+        "This Error Should Never Occur Due To Previous Verification But if it Does it because we couldn't get Api Data or the user ID"
+      );
+    }
   };
+
+  useEffect(() => {
+    if (!currentID) {
+      navigate("/login");
+    }
+    if (isError) {
+      setErrorMessage("We couldn't reach the server");
+      console.log(error);
+    }
+  }, []);
 
   const content = isSubmited ? (
     <HandleReturnLogin text="Your password has been reset!" />
