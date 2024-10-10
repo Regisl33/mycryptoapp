@@ -1,6 +1,11 @@
-import { fullUserType } from "../../Types/LandingTypes";
+import { fullUserType, passwordChangeType } from "../../Types/LandingTypes";
 import UserApi from "../../Api/UserApi";
 import { createEntityAdapter } from "@reduxjs/toolkit";
+
+type passwordResetType = {
+  passwordChange: passwordChangeType;
+  id: number;
+};
 
 const userAdapter = createEntityAdapter({
   selectId: (user: fullUserType) => user.id,
@@ -33,7 +38,18 @@ export const userSliceApi = UserApi.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+    passwordReset: builder.mutation({
+      query: ({ passwordChange, id }: passwordResetType) => ({
+        url: `users/${id}`,
+        method: "PATCH",
+        body: passwordChange,
+      }),
+    }),
   }),
 });
 
-export const { useGetAllUsersQuery, useAddUserMutation } = userSliceApi;
+export const {
+  useGetAllUsersQuery,
+  useAddUserMutation,
+  usePasswordResetMutation,
+} = userSliceApi;

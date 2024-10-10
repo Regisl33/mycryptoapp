@@ -79,7 +79,11 @@ const LoginPage = ({ setIsLoggedIn, setCurrentID }: propsType) => {
               onClick={() => setMemorizeUser(!memorizeUser)}
             />
           </div>
-          <button className="btn2" onClick={() => navigate("/forgot-password")}>
+          <button
+            type="button"
+            className="btn2"
+            onClick={() => navigate("/forgot-password")}
+          >
             Forgot Password
           </button>
           <button

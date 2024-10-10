@@ -12,7 +12,9 @@
         "answer1": "test1",
         "answer2": "test2",
         "answer3": "test3"
-      }
+      },
+      "oldPassword": "Test123!",
+      "resetDate": 1728529210940
     },
     {
       "id": "1",
@@ -29,7 +31,7 @@
       }
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "test12",
       "email": "test2@test.com",
       "password": "Test123!",
