@@ -21,13 +21,20 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
 
   const navigate = useNavigate();
 
-  const handleReset = async (oldPassword: string, id: number) => {
+  const handleReset = async (
+    oldPassword: string,
+    password: string,
+    id: number
+  ) => {
     let passwordEvent: passwordChangeType = {
       oldPassword,
       resetDate: Date.now(),
     };
     let passwordHistoryData = {
-      passwordChange: passwordEvent,
+      passwordChange: {
+        password,
+        passwordEvent,
+      },
       id,
     };
     try {
@@ -52,6 +59,7 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
         } else {
           await handleReset(
             userApiData.entities[currentID].password,
+            password,
             currentID
           );
           setIsSubmited(true);
@@ -61,7 +69,11 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
           "You must use different password then the last 2 passwords you've used"
         );
       } else {
-        await handleReset(userApiData.entities[currentID].password, currentID);
+        await handleReset(
+          userApiData.entities[currentID].password,
+          password,
+          currentID
+        );
         setIsSubmited(true);
       }
     } else {

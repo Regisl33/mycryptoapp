@@ -4,7 +4,7 @@
       "id": "0",
       "username": "test",
       "email": "test@test.com",
-      "password": "Test123!",
+      "password": "Test123!4",
       "questions": {
         "question1": "What is the name of your best friend from high school?",
         "question2": "What is your mother's maiden name?",
@@ -14,7 +14,11 @@
         "answer3": "test3"
       },
       "oldPassword": "Test123!",
-      "resetDate": 1728529210940
+      "resetDate": 1728600871835,
+      "passwordEvent": {
+        "oldPassword": "Test123!",
+        "resetDate": 1728617249837
+      }
     },
     {
       "id": "1",

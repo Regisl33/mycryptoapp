@@ -2,8 +2,13 @@ import { fullUserType, passwordChangeType } from "../../Types/LandingTypes";
 import UserApi from "../../Api/UserApi";
 import { createEntityAdapter } from "@reduxjs/toolkit";
 
+type passwordChangeEventType = {
+  password: string;
+  passwordEvent: passwordChangeType;
+};
+
 type passwordResetType = {
-  passwordChange: passwordChangeType;
+  passwordChange: passwordChangeEventType;
   id: number;
 };
 
