@@ -14,8 +14,9 @@ const CreateUsername = ({
   usernameValid,
   setUsernameValid,
 }: CreateUsernamePropsType) => {
-  const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
   const [inputError, setInputError] = useState("");
+
+  const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
 
   const usernameRegex = /^[a-zA-Z0-9]+$/;
 

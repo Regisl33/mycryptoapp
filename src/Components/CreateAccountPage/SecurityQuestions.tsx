@@ -3,16 +3,12 @@ import {
   useAddUserMutation,
   useGetAllUsersQuery,
 } from "../../Features/LandingPage/UserSlice";
-import { fullUserType, userType } from "../../Types/LandingTypes";
 import CreateSelect1 from "./CreateSelect1";
 import CreateSelect2 from "./CreateSelect2";
 import CreateSelect3 from "./CreateSelect3";
 import HandleReturnLogin from "./HandleReturnLogin";
+import { fullUserType, SecQuestionPropsType } from "../../Types/LandingTypes";
 import { optionType, options } from "./Options";
-
-export type SecQuestionPropsType = {
-  user: userType;
-};
 
 const SecurityQuestions = ({ user }: SecQuestionPropsType) => {
   const [question1, setQuestion1] = useState("0");

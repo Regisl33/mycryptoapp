@@ -4,7 +4,7 @@
       "id": "0",
       "username": "test",
       "email": "test@test.com",
-      "password": "Test123!4",
+      "password": "Test123!",
       "questions": {
         "question1": "What is the name of your best friend from high school?",
         "question2": "What is your mother's maiden name?",
@@ -13,18 +13,16 @@
         "answer2": "test2",
         "answer3": "test3"
       },
-      "oldPassword": "Test123!",
-      "resetDate": 1728600871835,
-      "passwordEvent": {
-        "oldPassword": "Test123!",
-        "resetDate": 1728617249837
+      "passwordHistory": {
+        "oldPassword": "Test123!4",
+        "resetDate": 1728697063905
       }
     },
     {
       "id": "1",
       "username": "test1",
       "email": "test1@test.com",
-      "password": "Test123!",
+      "password": "Test123!24",
       "questions": {
         "question1": "What is the name of your best friend from high school?",
         "question2": "What is the name of the street you grew up on?",
@@ -32,6 +30,10 @@
         "answer1": "test",
         "answer2": "test",
         "answer3": "test"
+      },
+      "passwordHistory": {
+        "oldPassword": "Test123!2",
+        "resetDate": 1728697926309
       }
     },
     {

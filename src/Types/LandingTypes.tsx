@@ -42,3 +42,20 @@ export type userStateType = {
   user: userType;
   fullUser: fullUserType;
 };
+
+type passwordChangeEventType = {
+  password: string;
+  passwordHistory: passwordChangeType;
+};
+
+export type passwordResetType = {
+  passwordChange: passwordChangeEventType;
+  id: number;
+};
+
+export type currentIDPropsType = {
+  currentID: number | undefined;
+};
+export type SecQuestionPropsType = {
+  user: userType;
+};

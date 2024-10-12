@@ -1,17 +1,21 @@
+//Import dependencies
 import { useNavigate } from "react-router-dom";
-
-type propsType = {
-  text: string;
+//PropsType expect only 2 string value witch are gonna be the text that is gonna be displayed
+type returnLoginPropsType = {
+  text:
+    | "Your account has been created with succes!"
+    | "Your password has been reset!";
 };
 
-const HandleReturnLogin = ({ text }: propsType) => {
+const HandleReturnLogin = ({ text }: returnLoginPropsType) => {
+  //Declare Navigate
   const navigate = useNavigate();
-
+  //Navigate to Login
   const handleReturnLogin = () => {
     navigate("/login");
   };
-
-  return (
+  //The Main class add the background and the Hot-Link class add the underlined text that is clickable and return to login
+  const handleReturnLoginHTML = (
     <div className="main">
       <p>
         {text}
@@ -21,6 +25,8 @@ const HandleReturnLogin = ({ text }: propsType) => {
       </p>
     </div>
   );
+
+  return handleReturnLoginHTML;
 };
 
 export default HandleReturnLogin;

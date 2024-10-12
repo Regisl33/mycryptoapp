@@ -4,7 +4,7 @@ import {
   useGetAllUsersQuery,
   usePasswordResetMutation,
 } from "../../Features/LandingPage/UserSlice";
-import { currentIDPropsType } from "../../Types/AppTypes";
+import { currentIDPropsType } from "../../Types/LandingTypes";
 import { useNavigate } from "react-router";
 import { passwordChangeType } from "../../Types/LandingTypes";
 import ResetPasswordInput from "./ResetPasswordInput";
@@ -26,14 +26,14 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
     password: string,
     id: number
   ) => {
-    let passwordEvent: passwordChangeType = {
+    let passwordHistory: passwordChangeType = {
       oldPassword,
       resetDate: Date.now(),
     };
     let passwordHistoryData = {
       passwordChange: {
         password,
-        passwordEvent,
+        passwordHistory,
       },
       id,
     };
@@ -50,7 +50,8 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
     if (userApiData?.entities && currentID) {
       if (userApiData.entities[currentID].passwordHistory) {
         if (
-          userApiData.entities[currentID].passwordHistory?.oldPassword ||
+          userApiData.entities[currentID].passwordHistory?.oldPassword ===
+            password ||
           userApiData.entities[currentID].password === password
         ) {
           setErrorMessage(

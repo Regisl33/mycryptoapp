@@ -1,8 +1,11 @@
+//Import Dependencies
 import { useNavigate } from "react-router-dom";
 
 const LandingMain = () => {
+  //Define Navigate
   const navigate = useNavigate();
-  return (
+  //Landing Page HTML Return, Main class add the background, Landing-Main handle the display. We have a description paragraph a 2 buttons that navigate towards creating an account or login page
+  const landingPageHTML = (
     <main className="main">
       <div className="landing-main">
         <p className="description">
@@ -35,6 +38,8 @@ const LandingMain = () => {
       </div>
     </main>
   );
+
+  return landingPageHTML;
 };
 
 export default LandingMain;

@@ -1,7 +1,9 @@
+//Import Dependencies
 import { useState, ChangeEvent } from "react";
+//Import Eye Icons
 import { IoEye, IoEyeOff } from "react-icons/io5";
-
-type propsType = {
+//Props Type, need the password and the confirm password for verification, need to set the password and the error message
+type resetPasswordPropsType = {
   password: string;
   passwordConfirm: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
@@ -13,12 +15,14 @@ const ResetPasswordInput = ({
   passwordConfirm,
   setPassword,
   setErrorMessage,
-}: propsType) => {
+}: resetPasswordPropsType) => {
+  //Show Password State, can be modified by clicking on the eye icon.
   const [showPassword, setShowPassword] = useState(false);
+  //Password Regex
   const passwordRegex = new RegExp(
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
   );
-
+  //Function that set the new password everytime the password input changes, it receive the input value, and validate if the password is valid and set the error message accordingly.
   const handlePasswordChange = (value: string) => {
     setPassword(value);
     if (passwordRegex.test(value) || password.length === 0) {
@@ -31,9 +35,10 @@ const ResetPasswordInput = ({
       );
     }
   };
-
-  return (
+  //Return a controlled Input
+  const resetPasswordInput = (
     <div className="password-container">
+      {/* offscreen class makes the label not visible on the page but still visible for google robots */}
       <label className="offscreen" htmlFor="resetPassword">
         Enter your password
       </label>
@@ -48,6 +53,7 @@ const ResetPasswordInput = ({
           handlePasswordChange(e.target.value)
         }
       />
+      {/* eye-icon display logic */}
       <div
         className="eye-container"
         onClick={() => setShowPassword(!showPassword)}
@@ -56,6 +62,8 @@ const ResetPasswordInput = ({
       </div>
     </div>
   );
+
+  return resetPasswordInput;
 };
 
 export default ResetPasswordInput;

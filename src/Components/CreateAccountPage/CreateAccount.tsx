@@ -1,16 +1,16 @@
 import { FormEvent, useState } from "react";
-import { userType } from "../../Types/LandingTypes";
+import { useNavigate } from "react-router-dom";
 import CreateUsername from "./CreateUsername";
 import CreateEmail from "./CreateEmail";
 import CreatePassword from "./CreatePassword";
 import CreateConfirm_Password from "./CreateConfirmPassword";
-import { useNavigate } from "react-router-dom";
+import { userType } from "../../Types/LandingTypes";
 
-type propsType = {
+type setUserPropsType = {
   setUser: React.Dispatch<React.SetStateAction<userType>>;
 };
 
-const CreateAccount = ({ setUser }: propsType) => {
+const CreateAccount = ({ setUser }: setUserPropsType) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
