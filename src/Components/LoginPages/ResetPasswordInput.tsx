@@ -18,7 +18,7 @@ const ResetPasswordInput = ({
 }: resetPasswordPropsType) => {
   //Show Password State, can be modified by clicking on the eye icon.
   const [showPassword, setShowPassword] = useState(false);
-  //Password Regex
+  //Password Regex Pattern
   const passwordRegex = new RegExp(
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
   );

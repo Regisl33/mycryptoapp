@@ -1,54 +1,64 @@
+//Import Dependencies
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { currentIDPropsType } from "../../Types/AppTypes";
+//Import Fetch User Hook
 import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
+//Import Types for the Id Props
+import { currentIDPropsType } from "../../Types/LandingTypes";
 
 const ResetVerification = ({ currentID }: currentIDPropsType) => {
-  const [activeQuestion, setActiveQuestion] = useState("");
-  const [securityAnswer, setSecurityAnswer] = useState("");
+  //This State Handle the Question Switching
   const [questionNum, setQuestionNum] = useState(0);
+  //This State Contains the Displayed Question
+  const [activeQuestion, setActiveQuestion] = useState("");
+  //This State is to Have a Controlled Input
+  const [securityAnswer, setSecurityAnswer] = useState("");
+  //Error State
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
-
+  //Getting the Data from the User DataBase
   const { data: userApiData, isError, error } = useGetAllUsersQuery("User");
-
+  //Define Navigate
+  const navigate = useNavigate();
+  //Define The Error for this component if it fail the TS verification
+  const consoleError =
+    "This Error Should not happen Ts verif/If it does data or Id are missing";
+  //Get the questions for the current User
   const getQuestions = (): string[] => {
+    //Define the Question Variable
     let questionsArray: string[] = [];
-    if (!isError) {
-      if (userApiData?.entities && currentID) {
-        questionsArray = [
-          userApiData.entities[currentID].questions.question1,
-          userApiData.entities[currentID].questions.question2,
-          userApiData.entities[currentID].questions.question3,
-        ];
-      } else {
-        console.log(
-          "This Error Should Never Occur Due To Previous Verification But if it Does it because we couldn't get Api Data or the user ID"
-        );
-      }
+    //Ts Verification for ID and Data
+    if (userApiData?.entities && currentID) {
+      //set the question data based on the user ID
+      questionsArray = [
+        userApiData.entities[currentID].questions.question1,
+        userApiData.entities[currentID].questions.question2,
+        userApiData.entities[currentID].questions.question3,
+      ];
     } else {
-      setErrorMessage("We couldn't reach the server");
-      console.log(error);
+      console.log(consoleError);
     }
+    //Return the Data
     return questionsArray;
   };
-
+  //Get the answers for the current User
   const getAnswers = (): string[] => {
+    //Define the Answer Variable
     let answersArray: string[] = [];
+    //Ts Verification for ID and Data
     if (userApiData?.entities && currentID) {
+      //set the answers data based on the user ID
       answersArray = [
         userApiData.entities[currentID].questions.answer1,
         userApiData.entities[currentID].questions.answer2,
         userApiData.entities[currentID].questions.answer3,
       ];
     } else {
-      console.log(
-        "This Error Should Never Occur Due To Previous Verification But if it Does it because we couldn't get Api Data or the user ID"
-      );
+      console.log(consoleError);
     }
+    //Return the Data
     return answersArray;
   };
-
+  //this function uses questionNum and getQuestion to set the active question
   const handleQuestionSwitch = () => {
     let questions = getQuestions();
     if (questionNum === 2) {
@@ -86,6 +96,11 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
       handleQuestionSwitch();
     } else {
       navigate("/login");
+    }
+
+    if (isError) {
+      setErrorMessage("We couldn't reach the server");
+      console.log(error);
     }
   }, []);
 
