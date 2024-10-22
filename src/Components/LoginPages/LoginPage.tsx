@@ -112,10 +112,11 @@ const LoginPage = ({ setIsLoggedIn, setCurrentID }: LoginPropsType) => {
         <LoginUsername username={username} setUsername={setUsername} />
         {/* calls the Password Input */}
         <LoginPassword password={password} setPassword={setPassword} />
-        {memorizedUserInput}
-        <div className="btn-container"></div>
-        {forgotButton}
-        {loginButton}
+        <div className="btn-container">
+          {memorizedUserInput}
+          {forgotButton}
+          {loginButton}
+        </div>
         {/* this display the current error */}
         <p className="error-text">{errorMessage}</p>
       </div>

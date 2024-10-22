@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useGetAllUsersQuery } from "../Features/LandingPage/UserSlice";
-import { currentIDPropsType } from "../Types/AppTypes";
+import { currentIDPropsType } from "../Types/LandingTypes";
 import Favorites from "./Favorites";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -30,7 +30,7 @@ const Home = ({ currentID }: currentIDPropsType) => {
   return (
     <main className="user-background">
       <Header user={currentUser} />
-      <Favorites user={currentUser}/>
+      <Favorites user={currentUser} />
       <TodayRecap />
       <Footer />
     </main>
