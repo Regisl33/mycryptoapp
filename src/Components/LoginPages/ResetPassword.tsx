@@ -1,26 +1,36 @@
+//Import Dependencies
 import { FormEvent, useEffect, useState } from "react";
-import HandleReturnLogin from "../CreateAccountPage/HandleReturnLogin";
+import { useNavigate } from "react-router";
+//Import GetUser et PasswordMutation Redux Function
 import {
   useGetAllUsersQuery,
   usePasswordResetMutation,
 } from "../../Features/LandingPage/UserSlice";
-import { currentIDPropsType } from "../../Types/LandingTypes";
-import { useNavigate } from "react-router";
-import { passwordChangeType } from "../../Types/LandingTypes";
+//Import Controlled Input Components and Handle Return Login Components
+import HandleReturnLogin from "../CreateAccountPage/HandleReturnLogin";
 import ResetPasswordInput from "./ResetPasswordInput";
 import ResetConfirmInput from "./ResetConfirmInput";
+//Import Types for password Reset and CurrentID Props
+import {
+  currentIDPropsType,
+  passwordChangeType,
+} from "../../Types/LandingTypes";
 
 const ResetPassword = ({ currentID }: currentIDPropsType) => {
+  //Controlled Input State
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [isSubmited, setIsSubmited] = useState(false);
+  //Error State
   const [errorMessage, setErrorMessage] = useState("");
-
+  //This State Checks if the form is Submitted
+  const [isSubmited, setIsSubmited] = useState(false);
+  //Get User Data from Redux Store
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
+  //Define Password Reset Mutation
   const [passwordReset] = usePasswordResetMutation();
-
+  //Define Navigate
   const navigate = useNavigate();
-
+  //Define Password History Object and the New Password and Try to Update the Redux Store. If it can't catch and log the error
   const handleReset = async (
     oldPassword: string,
     password: string,

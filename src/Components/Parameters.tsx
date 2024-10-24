@@ -13,6 +13,7 @@ type propsType = {
 const Parameters = ({ setIsLoggedIn, setCurrentID, currentID }: propsType) => {
   const { data: userApiData, isError, error } = useGetAllUsersQuery("User");
   const [currentUser, setCurrentUser] = useState<fullUserType>();
+  const [darkTheme, setDarkTheme] = useState(false);
   const navigate = useNavigate();
 
   const handleDeleteFavorite = (fav: string) => {};
@@ -50,7 +51,35 @@ const Parameters = ({ setIsLoggedIn, setCurrentID, currentID }: propsType) => {
       <div className="color-picker"></div>
       <div className="theme-container">
         <label htmlFor="dark-mode-checkbox">Toggle Dark Theme</label>
-        <input type="checkbox" id="dark-mode-checkbox" />
+        <input
+          type="checkbox"
+          id="dark-mode-checkbox"
+          checked={darkTheme ? true : false}
+          onChange={() => setDarkTheme(!darkTheme)}
+        />
+      </div>
+      <div className="background-selector">
+        {darkTheme ? (
+          <div className="dark-colors">
+            <div className="box d1"></div>
+            <div className="box d2"></div>
+            <div className="box d3"></div>
+            <div className="box d4"></div>
+            <div className="box d5"></div>
+            <div className="box d6"></div>
+            <div className="box d7"></div>
+          </div>
+        ) : (
+          <div className="light-colors">
+            <div className="box l1"></div>
+            <div className="box l2"></div>
+            <div className="box l3"></div>
+            <div className="box l4"></div>
+            <div className="box l5"></div>
+            <div className="box l6"></div>
+            <div className="box l7"></div>
+          </div>
+        )}
       </div>
       <div className="favorite-list-container">
         <h2>Manage Your Favorites</h2>

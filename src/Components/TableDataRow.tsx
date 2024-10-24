@@ -1,5 +1,6 @@
 import React from "react";
 import { coinDataType } from "../Types/AppTypes";
+import { FaRegStar } from "react-icons/fa6";
 
 type propsType = {
   coin: coinDataType;
@@ -9,6 +10,9 @@ const TableDataRow = ({ coin }: propsType) => {
   return (
     <tr>
       <td>{coin.market_cap_rank}</td>
+      <td>
+        <FaRegStar />
+      </td>
       <td>{coin.symbol.toUpperCase()}</td>
       <td>
         <img src={coin.image} alt={`${coin.name} image`} />
