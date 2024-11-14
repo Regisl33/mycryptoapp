@@ -7,7 +7,7 @@ type propsType = {
 const TableHeader = ({ content, selectedSort, setSelectedSort }: propsType) => {
   const handleSortChange = (value: string) => {
     if (selectedSort === value) {
-      setSelectedSort(selectedSort + "reverse");
+      setSelectedSort(value + "reverse");
     } else {
       setSelectedSort(value);
     }

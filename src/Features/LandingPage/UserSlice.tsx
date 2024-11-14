@@ -1,4 +1,9 @@
-import { fullUserType, passwordResetType } from "../../Types/LandingTypes";
+import {
+  fullUserType,
+  passwordResetType,
+  favoriteMutationType,
+  colorMutation,
+} from "../../Types/LandingTypes";
 import UserApi from "../../Api/UserApi";
 import { createEntityAdapter } from "@reduxjs/toolkit";
 
@@ -39,6 +44,23 @@ export const userSliceApi = UserApi.injectEndpoints({
         method: "PATCH",
         body: passwordChange,
       }),
+      invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
+    }),
+    favorite: builder.mutation({
+      query: ({ options, id }: favoriteMutationType) => ({
+        url: `users/${id}`,
+        method: "PATCH",
+        body: options,
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
+    }),
+    color: builder.mutation({
+      query: ({ options, id }: colorMutation) => ({
+        url: `users/${id}`,
+        method: "PATCH",
+        body: options,
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
     }),
   }),
 });
@@ -47,4 +69,6 @@ export const {
   useGetAllUsersQuery,
   useAddUserMutation,
   usePasswordResetMutation,
+  useFavoriteMutation,
+  useColorMutation,
 } = userSliceApi;

@@ -17,6 +17,7 @@ const Parameters = ({ setIsLoggedIn, setCurrentID, currentID }: propsType) => {
   const navigate = useNavigate();
 
   const handleDeleteFavorite = (fav: string) => {};
+
   const handleDisconnect = () => {
     let disconnect: boolean = window.confirm(
       "Do you really want to disconnect?"
@@ -25,8 +26,6 @@ const Parameters = ({ setIsLoggedIn, setCurrentID, currentID }: propsType) => {
       setCurrentID(undefined);
       navigate("/login");
       setIsLoggedIn(false);
-    } else {
-      console.log("cancel disconnect");
     }
   };
 
@@ -48,7 +47,6 @@ const Parameters = ({ setIsLoggedIn, setCurrentID, currentID }: propsType) => {
 
   return (
     <main className="user-background">
-      <div className="color-picker"></div>
       <div className="theme-container">
         <label htmlFor="dark-mode-checkbox">Toggle Dark Theme</label>
         <input
@@ -87,8 +85,12 @@ const Parameters = ({ setIsLoggedIn, setCurrentID, currentID }: propsType) => {
           {currentUser?.options?.favorites &&
             currentUser.options.favorites.map((fav) => (
               <li>
-                {fav}{" "}
-                <TiDeleteOutline onClick={() => handleDeleteFavorite(fav)} />
+                <>
+                  {fav.name}{" "}
+                  <TiDeleteOutline
+                    onClick={() => handleDeleteFavorite(fav.name)}
+                  />
+                </>
               </li>
             ))}
         </ul>

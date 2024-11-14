@@ -1,3 +1,5 @@
+import { coinDataType } from "./AppTypes";
+
 export type userType = {
   username: string;
   email: string;
@@ -20,7 +22,7 @@ export type passwordChangeType = {
 export type userOptions = {
   darkMode?: boolean;
   color?: string;
-  favorites?: string[];
+  favorites?: coinDataType[];
 };
 
 export type fullUserType = {
@@ -58,4 +60,26 @@ export type currentIDPropsType = {
 };
 export type SecQuestionPropsType = {
   user: userType;
+};
+
+type favoriteType = {
+  options: {
+    favorites: coinDataType[];
+  };
+};
+
+export type favoriteMutationType = {
+  options: favoriteType;
+  id: number;
+};
+
+type userColor = {
+  options: {
+    color: string;
+  };
+};
+
+export type colorMutation = {
+  options: userColor;
+  id: number;
 };
