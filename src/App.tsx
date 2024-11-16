@@ -29,13 +29,16 @@ const App = () => {
 
   const dispatch = useAppDispatch();
 
-  const { coinID } = useParams();
+  const { coinID } = useParams<{ coinID: string }>();
 
   useEffect(() => {
     dispatch(fetchCoinData());
     if (window.localStorage.selectedID) {
       setIsLoggedIn(true);
       setCurrentID(window.localStorage.selectedID);
+    } else if (window.sessionStorage.userID) {
+      setIsLoggedIn(true);
+      setCurrentID(window.sessionStorage.userID);
     } else {
       setIsLoggedIn(false);
     }
@@ -65,10 +68,12 @@ const App = () => {
               path="/search"
               element={<SearchPage currentID={currentID} />}
             />
+
             <Route
-              path="/coin"
+              path="/coin/:coinID"
               element={<IndividualCoinData currentID={currentID} />}
             />
+
             <Route path="*" element={<ErrorNotFoundPage />} />
           </>
         ) : (

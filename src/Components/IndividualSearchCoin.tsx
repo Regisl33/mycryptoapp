@@ -1,16 +1,19 @@
 import React from "react";
 import { coinDataType } from "../Types/AppTypes";
+import { useNavigate } from "react-router";
 
 type propsType = {
   coin: coinDataType;
 };
 
 const IndividualSearchCoin = ({ coin }: propsType) => {
+  const navigate = useNavigate();
+
   return (
     <div className="search-coin">
       <figure className="logo-container">
-        <h2>{coin.name}</h2>
-        <img src={coin.image} alt={coin.name + "'s image"} />
+        <h2 onClick={() => navigate(`/coin/:${coin.id}`)}>{coin.name}</h2>
+        <img src={coin.image} alt={coin.name + "image"} />
         <figcaption>{coin.symbol}</figcaption>
         <span>
           {coin.price_change_percentage_24h_in_currency.toFixed(1) + "%"}

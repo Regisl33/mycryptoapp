@@ -1,12 +1,15 @@
 const Footer = () => {
+  //Get current Year
   const year = new Date().getFullYear();
-
-  return (
-    <footer>
+  //Footer HTML return
+  const mainFooter = (
+    <footer className="main-footer">
       <p>Powered by Coingecko Api</p>
-      <p className="copyright">All right reserved &copy; {year}</p>
+      <p>All right reserved &copy; {year}</p>
     </footer>
   );
+
+  return mainFooter;
 };
 
 export default Footer;

@@ -37,3 +37,19 @@ export type coinDataType = {
   price_change_percentage_30d_in_currency: number;
   price_change_percentage_7d_in_currency: number;
 };
+
+export type globalChartDataType = {
+  name: string;
+  price: number;
+  size: number;
+};
+
+export type chartDataType = {
+  date: string;
+  price: number;
+};
+
+export type chartHeaderDataType = {
+  duration: number;
+  label: string;
+};

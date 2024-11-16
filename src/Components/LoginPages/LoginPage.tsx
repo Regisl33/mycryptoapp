@@ -26,7 +26,7 @@ const LoginPage = ({ setIsLoggedIn, setCurrentID }: LoginPropsType) => {
   const navigate = useNavigate();
   //Get Users data from BD
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
-  //Login Function, gets the user ID and change the current user ID and the login state, than navigate to the user home page.
+  //Login Function, gets the user ID and change the current user ID and the login state, place the user id in the session storage, than navigate to the user home page.
   const HandleLogin = (id: number) => {
     setErrorMessage("");
     if (memorizeUser) {
@@ -38,6 +38,7 @@ const LoginPage = ({ setIsLoggedIn, setCurrentID }: LoginPropsType) => {
       }
     }
     setCurrentID(id);
+    window.sessionStorage.userID = id;
     navigate("/home");
     setIsLoggedIn(true);
   };

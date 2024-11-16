@@ -23,6 +23,10 @@ const Parameters = ({ setIsLoggedIn, setCurrentID, currentID }: propsType) => {
       "Do you really want to disconnect?"
     );
     if (disconnect) {
+      if (localStorage.selectedID) {
+        localStorage.removeItem("selectedID");
+      }
+      sessionStorage.clear();
       setCurrentID(undefined);
       navigate("/login");
       setIsLoggedIn(false);
@@ -59,23 +63,23 @@ const Parameters = ({ setIsLoggedIn, setCurrentID, currentID }: propsType) => {
       <div className="background-selector">
         {darkTheme ? (
           <div className="dark-colors">
-            <div className="box d1"></div>
-            <div className="box d2"></div>
-            <div className="box d3"></div>
-            <div className="box d4"></div>
-            <div className="box d5"></div>
-            <div className="box d6"></div>
-            <div className="box d7"></div>
+            <div className="box Dcolor1"></div>
+            <div className="box Dcolor2"></div>
+            <div className="box Dcolor3"></div>
+            <div className="box Dcolor4"></div>
+            <div className="box Dcolor5"></div>
+            <div className="box Dcolor6"></div>
+            <div className="box Dcolor7"></div>
           </div>
         ) : (
           <div className="light-colors">
-            <div className="box l1"></div>
-            <div className="box l2"></div>
-            <div className="box l3"></div>
-            <div className="box l4"></div>
-            <div className="box l5"></div>
-            <div className="box l6"></div>
-            <div className="box l7"></div>
+            <div className="box Lcolor1"></div>
+            <div className="box Lcolor2"></div>
+            <div className="box Lcolor3"></div>
+            <div className="box Lcolor4"></div>
+            <div className="box Lcolor5"></div>
+            <div className="box Lcolor6"></div>
+            <div className="box Lcolor7"></div>
           </div>
         )}
       </div>

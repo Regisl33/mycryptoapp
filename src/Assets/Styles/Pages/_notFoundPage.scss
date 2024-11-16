@@ -1,0 +1,13 @@
+.page404 {
+  @include justify(center);
+  height: 100vh;
+  letter-spacing: 1px;
+
+  u {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}
+.main-footer {
+  @include justify(space-evenly);
+}
