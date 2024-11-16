@@ -33,7 +33,11 @@ const Home = ({ currentID }: currentIDPropsType) => {
   }, []);
 
   return (
-    <main className="user-background">
+    <main
+      className={
+        currentUser?.options?.color ? currentUser.options.color : "Lcolor1"
+      }
+    >
       <Header user={currentUser} />
       <Favorites user={currentUser} />
       <TodayRecap />

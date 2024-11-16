@@ -10,11 +10,11 @@ type propsType = {
 const Header = ({ user }: propsType) => {
   return (
     <header className="account-header">
-      <h1>Welcome {user?.username}</h1>
+      <h1 className="title">Welcome {user?.username}!</h1>
       <NavLink to="/settings">
         <IoSettingsOutline />
       </NavLink>
-      <Navigation />
+      <Navigation user={user} />
     </header>
   );
 };
