@@ -6,17 +6,12 @@ import Footer from "./Footer";
 import Header from "./Header";
 import TodayRecap from "./TodayRecap";
 import { fullUserType } from "../Types/LandingTypes";
-import { useAppDispatch } from "../Store/Store";
-import { fetchGlobalData } from "../Features/CoinGeeckoData/CoinDataSlice";
 
 const Home = ({ currentID }: currentIDPropsType) => {
   const [currentUser, setCurrentUser] = useState<fullUserType>();
   const { data: userApiData, isError, error } = useGetAllUsersQuery("User");
 
-  const dispatch = useAppDispatch();
-
   useEffect(() => {
-    dispatch(fetchGlobalData());
     if (!isError) {
       if (userApiData?.ids) {
         userApiData.ids.map((id) =>
@@ -39,8 +34,10 @@ const Home = ({ currentID }: currentIDPropsType) => {
       }
     >
       <Header user={currentUser} />
-      <Favorites user={currentUser} />
-      <TodayRecap />
+      <div className="main-container">
+        <Favorites user={currentUser} />
+        <TodayRecap />
+      </div>
       <Footer />
     </main>
   );

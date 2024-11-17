@@ -3,6 +3,8 @@ import { useNavigate } from "react-router";
 import { useGetAllUsersQuery } from "../Features/LandingPage/UserSlice";
 import { fullUserType } from "../Types/LandingTypes";
 import { TiDeleteOutline } from "react-icons/ti";
+import Header from "./Header";
+import Footer from "./Footer";
 
 type propsType = {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -50,56 +52,64 @@ const Parameters = ({ setIsLoggedIn, setCurrentID, currentID }: propsType) => {
   }, []);
 
   return (
-    <main className="user-background">
-      <div className="theme-container">
-        <label htmlFor="dark-mode-checkbox">Toggle Dark Theme</label>
-        <input
-          type="checkbox"
-          id="dark-mode-checkbox"
-          checked={darkTheme ? true : false}
-          onChange={() => setDarkTheme(!darkTheme)}
-        />
+    <main
+      className={
+        currentUser?.options?.color ? currentUser.options.color : "Lcolor1"
+      }
+    >
+      <Header user={currentUser} />
+      <div className="main-container">
+        <div className="theme-container">
+          <label htmlFor="dark-mode-checkbox">Toggle Dark Theme</label>
+          <input
+            type="checkbox"
+            id="dark-mode-checkbox"
+            checked={darkTheme ? true : false}
+            onChange={() => setDarkTheme(!darkTheme)}
+          />
+        </div>
+        <div className="background-selector">
+          {darkTheme ? (
+            <div className="dark-colors">
+              <div className="box Dcolor1"></div>
+              <div className="box Dcolor2"></div>
+              <div className="box Dcolor3"></div>
+              <div className="box Dcolor4"></div>
+              <div className="box Dcolor5"></div>
+              <div className="box Dcolor6"></div>
+              <div className="box Dcolor7"></div>
+            </div>
+          ) : (
+            <div className="light-colors">
+              <div className="box Lcolor1"></div>
+              <div className="box Lcolor2"></div>
+              <div className="box Lcolor3"></div>
+              <div className="box Lcolor4"></div>
+              <div className="box Lcolor5"></div>
+              <div className="box Lcolor6"></div>
+              <div className="box Lcolor7"></div>
+            </div>
+          )}
+        </div>
+        <div className="favorite-list-container">
+          <h2>Manage Your Favorites</h2>
+          <ul>
+            {currentUser?.options?.favorites &&
+              currentUser.options.favorites.map((fav) => (
+                <li>
+                  <>
+                    {fav.name}{" "}
+                    <TiDeleteOutline
+                      onClick={() => handleDeleteFavorite(fav.name)}
+                    />
+                  </>
+                </li>
+              ))}
+          </ul>
+        </div>
+        <button onClick={() => handleDisconnect()}>disconnect</button>
       </div>
-      <div className="background-selector">
-        {darkTheme ? (
-          <div className="dark-colors">
-            <div className="box Dcolor1"></div>
-            <div className="box Dcolor2"></div>
-            <div className="box Dcolor3"></div>
-            <div className="box Dcolor4"></div>
-            <div className="box Dcolor5"></div>
-            <div className="box Dcolor6"></div>
-            <div className="box Dcolor7"></div>
-          </div>
-        ) : (
-          <div className="light-colors">
-            <div className="box Lcolor1"></div>
-            <div className="box Lcolor2"></div>
-            <div className="box Lcolor3"></div>
-            <div className="box Lcolor4"></div>
-            <div className="box Lcolor5"></div>
-            <div className="box Lcolor6"></div>
-            <div className="box Lcolor7"></div>
-          </div>
-        )}
-      </div>
-      <div className="favorite-list-container">
-        <h2>Manage Your Favorites</h2>
-        <ul>
-          {currentUser?.options?.favorites &&
-            currentUser.options.favorites.map((fav) => (
-              <li>
-                <>
-                  {fav.name}{" "}
-                  <TiDeleteOutline
-                    onClick={() => handleDeleteFavorite(fav.name)}
-                  />
-                </>
-              </li>
-            ))}
-        </ul>
-      </div>
-      <button onClick={() => handleDisconnect()}>disconnect</button>
+      <Footer />
     </main>
   );
 };
