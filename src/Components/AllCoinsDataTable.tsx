@@ -151,7 +151,13 @@ const AllCoinsDataTable = ({ currentID }: currentIDPropsType) => {
                 return a.market_cap_rank - b.market_cap_rank;
             }
           })
-          .map((coin) => <TableDataRow coin={coin} key={coin.id} />)}
+          .map((coin) => (
+            <TableDataRow
+              coin={coin}
+              user={currentUser as fullUserType}
+              key={coin.id}
+            />
+          ))}
     </tbody>
   );
 

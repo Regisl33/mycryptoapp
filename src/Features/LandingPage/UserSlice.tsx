@@ -52,7 +52,7 @@ export const userSliceApi = UserApi.injectEndpoints({
         method: "PATCH",
         body: options,
       }),
-      invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
+      invalidatesTags: ["User"],
     }),
     color: builder.mutation({
       query: ({ options, id }: colorMutation) => ({

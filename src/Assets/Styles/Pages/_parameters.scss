@@ -1,0 +1,81 @@
+.theme-container {
+  label {
+    letter-spacing: 1px;
+    margin: 5px;
+  }
+  input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+  }
+}
+.background-selector {
+  @include justify(center);
+  margin: 15px auto 10px;
+
+  .light-colors,
+  .dark-colors {
+    @include justify(space-around);
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .Lbox {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    &:hover {
+      transform: scale(105%);
+    }
+  }
+  .Dbox {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid $landingLight;
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    &:hover {
+      transform: scale(105%);
+    }
+  }
+}
+
+.Lbtn {
+  background: none;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 15px 10px;
+  color: inherit;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  font-family: inherit;
+  font-size: 1rem;
+
+  &:hover {
+    transform: scale(105%);
+  }
+}
+.Dbtn {
+  background: none;
+  border: 1px solid $landingLight;
+  border-radius: 20px;
+  padding: 15px 10px;
+  color: inherit;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  font-family: inherit;
+  font-size: 1rem;
+
+  &:hover {
+    transform: scale(105%);
+  }
+}

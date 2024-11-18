@@ -14,7 +14,7 @@ import Parameters from "./Components/Parameters";
 import AllCoinsDataTable from "./Components/AllCoinsDataTable";
 import SearchPage from "./Components/SearchPage";
 import IndividualCoinData from "./Components/IndividualCoinData";
-import ErrorNotFoundPage from "./Components/ErrorNotFoundPage";
+import ErrorNotFoundPage from "./Components/LoginPages/ErrorNotFoundPage";
 import { fetchCoinData } from "./Features/CoinGeeckoData/CoinDataSlice";
 import { useAppDispatch } from "./Store/Store";
 
