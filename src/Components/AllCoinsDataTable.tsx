@@ -5,13 +5,18 @@ import { useAppSelector } from "../Store/Store";
 import TableDataRow from "./TableDataRow";
 import { tableColums } from "./TableColums";
 import TableHeader from "./TableHeader";
-import { useGetAllUsersQuery } from "../Features/LandingPage/UserSlice";
+import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
 import Footer from "./Footer";
 import Header from "./Header";
+import { current } from "@reduxjs/toolkit";
 
-const AllCoinsDataTable = ({ currentID }: currentIDPropsType) => {
-  const [currentUser, setCurrentUser] = useState<fullUserType>();
-  const { data: userApiData, isError, error } = useGetAllUsersQuery("User");
+type propsType = {
+  currentID: number;
+  tempColor: string;
+};
+
+const AllCoinsDataTable = ({ currentID, tempColor }: propsType) => {
+  const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
   const [selectedSort, setselectedSort] = useState("Rank");
   const coinData: coinDataType[] = useAppSelector(
     (state) => state.coinData.data
@@ -20,16 +25,6 @@ const AllCoinsDataTable = ({ currentID }: currentIDPropsType) => {
 
   useEffect(() => {
     if (!isError) {
-      if (userApiData?.ids) {
-        userApiData.ids.map((id) =>
-          id === currentID
-            ? setCurrentUser(userApiData.entities[id])
-            : console.log(id)
-        );
-      } else {
-        console.log("There is no data in the user Array");
-      }
-    } else {
       console.log(error);
     }
     setData([...coinData]);
@@ -151,20 +146,16 @@ const AllCoinsDataTable = ({ currentID }: currentIDPropsType) => {
                 return a.market_cap_rank - b.market_cap_rank;
             }
           })
-          .map((coin) => (
-            <TableDataRow
-              coin={coin}
-              user={currentUser as fullUserType}
-              key={coin.id}
-            />
-          ))}
+          .map((coin) => <TableDataRow coin={coin} key={coin.id} />)}
     </tbody>
   );
 
   const tablePage = (
     <div
       className={
-        currentUser?.options?.color ? currentUser.options.color : "Lcolor1"
+        tempColor.length > 0 && tempColor !== userData?.options.color
+          ? tempColor
+          : userData?.options.color
       }
     >
       <Header />

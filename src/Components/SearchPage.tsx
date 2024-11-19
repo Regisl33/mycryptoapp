@@ -1,15 +1,18 @@
-import React, { ChangeEvent, useState, useEffect } from "react";
-import { currentIDPropsType, fullUserType } from "../Types/LandingTypes";
+import { ChangeEvent, useState, useEffect } from "react";
 import { coinDataType } from "../Types/AppTypes";
 import { useAppSelector } from "../Store/Store";
 import IndividualSearchCoin from "./IndividualSearchCoin";
-import { useGetAllUsersQuery } from "../Features/LandingPage/UserSlice";
+import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const SearchPage = ({ currentID }: currentIDPropsType) => {
-  const [currentUser, setCurrentUser] = useState<fullUserType>();
-  const { data: userApiData, isError, error } = useGetAllUsersQuery("User");
+type propsType = {
+  currentID: number;
+  tempColor: string;
+};
+
+const SearchPage = ({ currentID, tempColor }: propsType) => {
+  const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
   const [searchValue, setSearchValue] = useState("");
   const [filteredResult, setFilteredResult] = useState<coinDataType[]>();
 
@@ -31,16 +34,6 @@ const SearchPage = ({ currentID }: currentIDPropsType) => {
 
   useEffect(() => {
     if (!isError) {
-      if (userApiData?.ids) {
-        userApiData.ids.map((id) =>
-          id === currentID
-            ? setCurrentUser(userApiData.entities[id])
-            : console.log(id)
-        );
-      } else {
-        console.log("There is no data in the user Array");
-      }
-    } else {
       console.log(error);
     }
   }, []);
@@ -48,7 +41,9 @@ const SearchPage = ({ currentID }: currentIDPropsType) => {
   return (
     <div
       className={
-        currentUser?.options?.color ? currentUser.options.color : "Lcolor1"
+        tempColor.length > 0 && tempColor !== userData?.options.color
+          ? tempColor
+          : userData?.options.color
       }
     >
       <Header />

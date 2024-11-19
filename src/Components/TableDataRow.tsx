@@ -6,76 +6,73 @@ import { favoriteMutationType, fullUserType } from "../Types/LandingTypes";
 
 type propsType = {
   coin: coinDataType;
-  user: fullUserType;
 };
 
-const TableDataRow = ({ coin, user }: propsType) => {
+const TableDataRow = ({ coin }: propsType) => {
   const [favoriteMutation] = useFavoriteMutation();
 
-  const handleAddDelete = (unique: boolean, favArray: coinDataType[]) => {
-    if (unique) {
-      let newFav: favoriteMutationType = {
-        options: {
-          options: {
-            favorites: [coin, ...favArray],
-          },
-        },
-        id: user.id,
-      };
-      try {
-        favoriteMutation(newFav).unwrap();
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      let newArray = favArray.filter((fav) => fav.id !== coin.id);
-      let newFav: favoriteMutationType = {
-        options: {
-          options: {
-            favorites: newArray,
-          },
-        },
-        id: user.id,
-      };
-      try {
-        favoriteMutation(newFav).unwrap();
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
+  // const handleAddDelete = (unique: boolean, favArray: coinDataType[]) => {
+  //   if (unique) {
+  //     let newFav: favoriteMutationType = {
+  //       options: {
+  //         options: {
+  //           favorites: [coin, ...favArray],
+  //         },
+  //       },
+  //       id: user.id,
+  //     };
+  //     try {
+  //       favoriteMutation(newFav).unwrap();
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   } else {
+  //     let newArray = favArray.filter((fav) => fav.id !== coin.id);
+  //     let newFav: favoriteMutationType = {
+  //       options: {
+  //         options: {
+  //           favorites: newArray,
+  //         },
+  //       },
+  //       id: user.id,
+  //     };
+  //     try {
+  //       favoriteMutation(newFav).unwrap();
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  // };
 
-  const handleFavorite = () => {
-    if (user.options?.favorites) {
-      let favoriteArray = [...user.options.favorites];
-      let isUnique = true;
-      favoriteArray.map((fav) =>
-        fav.id === coin.id ? (isUnique = false) : null
-      );
-      handleAddDelete(isUnique, favoriteArray);
-    } else {
-      let newFav: favoriteMutationType = {
-        options: {
-          options: {
-            favorites: [coin],
-          },
-        },
-        id: user.id,
-      };
-      try {
-        favoriteMutation(newFav).unwrap();
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
+  // const handleFavorite = () => {
+  //   if (user.options?.favorites) {
+  //     let favoriteArray = [...user.options.favorites];
+  //     let isUnique = true;
+  //     favoriteArray.map((fav) =>
+  //       fav.id === coin.id ? (isUnique = false) : null
+  //     );
+  //     handleAddDelete(isUnique, favoriteArray);
+  //   } else {
+  //     let newFav: favoriteMutationType = {
+  //       options: {
+  //         options: {
+  //           favorites: [coin],
+  //         },
+  //       },
+  //       id: user.id,
+  //     };
+  //     try {
+  //       favoriteMutation(newFav).unwrap();
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  // };
 
   return (
     <tr>
       <td>{coin.market_cap_rank}</td>
-      <td>
-        <FaRegStar onClick={() => handleFavorite()} />
-      </td>
+      <td>{/* <FaRegStar onClick={() => handleFavorite()} /> */}</td>
       <td>{coin.symbol.toUpperCase()}</td>
       <td>
         <img src={coin.image} alt={`${coin.name} image`} />

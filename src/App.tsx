@@ -70,11 +70,21 @@ const App = () => {
             />
             <Route
               path="/table"
-              element={<AllCoinsDataTable currentID={currentID} />}
+              element={
+                <AllCoinsDataTable
+                  currentID={currentID as number}
+                  tempColor={tempColor}
+                />
+              }
             />
             <Route
               path="/search"
-              element={<SearchPage currentID={currentID} />}
+              element={
+                <SearchPage
+                  currentID={currentID as number}
+                  tempColor={tempColor}
+                />
+              }
             />
 
             <Route
