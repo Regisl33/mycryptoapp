@@ -20,8 +20,7 @@ export type passwordChangeType = {
   resetDate: number;
 };
 export type userOptions = {
-  darkMode?: boolean;
-  color?: string;
+  color: string;
   favorites?: coinDataType[];
 };
 
@@ -31,7 +30,7 @@ export type fullUserType = {
   email: string;
   password: string;
   questions: securityQuestionsType;
-  options?: userOptions;
+  options: userOptions;
   passwordHistory?: passwordChangeType;
 };
 

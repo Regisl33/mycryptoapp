@@ -6,19 +6,19 @@ type propsType = {
   user: fullUserType | undefined;
 };
 
-const Navigation = ({ user }: propsType) => {
+const Navigation = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeLocation, setActiveLocation] = useState<string>("home");
   const location = useLocation();
 
-  useEffect(() => {
-    setActiveLocation(location.pathname.slice(1));
-    if (user?.options?.color) {
-      user.options.color[0] === "D"
-        ? setIsDarkMode(true)
-        : setIsDarkMode(false);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   setActiveLocation(location.pathname.slice(1));
+  //   if (user?.options?.color) {
+  //     user.options.color[0] === "D"
+  //       ? setIsDarkMode(true)
+  //       : setIsDarkMode(false);
+  //   }
+  // }, [user]);
   return (
     <nav aria-label="HomePage-Nav">
       <ul className="main-nav">

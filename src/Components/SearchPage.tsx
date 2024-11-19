@@ -51,7 +51,7 @@ const SearchPage = ({ currentID }: currentIDPropsType) => {
         currentUser?.options?.color ? currentUser.options.color : "Lcolor1"
       }
     >
-      <Header user={currentUser} />
+      <Header />
       <div className="main-container">
         <div className="search-container">
           <label htmlFor="search" className="offscreen">

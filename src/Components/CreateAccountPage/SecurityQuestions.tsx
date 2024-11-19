@@ -72,6 +72,9 @@ const SecurityQuestions = ({ user }: SecQuestionPropsType) => {
         answer2,
         answer3,
       },
+      options: {
+        color: "Lcolor1",
+      },
     };
     await postData(fullUser);
     setIsSubmited(true);

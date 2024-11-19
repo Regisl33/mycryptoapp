@@ -26,6 +26,7 @@ const App = () => {
     email: "",
     password: "",
   });
+  const [tempColor, setTempColor] = useState("");
 
   const dispatch = useAppDispatch();
 
@@ -49,11 +50,18 @@ const App = () => {
       <Routes>
         {isLoggedIn ? (
           <>
-            <Route path="/home" element={<Home currentID={currentID} />} />
+            <Route
+              path="/home"
+              element={
+                <Home currentID={currentID as number} tempColor={tempColor} />
+              }
+            />
             <Route
               path="/settings"
               element={
                 <Parameters
+                  tempColor={tempColor}
+                  setTempColor={setTempColor}
                   setIsLoggedIn={setIsLoggedIn}
                   setCurrentID={setCurrentID}
                   currentID={currentID}

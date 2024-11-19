@@ -7,7 +7,7 @@ type propsType = {
   user: fullUserType | undefined;
 };
 
-const Favorites = ({ user }: propsType) => {
+const Favorites = () => {
   const [favoriteArray, setFavoriteArray] = useState<coinDataType[]>([]);
 
   const headerColums: string[] = [
@@ -23,11 +23,11 @@ const Favorites = ({ user }: propsType) => {
     "1Y",
   ];
 
-  useEffect(() => {
-    if (user?.options?.favorites) {
-      setFavoriteArray(user.options.favorites);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user?.options?.favorites) {
+  //     setFavoriteArray(user.options.favorites);
+  //   }
+  // }, [user]);
 
   const FavList = (
     <div className="fav-container">

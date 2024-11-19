@@ -7,14 +7,14 @@ type propsType = {
   user: fullUserType | undefined;
 };
 
-const Header = ({ user }: propsType) => {
+const Header = () => {
   return (
     <header className="account-header">
-      <h1 className="title">Welcome {user?.username}!</h1>
+      {/* <h1 className="title">Welcome {user?.username}!</h1> */}
       <NavLink to="/settings">
         <IoSettingsOutline />
       </NavLink>
-      <Navigation user={user} />
+      <Navigation />
     </header>
   );
 };

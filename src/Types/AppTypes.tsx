@@ -53,3 +53,8 @@ export type chartHeaderDataType = {
   duration: number;
   label: string;
 };
+
+export type colorType = {
+  class: string;
+  color: string;
+};

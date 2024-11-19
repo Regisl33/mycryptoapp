@@ -30,6 +30,13 @@ export const userSliceApi = UserApi.injectEndpoints({
             ]
           : [{ type: "User", id: "ALL" }],
     }),
+    getCurrentUser: builder.query({
+      query: (id: number) => `/users/${id}`,
+      transformResponse: (res: fullUserType) => {
+        let currentUser = res;
+        return currentUser;
+      },
+    }),
     addUser: builder.mutation({
       query: (user: fullUserType) => ({
         url: "/users",
@@ -67,6 +74,7 @@ export const userSliceApi = UserApi.injectEndpoints({
 
 export const {
   useGetAllUsersQuery,
+  useGetCurrentUserQuery,
   useAddUserMutation,
   usePasswordResetMutation,
   useFavoriteMutation,

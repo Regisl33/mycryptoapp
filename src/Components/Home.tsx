@@ -1,28 +1,24 @@
-import { useEffect, useState } from "react";
-import { useGetAllUsersQuery } from "../Features/LandingPage/UserSlice";
-import { currentIDPropsType } from "../Types/LandingTypes";
+import { useEffect } from "react";
+import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
 import Favorites from "./Favorites";
 import Footer from "./Footer";
 import Header from "./Header";
 import TodayRecap from "./TodayRecap";
-import { fullUserType } from "../Types/LandingTypes";
 
-const Home = ({ currentID }: currentIDPropsType) => {
-  const [currentUser, setCurrentUser] = useState<fullUserType>();
-  const { data: userApiData, isError, error } = useGetAllUsersQuery("User");
+type propsType = {
+  currentID: number;
+  tempColor: string;
+};
+
+const Home = ({ currentID, tempColor }: propsType) => {
+  const {
+    data: userData,
+    isError,
+    error,
+  } = useGetCurrentUserQuery(currentID as number);
 
   useEffect(() => {
-    if (!isError) {
-      if (userApiData?.ids) {
-        userApiData.ids.map((id) =>
-          id === currentID
-            ? setCurrentUser(userApiData.entities[id])
-            : console.log(id)
-        );
-      } else {
-        console.log("There is no data in the user Array");
-      }
-    } else {
+    if (isError) {
       console.log(error);
     }
   }, []);
@@ -30,12 +26,14 @@ const Home = ({ currentID }: currentIDPropsType) => {
   return (
     <main
       className={
-        currentUser?.options?.color ? currentUser.options.color : "Lcolor1"
+        tempColor.length > 0 && tempColor !== userData?.options.color
+          ? tempColor
+          : userData?.options.color
       }
     >
-      <Header user={currentUser} />
+      <Header />
       <div className="main-container">
-        <Favorites user={currentUser} />
+        <Favorites />
         <TodayRecap />
       </div>
       <Footer />
