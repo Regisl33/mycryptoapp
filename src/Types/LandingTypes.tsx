@@ -19,10 +19,6 @@ export type passwordChangeType = {
   oldPassword: string;
   resetDate: number;
 };
-export type userOptions = {
-  color: string;
-  favorites?: coinDataType[];
-};
 
 export type fullUserType = {
   id: number;
@@ -30,7 +26,8 @@ export type fullUserType = {
   email: string;
   password: string;
   questions: securityQuestionsType;
-  options: userOptions;
+  color: string;
+  favorites: coinDataType[];
   passwordHistory?: passwordChangeType;
 };
 
@@ -57,28 +54,21 @@ export type passwordResetType = {
 export type currentIDPropsType = {
   currentID: number | undefined;
 };
+
 export type SecQuestionPropsType = {
   user: userType;
 };
 
-type favoriteType = {
-  options: {
+export type favoriteMutationType = {
+  user: {
     favorites: coinDataType[];
   };
-};
-
-export type favoriteMutationType = {
-  options: favoriteType;
   id: number;
 };
 
-type userColor = {
-  options: {
+export type colorMutation = {
+  user: {
     color: string;
   };
-};
-
-export type colorMutation = {
-  options: userColor;
   id: number;
 };

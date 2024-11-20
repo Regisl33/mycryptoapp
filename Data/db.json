@@ -17,41 +17,83 @@
         "oldPassword": "Test123!4",
         "resetDate": 1728697063905
       },
-      "options": {
-        "color": "Lcolor1"
-      }
-    },
-    {
-      "id": "1",
-      "username": "test1",
-      "email": "test1@test.com",
-      "password": "Test123!24",
-      "questions": {
-        "question1": "What is the name of your best friend from high school?",
-        "question2": "What is the name of the street you grew up on?",
-        "question3": "What is your father's middle name?",
-        "answer1": "test",
-        "answer2": "test",
-        "answer3": "test"
-      },
-      "passwordHistory": {
-        "oldPassword": "Test123!2",
-        "resetDate": 1728697926309
-      }
-    },
-    {
-      "id": "2",
-      "username": "test12",
-      "email": "test2@test.com",
-      "password": "Test123!",
-      "questions": {
-        "question1": "What is your mother's maiden name?",
-        "question2": "What is your father's middle name?",
-        "question3": "What was the name of your elementary school?",
-        "answer1": "test",
-        "answer2": "test",
-        "answer3": "test"
-      }
+      "color": "Lcolor7",
+      "favorites": [
+        {
+          "id": "dogecoin",
+          "symbol": "doge",
+          "name": "Dogecoin",
+          "image": "https://coin-images.coingecko.com/coins/images/5/large/dogecoin.png?1696501409",
+          "current_price": 0.379645,
+          "market_cap": 55830430153,
+          "market_cap_rank": 7,
+          "fully_diluted_valuation": 55833193987,
+          "total_volume": 16035603140,
+          "high_24h": 0.416106,
+          "low_24h": 0.375283,
+          "price_change_24h": 0.00436213,
+          "price_change_percentage_24h": 1.16236,
+          "market_cap_change_24h": 928476244,
+          "market_cap_change_percentage_24h": 1.69115,
+          "circulating_supply": 146856556383.705,
+          "total_supply": 146863826383.705,
+          "max_supply": null,
+          "ath": 0.731578,
+          "ath_change_percentage": -47.9938,
+          "ath_date": "2021-05-08T05:08:23.458Z",
+          "atl": 0.0000869,
+          "atl_change_percentage": 437701.55333,
+          "atl_date": "2015-05-06T00:00:00.000Z",
+          "roi": null,
+          "last_updated": "2024-11-20T03:26:34.149Z",
+          "price_change_percentage_14d_in_currency": 83.63603574641498,
+          "price_change_percentage_1h_in_currency": -1.9904466737813462,
+          "price_change_percentage_1y_in_currency": 372.50768986816263,
+          "price_change_percentage_200d_in_currency": 155.16489724818862,
+          "price_change_percentage_24h_in_currency": 1.162358060965734,
+          "price_change_percentage_30d_in_currency": 163.8299613389729,
+          "price_change_percentage_7d_in_currency": -2.3271131707637736
+        },
+        {
+          "id": "ethereum",
+          "symbol": "eth",
+          "name": "Ethereum",
+          "image": "https://coin-images.coingecko.com/coins/images/279/large/ethereum.png?1696501628",
+          "current_price": 3081.69,
+          "market_cap": 371256926781,
+          "market_cap_rank": 2,
+          "fully_diluted_valuation": 371256926781,
+          "total_volume": 30267585964,
+          "high_24h": 3159.74,
+          "low_24h": 3071.49,
+          "price_change_24h": -75.7436410115447,
+          "price_change_percentage_24h": -2.3989,
+          "market_cap_change_24h": -8673856589.978516,
+          "market_cap_change_percentage_24h": -2.28301,
+          "circulating_supply": 120426315.834728,
+          "total_supply": 120426315.834728,
+          "max_supply": null,
+          "ath": 4878.26,
+          "ath_change_percentage": -36.74707,
+          "ath_date": "2021-11-10T14:24:19.604Z",
+          "atl": 0.432979,
+          "atl_change_percentage": 712554.35476,
+          "atl_date": "2015-10-20T00:00:00.000Z",
+          "roi": {
+            "times": 43.92132361037904,
+            "currency": "btc",
+            "percentage": 4392.132361037904
+          },
+          "last_updated": "2024-11-20T03:26:36.104Z",
+          "price_change_percentage_14d_in_currency": 18.570360013360123,
+          "price_change_percentage_1h_in_currency": -0.8053743336598721,
+          "price_change_percentage_1y_in_currency": 53.37100275200379,
+          "price_change_percentage_200d_in_currency": -0.6823600216914957,
+          "price_change_percentage_24h_in_currency": -2.398897985110562,
+          "price_change_percentage_30d_in_currency": 12.798812972855023,
+          "price_change_percentage_7d_in_currency": -5.166694836561925
+        }
+      ]
     }
   ]
 }

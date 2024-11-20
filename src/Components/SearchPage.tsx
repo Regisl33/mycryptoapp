@@ -33,7 +33,7 @@ const SearchPage = ({ currentID, tempColor }: propsType) => {
   };
 
   useEffect(() => {
-    if (!isError) {
+    if (isError) {
       console.log(error);
     }
   }, []);
@@ -41,12 +41,12 @@ const SearchPage = ({ currentID, tempColor }: propsType) => {
   return (
     <div
       className={
-        tempColor.length > 0 && tempColor !== userData?.options.color
+        tempColor.length > 0 && tempColor !== userData?.color
           ? tempColor
-          : userData?.options.color
+          : userData?.color
       }
     >
-      <Header />
+      <Header currentID={currentID} />
       <div className="main-container">
         <div className="search-container">
           <label htmlFor="search" className="offscreen">

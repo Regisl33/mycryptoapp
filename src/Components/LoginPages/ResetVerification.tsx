@@ -2,7 +2,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 //Import Fetch User Hook
-import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
 //Import Types for the Id Props
 import { currentIDPropsType } from "../../Types/LandingTypes";
 
@@ -16,7 +16,11 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
   //Error State
   const [errorMessage, setErrorMessage] = useState("");
   //Getting the Data from the User DataBase
-  const { data: userApiData, isError, error } = useGetAllUsersQuery("User");
+  const {
+    data: userData,
+    isError,
+    error,
+  } = useGetCurrentUserQuery(currentID as number);
   //Define Navigate
   const navigate = useNavigate();
   //Define The Error for this component if it fail the TS verification
@@ -25,11 +29,11 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
   //Get the questions for the current User
   const getQuestions = (): string[] => {
     let questionsArray: string[] = [];
-    if (userApiData?.entities && currentID) {
+    if (userData) {
       questionsArray = [
-        userApiData.entities[currentID].questions.question1,
-        userApiData.entities[currentID].questions.question2,
-        userApiData.entities[currentID].questions.question3,
+        userData.questions.question1,
+        userData.questions.question2,
+        userData.questions.question3,
       ];
     } else {
       console.log(consoleError);
@@ -39,11 +43,11 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
   //Get the answers for the current User
   const getAnswers = (): string[] => {
     let answersArray: string[] = [];
-    if (userApiData?.entities && currentID) {
+    if (userData) {
       answersArray = [
-        userApiData.entities[currentID].questions.answer1,
-        userApiData.entities[currentID].questions.answer2,
-        userApiData.entities[currentID].questions.answer3,
+        userData.questions.answer1,
+        userData.questions.answer2,
+        userData.questions.answer3,
       ];
     } else {
       console.log(consoleError);

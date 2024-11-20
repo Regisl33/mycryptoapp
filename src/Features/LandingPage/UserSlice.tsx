@@ -54,18 +54,18 @@ export const userSliceApi = UserApi.injectEndpoints({
       invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
     }),
     favorite: builder.mutation({
-      query: ({ options, id }: favoriteMutationType) => ({
+      query: ({ user, id }: favoriteMutationType) => ({
         url: `users/${id}`,
         method: "PATCH",
-        body: options,
+        body: user,
       }),
       invalidatesTags: ["User"],
     }),
     color: builder.mutation({
-      query: ({ options, id }: colorMutation) => ({
+      query: ({ user, id }: colorMutation) => ({
         url: `users/${id}`,
         method: "PATCH",
-        body: options,
+        body: user,
       }),
       invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
     }),

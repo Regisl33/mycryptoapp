@@ -14,11 +14,7 @@ type propsType = {
 
 const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
   const [darkTheme, setDarkTheme] = useState(false);
-  const {
-    data: userData,
-    isError,
-    error,
-  } = useGetCurrentUserQuery(currentID as number);
+  const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
 
   const lightColors: colorType[] = [
     { class: "Lcolor1", color: "#0066ff" },
@@ -45,10 +41,8 @@ const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
   const handleColorSwitch = async (color: string) => {
     if (currentID) {
       let newColor: colorMutation = {
-        options: {
-          options: {
-            color,
-          },
+        user: {
+          color,
         },
         id: currentID,
       };
@@ -67,7 +61,7 @@ const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
       return (
         <div
           className={
-            tempColor.length > 0 && tempColor !== userData?.options.color
+            tempColor.length > 0 && tempColor !== userData?.color
               ? tempColor === color.class
                 ? darkTheme
                   ? `active Dbox ${color.class}`
@@ -75,7 +69,7 @@ const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
                 : darkTheme
                 ? `Dbox ${color.class}`
                 : `Lbox ${color.class}`
-              : userData?.options.color === color.class
+              : userData?.color === color.class
               ? darkTheme
                 ? `active Dbox ${color.class}`
                 : `active Lbox ${color.class}`

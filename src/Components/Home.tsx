@@ -11,11 +11,7 @@ type propsType = {
 };
 
 const Home = ({ currentID, tempColor }: propsType) => {
-  const {
-    data: userData,
-    isError,
-    error,
-  } = useGetCurrentUserQuery(currentID as number);
+  const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
 
   useEffect(() => {
     if (isError) {
@@ -26,12 +22,12 @@ const Home = ({ currentID, tempColor }: propsType) => {
   return (
     <main
       className={
-        tempColor.length > 0 && tempColor !== userData?.options.color
+        tempColor.length > 0 && tempColor !== userData?.color
           ? tempColor
-          : userData?.options.color
+          : userData?.color
       }
     >
-      <Header />
+      <Header currentID={currentID} />
       <div className="main-container">
         <Favorites />
         <TodayRecap />

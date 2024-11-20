@@ -1,24 +1,27 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { fullUserType } from "../Types/LandingTypes";
+import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
 import { useEffect, useState } from "react";
 
 type propsType = {
-  user: fullUserType | undefined;
+  currentID: number;
 };
 
-const Navigation = () => {
+const Navigation = ({ currentID }: propsType) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeLocation, setActiveLocation] = useState<string>("home");
   const location = useLocation();
 
-  // useEffect(() => {
-  //   setActiveLocation(location.pathname.slice(1));
-  //   if (user?.options?.color) {
-  //     user.options.color[0] === "D"
-  //       ? setIsDarkMode(true)
-  //       : setIsDarkMode(false);
-  //   }
-  // }, [user]);
+  const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
+
+  useEffect(() => {
+    if (isError) {
+      console.log(error);
+    }
+    setActiveLocation(location.pathname.slice(1));
+    if (userData?.color) {
+      userData.color[0] === "D" ? setIsDarkMode(true) : setIsDarkMode(false);
+    }
+  }, [userData]);
   return (
     <nav aria-label="HomePage-Nav">
       <ul className="main-nav">

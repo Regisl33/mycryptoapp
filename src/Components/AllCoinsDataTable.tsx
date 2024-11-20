@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { coinDataType } from "../Types/AppTypes";
-import { currentIDPropsType, fullUserType } from "../Types/LandingTypes";
 import { useAppSelector } from "../Store/Store";
 import TableDataRow from "./TableDataRow";
 import { tableColums } from "./TableColums";
@@ -8,7 +7,6 @@ import TableHeader from "./TableHeader";
 import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
 import Footer from "./Footer";
 import Header from "./Header";
-import { current } from "@reduxjs/toolkit";
 
 type propsType = {
   currentID: number;
@@ -18,13 +16,14 @@ type propsType = {
 const AllCoinsDataTable = ({ currentID, tempColor }: propsType) => {
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
   const [selectedSort, setselectedSort] = useState("Rank");
+  const [tempFavArray, setTempFavArray] = useState<coinDataType[]>([]);
   const coinData: coinDataType[] = useAppSelector(
     (state) => state.coinData.data
   );
   const [data, setData] = useState<coinDataType[]>([]);
 
   useEffect(() => {
-    if (!isError) {
+    if (isError) {
       console.log(error);
     }
     setData([...coinData]);
@@ -146,19 +145,27 @@ const AllCoinsDataTable = ({ currentID, tempColor }: propsType) => {
                 return a.market_cap_rank - b.market_cap_rank;
             }
           })
-          .map((coin) => <TableDataRow coin={coin} key={coin.id} />)}
+          .map((coin) => (
+            <TableDataRow
+              coin={coin}
+              currentID={currentID}
+              tempFavArray={tempFavArray}
+              setTempFavArray={setTempFavArray}
+              key={coin.id}
+            />
+          ))}
     </tbody>
   );
 
   const tablePage = (
     <div
       className={
-        tempColor.length > 0 && tempColor !== userData?.options.color
+        tempColor.length > 0 && tempColor !== userData?.color
           ? tempColor
-          : userData?.options.color
+          : userData?.color
       }
     >
-      <Header />
+      <Header currentID={currentID} />
       <div className="main-container">
         <table>
           {tableHeader}

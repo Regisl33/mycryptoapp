@@ -1,78 +1,29 @@
 import React from "react";
 import { coinDataType } from "../Types/AppTypes";
-import { FaRegStar } from "react-icons/fa6";
-import { useFavoriteMutation } from "../Features/LandingPage/UserSlice";
-import { favoriteMutationType, fullUserType } from "../Types/LandingTypes";
+import StarFavorite from "./StarFavorite";
 
 type propsType = {
+  currentID: number;
   coin: coinDataType;
+  tempFavArray: coinDataType[];
+  setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
 };
 
-const TableDataRow = ({ coin }: propsType) => {
-  const [favoriteMutation] = useFavoriteMutation();
-
-  // const handleAddDelete = (unique: boolean, favArray: coinDataType[]) => {
-  //   if (unique) {
-  //     let newFav: favoriteMutationType = {
-  //       options: {
-  //         options: {
-  //           favorites: [coin, ...favArray],
-  //         },
-  //       },
-  //       id: user.id,
-  //     };
-  //     try {
-  //       favoriteMutation(newFav).unwrap();
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   } else {
-  //     let newArray = favArray.filter((fav) => fav.id !== coin.id);
-  //     let newFav: favoriteMutationType = {
-  //       options: {
-  //         options: {
-  //           favorites: newArray,
-  //         },
-  //       },
-  //       id: user.id,
-  //     };
-  //     try {
-  //       favoriteMutation(newFav).unwrap();
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  // };
-
-  // const handleFavorite = () => {
-  //   if (user.options?.favorites) {
-  //     let favoriteArray = [...user.options.favorites];
-  //     let isUnique = true;
-  //     favoriteArray.map((fav) =>
-  //       fav.id === coin.id ? (isUnique = false) : null
-  //     );
-  //     handleAddDelete(isUnique, favoriteArray);
-  //   } else {
-  //     let newFav: favoriteMutationType = {
-  //       options: {
-  //         options: {
-  //           favorites: [coin],
-  //         },
-  //       },
-  //       id: user.id,
-  //     };
-  //     try {
-  //       favoriteMutation(newFav).unwrap();
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  // };
-
+const TableDataRow = ({
+  coin,
+  currentID,
+  tempFavArray,
+  setTempFavArray,
+}: propsType) => {
   return (
     <tr>
       <td>{coin.market_cap_rank}</td>
-      <td>{/* <FaRegStar onClick={() => handleFavorite()} /> */}</td>
+      <StarFavorite
+        currentID={currentID}
+        coin={coin}
+        tempFavArray={tempFavArray}
+        setTempFavArray={setTempFavArray}
+      />
       <td>{coin.symbol.toUpperCase()}</td>
       <td>
         <img src={coin.image} alt={`${coin.name} image`} />

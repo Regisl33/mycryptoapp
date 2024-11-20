@@ -3,7 +3,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 //Import GetUser et PasswordMutation Redux Function
 import {
-  useGetAllUsersQuery,
+  useGetCurrentUserQuery,
   usePasswordResetMutation,
 } from "../../Features/LandingPage/UserSlice";
 //Import Controlled Input Components and Handle Return Login Components
@@ -25,7 +25,11 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
   //This State Checks if the form is Submitted
   const [isSubmited, setIsSubmited] = useState(false);
   //Get User Data from Redux Store
-  const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
+  const {
+    data: userData,
+    error,
+    isError,
+  } = useGetCurrentUserQuery(currentID as number);
   //Define Password Reset Mutation
   const [passwordReset] = usePasswordResetMutation();
   //Define Navigate
@@ -57,34 +61,25 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (userApiData?.entities && currentID) {
-      if (userApiData.entities[currentID].passwordHistory) {
+    if (userData) {
+      if (userData.passwordHistory) {
         if (
-          userApiData.entities[currentID].passwordHistory?.oldPassword ===
-            password ||
-          userApiData.entities[currentID].password === password
+          userData.passwordHistory?.oldPassword === password ||
+          userData.password === password
         ) {
           setErrorMessage(
             "You must use different password then the last 2 passwords you've used"
           );
         } else {
-          await handleReset(
-            userApiData.entities[currentID].password,
-            password,
-            currentID
-          );
+          await handleReset(userData.password, password, currentID as number);
           setIsSubmited(true);
         }
-      } else if (userApiData.entities[currentID].password === password) {
+      } else if (userData.password === password) {
         setErrorMessage(
           "You must use different password then the last 2 passwords you've used"
         );
       } else {
-        await handleReset(
-          userApiData.entities[currentID].password,
-          password,
-          currentID
-        );
+        await handleReset(userData.password, password, currentID as number);
         setIsSubmited(true);
       }
     } else {
