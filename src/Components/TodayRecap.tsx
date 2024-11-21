@@ -6,10 +6,19 @@ import {
 } from "recharts/types/component/DefaultTooltipContent";
 import { useAppSelector } from "../Store/Store";
 import { globalChartDataType } from "../Types/AppTypes";
+import { TiDeleteOutline } from "react-icons/ti";
 
 const TodayRecap = () => {
   const [chartData, setChartData] = useState<globalChartDataType[]>([]);
   const coinData = useAppSelector((state) => state.coinData.data);
+
+  const colorPicker = (num: number): string => {
+    if (num >= 0) {
+      return "rgb(0,255,102)";
+    } else {
+      return "rgb(255,51,0)";
+    }
+  };
 
   const dataManager = () => {
     let data = [...coinData];
@@ -23,6 +32,7 @@ const TodayRecap = () => {
           name: coin.name,
           price: coin.current_price,
           size: coin.market_cap,
+          fill: colorPicker(coin.price_change_percentage_24h_in_currency),
         })
       );
 
@@ -52,19 +62,38 @@ const TodayRecap = () => {
   };
 
   return (
-    <div className="GlobalGraph">
-      <Treemap
-        height={1000}
-        width={1000}
-        data={chartData}
-        dataKey="size"
-        stroke="white"
-        fill="black"
-        aspectRatio={1}
-      >
-        <Tooltip content={<TreemapTooltip />} />
-      </Treemap>
-    </div>
+    <>
+      <div className="GlobalGraph">
+        <Treemap
+          height={450}
+          width={800}
+          data={chartData}
+          dataKey="size"
+          stroke="black"
+          fill="black"
+          aspectRatio={1}
+        >
+          <Tooltip content={<TreemapTooltip />} />
+        </Treemap>
+      </div>
+      <button className="Lbtn show-btn">Show Today's Graph</button>
+      <div className="smallGlobalGraph">
+        <span>
+          <TiDeleteOutline />
+        </span>
+        <Treemap
+          height={667}
+          width={375}
+          data={chartData}
+          dataKey="size"
+          stroke="black"
+          fill="black"
+          aspectRatio={1}
+        >
+          <Tooltip content={<TreemapTooltip />} />
+        </Treemap>
+      </div>
+    </>
   );
 };
 

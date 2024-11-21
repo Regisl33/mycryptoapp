@@ -80,7 +80,13 @@ const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
           id={color.class}
           onClick={() => handleColorSwitch(color.class)}
         >
-          {color.color}
+          {tempColor.length > 0 && tempColor !== userData?.color
+            ? tempColor === color.class
+              ? "Selected"
+              : color.color
+            : userData?.color === color.class
+            ? "Selected"
+            : color.color}
         </div>
       );
     });

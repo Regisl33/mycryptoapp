@@ -34,9 +34,10 @@ const Favorites = ({ currentID, tempFavArray }: propsType) => {
 
   const FavList = (
     <div className="fav-container">
+      <h2 className="title">Favorites Cryptocurrency</h2>
       {(userData && userData.favorites.length > 0) ||
       tempFavArray.length > 0 ? (
-        <ul>
+        <ul className="FavListHeader">
           {headerColums.map((li) => (
             <li>{li}</li>
           ))}
@@ -44,10 +45,12 @@ const Favorites = ({ currentID, tempFavArray }: propsType) => {
       ) : null}
 
       {tempFavArray.length > 0 ? (
-        tempFavArray.map((coin) => <FavListItem coin={coin} key={coin.id} />)
+        tempFavArray.map((coin, index) => (
+          <FavListItem coin={coin} index={index} key={coin.id} />
+        ))
       ) : userData && userData.favorites.length > 0 ? (
-        userData.favorites.map((coin) => (
-          <FavListItem coin={coin} key={coin.id} />
+        userData.favorites.map((coin, index) => (
+          <FavListItem coin={coin} index={index} key={coin.id} />
         ))
       ) : (
         <p>You don't have any favorite coin.</p>

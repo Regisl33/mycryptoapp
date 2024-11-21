@@ -1,6 +1,9 @@
 //Making sure i can reuse those class outside the landing page
 .landing-container {
   //Main container
+  .title {
+    text-shadow: 2px 3px 3px $landingShadows;
+  }
   .main {
     background: $landing2;
     backdrop-filter: blur(15px);

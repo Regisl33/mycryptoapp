@@ -42,6 +42,7 @@ export type globalChartDataType = {
   name: string;
   price: number;
   size: number;
+  fill: string;
 };
 
 export type chartDataType = {

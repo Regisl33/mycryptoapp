@@ -4,7 +4,8 @@
 
   h1 {
     text-transform: capitalize;
-    padding: 10px auto 30px;
+    padding: 20px auto 40px;
+    margin-bottom: 10px;
   }
   a,
   a:visited {
@@ -90,6 +91,34 @@
   min-height: 80vh;
   padding: 5px;
 }
+
+.fav-container {
+  width: 90%;
+  margin: 0 auto;
+
+  @media screen and (max-width: 950px) {
+    font-size: 0.7rem;
+  }
+
+  h2 {
+    margin-bottom: 35px;
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    place-items: center;
+    margin-bottom: 10px;
+  }
+  .FavListHeader {
+    font-weight: 900;
+  }
+}
 .GlobalGraph {
-  display: none;
+  @include justify(center);
+  margin-top: 50px;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 }

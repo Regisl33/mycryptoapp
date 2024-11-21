@@ -20,6 +20,9 @@ $Dcolor4: rgb(0, 0, 102);
 $Dcolor5: rgb(51, 0, 153);
 $Dcolor6: rgb(255, 0, 0);
 $Dcolor7: rgb(204, 51, 0);
+//Green and Red Graph Color
+$redgraph: rgb(255, 51, 0);
+$greengraph: rgb(0, 255, 102);
 
 //Fonts
 @font-face {
@@ -65,7 +68,6 @@ body {
 }
 .title {
   font-family: $font2;
-  text-shadow: 2px 3px 3px $landingShadows;
   letter-spacing: 1px;
   text-align: center;
 }

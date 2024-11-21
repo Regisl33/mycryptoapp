@@ -76,7 +76,7 @@ const Parameters = ({
           setTempFavArray={setTempFavArray}
         />
 
-        <button className="Lbtn" onClick={() => handleDisconnect()}>
+        <button className="Lbtn logout-btn" onClick={() => handleDisconnect()}>
           disconnect
         </button>
       </div>

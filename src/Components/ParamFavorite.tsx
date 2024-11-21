@@ -61,7 +61,7 @@ const ParamFavorite = ({
   return (
     <div className="favorite-list-container">
       <h2 className="title">Manage Your Favorites</h2>
-      <ul>
+      <ul className="param-fav">
         {isModified ? (
           tempFavArray.length > 0 ? (
             tempFavArray.map((fav) => (
@@ -79,12 +79,10 @@ const ParamFavorite = ({
           )
         ) : userData?.favorites ? (
           userData.favorites.map((fav) => (
-            <li>
-              <>
-                {fav.name}{" "}
-                <TiDeleteOutline onClick={() => handleDeleteFavorite(fav.id)} />
-              </>
-            </li>
+            <>
+              <li>{fav.name}</li>
+              <TiDeleteOutline onClick={() => handleDeleteFavorite(fav.id)} />
+            </>
           ))
         ) : (
           <p> You don't have any favorite coin</p>
