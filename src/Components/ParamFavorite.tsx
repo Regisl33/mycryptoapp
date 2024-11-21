@@ -9,11 +9,16 @@ import { favoriteMutationType } from "../Types/LandingTypes";
 
 type propsType = {
   currentID: number;
+  tempFavArray: coinDataType[];
+  setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
 };
 
-const ParamFavorite = ({ currentID }: propsType) => {
+const ParamFavorite = ({
+  currentID,
+  tempFavArray,
+  setTempFavArray,
+}: propsType) => {
   const [isModified, setIsModified] = useState(false);
-  const [tempFavArray, setTempFavArray] = useState<coinDataType[]>([]);
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
   const [favoriteMutation] = useFavoriteMutation();
 
@@ -47,6 +52,9 @@ const ParamFavorite = ({ currentID }: propsType) => {
   useEffect(() => {
     if (isError) {
       console.log(error);
+    }
+    if (tempFavArray.length > 0) {
+      window.location.reload();
     }
   }, []);
 

@@ -17,6 +17,7 @@ import IndividualCoinData from "./Components/IndividualCoinData";
 import ErrorNotFoundPage from "./Components/LoginPages/ErrorNotFoundPage";
 import { fetchCoinData } from "./Features/CoinGeeckoData/CoinDataSlice";
 import { useAppDispatch } from "./Store/Store";
+import { coinDataType } from "./Types/AppTypes";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,6 +28,7 @@ const App = () => {
     password: "",
   });
   const [tempColor, setTempColor] = useState("");
+  const [tempFavArray, setTempFavArray] = useState<coinDataType[]>([]);
 
   const dispatch = useAppDispatch();
 
@@ -53,7 +55,11 @@ const App = () => {
             <Route
               path="/home"
               element={
-                <Home currentID={currentID as number} tempColor={tempColor} />
+                <Home
+                  currentID={currentID as number}
+                  tempColor={tempColor}
+                  tempFavArray={tempFavArray}
+                />
               }
             />
             <Route
@@ -65,6 +71,8 @@ const App = () => {
                   setIsLoggedIn={setIsLoggedIn}
                   setCurrentID={setCurrentID}
                   currentID={currentID}
+                  tempFavArray={tempFavArray}
+                  setTempFavArray={setTempFavArray}
                 />
               }
             />
@@ -74,6 +82,8 @@ const App = () => {
                 <AllCoinsDataTable
                   currentID={currentID as number}
                   tempColor={tempColor}
+                  tempFavArray={tempFavArray}
+                  setTempFavArray={setTempFavArray}
                 />
               }
             />

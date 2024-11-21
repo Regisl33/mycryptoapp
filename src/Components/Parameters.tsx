@@ -5,6 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import ThemeSelector from "./ThemeSelector";
 import ParamFavorite from "./ParamFavorite";
+import { coinDataType } from "../Types/AppTypes";
 
 type propsType = {
   tempColor: string;
@@ -12,6 +13,8 @@ type propsType = {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentID: React.Dispatch<React.SetStateAction<number | undefined>>;
   currentID: number | undefined;
+  tempFavArray: coinDataType[];
+  setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
 };
 
 const Parameters = ({
@@ -20,6 +23,8 @@ const Parameters = ({
   currentID,
   tempColor,
   setTempColor,
+  tempFavArray,
+  setTempFavArray,
 }: propsType) => {
   const {
     data: userData,
@@ -65,7 +70,11 @@ const Parameters = ({
           tempColor={tempColor}
           setTempColor={setTempColor}
         />
-        <ParamFavorite currentID={currentID as number} />
+        <ParamFavorite
+          currentID={currentID as number}
+          tempFavArray={tempFavArray}
+          setTempFavArray={setTempFavArray}
+        />
 
         <button className="Lbtn" onClick={() => handleDisconnect()}>
           disconnect

@@ -4,13 +4,15 @@ import Favorites from "./Favorites";
 import Footer from "./Footer";
 import Header from "./Header";
 import TodayRecap from "./TodayRecap";
+import { coinDataType } from "../Types/AppTypes";
 
 type propsType = {
   currentID: number;
   tempColor: string;
+  tempFavArray: coinDataType[];
 };
 
-const Home = ({ currentID, tempColor }: propsType) => {
+const Home = ({ currentID, tempColor, tempFavArray }: propsType) => {
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ const Home = ({ currentID, tempColor }: propsType) => {
     >
       <Header currentID={currentID} />
       <div className="main-container">
-        <Favorites />
+        <Favorites currentID={currentID} tempFavArray={tempFavArray} />
         <TodayRecap />
       </div>
       <Footer />
