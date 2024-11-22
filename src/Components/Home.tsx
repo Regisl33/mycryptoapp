@@ -29,10 +29,14 @@ const Home = ({ currentID, tempColor, tempFavArray }: propsType) => {
           : userData?.color
       }
     >
-      <Header currentID={currentID} />
+      <Header currentID={currentID} tempColor={tempColor} />
       <div className="main-container">
-        <Favorites currentID={currentID} tempFavArray={tempFavArray} />
-        <TodayRecap />
+        <Favorites
+          currentID={currentID}
+          tempFavArray={tempFavArray}
+          tempColor={tempColor}
+        />
+        <TodayRecap tempColor={tempColor} />
       </div>
       <Footer />
     </main>

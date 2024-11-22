@@ -313,7 +313,7 @@ const AllCoinsDataTable = ({
           : userData?.color
       }
     >
-      <Header currentID={currentID} />
+      <Header currentID={currentID} tempColor={tempColor} />
       <div className="main-container">
         <table>
           {tableHeader}

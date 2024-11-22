@@ -8,7 +8,11 @@ import { useAppSelector } from "../Store/Store";
 import { globalChartDataType } from "../Types/AppTypes";
 import { TiDeleteOutline } from "react-icons/ti";
 
-const TodayRecap = () => {
+type propsType = {
+  tempColor: string;
+};
+
+const TodayRecap = ({ tempColor }: propsType) => {
   const [chartData, setChartData] = useState<globalChartDataType[]>([]);
   const coinData = useAppSelector((state) => state.coinData.data);
 
@@ -76,7 +80,19 @@ const TodayRecap = () => {
           <Tooltip content={<TreemapTooltip />} />
         </Treemap>
       </div>
-      <button className="Lbtn show-btn">Show Today's Graph</button>
+      <button
+        className={
+          tempColor.length > 0
+            ? tempColor[0] === "D"
+              ? "Dbtn logout-btn"
+              : "Lbtn logout-btn"
+            : userData?.color[0] === "D"
+            ? "Dbtn logout-btn"
+            : "Lbtn logout-btn"
+        }
+      >
+        Show Today's Graph
+      </button>
       <div className="smallGlobalGraph">
         <span>
           <TiDeleteOutline />

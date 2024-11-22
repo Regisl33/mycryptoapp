@@ -63,7 +63,7 @@ const Parameters = ({
           : userData?.color
       }
     >
-      <Header currentID={currentID as number} />
+      <Header currentID={currentID as number} tempColor={tempColor} />
       <div className="main-container">
         <ThemeSelector
           currentID={currentID as number}
@@ -71,12 +71,24 @@ const Parameters = ({
           setTempColor={setTempColor}
         />
         <ParamFavorite
+          tempColor={tempColor}
           currentID={currentID as number}
           tempFavArray={tempFavArray}
           setTempFavArray={setTempFavArray}
         />
 
-        <button className="Lbtn logout-btn" onClick={() => handleDisconnect()}>
+        <button
+          className={
+            tempColor.length > 0
+              ? tempColor[0] === "D"
+                ? "Dbtn logout-btn"
+                : "Lbtn logout-btn"
+              : userData?.color[0] === "D"
+              ? "Dbtn logout-btn"
+              : "Lbtn logout-btn"
+          }
+          onClick={() => handleDisconnect()}
+        >
           disconnect
         </button>
       </div>

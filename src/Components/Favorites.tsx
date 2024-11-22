@@ -5,10 +5,11 @@ import { coinDataType } from "../Types/AppTypes";
 
 type propsType = {
   currentID: number;
+  tempColor: string;
   tempFavArray: coinDataType[];
 };
 
-const Favorites = ({ currentID, tempFavArray }: propsType) => {
+const Favorites = ({ currentID, tempFavArray, tempColor }: propsType) => {
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
   const headerColums: string[] = [
     "Symbol",
@@ -34,7 +35,19 @@ const Favorites = ({ currentID, tempFavArray }: propsType) => {
 
   const FavList = (
     <div className="fav-container">
-      <h2 className="title">Favorites Cryptocurrency</h2>
+      <h2
+        className={
+          tempColor.length > 0
+            ? tempColor[0] === "D"
+              ? "title Dshadow"
+              : "title Lshadow"
+            : userData?.color[0] === "D"
+            ? "title Dshadow"
+            : "title Lshadow"
+        }
+      >
+        Favorites Cryptocurrency
+      </h2>
       {(userData && userData.favorites.length > 0) ||
       tempFavArray.length > 0 ? (
         <ul className="FavListHeader">
@@ -53,7 +66,19 @@ const Favorites = ({ currentID, tempFavArray }: propsType) => {
           <FavListItem coin={coin} index={index} key={coin.id} />
         ))
       ) : (
-        <p>You don't have any favorite coin.</p>
+        <p
+          className={
+            tempColor.length > 0
+              ? tempColor[0] === "D"
+                ? "Dshadow"
+                : "Lshadow"
+              : userData?.color[0] === "D"
+              ? "Dshadow"
+              : "Lshadow"
+          }
+        >
+          You don't have any favorite coin.
+        </p>
       )}
     </div>
   );

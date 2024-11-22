@@ -6,20 +6,33 @@ import { useEffect } from "react";
 
 type propsType = {
   currentID: number;
+  tempColor: string;
 };
 
-const Header = ({ currentID }: propsType) => {
+const Header = ({ currentID, tempColor }: propsType) => {
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
 
   useEffect(() => {
     if (isError) {
       console.log(error);
     }
-  }, []);
+  }, [isError, error]);
 
   return (
     <header className="account-header">
-      <h1 className="title">Welcome {userData?.username}!</h1>
+      <h1
+        className={
+          tempColor.length > 0
+            ? tempColor[0] === "D"
+              ? "title Dshadow"
+              : "title Lshadow"
+            : userData?.color[0] === "D"
+            ? "title Dshadow"
+            : "title Lshadow"
+        }
+      >
+        Welcome {userData?.username}!
+      </h1>
       <NavLink to="/settings">
         <IoSettingsOutline />
       </NavLink>

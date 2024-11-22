@@ -9,12 +9,14 @@ import { favoriteMutationType } from "../Types/LandingTypes";
 
 type propsType = {
   currentID: number;
+  tempColor: string;
   tempFavArray: coinDataType[];
   setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
 };
 
 const ParamFavorite = ({
   currentID,
+  tempColor,
   tempFavArray,
   setTempFavArray,
 }: propsType) => {
@@ -60,7 +62,19 @@ const ParamFavorite = ({
 
   return (
     <div className="favorite-list-container">
-      <h2 className="title">Manage Your Favorites</h2>
+      <h2
+        className={
+          tempColor.length > 0
+            ? tempColor[0] === "D"
+              ? "title Dshadow"
+              : "title Lshadow"
+            : userData?.color[0] === "D"
+            ? "title Dshadow"
+            : "title Lshadow"
+        }
+      >
+        Manage Your Favorites
+      </h2>
       <ul className="param-fav">
         {isModified ? (
           tempFavArray.length > 0 ? (
@@ -85,7 +99,19 @@ const ParamFavorite = ({
             </>
           ))
         ) : (
-          <p> You don't have any favorite coin</p>
+          <p
+            className={
+              tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "Dshadow"
+                  : "Lshadow"
+                : userData?.color[0] === "D"
+                ? "Dshadow"
+                : "Lshadow"
+            }
+          >
+            You don't have any favorite coin
+          </p>
         )}
       </ul>
     </div>

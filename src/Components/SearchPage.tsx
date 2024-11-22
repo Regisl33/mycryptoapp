@@ -46,7 +46,7 @@ const SearchPage = ({ currentID, tempColor }: propsType) => {
           : userData?.color
       }
     >
-      <Header currentID={currentID} />
+      <Header currentID={currentID} tempColor={tempColor} />
       <div className="main-container">
         <div className="search-container">
           <label htmlFor="search" className="offscreen">

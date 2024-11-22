@@ -14,6 +14,7 @@ $Lcolor6: rgb(204, 255, 0);
 $Lcolor7: rgb(255, 153, 0);
 //Dark Theme Color
 $Dcolor1: rgb(0, 0, 0);
+$darkShadows: rgba(0, 0, 0, 0.349);
 $Dcolor2: rgb(51, 51, 51);
 $Dcolor3: rgb(0, 0, 51);
 $Dcolor4: rgb(0, 0, 102);
@@ -70,4 +71,10 @@ body {
   font-family: $font2;
   letter-spacing: 1px;
   text-align: center;
+}
+.Lshadow {
+  text-shadow: 2px 3px 3px $darkShadows;
+}
+.Dshadow {
+  text-shadow: 2px 3px 3px $landingShadows;
 }
