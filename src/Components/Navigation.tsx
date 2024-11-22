@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 
 type propsType = {
   currentID: number;
+  tempColor: string;
 };
 
-const Navigation = ({ currentID }: propsType) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+const Navigation = ({ currentID, tempColor }: propsType) => {
   const [activeLocation, setActiveLocation] = useState<string>("home");
   const location = useLocation();
-
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
 
   useEffect(() => {
@@ -18,10 +17,7 @@ const Navigation = ({ currentID }: propsType) => {
       console.log(error);
     }
     setActiveLocation(location.pathname.slice(1));
-    if (userData?.color) {
-      userData.color[0] === "D" ? setIsDarkMode(true) : setIsDarkMode(false);
-    }
-  }, [userData]);
+  }, []);
   return (
     <nav aria-label="HomePage-Nav">
       <ul className="main-nav">
@@ -29,10 +25,18 @@ const Navigation = ({ currentID }: propsType) => {
           <li
             className={
               activeLocation === "home"
-                ? isDarkMode
+                ? tempColor.length > 0
+                  ? tempColor[0] === "D"
+                    ? "active darkLink"
+                    : "active lightLink"
+                  : userData?.color[0] === "D"
                   ? "active darkLink"
                   : "active lightLink"
-                : isDarkMode
+                : tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "darkLink"
+                  : "lightLink"
+                : userData?.color[0] === "D"
                 ? "darkLink"
                 : "lightLink"
             }
@@ -44,10 +48,18 @@ const Navigation = ({ currentID }: propsType) => {
           <li
             className={
               activeLocation === "table"
-                ? isDarkMode
+                ? tempColor.length > 0
+                  ? tempColor[0] === "D"
+                    ? "active darkLink"
+                    : "active lightLink"
+                  : userData?.color[0] === "D"
                   ? "active darkLink"
                   : "active lightLink"
-                : isDarkMode
+                : tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "darkLink"
+                  : "lightLink"
+                : userData?.color[0] === "D"
                 ? "darkLink"
                 : "lightLink"
             }
@@ -59,10 +71,18 @@ const Navigation = ({ currentID }: propsType) => {
           <li
             className={
               activeLocation === "search"
-                ? isDarkMode
+                ? tempColor.length > 0
+                  ? tempColor[0] === "D"
+                    ? "active darkLink"
+                    : "active lightLink"
+                  : userData?.color[0] === "D"
                   ? "active darkLink"
                   : "active lightLink"
-                : isDarkMode
+                : tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "darkLink"
+                  : "lightLink"
+                : userData?.color[0] === "D"
                 ? "darkLink"
                 : "lightLink"
             }

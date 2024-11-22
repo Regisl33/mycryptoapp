@@ -36,7 +36,7 @@ const Header = ({ currentID, tempColor }: propsType) => {
       <NavLink to="/settings">
         <IoSettingsOutline />
       </NavLink>
-      <Navigation currentID={currentID} />
+      <Navigation currentID={currentID} tempColor={tempColor} />
     </header>
   );
 };

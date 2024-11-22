@@ -36,7 +36,7 @@ const Home = ({ currentID, tempColor, tempFavArray }: propsType) => {
           tempFavArray={tempFavArray}
           tempColor={tempColor}
         />
-        <TodayRecap tempColor={tempColor} />
+        <TodayRecap tempColor={tempColor} currentID={currentID} />
       </div>
       <Footer />
     </main>

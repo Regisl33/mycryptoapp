@@ -55,14 +55,13 @@
       opacity: 0;
       transition: 0.3s ease-in-out;
       transform: translateX(-50%);
-
-      &:hover {
-        transform: scale(102%) translateX(-50%);
-      }
-      &:hover::after {
-        opacity: 1;
-        width: 100%;
-      }
+    }
+    &:hover {
+      transform: scale(102%), translateX(-50%);
+    }
+    &:hover::after {
+      opacity: 1;
+      width: 100%;
     }
   }
   .lightLink {
@@ -70,7 +69,7 @@
       content: "";
       width: 0;
       height: 2px;
-      background: black;
+      background: $Dcolor1;
       position: absolute;
       bottom: -2px;
       left: 50%;

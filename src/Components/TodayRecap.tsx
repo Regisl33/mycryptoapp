@@ -7,14 +7,17 @@ import {
 import { useAppSelector } from "../Store/Store";
 import { globalChartDataType } from "../Types/AppTypes";
 import { TiDeleteOutline } from "react-icons/ti";
+import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
 
 type propsType = {
   tempColor: string;
+  currentID: number;
 };
 
-const TodayRecap = ({ tempColor }: propsType) => {
+const TodayRecap = ({ tempColor, currentID }: propsType) => {
   const [chartData, setChartData] = useState<globalChartDataType[]>([]);
   const coinData = useAppSelector((state) => state.coinData.data);
+  const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
 
   const colorPicker = (num: number): string => {
     if (num >= 0) {
@@ -46,6 +49,11 @@ const TodayRecap = ({ tempColor }: propsType) => {
   useEffect(() => {
     dataManager();
   }, []);
+  useEffect(() => {
+    if (isError) {
+      console.log(error);
+    }
+  }, [isError, error]);
 
   const TreemapTooltip = ({
     active,
@@ -84,11 +92,11 @@ const TodayRecap = ({ tempColor }: propsType) => {
         className={
           tempColor.length > 0
             ? tempColor[0] === "D"
-              ? "Dbtn logout-btn"
-              : "Lbtn logout-btn"
+              ? "Dbtn"
+              : "Lbtn"
             : userData?.color[0] === "D"
-            ? "Dbtn logout-btn"
-            : "Lbtn logout-btn"
+            ? "Dbtn"
+            : "Lbtn"
         }
       >
         Show Today's Graph

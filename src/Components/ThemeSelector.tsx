@@ -93,10 +93,10 @@ const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
   };
 
   useEffect(() => {
-    if (!isError) {
+    if (isError) {
       console.log(error);
     }
-  }, []);
+  }, [isError, error]);
 
   return (
     <div className="theme-selector">
