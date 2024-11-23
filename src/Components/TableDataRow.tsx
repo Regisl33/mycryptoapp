@@ -1,6 +1,7 @@
 import React from "react";
 import { coinDataType } from "../Types/AppTypes";
 import StarFavorite from "./StarFavorite";
+import { useNavigate } from "react-router";
 
 type propsType = {
   currentID: number;
@@ -15,6 +16,7 @@ const TableDataRow = ({
   tempFavArray,
   setTempFavArray,
 }: propsType) => {
+  const navigate = useNavigate();
   return (
     <tr>
       <td>{coin.market_cap_rank}</td>
@@ -28,7 +30,9 @@ const TableDataRow = ({
       <td>
         <img src={coin.image} alt={`${coin.name} image`} />
       </td>
-      <td>{coin.name}</td>
+      <td className="pointer" onClick={() => navigate(`/coin/:${coin.id}`)}>
+        {coin.name}
+      </td>
       <td>
         {coin.market_cap ? (coin.market_cap / 1000000).toFixed(3) + "M $" : "-"}
       </td>

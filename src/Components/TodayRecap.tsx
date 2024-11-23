@@ -16,6 +16,7 @@ type propsType = {
 
 const TodayRecap = ({ tempColor, currentID }: propsType) => {
   const [chartData, setChartData] = useState<globalChartDataType[]>([]);
+  const [displayChart, setDisplayChart] = useState(false);
   const coinData = useAppSelector((state) => state.coinData.data);
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
 
@@ -64,7 +65,7 @@ const TodayRecap = ({ tempColor, currentID }: propsType) => {
         <div className="tooltip-container">
           <p>
             {payload[0].payload.name}
-            <span>{payload[0].payload.price}</span>
+            <span>{payload[0].payload.price}$</span>
           </p>
         </div>
       );
@@ -88,35 +89,40 @@ const TodayRecap = ({ tempColor, currentID }: propsType) => {
           <Tooltip content={<TreemapTooltip />} />
         </Treemap>
       </div>
-      <button
-        className={
-          tempColor.length > 0
-            ? tempColor[0] === "D"
-              ? "Dbtn"
-              : "Lbtn"
-            : userData?.color[0] === "D"
-            ? "Dbtn"
-            : "Lbtn"
-        }
-      >
-        Show Today's Graph
-      </button>
-      <div className="smallGlobalGraph">
-        <span>
-          <TiDeleteOutline />
-        </span>
-        <Treemap
-          height={667}
-          width={375}
-          data={chartData}
-          dataKey="size"
-          stroke="black"
-          fill="black"
-          aspectRatio={1}
+
+      {displayChart ? (
+        <div className="smallGlobalGraph">
+          <span>
+            <TiDeleteOutline onClick={() => setDisplayChart(false)} />
+          </span>
+          <Treemap
+            height={667}
+            width={375}
+            data={chartData}
+            dataKey="size"
+            stroke="black"
+            fill="black"
+            aspectRatio={1}
+          >
+            <Tooltip content={<TreemapTooltip />} />
+          </Treemap>
+        </div>
+      ) : (
+        <button
+          className={
+            tempColor.length > 0
+              ? tempColor[0] === "D"
+                ? "Dbtn graph-btn"
+                : "Lbtn graph-btn"
+              : userData?.color[0] === "D"
+              ? "Dbtn graph-btn"
+              : "Lbtn graph-btn"
+          }
+          onClick={() => setDisplayChart(true)}
         >
-          <Tooltip content={<TreemapTooltip />} />
-        </Treemap>
-      </div>
+          Show Today's Graph
+        </button>
+      )}
     </>
   );
 };

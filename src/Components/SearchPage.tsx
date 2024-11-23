@@ -53,6 +53,15 @@ const SearchPage = ({ currentID, tempColor }: propsType) => {
             Search Input
           </label>
           <input
+            className={
+              tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "Dinput"
+                  : "Linput"
+                : userData?.color[0] === "D"
+                ? "Dinput"
+                : "Linput"
+            }
             type="text"
             id="search"
             placeholder="Search a Coin"
@@ -66,7 +75,12 @@ const SearchPage = ({ currentID, tempColor }: propsType) => {
         <div className="result-container">
           {filteredResult ? (
             filteredResult.map((result) => (
-              <IndividualSearchCoin coin={result} key={result.id} />
+              <IndividualSearchCoin
+                coin={result}
+                currentID={currentID}
+                tempColor={tempColor}
+                key={result.id}
+              />
             ))
           ) : (
             <p>There is no matching Cryptocurrency</p>

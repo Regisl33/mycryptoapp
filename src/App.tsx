@@ -99,7 +99,14 @@ const App = () => {
 
             <Route
               path="/coin/:coinID"
-              element={<IndividualCoinData currentID={currentID} />}
+              element={
+                <IndividualCoinData
+                  currentID={currentID as number}
+                  tempColor={tempColor}
+                  tempFavArray={tempFavArray}
+                  setTempFavArray={setTempFavArray}
+                />
+              }
             />
 
             <Route path="*" element={<ErrorNotFoundPage />} />

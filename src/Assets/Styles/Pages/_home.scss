@@ -121,3 +121,39 @@
     display: none;
   }
 }
+
+.graph-btn,
+.smallGlobalGraph {
+  display: none;
+  @media screen and (max-width: 800px) {
+    display: block;
+  }
+}
+
+.smallGlobalGraph {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  span {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 2;
+  }
+}
+.graph-btn {
+  margin: 15px auto;
+}
+.tooltip-container {
+  color: $landingLight;
+  background: $Dcolor1;
+  padding: 15px 25px;
+
+  span {
+    margin-left: 5px;
+  }
+}

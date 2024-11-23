@@ -6,6 +6,7 @@ import {
 } from "../Features/LandingPage/UserSlice";
 import { favoriteMutationType } from "../Types/LandingTypes";
 import { coinDataType } from "../Types/AppTypes";
+import { TiDeleteOutline } from "react-icons/ti";
 
 type propsType = {
   currentID: number;
@@ -98,11 +99,52 @@ const StarFavorite = ({
       console.log(error);
     }
   }, []);
-  return (
-    <td>
-      <FaRegStar onClick={() => handleFavorite()} />
-    </td>
-  );
+
+  const iconReturn = (): JSX.Element => {
+    let isMatch = false;
+    if (tempFavArray.length > 0) {
+      tempFavArray.map((fav) => (fav.id === coin.id ? (isMatch = true) : null));
+      if (isMatch) {
+        return (
+          <td>
+            <TiDeleteOutline onClick={() => handleFavorite()} />
+          </td>
+        );
+      } else {
+        return (
+          <td>
+            <FaRegStar onClick={() => handleFavorite()} />
+          </td>
+        );
+      }
+    } else {
+      if (userData?.favorites) {
+        userData.favorites.map((fav) =>
+          fav.id === coin.id ? (isMatch = true) : null
+        );
+        if (isMatch) {
+          return (
+            <td>
+              <TiDeleteOutline onClick={() => handleFavorite()} />
+            </td>
+          );
+        } else {
+          return (
+            <td>
+              <FaRegStar onClick={() => handleFavorite()} />
+            </td>
+          );
+        }
+      } else {
+        return (
+          <td>
+            <FaRegStar onClick={() => handleFavorite()} />
+          </td>
+        );
+      }
+    }
+  };
+  return iconReturn();
 };
 
 export default StarFavorite;
