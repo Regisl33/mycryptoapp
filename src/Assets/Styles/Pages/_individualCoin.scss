@@ -1,0 +1,38 @@
+.Coin-Name-Logo {
+  @include justify(center);
+  gap: 10px;
+  margin: 15px auto 45px;
+
+  img {
+    height: 30px;
+    width: 30px;
+  }
+}
+.areachart {
+  text-align: center;
+
+  ul {
+    @include justify(space-evenly);
+    margin: 10px auto;
+
+    li {
+      cursor: pointer;
+    }
+  }
+}
+.center {
+  text-align: center;
+  margin: 15px auto;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr 1fr;
+  width: 95%;
+  margin: 0 auto;
+}
+.grid-container2 {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 1fr 1fr;
+}

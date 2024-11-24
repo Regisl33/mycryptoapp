@@ -50,7 +50,7 @@ const AreaChartComponent = ({ coinID, name }: propsType) => {
     } finally {
       setChartData(newArray);
     }
-  }, [coinFetch_URL]);
+  }, [coinFetch_URL, duration]);
 
   return (
     <div className="areachart">
