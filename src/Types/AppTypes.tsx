@@ -59,3 +59,7 @@ export type colorType = {
   class: string;
   color: string;
 };
+export type homeFav = {
+  fav: string;
+  class: string;
+};

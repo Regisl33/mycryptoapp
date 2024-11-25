@@ -1,7 +1,7 @@
 import FavListItem from "./FavListItem";
 import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
 import { useEffect } from "react";
-import { coinDataType } from "../Types/AppTypes";
+import { coinDataType, homeFav } from "../Types/AppTypes";
 
 type propsType = {
   currentID: number;
@@ -11,17 +11,17 @@ type propsType = {
 
 const Favorites = ({ currentID, tempFavArray, tempColor }: propsType) => {
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
-  const headerColums: string[] = [
-    "Symbol",
-    "Name",
-    "Price",
-    "Market Cap",
-    "Rank",
-    "1H",
-    "24H",
-    "7D",
-    "30D",
-    "1Y",
+  const headerColums: homeFav[] = [
+    { fav: "Symbol", class: "" },
+    { fav: "Name", class: "bigscreen" },
+    { fav: "Price", class: "" },
+    { fav: "Market Cap", class: "bigscreen" },
+    { fav: "Rank", class: "" },
+    { fav: "1H", class: "" },
+    { fav: "24H", class: "" },
+    { fav: "7D", class: "bigscreen" },
+    { fav: "30D", class: "bigscreen" },
+    { fav: "1Y", class: "bigscreen" },
   ];
 
   useEffect(() => {
@@ -51,8 +51,8 @@ const Favorites = ({ currentID, tempFavArray, tempColor }: propsType) => {
       {(userData && userData.favorites.length > 0) ||
       tempFavArray.length > 0 ? (
         <ul className="FavListHeader">
-          {headerColums.map((li) => (
-            <li>{li}</li>
+          {headerColums.map((fav) => (
+            <li className={fav.class}>{fav.fav}</li>
           ))}
         </ul>
       ) : null}
