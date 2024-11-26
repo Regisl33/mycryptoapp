@@ -52,7 +52,19 @@ const Favorites = ({ currentID, tempFavArray, tempColor }: propsType) => {
       tempFavArray.length > 0 ? (
         <ul className="FavListHeader">
           {headerColums.map((fav) => (
-            <li className={fav.class}>{fav.fav}</li>
+            <li
+              className={
+                tempColor.length > 0
+                  ? tempColor[0] === "D"
+                    ? `Dshadow ${fav.class}`
+                    : `Lshadow ${fav.class}`
+                  : userData?.color[0] === "D"
+                  ? `Dshadow ${fav.class}`
+                  : `Lshadow ${fav.class}`
+              }
+            >
+              {fav.fav}
+            </li>
           ))}
         </ul>
       ) : null}

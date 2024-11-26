@@ -23,9 +23,10 @@
     width: 100px;
     height: 100px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid $Dcolor1;
     cursor: pointer;
     transition: 0.2s ease;
+    box-shadow: 2px 3px 10px 2px $darkShadows;
 
     &:hover {
       transform: scale(105%);
@@ -44,6 +45,7 @@
     border: 1px solid $landingLight;
     cursor: pointer;
     transition: 0.2s ease;
+    box-shadow: 2px 3px 10px 2px $landingShadows;
 
     &:hover {
       transform: scale(105%);
@@ -58,7 +60,7 @@
 
 .Lbtn {
   background: none;
-  border: 1px solid black;
+  border: 1px solid $Dcolor1;
   border-radius: 20px;
   padding: 15px 20px;
   color: inherit;
@@ -68,6 +70,7 @@
   letter-spacing: 1px;
   font-family: inherit;
   font-size: 1rem;
+  box-shadow: 2px 3px 10px 2px $darkShadows;
 
   &:hover {
     transform: scale(105%);
@@ -85,6 +88,7 @@
   letter-spacing: 1px;
   font-family: inherit;
   font-size: 1rem;
+  box-shadow: 2px 3px 10px 2px $landingShadows;
 
   &:hover {
     transform: scale(105%);

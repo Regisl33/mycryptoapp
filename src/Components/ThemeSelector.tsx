@@ -101,7 +101,20 @@ const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
   return (
     <div className="theme-selector">
       <div className="theme-container">
-        <label htmlFor="dark-mode-checkbox">Toggle Dark Theme</label>
+        <label
+          className={
+            tempColor.length > 0
+              ? tempColor[0] === "D"
+                ? "Dshadow"
+                : "Lshadow"
+              : userData?.color[0] === "D"
+              ? "Dshadow"
+              : "Lshadow"
+          }
+          htmlFor="dark-mode-checkbox"
+        >
+          Toggle Dark Theme
+        </label>
         <input
           type="checkbox"
           id="dark-mode-checkbox"

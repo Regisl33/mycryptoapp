@@ -10,6 +10,8 @@
   font-size: 1.2rem;
   padding: 12px 25px;
   transition: 0.2s ease;
+  box-shadow: 2px 3px 10px 2px $darkShadows;
+  color: inherit;
 
   &:focus {
     transform: scale(105%);
@@ -30,6 +32,8 @@
   font-size: 1.2rem;
   padding: 12px 25px;
   transition: 0.2s ease;
+  box-shadow: 2px 3px 10px 2px $landingShadows;
+  color: inherit;
 
   &:focus {
     transform: scale(105%);
@@ -55,6 +59,7 @@
     margin: 10px auto;
     padding: 5px;
     transition: 0.3s ease;
+    box-shadow: 2px 3px 10px 2px $landingShadows;
 
     img {
       width: 125px;
@@ -81,6 +86,7 @@
     margin: 10px auto;
     padding: 5px;
     transition: 0.3s ease;
+    box-shadow: 2px 3px 10px 2px $darkShadows;
 
     &:hover {
       transform: scale(102%);

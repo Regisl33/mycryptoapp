@@ -32,7 +32,20 @@ const IndividualSearchCoin = ({ coin, currentID, tempColor }: propsType) => {
       }
     >
       <figure className="logo-container">
-        <h2 onClick={() => navigate(`/coin/:${coin.id}`)}>{coin.name}</h2>
+        <h2
+          className={
+            tempColor.length > 0
+              ? tempColor[0] === "D"
+                ? "Dshadow"
+                : "Lshadow"
+              : userData?.color[0] === "D"
+              ? "Dshadow"
+              : "Lshadow"
+          }
+          onClick={() => navigate(`/coin/:${coin.id}`)}
+        >
+          {coin.name}
+        </h2>
         <img src={coin.image} alt={coin.name + "image"} />
         <figcaption>
           {coin.symbol.toUpperCase()}{" "}
@@ -45,19 +58,67 @@ const IndividualSearchCoin = ({ coin, currentID, tempColor }: propsType) => {
         <table>
           <tbody>
             <tr>
-              <th>Market Cap:</th>
+              <th
+                className={
+                  tempColor.length > 0
+                    ? tempColor[0] === "D"
+                      ? "Dshadow"
+                      : "Lshadow"
+                    : userData?.color[0] === "D"
+                    ? "Dshadow"
+                    : "Lshadow"
+                }
+              >
+                Market Cap:
+              </th>
               <td>
                 {coin.market_cap
                   ? (coin.market_cap / 1000000).toFixed(3) + "M $"
                   : "-"}
               </td>
-              <th>Market Cap Rank:</th>
+              <th
+                className={
+                  tempColor.length > 0
+                    ? tempColor[0] === "D"
+                      ? "Dshadow"
+                      : "Lshadow"
+                    : userData?.color[0] === "D"
+                    ? "Dshadow"
+                    : "Lshadow"
+                }
+              >
+                Market Cap Rank:
+              </th>
               <td>{coin.market_cap_rank}</td>
             </tr>
             <tr>
-              <th>Price:</th>
+              <th
+                className={
+                  tempColor.length > 0
+                    ? tempColor[0] === "D"
+                      ? "Dshadow"
+                      : "Lshadow"
+                    : userData?.color[0] === "D"
+                    ? "Dshadow"
+                    : "Lshadow"
+                }
+              >
+                Price:
+              </th>
               <td>{coin.current_price.toLocaleString() + "$"}</td>
-              <th>Volume:</th>
+              <th
+                className={
+                  tempColor.length > 0
+                    ? tempColor[0] === "D"
+                      ? "Dshadow"
+                      : "Lshadow"
+                    : userData?.color[0] === "D"
+                    ? "Dshadow"
+                    : "Lshadow"
+                }
+              >
+                Volume:
+              </th>
               <td>
                 {coin.total_volume
                   ? (coin.total_volume / 1000000).toFixed(3) + "M $"
@@ -65,9 +126,33 @@ const IndividualSearchCoin = ({ coin, currentID, tempColor }: propsType) => {
               </td>
             </tr>
             <tr>
-              <th>Ath:</th>
+              <th
+                className={
+                  tempColor.length > 0
+                    ? tempColor[0] === "D"
+                      ? "Dshadow"
+                      : "Lshadow"
+                    : userData?.color[0] === "D"
+                    ? "Dshadow"
+                    : "Lshadow"
+                }
+              >
+                Ath:
+              </th>
               <td>{coin.ath_change_percentage.toFixed(1) + "%"}</td>
-              <th>Ath Date:</th>
+              <th
+                className={
+                  tempColor.length > 0
+                    ? tempColor[0] === "D"
+                      ? "Dshadow"
+                      : "Lshadow"
+                    : userData?.color[0] === "D"
+                    ? "Dshadow"
+                    : "Lshadow"
+                }
+              >
+                Ath Date:
+              </th>
               <td>{coin.ath_date.slice(0, 10)}</td>
             </tr>
           </tbody>

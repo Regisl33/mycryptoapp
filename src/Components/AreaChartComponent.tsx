@@ -12,10 +12,9 @@ import { chartDataType, chartHeaderDataType } from "../Types/AppTypes";
 
 type propsType = {
   coinID: string;
-  name: string;
 };
 
-const AreaChartComponent = ({ coinID, name }: propsType) => {
+const AreaChartComponent = ({ coinID }: propsType) => {
   const [chartData, setChartData] = useState<chartDataType[]>([]);
   const [duration, setDuration] = useState(30);
   const headerData: chartHeaderDataType[] = [
@@ -63,6 +62,7 @@ const AreaChartComponent = ({ coinID, name }: propsType) => {
           );
         })}
       </ul>
+
       <AreaChart
         width={680}
         height={250}
