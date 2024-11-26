@@ -54,7 +54,6 @@ const AreaChartComponent = ({ coinID, name }: propsType) => {
 
   return (
     <div className="areachart">
-      <h2>{name}</h2>
       <ul>
         {headerData.map((header) => {
           return (

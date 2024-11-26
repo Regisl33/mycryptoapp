@@ -60,36 +60,48 @@ const IndividualCoinData = ({
           <div className="grid-container">
             <div className="grid-container">
               <h3>Market Cap</h3>
-              <h3>Market Cap Rank</h3>
               <span>
                 {coin.market_cap
                   ? (coin.market_cap / 1000000).toFixed(3) + "M $"
                   : "-"}
               </span>
+              <h3>Market Cap Rank</h3>
               <span>{coin.market_cap_rank}</span>
             </div>
             <div className="grid-container2">
               <h3>Total Supply</h3>
+              <span>
+                {coin.total_supply
+                  ? (coin.total_supply / 1000000).toFixed(3) + "M $"
+                  : "-"}
+              </span>
               <h3>Max Supply</h3>
+              <span>
+                {coin.max_supply
+                  ? (coin.max_supply / 1000000).toFixed(3) + "M $"
+                  : "-"}
+              </span>
               <h3>Circulating Supply</h3>
-              <span>{coin.total_supply}</span>
-              <span>{coin.max_supply}</span>
-              <span>{coin.circulating_supply}</span>
+              <span>
+                {coin.circulating_supply
+                  ? (coin.circulating_supply / 1000000).toFixed(3) + "M $"
+                  : "-"}
+              </span>
             </div>
             <div className="grid-container2">
               <h3>ATH</h3>
-              <h3>ATH %</h3>
-              <h3>Date</h3>
               <span>{coin.ath}</span>
+              <h3>ATH %</h3>
               <span>{coin.ath_change_percentage.toFixed(1) + "%"}</span>
+              <h3>Date</h3>
               <span>{coin.ath_date.slice(0, 10)}</span>
             </div>
             <div className="grid-container2">
               <h3>ATL</h3>
-              <h3>ATL %</h3>
-              <h3>Date</h3>
               <span>{coin.atl}</span>
+              <h3>ATL %</h3>
               <span>{coin.atl_change_percentage.toFixed(1) + "%"}</span>
+              <h3>Date</h3>
               <span>{coin.atl_date.slice(0, 10)}</span>
             </div>
           </div>

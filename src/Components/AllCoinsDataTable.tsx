@@ -8,6 +8,7 @@ import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
 import Footer from "./Footer";
 import Header from "./Header";
 import { sortSwitch } from "./SortSwitch";
+import SmallTable from "./SmallTable";
 
 type propsType = {
   currentID: number;
@@ -124,6 +125,13 @@ const AllCoinsDataTable = ({
           {tableHeader}
           {tableBodySwitch}
         </table>
+        <SmallTable
+          currentID={currentID}
+          favArrayState={favArrayState}
+          data={data}
+          tempFavArray={tempFavArray}
+          setTempFavArray={setTempFavArray}
+        />
       </div>
       <Footer />
     </div>
