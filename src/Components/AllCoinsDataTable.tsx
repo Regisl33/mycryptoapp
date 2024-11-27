@@ -122,8 +122,8 @@ const AllCoinsDataTable = ({
       }
     >
       <Header currentID={currentID} tempColor={tempColor} />
-      <div className="main-container">
-        <table>
+      <div className="main-container table-container">
+        <table className="table">
           {tableHeader}
           {tableBodySwitch}
         </table>

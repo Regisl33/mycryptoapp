@@ -81,33 +81,35 @@ const SmallTable = ({
   );
 
   return (
-    <table className="smallTable">
-      {tableHeader}
-      <tbody>
-        {favArrayState &&
-          sortSwitch(favArrayState, selectedSort).map((coin) => (
-            <SmallTableDataRow
-              coin={coin}
-              currentID={currentID}
-              tempFavArray={tempFavArray}
-              setTempFavArray={setTempFavArray}
-              displayData={displayData}
-              key={coin.id}
-            />
-          ))}
-        {data &&
-          sortSwitch(data, selectedSort).map((coin) => (
-            <SmallTableDataRow
-              coin={coin}
-              currentID={currentID}
-              tempFavArray={tempFavArray}
-              setTempFavArray={setTempFavArray}
-              displayData={displayData}
-              key={coin.id}
-            />
-          ))}
-      </tbody>
-    </table>
+    <div className="smallTable">
+      <table>
+        {tableHeader}
+        <tbody>
+          {favArrayState &&
+            sortSwitch(favArrayState, selectedSort).map((coin) => (
+              <SmallTableDataRow
+                coin={coin}
+                currentID={currentID}
+                tempFavArray={tempFavArray}
+                setTempFavArray={setTempFavArray}
+                displayData={displayData}
+                key={coin.id}
+              />
+            ))}
+          {data &&
+            sortSwitch(data, selectedSort).map((coin) => (
+              <SmallTableDataRow
+                coin={coin}
+                currentID={currentID}
+                tempFavArray={tempFavArray}
+                setTempFavArray={setTempFavArray}
+                displayData={displayData}
+                key={coin.id}
+              />
+            ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

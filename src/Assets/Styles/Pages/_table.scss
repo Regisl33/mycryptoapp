@@ -1,6 +1,16 @@
-table {
-  text-align: center;
+.table {
+  width: 95%;
 
+  @media screen and (max-width: 1200px) {
+    font-size: 0.8rem;
+  }
+  @media screen and (max-width: 950px) {
+    display: none;
+  }
+}
+.table-container {
+  @include justify(center);
+  text-align: center;
   thead {
     margin-bottom: 5px;
   }
@@ -13,5 +23,20 @@ table {
   }
   svg {
     cursor: pointer;
+  }
+}
+.smallTable {
+  display: none;
+  width: 95%;
+
+  table {
+    width: 95%;
+  }
+
+  @media screen and (max-width: 950px) {
+    @include justify(center);
+  }
+  @media screen and (max-width: 575px) {
+    font-size: 0.6rem;
   }
 }
