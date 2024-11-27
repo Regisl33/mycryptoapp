@@ -76,6 +76,8 @@ const AllCoinsDataTable = ({
       <tr>
         {tableColums.map((content) => (
           <TableHeader
+            currentID={currentID}
+            tempColor={tempColor}
             content={content}
             selectedSort={selectedSort}
             setSelectedSort={setselectedSort}
@@ -127,6 +129,7 @@ const AllCoinsDataTable = ({
         </table>
         <SmallTable
           currentID={currentID}
+          tempColor={tempColor}
           favArrayState={favArrayState}
           data={data}
           tempFavArray={tempFavArray}

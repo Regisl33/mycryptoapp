@@ -8,6 +8,7 @@ type propsType = {
   data: coinDataType[];
   favArrayState: coinDataType[];
   currentID: number;
+  tempColor: string;
   tempFavArray: coinDataType[];
   setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
 };
@@ -15,6 +16,7 @@ type propsType = {
 const SmallTable = ({
   data,
   favArrayState,
+  tempColor,
   currentID,
   tempFavArray,
   setTempFavArray,
@@ -52,6 +54,8 @@ const SmallTable = ({
     <thead>
       {tableHeaderData.map((content) => (
         <TableHeader
+          currentID={currentID}
+          tempColor={tempColor}
           content={content}
           setSelectedSort={setSelectedSort}
           selectedSort={selectedSort}
