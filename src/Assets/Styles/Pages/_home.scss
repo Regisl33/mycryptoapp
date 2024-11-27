@@ -156,6 +156,15 @@
   color: $landingLight;
   background: $Dcolor1;
   padding: 15px 25px;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 75%,
+    60% 75%,
+    50% 100%,
+    40% 75%,
+    0% 75%
+  );
 
   span {
     margin-left: 5px;
