@@ -112,11 +112,11 @@ const TodayRecap = ({ tempColor, currentID }: propsType) => {
           className={
             tempColor.length > 0
               ? tempColor[0] === "D"
-                ? "Dbtn graph-btn"
-                : "Lbtn graph-btn"
+                ? `${tempColor}-btn Dbtn graph-btn`
+                : `${tempColor}-btn Lbtn graph-btn`
               : userData?.color[0] === "D"
-              ? "Dbtn graph-btn"
-              : "Lbtn graph-btn"
+              ? `${userData?.color}-btn Dbtn graph-btn`
+              : `${userData?.color}-btn Lbtn graph-btn`
           }
           onClick={() => setDisplayChart(true)}
         >

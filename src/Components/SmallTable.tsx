@@ -3,6 +3,7 @@ import TableHeader from "./TableHeader";
 import { coinDataType } from "../Types/AppTypes";
 import { sortSwitch } from "./SortSwitch";
 import SmallTableDataRow from "./SmallTableDataRow";
+import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
 
 type propsType = {
   data: coinDataType[];
@@ -21,6 +22,7 @@ const SmallTable = ({
   tempFavArray,
   setTempFavArray,
 }: propsType) => {
+  const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
   const [displayData, setDisplayData] = useState("Market Cap");
   const [selectedSort, setSelectedSort] = useState("");
   const tableHeaderData: string[] = [
@@ -67,6 +69,15 @@ const SmallTable = ({
           Select Data you want Displayed
         </label>
         <select
+          className={
+            tempColor.length > 0
+              ? tempColor[0] === "D"
+                ? "Dselect"
+                : "Lselect"
+              : userData?.color[0] === "D"
+              ? "Dselect"
+              : "Lselect"
+          }
           id="selectData"
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
             handleDataSwitch(e.target.value)

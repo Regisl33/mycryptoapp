@@ -81,11 +81,11 @@ const Parameters = ({
           className={
             tempColor.length > 0
               ? tempColor[0] === "D"
-                ? "Dbtn logout-btn"
-                : "Lbtn logout-btn"
+                ? `${tempColor}-btn Dbtn logout-btn`
+                : `${tempColor}-btn Lbtn logout-btn`
               : userData?.color[0] === "D"
-              ? "Dbtn logout-btn"
-              : "Lbtn logout-btn"
+              ? `${userData?.color}-btn Dbtn logout-btn`
+              : `${userData?.color}-btn Lbtn logout-btn`
           }
           onClick={() => handleDisconnect()}
         >

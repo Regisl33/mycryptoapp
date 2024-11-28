@@ -40,3 +40,27 @@
     font-size: 0.6rem;
   }
 }
+
+.Dselect {
+  background: none;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid $landingLight;
+  color: inherit;
+  font-weight: bold;
+  text-shadow: 2px 3px 3px $landingShadows;
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
+.Lselect {
+  background: none;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid $Dcolor1;
+  color: inherit;
+  text-shadow: 2px 3px 3px $darkShadows;
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
