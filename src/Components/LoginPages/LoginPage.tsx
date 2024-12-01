@@ -81,6 +81,7 @@ const LoginPage = ({ setIsLoggedIn, setCurrentID }: LoginPropsType) => {
         id="memUser"
         checked={memorizeUser ? true : false}
         onClick={() => setMemorizeUser(!memorizeUser)}
+        onChange={(e) => console.log(e.target.value)}
       />
     </div>
   );

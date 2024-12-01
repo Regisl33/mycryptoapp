@@ -60,6 +60,7 @@ const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
     return arr.map((color: colorType) => {
       return (
         <div
+          key={color.class}
           className={
             tempColor.length > 0 && tempColor !== userData?.color
               ? tempColor === color.class

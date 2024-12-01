@@ -9,9 +9,9 @@ export const sortSwitch = (
   newArray.sort((a, b) => {
     switch (selectedSort) {
       case "Rank":
-        return b.market_cap_rank - a.market_cap_rank;
-      case "Rankreverse":
         return a.market_cap_rank - b.market_cap_rank;
+      case "Rankreverse":
+        return b.market_cap_rank - a.market_cap_rank;
       case "Market Cap":
         return b.market_cap - a.market_cap;
       case "Market Capreverse":

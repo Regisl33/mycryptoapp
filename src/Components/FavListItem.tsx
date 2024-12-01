@@ -2,10 +2,9 @@ import { coinDataType } from "../Types/AppTypes";
 
 type propsType = {
   coin: coinDataType;
-  index: number;
 };
 
-const FavListItem = ({ coin, index }: propsType) => {
+const FavListItem = ({ coin }: propsType) => {
   return (
     <ul>
       <li>{coin.symbol.toUpperCase()}</li>

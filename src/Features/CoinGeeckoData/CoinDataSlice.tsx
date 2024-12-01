@@ -28,6 +28,21 @@ export const fetchCoinData = createAsyncThunk(
   }
 );
 
+export const getCurrentUserFavorite = (
+  arr: string[],
+  coinData: coinDataType[]
+): coinDataType[] => {
+  let coinArray = [...coinData];
+  let newArray: coinDataType[] = [];
+
+  arr.map((id) =>
+    coinArray.map((coin) => (coin.id === id ? newArray.push(coin) : null))
+  );
+  console.log("test");
+
+  return newArray;
+};
+
 const coinSlice = createSlice({
   name: "/coin",
   initialState,

@@ -9,6 +9,7 @@ import {
   Area,
 } from "recharts";
 import { chartDataType, chartHeaderDataType } from "../Types/AppTypes";
+import { log } from "console";
 
 type propsType = {
   coinID: string;
@@ -27,29 +28,30 @@ const AreaChartComponent = ({ coinID }: propsType) => {
     { duration: 3000, label: "Max" },
   ];
 
-  const coinFetch_URL = `https://api.coingecko.com/api/v3/coins/${coinID}/market_chart?vs_currency=usd&days=${duration}${
-    duration > 32 ? "&interval=daily" : ""
-  }`;
-
   useEffect(() => {
     let newArray: chartDataType[] = [];
     try {
-      axios.get(coinFetch_URL).then((res) => {
-        for (let i: number = 0; i < res.data.prices.length; i++) {
-          let price = res.data.prices[i][1];
+      axios
+        .get(
+          `https://api.coingecko.com/api/v3/coins/${coinID}/market_chart?vs_currency=usd&days=${duration}${
+            duration > 32 ? "&interval=daily" : ""
+          }`
+        )
+        .then((res) => {
+          for (let i: number = 0; i < res.data.prices.length; i++) {
+            let price = res.data.prices[i][1];
 
-          newArray.push({
-            date: new Date(res.data.prices[i][0]).toLocaleDateString(),
-            price: price < "50" ? price : parseInt(price),
-          });
-        }
-      });
+            newArray.push({
+              date: new Date(res.data.prices[i][0]).toLocaleDateString(),
+              price: price < "50" ? price : parseInt(price),
+            });
+          }
+          setChartData(newArray);
+        });
     } catch (err) {
       console.log(err);
-    } finally {
-      setChartData(newArray);
     }
-  }, [coinFetch_URL, duration]);
+  }, [coinID, duration]);
 
   return (
     <div className="areachart">

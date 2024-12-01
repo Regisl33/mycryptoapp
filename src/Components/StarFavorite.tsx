@@ -7,6 +7,8 @@ import {
 import { favoriteMutationType } from "../Types/LandingTypes";
 import { coinDataType } from "../Types/AppTypes";
 import { TiDeleteOutline } from "react-icons/ti";
+import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
+import { useAppSelector } from "../Store/Store";
 
 type propsType = {
   currentID: number;
@@ -24,23 +26,28 @@ const StarFavorite = ({
   const [favoriteMutation] = useFavoriteMutation();
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
 
-  const handleAddDelete = (unique: boolean, favArray: coinDataType[]) => {
+  const coinData: coinDataType[] = useAppSelector(
+    (state) => state.coinData.data
+  );
+
+  const handleAddDelete = (unique: boolean, favArray: string[]) => {
     if (userData) {
       if (unique) {
         let newFav: favoriteMutationType = {
           user: {
-            favorites: [coin, ...favArray],
+            favorites: [coin.id, ...favArray],
           },
           id: userData.id,
         };
         try {
-          setTempFavArray([coin, ...favArray]);
+          let newArray = getCurrentUserFavorite(favArray, coinData);
+          setTempFavArray([coin, ...newArray]);
           favoriteMutation(newFav).unwrap();
         } catch (err) {
           console.log(err);
         }
       } else {
-        let newArray = favArray.filter((fav) => fav.id !== coin.id);
+        let newArray = favArray.filter((fav) => fav !== coin.id);
         let newFav: favoriteMutationType = {
           user: {
             favorites: newArray,
@@ -48,6 +55,7 @@ const StarFavorite = ({
           id: userData.id,
         };
         try {
+          let newArray = getCurrentUserFavorite(favArray, coinData);
           setTempFavArray(newArray);
           favoriteMutation(newFav).unwrap();
         } catch (err) {
@@ -64,21 +72,23 @@ const StarFavorite = ({
       if (tempFavArray.length > 0) {
         let favoriteArray = [...tempFavArray];
         let isUnique = true;
+        let favoriteID: string[] = [];
+        favoriteArray.map((fav) => favoriteID.push(fav.id));
         favoriteArray.map((fav) =>
           fav.id === coin.id ? (isUnique = false) : null
         );
-        handleAddDelete(isUnique, favoriteArray);
-      } else if (userData.favorites.length > 0) {
+        handleAddDelete(isUnique, favoriteID);
+      } else if (userData.favorites && userData.favorites.length > 0) {
         let favoriteArray = [...userData.favorites];
         let isUnique = true;
         favoriteArray.map((fav) =>
-          fav.id === coin.id ? (isUnique = false) : null
+          fav === coin.id ? (isUnique = false) : null
         );
         handleAddDelete(isUnique, favoriteArray);
       } else {
         let newFav: favoriteMutationType = {
           user: {
-            favorites: [coin],
+            favorites: [coin.id],
           },
           id: userData.id,
         };
@@ -120,7 +130,7 @@ const StarFavorite = ({
     } else {
       if (userData?.favorites) {
         userData.favorites.map((fav) =>
-          fav.id === coin.id ? (isMatch = true) : null
+          fav === coin.id ? (isMatch = true) : null
         );
         if (isMatch) {
           return (

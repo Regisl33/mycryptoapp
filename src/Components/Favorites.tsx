@@ -1,7 +1,9 @@
 import FavListItem from "./FavListItem";
 import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { coinDataType, homeFav } from "../Types/AppTypes";
+import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
+import { useAppSelector } from "../Store/Store";
 
 type propsType = {
   currentID: number;
@@ -10,7 +12,11 @@ type propsType = {
 };
 
 const Favorites = ({ currentID, tempFavArray, tempColor }: propsType) => {
+  const [favoriteArray, setFavoriteArray] = useState<coinDataType[]>([]);
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
+  const coinData: coinDataType[] = useAppSelector(
+    (state) => state.coinData.data
+  );
   const headerColums: homeFav[] = [
     { fav: "Symbol", class: "" },
     { fav: "Name", class: "bigscreen" },
@@ -31,6 +37,10 @@ const Favorites = ({ currentID, tempFavArray, tempColor }: propsType) => {
     if (tempFavArray.length > 0) {
       window.location.reload();
     }
+    if (userData?.favorites && userData?.favorites.length > 0) {
+      let favArray = getCurrentUserFavorite(userData.favorites, coinData);
+      setFavoriteArray(favArray);
+    }
   }, []);
 
   const FavList = (
@@ -48,11 +58,12 @@ const Favorites = ({ currentID, tempFavArray, tempColor }: propsType) => {
       >
         Favorites Cryptocurrency
       </h2>
-      {(userData && userData.favorites.length > 0) ||
+      {(userData?.favorites && userData.favorites.length > 0) ||
       tempFavArray.length > 0 ? (
         <ul className="FavListHeader">
           {headerColums.map((fav) => (
             <li
+              key={fav.fav}
               className={
                 tempColor.length > 0
                   ? tempColor[0] === "D"
@@ -70,13 +81,9 @@ const Favorites = ({ currentID, tempFavArray, tempColor }: propsType) => {
       ) : null}
 
       {tempFavArray.length > 0 ? (
-        tempFavArray.map((coin, index) => (
-          <FavListItem coin={coin} index={index} key={coin.id} />
-        ))
-      ) : userData && userData.favorites.length > 0 ? (
-        userData.favorites.map((coin, index) => (
-          <FavListItem coin={coin} index={index} key={coin.id} />
-        ))
+        tempFavArray.map((coin) => <FavListItem coin={coin} key={coin.id} />)
+      ) : userData?.favorites && userData.favorites.length > 0 ? (
+        favoriteArray.map((coin) => <FavListItem coin={coin} key={coin.id} />)
       ) : (
         <p
           className={

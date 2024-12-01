@@ -9,6 +9,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { sortSwitch } from "./SortSwitch";
 import SmallTable from "./SmallTable";
+import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
 
 type propsType = {
   currentID: number;
@@ -48,13 +49,14 @@ const AllCoinsDataTable = ({
         let tempArray = [...coinData];
 
         for (let i = 0; i < favArray.length; i++) {
-          tempArray = tempArray.filter((coin) => coin.id !== favArray[i].id);
+          tempArray = tempArray.filter((coin) => coin.id !== favArray[i]);
         }
-        setFavArrayState(favArray);
+        let newArray = getCurrentUserFavorite(favArray, coinData);
+        setFavArrayState(newArray);
         setData(tempArray);
       }
     } else {
-      setData(data);
+      setData(coinData);
     }
   };
 

@@ -6,6 +6,8 @@ import {
 } from "../Features/LandingPage/UserSlice";
 import { coinDataType } from "../Types/AppTypes";
 import { favoriteMutationType } from "../Types/LandingTypes";
+import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
+import { useAppSelector } from "../Store/Store";
 
 type propsType = {
   currentID: number;
@@ -21,10 +23,14 @@ const ParamFavorite = ({
   setTempFavArray,
 }: propsType) => {
   const [isModified, setIsModified] = useState(false);
+  const [favoriteArray, setFavoriteArray] = useState<coinDataType[]>([]);
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
   const [favoriteMutation] = useFavoriteMutation();
+  const coinData: coinDataType[] = useAppSelector(
+    (state) => state.coinData.data
+  );
 
-  const updateUserFav = (arr: coinDataType[]) => {
+  const updateUserFav = (arr: string[]) => {
     let newFav: favoriteMutationType = {
       user: {
         favorites: arr,
@@ -42,11 +48,14 @@ const ParamFavorite = ({
     if (isModified) {
       let favArray = tempFavArray.filter((fav) => fav.id !== favID);
       setTempFavArray(favArray);
-      updateUserFav(favArray);
+      let newArray: string[] = [];
+      favArray.map((coin) => newArray.push(coin.id));
+      updateUserFav(newArray);
     } else if (userData) {
-      let favArray = userData.favorites.filter((fav) => fav.id !== favID);
+      let favArray = userData.favorites.filter((fav) => fav !== favID);
       setIsModified(true);
-      setTempFavArray(favArray);
+      let newArray = getCurrentUserFavorite(favArray, coinData);
+      setTempFavArray(newArray);
       updateUserFav(favArray);
     }
   };
@@ -57,6 +66,9 @@ const ParamFavorite = ({
     }
     if (tempFavArray.length > 0) {
       window.location.reload();
+    }
+    if (userData?.favorites && userData.favorites.length > 0) {
+      setFavoriteArray(getCurrentUserFavorite(userData.favorites, coinData));
     }
   }, []);
 
@@ -79,7 +91,7 @@ const ParamFavorite = ({
         {isModified ? (
           tempFavArray.length > 0 ? (
             tempFavArray.map((fav) => (
-              <li>
+              <li key={fav.name}>
                 <>
                   {fav.name}{" "}
                   <TiDeleteOutline
@@ -92,7 +104,7 @@ const ParamFavorite = ({
             <p> You don't have any favorite coin</p>
           )
         ) : userData?.favorites ? (
-          userData.favorites.map((fav) => (
+          favoriteArray.map((fav) => (
             <>
               <li>{fav.name}</li>
               <TiDeleteOutline onClick={() => handleDeleteFavorite(fav.id)} />

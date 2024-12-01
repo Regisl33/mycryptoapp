@@ -74,7 +74,7 @@ const ForgotPassword = ({ setCurrentID }: forgotPasswordPropsType) => {
       disabled={inputValue.length > 0 ? false : true}
       onClick={(e: FormEvent) => handleSubmit(e)}
     >
-      Send
+      Continue
     </button>
   );
   //Forgot Password Page HTML Return, Class Main handle the background, Class form-container handle the display

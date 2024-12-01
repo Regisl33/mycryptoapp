@@ -54,40 +54,44 @@ const SmallTable = ({
 
   const tableHeader = (
     <thead>
-      {tableHeaderData.map((content) => (
-        <TableHeader
-          currentID={currentID}
-          tempColor={tempColor}
-          content={content}
-          setSelectedSort={setSelectedSort}
-          selectedSort={selectedSort}
-          key={content}
-        />
-      ))}
-      <th>
-        <label htmlFor="selectData" className="offscreen">
-          Select Data you want Displayed
-        </label>
-        <select
-          className={
-            tempColor.length > 0
-              ? tempColor[0] === "D"
+      <tr>
+        {tableHeaderData.map((content) => (
+          <TableHeader
+            currentID={currentID}
+            tempColor={tempColor}
+            content={content}
+            setSelectedSort={setSelectedSort}
+            selectedSort={selectedSort}
+            key={content}
+          />
+        ))}
+        <th>
+          <label htmlFor="selectData" className="offscreen">
+            Select Data you want Displayed
+          </label>
+          <select
+            className={
+              tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "Dselect"
+                  : "Lselect"
+                : userData?.color[0] === "D"
                 ? "Dselect"
                 : "Lselect"
-              : userData?.color[0] === "D"
-              ? "Dselect"
-              : "Lselect"
-          }
-          id="selectData"
-          onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-            handleDataSwitch(e.target.value)
-          }
-        >
-          {selectOptions.map((option) => (
-            <option value={option}>{option}</option>
-          ))}
-        </select>
-      </th>
+            }
+            id="selectData"
+            onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+              handleDataSwitch(e.target.value)
+            }
+          >
+            {selectOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </th>
+      </tr>
     </thead>
   );
 
