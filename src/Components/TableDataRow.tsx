@@ -28,20 +28,26 @@ const TableDataRow = ({
       />
       <td>{coin.symbol.toUpperCase()}</td>
       <td>
-        <img src={coin.image} alt={`${coin.name} image`} />
+        <img src={coin.image} alt={coin.name} />
       </td>
       <td className="pointer" onClick={() => navigate(`/coin/:${coin.id}`)}>
         {coin.name}
       </td>
       <td>
-        {coin.market_cap ? (coin.market_cap / 1000000).toFixed(3) + "M $" : "-"}
+        {coin.market_cap
+          ? coin.market_cap.toString().length > 11
+            ? (coin.market_cap / 1000000000).toFixed(3) + "G $"
+            : (coin.market_cap / 1000000).toFixed(3) + "M $"
+          : "-"}
       </td>
       <td>
         {coin.current_price ? coin.current_price.toLocaleString() + "$" : "-"}
       </td>
       <td>
         {coin.total_volume
-          ? (coin.total_volume / 1000000).toFixed(3) + "M $"
+          ? coin.total_volume.toString().length > 11
+            ? (coin.total_volume / 1000000000).toFixed(3) + "G $"
+            : (coin.total_volume / 1000000).toFixed(3) + "M $"
           : "-"}
       </td>
       <td>

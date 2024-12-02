@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Tooltip, Treemap, TooltipProps } from "recharts";
 import {
   ValueType,
@@ -28,7 +28,7 @@ const TodayRecap = ({ tempColor, currentID }: propsType) => {
     }
   };
 
-  const dataManager = () => {
+  const dataManager = useCallback(() => {
     let data = [...coinData];
     let newArray: globalChartDataType[] = [];
 
@@ -45,11 +45,12 @@ const TodayRecap = ({ tempColor, currentID }: propsType) => {
       );
 
     setChartData(newArray);
-  };
+  }, [coinData]);
 
   useEffect(() => {
     dataManager();
-  }, []);
+  }, [dataManager]);
+
   useEffect(() => {
     if (isError) {
       console.log(error);

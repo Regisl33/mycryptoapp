@@ -66,7 +66,11 @@ const IndividualCoinData = ({
             <figcaption>{`(${coin.symbol.toUpperCase()})`}</figcaption>
           </figure>
           <div className="coin-graph">
-            <AreaChartComponent coinID={coin.id} />
+            <AreaChartComponent
+              coinID={coin.id}
+              tempColor={tempColor}
+              currentID={currentID}
+            />
           </div>
           <p className="center">{coin.current_price.toLocaleString()}$</p>
           <div className="grid-container">

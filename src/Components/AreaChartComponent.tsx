@@ -9,13 +9,15 @@ import {
   Area,
 } from "recharts";
 import { chartDataType, chartHeaderDataType } from "../Types/AppTypes";
-import { log } from "console";
+import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
 
 type propsType = {
   coinID: string;
+  tempColor: string;
+  currentID: number;
 };
 
-const AreaChartComponent = ({ coinID }: propsType) => {
+const AreaChartComponent = ({ coinID, tempColor, currentID }: propsType) => {
   const [chartData, setChartData] = useState<chartDataType[]>([]);
   const [duration, setDuration] = useState(30);
   const headerData: chartHeaderDataType[] = [
@@ -27,6 +29,13 @@ const AreaChartComponent = ({ coinID }: propsType) => {
     { duration: 365, label: "1 Year" },
     { duration: 3000, label: "Max" },
   ];
+  const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
+
+  useEffect(() => {
+    if (isError) {
+      console.log(error);
+    }
+  }, [isError, error]);
 
   useEffect(() => {
     let newArray: chartDataType[] = [];
@@ -58,7 +67,27 @@ const AreaChartComponent = ({ coinID }: propsType) => {
       <ul>
         {headerData.map((header) => {
           return (
-            <li key={header.label} onClick={() => setDuration(header.duration)}>
+            <li
+              className={
+                duration === header.duration
+                  ? tempColor.length > 0
+                    ? tempColor[0] === "D"
+                      ? "active darkLink"
+                      : "active lightLink"
+                    : userData?.color[0] === "D"
+                    ? "active darkLink"
+                    : "active lightLink"
+                  : tempColor.length > 0
+                  ? tempColor[0] === "D"
+                    ? "darkLink"
+                    : "lightLink"
+                  : userData?.color[0] === "D"
+                  ? "darkLink"
+                  : "lightLink"
+              }
+              key={header.label}
+              onClick={() => setDuration(header.duration)}
+            >
               {header.label}
             </li>
           );
@@ -73,8 +102,32 @@ const AreaChartComponent = ({ coinID }: propsType) => {
       >
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="7%" stopColor="black" stopOpacity={0.8} />
-            <stop offset="93%" stopColor="white" stopOpacity={0} />
+            <stop
+              offset="7%"
+              stopColor={
+                tempColor.length > 0
+                  ? tempColor[0] === "D"
+                    ? "#fffaf7"
+                    : "#000000"
+                  : userData?.color[0] === "D"
+                  ? "#fffaf7"
+                  : "#000000"
+              }
+              stopOpacity={0.8}
+            />
+            <stop
+              offset="93%"
+              stopColor={
+                tempColor.length > 0
+                  ? tempColor[0] === "D"
+                    ? "#000000"
+                    : "#fffaf7"
+                  : userData?.color[0] === "D"
+                  ? "#000000"
+                  : "#fffaf7"
+              }
+              stopOpacity={0}
+            />
           </linearGradient>
         </defs>
         <XAxis dataKey="date" />
@@ -84,7 +137,15 @@ const AreaChartComponent = ({ coinID }: propsType) => {
         <Area
           type="monotone"
           dataKey="price"
-          stroke="white"
+          stroke={
+            tempColor.length > 0
+              ? tempColor[0] === "D"
+                ? "#fffaf7"
+                : "#000000"
+              : userData?.color[0] === "D"
+              ? "#fffaf7"
+              : "#000000"
+          }
           fillOpacity={1}
           fill="url(#colorUv)"
         />

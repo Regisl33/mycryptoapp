@@ -16,8 +16,12 @@ const Navigation = ({ currentID, tempColor }: propsType) => {
     if (isError) {
       console.log(error);
     }
+  }, [isError, error]);
+
+  useEffect(() => {
     setActiveLocation(location.pathname.slice(1));
-  }, []);
+  });
+
   return (
     <nav aria-label="HomePage-Nav">
       <ul className="main-nav">

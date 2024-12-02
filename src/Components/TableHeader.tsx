@@ -29,7 +29,7 @@ const TableHeader = ({
     if (isError) {
       console.log(error);
     }
-  }, []);
+  }, [error, isError]);
   return (
     <th
       className={

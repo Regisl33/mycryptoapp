@@ -17,12 +17,8 @@
         "oldPassword": "Test123!4",
         "resetDate": 1728697063905
       },
-      "color": "Lcolor1",
-      "favorites": [
-        "tether",
-        "bitcoin",
-        "staked-ether"
-      ]
+      "color": "Dcolor5",
+      "favorites": []
     }
   ]
 }

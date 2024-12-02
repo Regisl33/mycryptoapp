@@ -19,7 +19,7 @@ const Home = ({ currentID, tempColor, tempFavArray }: propsType) => {
     if (isError) {
       console.log(error);
     }
-  }, []);
+  }, [error, isError]);
 
   return (
     <main

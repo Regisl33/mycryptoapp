@@ -55,9 +55,13 @@ const StarFavorite = ({
           id: userData.id,
         };
         try {
-          let newArray = getCurrentUserFavorite(favArray, coinData);
-          setTempFavArray(newArray);
+          let newFavArray = getCurrentUserFavorite(newArray, coinData);
           favoriteMutation(newFav).unwrap();
+          if (newFavArray.length > 0) {
+            setTempFavArray(newFavArray);
+          } else {
+            window.location.reload();
+          }
         } catch (err) {
           console.log(err);
         }
@@ -108,7 +112,7 @@ const StarFavorite = ({
     if (isError) {
       console.log(error);
     }
-  }, []);
+  }, [error, isError]);
 
   const iconReturn = (): JSX.Element => {
     let isMatch = false;

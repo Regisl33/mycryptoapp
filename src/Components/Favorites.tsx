@@ -34,14 +34,14 @@ const Favorites = ({ currentID, tempFavArray, tempColor }: propsType) => {
     if (isError) {
       console.log(error);
     }
-    if (tempFavArray.length > 0) {
-      window.location.reload();
-    }
+  }, [error, isError]);
+
+  useEffect(() => {
     if (userData?.favorites && userData?.favorites.length > 0) {
       let favArray = getCurrentUserFavorite(userData.favorites, coinData);
       setFavoriteArray(favArray);
     }
-  }, []);
+  }, [userData, coinData]);
 
   const FavList = (
     <div className="fav-container">

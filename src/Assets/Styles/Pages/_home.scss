@@ -35,56 +35,6 @@
     letter-spacing: 1px;
     position: relative;
   }
-
-  .active {
-    &::after {
-      opacity: 1 !important;
-      width: 100% !important;
-    }
-  }
-
-  .darkLink {
-    &::after {
-      content: "";
-      width: 0;
-      height: 2px;
-      background: $landingLight;
-      position: absolute;
-      bottom: -2px;
-      left: 50%;
-      opacity: 0;
-      transition: 0.3s ease-in-out;
-      transform: translateX(-50%);
-    }
-    &:hover {
-      transform: scale(102%), translateX(-50%);
-    }
-    &:hover::after {
-      opacity: 1;
-      width: 100%;
-    }
-  }
-  .lightLink {
-    &::after {
-      content: "";
-      width: 0;
-      height: 2px;
-      background: $Dcolor1;
-      position: absolute;
-      bottom: -2px;
-      left: 50%;
-      opacity: 0;
-      transition: 0.3s ease-in-out;
-      transform: translateX(-50%);
-    }
-    &:hover {
-      transform: scale(102%), translateX(-50%);
-    }
-    &:hover::after {
-      opacity: 1;
-      width: 100%;
-    }
-  }
 }
 .main-container {
   min-height: 80vh;
@@ -180,5 +130,60 @@ footer {
 
   p {
     margin: 10px;
+  }
+}
+.active {
+  &::after {
+    opacity: 1 !important;
+    width: 100% !important;
+  }
+}
+
+.darkLink {
+  position: relative;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background: $landingLight;
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+  &:hover {
+    transform: scale(102%), translateX(-50%);
+  }
+  &:hover::after {
+    opacity: 1;
+    width: 100%;
+  }
+}
+.lightLink {
+  position: relative;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background: $Dcolor1;
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+  &:hover {
+    transform: scale(102%), translateX(-50%);
+  }
+  &:hover::after {
+    opacity: 1;
+    width: 100%;
   }
 }

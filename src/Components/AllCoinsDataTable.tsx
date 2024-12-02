@@ -43,35 +43,30 @@ const AllCoinsDataTable = ({
       }
       setFavArrayState(favArray);
       setData(tempArray);
-    } else if (userData?.favorites) {
-      if (userData.favorites.length > 0) {
-        let favArray = [...userData.favorites];
-        let tempArray = [...coinData];
+    } else if (userData?.favorites && userData.favorites.length > 0) {
+      let favArray = [...userData.favorites];
+      let tempArray = [...coinData];
 
-        for (let i = 0; i < favArray.length; i++) {
-          tempArray = tempArray.filter((coin) => coin.id !== favArray[i]);
-        }
-        let newArray = getCurrentUserFavorite(favArray, coinData);
-        setFavArrayState(newArray);
-        setData(tempArray);
+      for (let i = 0; i < favArray.length; i++) {
+        tempArray = tempArray.filter((coin) => coin.id !== favArray[i]);
       }
+      let newArray = getCurrentUserFavorite(favArray, coinData);
+      setFavArrayState(newArray);
+      setData(tempArray);
     } else {
       setData(coinData);
     }
   };
 
   useEffect(() => {
+    handleFavSorting();
+  }, [coinData, tempFavArray, userData]);
+
+  useEffect(() => {
     if (isError) {
       console.log(error);
     }
-    handleFavSorting();
-  }, [coinData, tempFavArray]);
-
-  useEffect(() => {
-    if (tempFavArray.length > 0) {
-      window.location.reload();
-    }
-  }, []);
+  }, [error, isError]);
 
   const tableHeader = (
     <thead>

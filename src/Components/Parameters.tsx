@@ -53,7 +53,7 @@ const Parameters = ({
     if (isError) {
       console.log(error);
     }
-  }, []);
+  }, [isError, error]);
 
   return (
     <main

@@ -36,7 +36,7 @@ const SearchPage = ({ currentID, tempColor }: propsType) => {
     if (isError) {
       console.log(error);
     }
-  }, []);
+  }, [isError, error]);
 
   return (
     <div

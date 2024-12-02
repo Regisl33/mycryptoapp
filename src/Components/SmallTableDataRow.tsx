@@ -26,7 +26,9 @@ const SmallTableDataRow = ({
         return (
           <td>
             {coin.market_cap
-              ? (coin.market_cap / 1000000).toFixed(3) + "M $"
+              ? coin.market_cap.toString().length > 11
+                ? (coin.market_cap / 1000000000).toFixed(3) + "G $"
+                : (coin.market_cap / 1000000).toFixed(3) + "M $"
               : "-"}
           </td>
         );
@@ -42,7 +44,9 @@ const SmallTableDataRow = ({
         return (
           <td>
             {coin.total_volume
-              ? (coin.total_volume / 1000000).toFixed(3) + "M $"
+              ? coin.total_volume.toString().length > 11
+                ? (coin.total_volume / 1000000000).toFixed(3) + "G $"
+                : (coin.total_volume / 1000000).toFixed(3) + "M $"
               : "-"}
           </td>
         );
@@ -116,7 +120,9 @@ const SmallTableDataRow = ({
         return (
           <td>
             {coin.market_cap
-              ? (coin.market_cap / 1000000).toFixed(3) + "M $"
+              ? coin.market_cap.toString().length > 11
+                ? (coin.market_cap / 1000000000).toFixed(3) + "G $"
+                : (coin.market_cap / 1000000).toFixed(3) + "M $"
               : "-"}
           </td>
         );

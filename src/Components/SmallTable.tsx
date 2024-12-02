@@ -24,7 +24,7 @@ const SmallTable = ({
 }: propsType) => {
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
   const [displayData, setDisplayData] = useState("Market Cap");
-  const [selectedSort, setSelectedSort] = useState("");
+  const [selectedSort, setSelectedSort] = useState("Rank");
   const tableHeaderData: string[] = [
     "Rank",
     "Favorite",

@@ -45,13 +45,13 @@ const ParamFavorite = ({
   };
 
   const handleDeleteFavorite = (favID: string) => {
-    if (isModified) {
+    if (tempFavArray.length > 0) {
       let favArray = tempFavArray.filter((fav) => fav.id !== favID);
       setTempFavArray(favArray);
       let newArray: string[] = [];
       favArray.map((coin) => newArray.push(coin.id));
       updateUserFav(newArray);
-    } else if (userData) {
+    } else if (userData?.favorites && userData?.favorites.length > 0) {
       let favArray = userData.favorites.filter((fav) => fav !== favID);
       setIsModified(true);
       let newArray = getCurrentUserFavorite(favArray, coinData);
@@ -64,13 +64,14 @@ const ParamFavorite = ({
     if (isError) {
       console.log(error);
     }
-    if (tempFavArray.length > 0) {
-      window.location.reload();
-    }
+  }, [isError, error]);
+
+  useEffect(() => {
     if (userData?.favorites && userData.favorites.length > 0) {
-      setFavoriteArray(getCurrentUserFavorite(userData.favorites, coinData));
+      let newArray = getCurrentUserFavorite(userData.favorites, coinData);
+      setFavoriteArray(newArray);
     }
-  }, []);
+  }, [userData]);
 
   return (
     <div className="favorite-list-container">
@@ -88,22 +89,16 @@ const ParamFavorite = ({
         Manage Your Favorites
       </h2>
       <ul className="param-fav">
-        {isModified ? (
-          tempFavArray.length > 0 ? (
-            tempFavArray.map((fav) => (
-              <li key={fav.name}>
-                <>
-                  {fav.name}{" "}
-                  <TiDeleteOutline
-                    onClick={() => handleDeleteFavorite(fav.id)}
-                  />
-                </>
-              </li>
-            ))
-          ) : (
-            <p> You don't have any favorite coin</p>
-          )
-        ) : userData?.favorites ? (
+        {tempFavArray.length > 0 ? (
+          tempFavArray.map((fav) => (
+            <li key={fav.name}>
+              <>
+                {fav.name}
+                <TiDeleteOutline onClick={() => handleDeleteFavorite(fav.id)} />
+              </>
+            </li>
+          ))
+        ) : userData?.favorites && userData?.favorites.length > 0 ? (
           favoriteArray.map((fav) => (
             <>
               <li>{fav.name}</li>

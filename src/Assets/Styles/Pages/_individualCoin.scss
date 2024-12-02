@@ -14,10 +14,6 @@
   ul {
     @include justify(space-evenly);
     margin: 10px auto;
-
-    li {
-      cursor: pointer;
-    }
   }
 }
 .center {
@@ -52,4 +48,16 @@
     grid-template-columns: 100%;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
+}
+.recharts-tooltip-wrapper {
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 75%,
+    60% 75%,
+    50% 100%,
+    40% 75%,
+    0% 75%
+  );
+  color: inherit;
 }
