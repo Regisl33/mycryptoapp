@@ -93,12 +93,13 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
     } else {
       navigate("/login");
     }
-
+  }, [userData]);
+  useEffect(() => {
     if (isError) {
       setErrorMessage("We couldn't reach the server");
       console.log(error);
     }
-  }, []);
+  }, [error, isError]);
   //This button allows to change the current question:
   const questionButton = (
     <button
