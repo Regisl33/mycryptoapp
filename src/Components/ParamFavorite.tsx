@@ -22,7 +22,6 @@ const ParamFavorite = ({
   tempFavArray,
   setTempFavArray,
 }: propsType) => {
-  const [isModified, setIsModified] = useState(false);
   const [favoriteArray, setFavoriteArray] = useState<coinDataType[]>([]);
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
   const [favoriteMutation] = useFavoriteMutation();
@@ -53,7 +52,6 @@ const ParamFavorite = ({
       updateUserFav(newArray);
     } else if (userData?.favorites && userData?.favorites.length > 0) {
       let favArray = userData.favorites.filter((fav) => fav !== favID);
-      setIsModified(true);
       let newArray = getCurrentUserFavorite(favArray, coinData);
       setTempFavArray(newArray);
       updateUserFav(favArray);
@@ -71,7 +69,7 @@ const ParamFavorite = ({
       let newArray = getCurrentUserFavorite(userData.favorites, coinData);
       setFavoriteArray(newArray);
     }
-  }, [userData]);
+  }, [userData, coinData]);
 
   return (
     <div className="favorite-list-container">
@@ -92,18 +90,16 @@ const ParamFavorite = ({
         {tempFavArray.length > 0 ? (
           tempFavArray.map((fav) => (
             <li key={fav.name}>
-              <>
-                {fav.name}
-                <TiDeleteOutline onClick={() => handleDeleteFavorite(fav.id)} />
-              </>
+              <p>{fav.name}</p>
+              <TiDeleteOutline onClick={() => handleDeleteFavorite(fav.id)} />
             </li>
           ))
         ) : userData?.favorites && userData?.favorites.length > 0 ? (
           favoriteArray.map((fav) => (
-            <>
-              <li>{fav.name}</li>
+            <li key={fav.name}>
+              <p>{fav.name}</p>
               <TiDeleteOutline onClick={() => handleDeleteFavorite(fav.id)} />
-            </>
+            </li>
           ))
         ) : (
           <p

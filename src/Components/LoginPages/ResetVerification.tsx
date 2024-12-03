@@ -1,5 +1,11 @@
 //Import Dependencies
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 //Import Fetch User Hook
 import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
@@ -23,11 +29,8 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
   } = useGetCurrentUserQuery(currentID as number);
   //Define Navigate
   const navigate = useNavigate();
-  //Define The Error for this component if it fail the TS verification
-  const consoleError =
-    "This Error Should not happen Ts verif/If it does data or Id are missing";
   //Get the questions for the current User
-  const getQuestions = (): string[] => {
+  const getQuestions = useCallback((): string[] => {
     let questionsArray: string[] = [];
     if (userData) {
       questionsArray = [
@@ -37,7 +40,7 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
       ];
     }
     return questionsArray;
-  };
+  }, [userData]);
   //Get the answers for the current User
   const getAnswers = (): string[] => {
     let answersArray: string[] = [];
@@ -51,7 +54,7 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
     return answersArray;
   };
   //This function uses questionNum and getQuestion to set the active question
-  const handleQuestionSwitch = () => {
+  const handleQuestionSwitch = useCallback(() => {
     let questions = getQuestions();
     if (questionNum === 2) {
       setQuestionNum(0);
@@ -59,7 +62,7 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
       setQuestionNum(questionNum + 1);
     }
     setActiveQuestion(questions[questionNum]);
-  };
+  }, [getQuestions, questionNum]);
   //Submit Function, use getAnswers and getQuestion to verify if the answer match the user question
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -87,7 +90,7 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
     } else {
       navigate("/login");
     }
-  }, [userData]);
+  }, [userData, currentID, navigate, handleQuestionSwitch]);
   useEffect(() => {
     if (isError) {
       setErrorMessage("We couldn't reach the server");

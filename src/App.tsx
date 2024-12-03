@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
 import LandingPage from "./Components/LoginPages/LandingPage";
 import LandingMain from "./Components/LoginPages/LandingMain";
@@ -7,9 +7,9 @@ import LoginPage from "./Components/LoginPages/LoginPage";
 import ForgotPassword from "./Components/LoginPages/ForgotPassword";
 import ResetVerification from "./Components/LoginPages/ResetVerification";
 import ResetPassword from "./Components/LoginPages/ResetPassword";
-import Create_Account from "./Components/CreateAccountPage/CreateAccount";
+import CreateAccount from "./Components/CreateAccountPage/CreateAccount";
 import { userType } from "./Types/LandingTypes";
-import Security_Questions from "./Components/CreateAccountPage/SecurityQuestions";
+import SecurityQuestions from "./Components/CreateAccountPage/SecurityQuestions";
 import Parameters from "./Components/Parameters";
 import AllCoinsDataTable from "./Components/AllCoinsDataTable";
 import SearchPage from "./Components/SearchPage";
@@ -32,7 +32,7 @@ const App = () => {
 
   const dispatch = useAppDispatch();
 
-  const { coinID } = useParams<{ coinID: string }>();
+  // const { coinID } = useParams<{ coinID: string }>();
 
   useEffect(() => {
     dispatch(fetchCoinData());
@@ -45,7 +45,7 @@ const App = () => {
     } else {
       setIsLoggedIn(false);
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
@@ -93,6 +93,8 @@ const App = () => {
                 <SearchPage
                   currentID={currentID as number}
                   tempColor={tempColor}
+                  tempFavArray={tempFavArray}
+                  setTempFavArray={setTempFavArray}
                 />
               }
             />
@@ -138,11 +140,11 @@ const App = () => {
               />
               <Route
                 path="/create-account"
-                element={<Create_Account setUser={setUser} />}
+                element={<CreateAccount setUser={setUser} />}
               />
               <Route
                 path="/security-question"
-                element={<Security_Questions user={user} />}
+                element={<SecurityQuestions user={user} />}
               />
             </Route>
             <Route path="*" element={<ErrorNotFoundPage />} />

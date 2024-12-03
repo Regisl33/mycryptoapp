@@ -130,16 +130,21 @@
 }
 .param-fav {
   width: 100%;
-  max-width: 200px;
+  max-width: 250px;
   margin: 25px auto 35px;
-  display: grid;
-  grid-template-columns: 80% 20%;
+  @include justify(center);
+  flex-direction: column;
   gap: 5px;
   letter-spacing: 1px;
   font-size: 1.2rem;
 
-  svg {
-    cursor: pointer;
+  li {
+    @include justify(space-between);
+    width: 100%;
+
+    svg {
+      cursor: pointer;
+    }
   }
 }
 .logout-btn {

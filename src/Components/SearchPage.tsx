@@ -9,9 +9,16 @@ import Footer from "./Footer";
 type propsType = {
   currentID: number;
   tempColor: string;
+  tempFavArray: coinDataType[];
+  setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
 };
 
-const SearchPage = ({ currentID, tempColor }: propsType) => {
+const SearchPage = ({
+  currentID,
+  tempColor,
+  tempFavArray,
+  setTempFavArray,
+}: propsType) => {
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
   const [searchValue, setSearchValue] = useState("");
   const [filteredResult, setFilteredResult] = useState<coinDataType[]>();
@@ -79,6 +86,8 @@ const SearchPage = ({ currentID, tempColor }: propsType) => {
                 coin={result}
                 currentID={currentID}
                 tempColor={tempColor}
+                tempFavArray={tempFavArray}
+                setTempFavArray={setTempFavArray}
                 key={result.id}
               />
             ))

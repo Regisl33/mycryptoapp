@@ -94,11 +94,14 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
     if (!currentID) {
       navigate("/login");
     }
+  }, [currentID, navigate]);
+
+  useEffect(() => {
     if (isError) {
       setPasswordErrorMessage("We couldn't reach the server");
       console.log(error);
     }
-  }, []);
+  }, [error, isError]);
 
   const content = isSubmited ? (
     <HandleReturnLogin text="Your password has been reset!" />
