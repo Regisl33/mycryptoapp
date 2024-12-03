@@ -1,5 +1,5 @@
 .theme-container {
-  text-align: center;
+  @include justify(center);
 
   label {
     letter-spacing: 1px;
