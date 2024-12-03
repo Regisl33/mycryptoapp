@@ -35,8 +35,6 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
         userData.questions.question2,
         userData.questions.question3,
       ];
-    } else {
-      console.log(consoleError);
     }
     return questionsArray;
   };
@@ -49,8 +47,6 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
         userData.questions.answer2,
         userData.questions.answer3,
       ];
-    } else {
-      console.log(consoleError);
     }
     return answersArray;
   };
@@ -72,9 +68,7 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
     let questionPos: number = 3;
 
     questions.map((question: string, index: number) =>
-      question === activeQuestion
-        ? (questionPos = index)
-        : console.log(question)
+      question === activeQuestion ? (questionPos = index) : null
     );
 
     if (answers[questionPos] === securityAnswer) {

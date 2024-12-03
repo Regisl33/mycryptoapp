@@ -76,13 +76,23 @@ const LoginPage = ({ setIsLoggedIn, setCurrentID }: LoginPropsType) => {
   const memorizedUserInput = (
     <div className="memorized-user">
       <label htmlFor="memUser">Remember Me</label>
-      <input
-        type="checkbox"
-        id="memUser"
-        checked={memorizeUser ? true : false}
-        onClick={() => setMemorizeUser(!memorizeUser)}
-        onChange={(e) => console.log(e.target.value)}
-      />
+      <div className="checkbox-wrapper-31">
+        <input
+          type="checkbox"
+          id="memUser"
+          checked={memorizeUser ? true : false}
+          onClick={() => setMemorizeUser(!memorizeUser)}
+          onChange={() => null}
+        />
+        <svg viewBox="0 0 35.6 35.6">
+          <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
+          <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
+          <polyline
+            className="check"
+            points="11.78 18.12 15.55 22.23 25.17 12.87"
+          ></polyline>
+        </svg>
+      </div>
     </div>
   );
   //Forgot Button Navigate to Forgot Password Page

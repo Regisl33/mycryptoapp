@@ -21,7 +21,8 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   //Error State
-  const [errorMessage, setErrorMessage] = useState("");
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+  const [confirmErrorMessage, setConfirmErrorMessage] = useState("");
   //This State Checks if the form is Submitted
   const [isSubmited, setIsSubmited] = useState(false);
   //Get User Data from Redux Store
@@ -67,7 +68,7 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
           userData.passwordHistory?.oldPassword === password ||
           userData.password === password
         ) {
-          setErrorMessage(
+          setPasswordErrorMessage(
             "You must use different password then the last 2 passwords you've used"
           );
         } else {
@@ -75,7 +76,7 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
           setIsSubmited(true);
         }
       } else if (userData.password === password) {
-        setErrorMessage(
+        setPasswordErrorMessage(
           "You must use different password then the last 2 passwords you've used"
         );
       } else {
@@ -94,7 +95,7 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
       navigate("/login");
     }
     if (isError) {
-      setErrorMessage("We couldn't reach the server");
+      setPasswordErrorMessage("We couldn't reach the server");
       console.log(error);
     }
   }, []);
@@ -108,23 +109,26 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
         <ResetPasswordInput
           password={password}
           passwordConfirm={passwordConfirm}
-          setErrorMessage={setErrorMessage}
+          setErrorMessage={setPasswordErrorMessage}
           setPassword={setPassword}
         />
         <ResetConfirmInput
           password={password}
           passwordConfirm={passwordConfirm}
-          setErrorMessage={setErrorMessage}
+          setErrorMessage={setConfirmErrorMessage}
           setPasswordConfirm={setPasswordConfirm}
         />
 
-        <p className="error-text">{errorMessage}</p>
+        <p className="error-text">
+          {passwordErrorMessage + " " + confirmErrorMessage}
+        </p>
         <button
           type="submit"
           className="btn1"
           onClick={(e: FormEvent) => handleSubmit(e)}
           disabled={
-            errorMessage.length === 0 &&
+            passwordErrorMessage.length === 0 &&
+            confirmErrorMessage.length === 0 &&
             password.length > 0 &&
             passwordConfirm.length > 0
               ? false

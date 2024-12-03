@@ -25,9 +25,9 @@ const ResetPasswordInput = ({
   //Function that set the new password everytime the password input changes, it receive the input value, and validate if the password is valid and set the error message accordingly.
   const handlePasswordChange = (value: string) => {
     setPassword(value);
-    if (passwordRegex.test(value) || password.length === 0) {
+    if (passwordRegex.test(value) || value.length === 0) {
       setErrorMessage("");
-    } else if (password !== passwordConfirm && passwordConfirm.length > 0) {
+    } else if (value !== passwordConfirm && passwordConfirm.length > 0) {
       setErrorMessage("Your Password confirmation doesn't match your password");
     } else {
       setErrorMessage(
