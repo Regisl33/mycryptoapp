@@ -31,18 +31,18 @@ const Navigation = ({ currentID, tempColor }: propsType) => {
               activeLocation === "home"
                 ? tempColor.length > 0
                   ? tempColor[0] === "D"
-                    ? "active darkLink"
-                    : "active lightLink"
+                    ? "active darkLink Dshadow"
+                    : "active lightLink Lshadow"
                   : userData?.color[0] === "D"
-                  ? "active darkLink"
-                  : "active lightLink"
+                  ? "active darkLink Dshadow"
+                  : "active lightLink Lshadow"
                 : tempColor.length > 0
                 ? tempColor[0] === "D"
-                  ? "darkLink"
-                  : "lightLink"
+                  ? "darkLink Dshadow"
+                  : "lightLink Lshadow"
                 : userData?.color[0] === "D"
-                ? "darkLink"
-                : "lightLink"
+                ? "darkLink Dshadow"
+                : "lightLink Lshadow"
             }
           >
             Home
@@ -54,18 +54,18 @@ const Navigation = ({ currentID, tempColor }: propsType) => {
               activeLocation === "table"
                 ? tempColor.length > 0
                   ? tempColor[0] === "D"
-                    ? "active darkLink"
-                    : "active lightLink"
+                    ? "active darkLink Dshadow"
+                    : "active lightLink Lshadow"
                   : userData?.color[0] === "D"
-                  ? "active darkLink"
-                  : "active lightLink"
+                  ? "active darkLink Dshadow"
+                  : "active lightLink Lshadow"
                 : tempColor.length > 0
                 ? tempColor[0] === "D"
-                  ? "darkLink"
-                  : "lightLink"
+                  ? "darkLink Dshadow"
+                  : "lightLink Lshadow"
                 : userData?.color[0] === "D"
-                ? "darkLink"
-                : "lightLink"
+                ? "darkLink Dshadow"
+                : "lightLink Lshadow"
             }
           >
             Coin Table
@@ -77,18 +77,18 @@ const Navigation = ({ currentID, tempColor }: propsType) => {
               activeLocation === "search"
                 ? tempColor.length > 0
                   ? tempColor[0] === "D"
-                    ? "active darkLink"
-                    : "active lightLink"
+                    ? "active darkLink Dshadow"
+                    : "active lightLink Lshadow"
                   : userData?.color[0] === "D"
-                  ? "active darkLink"
-                  : "active lightLink"
+                  ? "active darkLink Dshadow"
+                  : "active lightLink Lshadow"
                 : tempColor.length > 0
                 ? tempColor[0] === "D"
-                  ? "darkLink"
-                  : "lightLink"
+                  ? "darkLink Dshadow"
+                  : "lightLink Lshadow"
                 : userData?.color[0] === "D"
-                ? "darkLink"
-                : "lightLink"
+                ? "darkLink Dshadow"
+                : "lightLink Lshadow"
             }
           >
             Search a Coin

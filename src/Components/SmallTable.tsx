@@ -1,9 +1,10 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
 import TableHeader from "./TableHeader";
 import { coinDataType } from "../Types/AppTypes";
 import { sortSwitch } from "./SortSwitch";
 import SmallTableDataRow from "./SmallTableDataRow";
 import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 type propsType = {
   data: coinDataType[];
@@ -52,6 +53,12 @@ const SmallTable = ({
     setSelectedSort(value);
   };
 
+  useEffect(() => {
+    if (isError) {
+      console.log(error);
+    }
+  }, [error, isError]);
+
   const tableHeader = (
     <thead>
       <tr>
@@ -66,30 +73,38 @@ const SmallTable = ({
           />
         ))}
         <th>
-          <label htmlFor="selectData" className="offscreen">
-            Select Data you want Displayed
-          </label>
-          <select
+          <label
+            htmlFor="selectData"
             className={
               tempColor.length > 0
                 ? tempColor[0] === "D"
-                  ? "Dselect"
-                  : "Lselect"
+                  ? "Dshadow"
+                  : "Lshadow"
                 : userData?.color[0] === "D"
-                ? "Dselect"
-                : "Lselect"
-            }
-            id="selectData"
-            onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-              handleDataSwitch(e.target.value)
+                ? "Dshadow"
+                : "Lshadow"
             }
           >
-            {selectOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
+            {displayData}
+            <RiArrowDropDownLine />
+            <ul
+              className={
+                tempColor.length > 0
+                  ? tempColor[0] === "D"
+                    ? `${tempColor}-select`
+                    : `${tempColor}-select`
+                  : userData?.color[0] === "D"
+                  ? `${userData?.color}-select`
+                  : `${userData?.color}-select`
+              }
+            >
+              {selectOptions.map((option) => (
+                <li onClick={() => handleDataSwitch(option)} key={option}>
+                  {option}
+                </li>
+              ))}
+            </ul>
+          </label>
         </th>
       </tr>
     </thead>
