@@ -171,151 +171,153 @@ const IndividualSearchCoin = ({
           </span>
         </figcaption>
       </figure>
-      <div className="fav-container">
-        {isFavorite ? (
-          <label
-            htmlFor="Fav-Input"
-            className={
-              tempColor.length > 0
-                ? tempColor[0] === "D"
+      <div className="search-container">
+        <div className="fav-container">
+          {isFavorite ? (
+            <label
+              htmlFor="Fav-Input"
+              className={
+                tempColor.length > 0
+                  ? tempColor[0] === "D"
+                    ? "Dshadow"
+                    : "Lshadow"
+                  : userData?.color[0] === "D"
                   ? "Dshadow"
                   : "Lshadow"
-                : userData?.color[0] === "D"
-                ? "Dshadow"
-                : "Lshadow"
-            }
-          >
-            Remove From Favorite
-          </label>
-        ) : (
-          <label
-            htmlFor="Fav-Input"
-            className={
-              tempColor.length > 0
-                ? tempColor[0] === "D"
+              }
+            >
+              Remove From Favorite
+            </label>
+          ) : (
+            <label
+              htmlFor="Fav-Input"
+              className={
+                tempColor.length > 0
+                  ? tempColor[0] === "D"
+                    ? "Dshadow"
+                    : "Lshadow"
+                  : userData?.color[0] === "D"
                   ? "Dshadow"
                   : "Lshadow"
-                : userData?.color[0] === "D"
-                ? "Dshadow"
-                : "Lshadow"
-            }
-          >
-            Add To Favorite
-          </label>
-        )}
-        <div className="checkbox-wrapper-50">
-          <input
-            type="checkbox"
-            className="plus-minus"
-            id="Fav-Input"
-            checked={isFavorite}
-            onClick={() => handleFavChange()}
-          />
+              }
+            >
+              Add To Favorite
+            </label>
+          )}
+          <div className="checkbox-wrapper-50">
+            <input
+              type="checkbox"
+              className="plus-minus"
+              id="Fav-Input"
+              checked={isFavorite}
+              onClick={() => handleFavChange()}
+            />
+          </div>
         </div>
-      </div>
-      <div className="coin-info-container">
-        <table>
-          <tbody>
-            <tr>
-              <th
-                className={
-                  tempColor.length > 0
-                    ? tempColor[0] === "D"
+        <div className="coin-info-container">
+          <table>
+            <tbody>
+              <tr>
+                <th
+                  className={
+                    tempColor.length > 0
+                      ? tempColor[0] === "D"
+                        ? "Dshadow"
+                        : "Lshadow"
+                      : userData?.color[0] === "D"
                       ? "Dshadow"
                       : "Lshadow"
-                    : userData?.color[0] === "D"
-                    ? "Dshadow"
-                    : "Lshadow"
-                }
-              >
-                Market Cap:
-              </th>
-              <td>
-                {coin.market_cap
-                  ? (coin.market_cap / 1000000).toFixed(3) + "M $"
-                  : "-"}
-              </td>
-              <th
-                className={
-                  tempColor.length > 0
-                    ? tempColor[0] === "D"
+                  }
+                >
+                  Market Cap:
+                </th>
+                <td>
+                  {coin.market_cap
+                    ? (coin.market_cap / 1000000).toFixed(3) + "M $"
+                    : "-"}
+                </td>
+                <th
+                  className={
+                    tempColor.length > 0
+                      ? tempColor[0] === "D"
+                        ? "Dshadow"
+                        : "Lshadow"
+                      : userData?.color[0] === "D"
                       ? "Dshadow"
                       : "Lshadow"
-                    : userData?.color[0] === "D"
-                    ? "Dshadow"
-                    : "Lshadow"
-                }
-              >
-                Market Cap Rank:
-              </th>
-              <td>{coin.market_cap_rank}</td>
-            </tr>
-            <tr>
-              <th
-                className={
-                  tempColor.length > 0
-                    ? tempColor[0] === "D"
+                  }
+                >
+                  Market Cap Rank:
+                </th>
+                <td>{coin.market_cap_rank}</td>
+              </tr>
+              <tr>
+                <th
+                  className={
+                    tempColor.length > 0
+                      ? tempColor[0] === "D"
+                        ? "Dshadow"
+                        : "Lshadow"
+                      : userData?.color[0] === "D"
                       ? "Dshadow"
                       : "Lshadow"
-                    : userData?.color[0] === "D"
-                    ? "Dshadow"
-                    : "Lshadow"
-                }
-              >
-                Price:
-              </th>
-              <td>{coin.current_price.toLocaleString() + "$"}</td>
-              <th
-                className={
-                  tempColor.length > 0
-                    ? tempColor[0] === "D"
+                  }
+                >
+                  Price:
+                </th>
+                <td>{coin.current_price.toLocaleString() + "$"}</td>
+                <th
+                  className={
+                    tempColor.length > 0
+                      ? tempColor[0] === "D"
+                        ? "Dshadow"
+                        : "Lshadow"
+                      : userData?.color[0] === "D"
                       ? "Dshadow"
                       : "Lshadow"
-                    : userData?.color[0] === "D"
-                    ? "Dshadow"
-                    : "Lshadow"
-                }
-              >
-                Volume:
-              </th>
-              <td>
-                {coin.total_volume
-                  ? (coin.total_volume / 1000000).toFixed(3) + "M $"
-                  : "-"}
-              </td>
-            </tr>
-            <tr>
-              <th
-                className={
-                  tempColor.length > 0
-                    ? tempColor[0] === "D"
+                  }
+                >
+                  Volume:
+                </th>
+                <td>
+                  {coin.total_volume
+                    ? (coin.total_volume / 1000000).toFixed(3) + "M $"
+                    : "-"}
+                </td>
+              </tr>
+              <tr>
+                <th
+                  className={
+                    tempColor.length > 0
+                      ? tempColor[0] === "D"
+                        ? "Dshadow"
+                        : "Lshadow"
+                      : userData?.color[0] === "D"
                       ? "Dshadow"
                       : "Lshadow"
-                    : userData?.color[0] === "D"
-                    ? "Dshadow"
-                    : "Lshadow"
-                }
-              >
-                Ath:
-              </th>
-              <td>{coin.ath_change_percentage.toFixed(1) + "%"}</td>
-              <th
-                className={
-                  tempColor.length > 0
-                    ? tempColor[0] === "D"
+                  }
+                >
+                  Ath:
+                </th>
+                <td>{coin.ath_change_percentage.toFixed(1) + "%"}</td>
+                <th
+                  className={
+                    tempColor.length > 0
+                      ? tempColor[0] === "D"
+                        ? "Dshadow"
+                        : "Lshadow"
+                      : userData?.color[0] === "D"
                       ? "Dshadow"
                       : "Lshadow"
-                    : userData?.color[0] === "D"
-                    ? "Dshadow"
-                    : "Lshadow"
-                }
-              >
-                Ath Date:
-              </th>
-              <td>{coin.ath_date.slice(0, 10)}</td>
-            </tr>
-          </tbody>
-        </table>
+                  }
+                >
+                  Ath Date:
+                </th>
+                <td>{coin.ath_date.slice(0, 10)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

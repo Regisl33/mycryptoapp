@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import TableHeader from "./TableHeader";
 import { coinDataType } from "../Types/AppTypes";
 import { sortSwitch } from "./SortSwitch";

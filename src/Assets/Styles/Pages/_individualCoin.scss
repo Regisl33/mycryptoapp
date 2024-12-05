@@ -1,21 +1,44 @@
 .Coin-Name-Logo {
   @include justify(center);
   gap: 10px;
-  margin: 15px auto 45px;
 
   img {
     height: 30px;
     width: 30px;
   }
 }
-.areachart {
-  text-align: center;
+.top-container {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  place-items: center;
+  margin: 15px auto 45px;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+.coin-graph {
+  @include justify(center);
+  flex-direction: column;
+  width: 95%;
+  margin: 0 auto;
 
   ul {
     @include justify(space-evenly);
     margin: 10px auto;
+    width: 100%;
+    margin-bottom: 25px;
+
+    @media screen and (max-width: 600px) {
+      font-size: 0.8rem;
+    }
   }
 }
+.recharts-wrapper {
+  @include justify(center);
+}
+
 .center {
   text-align: center;
   margin: 15px auto;
@@ -49,7 +72,20 @@
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 }
-.recharts-tooltip-wrapper {
+.Big-Graph {
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+}
+.Little-Graph {
+  display: none;
+
+  @media screen and (max-width: 800px) {
+    display: block;
+  }
+}
+.dark-tooltip,
+.light-tooltip {
   clip-path: polygon(
     0% 0%,
     100% 0%,
@@ -59,5 +95,18 @@
     40% 75%,
     0% 75%
   );
-  color: inherit;
+  padding: 5px 10px 35px;
+
+  p {
+    margin: 5px;
+    text-align: center;
+  }
+}
+.dark-tooltip {
+  background: $landingLight;
+  color: $Dcolor1;
+}
+.light-tooltip {
+  background: $Dcolor1;
+  color: $landingLight;
 }

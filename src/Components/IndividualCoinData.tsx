@@ -153,24 +153,27 @@ const IndividualCoinData = ({
       <Header currentID={currentID} tempColor={tempColor} />
       {coin && (
         <div className="main-container">
-          <div className="logo-container">
-            <figure className="Coin-Name-Logo">
-              <img src={coin.image} alt={coin.name} />
-              <h2
-                className={
-                  tempColor.length > 0
-                    ? tempColor[0] === "D"
+          <div className="top-container">
+            <div className="empty-container"></div>
+            <div className="logo-container">
+              <figure className="Coin-Name-Logo">
+                <img src={coin.image} alt={coin.name} />
+                <h2
+                  className={
+                    tempColor.length > 0
+                      ? tempColor[0] === "D"
+                        ? "title Dshadow"
+                        : "title Lshadow"
+                      : userData?.color[0] === "D"
                       ? "title Dshadow"
                       : "title Lshadow"
-                    : userData?.color[0] === "D"
-                    ? "title Dshadow"
-                    : "title Lshadow"
-                }
-              >
-                {coin.name}
-              </h2>
-              <figcaption>{`(${coin.symbol.toUpperCase()})`}</figcaption>
-            </figure>
+                  }
+                >
+                  {coin.name}
+                </h2>
+                <figcaption>{`(${coin.symbol.toUpperCase()})`}</figcaption>
+              </figure>
+            </div>
             <div className="fav-container">
               {isFavorite ? (
                 <label
@@ -214,14 +217,29 @@ const IndividualCoinData = ({
               </div>
             </div>
           </div>
-          <div className="coin-graph">
-            <AreaChartComponent
-              coinID={coin.id}
-              tempColor={tempColor}
-              currentID={currentID}
-            />
-          </div>
-          <p className="center">{coin.current_price.toLocaleString()}$</p>
+
+          <AreaChartComponent
+            coinID={coin.id}
+            tempColor={tempColor}
+            currentID={currentID}
+          />
+
+          <p className="center">
+            <span
+              className={
+                tempColor.length > 0
+                  ? tempColor[0] === "D"
+                    ? "title Dshadow"
+                    : "title Lshadow"
+                  : userData?.color[0] === "D"
+                  ? "title Dshadow"
+                  : "title Lshadow"
+              }
+            >
+              Price:
+            </span>{" "}
+            {coin.current_price.toLocaleString()}$
+          </p>
           <div className="grid-container">
             <div className="grid-container2">
               <h3

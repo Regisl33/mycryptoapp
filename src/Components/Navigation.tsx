@@ -20,7 +20,7 @@ const Navigation = ({ currentID, tempColor }: propsType) => {
 
   useEffect(() => {
     setActiveLocation(location.pathname.slice(1));
-  });
+  }, [location.pathname]);
 
   return (
     <nav aria-label="HomePage-Nav">
