@@ -66,7 +66,7 @@ const TodayRecap = ({ tempColor, currentID }: propsType) => {
         <div className="tooltip-container">
           <p>
             {payload[0].payload.name}
-            <span>{payload[0].payload.price}$</span>
+            <span>{payload[0].payload.price.toLocaleString()}$</span>
           </p>
         </div>
       );

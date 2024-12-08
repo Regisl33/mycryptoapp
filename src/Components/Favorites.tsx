@@ -44,7 +44,7 @@ const Favorites = ({ currentID, tempFavArray, tempColor }: propsType) => {
   }, [userData, coinData]);
 
   const FavList = (
-    <div className="fav-container">
+    <div className="fav-home-container">
       <h2
         className={
           tempColor.length > 0

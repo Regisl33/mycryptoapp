@@ -17,10 +17,10 @@
         "oldPassword": "Test123!4",
         "resetDate": 1728697063905
       },
-      "color": "Lcolor1",
+      "color": "Dcolor1",
       "favorites": [
-        "binancecoin",
-        "bitcoin"
+        "bitcoin",
+        "binancecoin"
       ]
     }
   ]

@@ -162,9 +162,65 @@ const AreaChartComponent = ({ coinID, tempColor, currentID }: propsType) => {
             />
           </linearGradient>
         </defs>
-        <XAxis dataKey="date" />
-        <YAxis domain={["auto", "auto"]} />
-        <CartesianGrid strokeDasharray="3 3" opacity={0.5} />
+        <XAxis
+          dataKey="date"
+          tick={{
+            fill:
+              tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "#fffaf7"
+                  : "#000000"
+                : userData?.color[0] === "D"
+                ? "#fffaf7"
+                : "#000000",
+          }}
+          tickLine={{
+            stroke:
+              tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "#fffaf7"
+                  : "#000000"
+                : userData?.color[0] === "D"
+                ? "#fffaf7"
+                : "#000000",
+          }}
+        />
+        <YAxis
+          domain={["auto", "auto"]}
+          tick={{
+            fill:
+              tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "#fffaf7"
+                  : "#000000"
+                : userData?.color[0] === "D"
+                ? "#fffaf7"
+                : "#000000",
+          }}
+          tickLine={{
+            stroke:
+              tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "#fffaf7"
+                  : "#000000"
+                : userData?.color[0] === "D"
+                ? "#fffaf7"
+                : "#000000",
+          }}
+        />
+        <CartesianGrid
+          strokeDasharray="3 3"
+          opacity={0.5}
+          stroke={
+            tempColor.length > 0
+              ? tempColor[0] === "D"
+                ? "#fffaf7"
+                : "#000000"
+              : userData?.color[0] === "D"
+              ? "#fffaf7"
+              : "#000000"
+          }
+        />
         <Tooltip content={<CustomTooltip />} />
         <Area
           type="monotone"
@@ -219,9 +275,65 @@ const AreaChartComponent = ({ coinID, tempColor, currentID }: propsType) => {
             />
           </linearGradient>
         </defs>
-        <XAxis dataKey="date" />
-        <YAxis domain={["auto", "auto"]} />
-        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis
+          dataKey="date"
+          tick={{
+            fill:
+              tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "#fffaf7"
+                  : "#000000"
+                : userData?.color[0] === "D"
+                ? "#fffaf7"
+                : "#000000",
+          }}
+          tickLine={{
+            stroke:
+              tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "#fffaf7"
+                  : "#000000"
+                : userData?.color[0] === "D"
+                ? "#fffaf7"
+                : "#000000",
+          }}
+        />
+        <YAxis
+          domain={["auto", "auto"]}
+          tick={{
+            fill:
+              tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "#fffaf7"
+                  : "#000000"
+                : userData?.color[0] === "D"
+                ? "#fffaf7"
+                : "#000000",
+          }}
+          tickLine={{
+            stroke:
+              tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? "#fffaf7"
+                  : "#000000"
+                : userData?.color[0] === "D"
+                ? "#fffaf7"
+                : "#000000",
+          }}
+        />
+        <CartesianGrid
+          strokeDasharray="3 3"
+          opacity={0.5}
+          stroke={
+            tempColor.length > 0
+              ? tempColor[0] === "D"
+                ? "#fffaf7"
+                : "#000000"
+              : userData?.color[0] === "D"
+              ? "#fffaf7"
+              : "#000000"
+          }
+        />
         <Tooltip content={<CustomTooltip />} />
         <Area
           type="monotone"

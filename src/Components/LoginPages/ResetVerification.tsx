@@ -54,15 +54,23 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
     return answersArray;
   };
   //This function uses questionNum and getQuestion to set the active question
-  const handleQuestionSwitch = useCallback(() => {
-    let questions = getQuestions();
+  const handleQuestionSwitch = useCallback(
+    (num: number) => {
+      let questions = getQuestions();
+      setActiveQuestion(questions[num]);
+    },
+    [getQuestions]
+  );
+  const questionNumLogic = (): number => {
+    let num: number = 0;
     if (questionNum === 2) {
       setQuestionNum(0);
     } else {
       setQuestionNum(questionNum + 1);
+      num = questionNum + 1;
     }
-    setActiveQuestion(questions[questionNum]);
-  }, [getQuestions, questionNum]);
+    return num;
+  };
   //Submit Function, use getAnswers and getQuestion to verify if the answer match the user question
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -86,7 +94,7 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
   //This useEffect makes sure that there is a userID if not return to login
   useEffect(() => {
     if (currentID) {
-      handleQuestionSwitch();
+      handleQuestionSwitch(0);
     } else {
       navigate("/login");
     }
@@ -102,7 +110,7 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
     <button
       type="button"
       className="btn2 swap-question"
-      onClick={() => handleQuestionSwitch()}
+      onClick={() => handleQuestionSwitch(questionNumLogic())}
     >
       Try another question
     </button>

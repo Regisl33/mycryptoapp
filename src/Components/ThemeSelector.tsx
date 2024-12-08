@@ -13,7 +13,6 @@ type propsType = {
 };
 
 const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
-  const [darkTheme, setDarkTheme] = useState(false);
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
 
   const lightColors: colorType[] = [
@@ -64,17 +63,17 @@ const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
           className={
             tempColor.length > 0 && tempColor !== userData?.color
               ? tempColor === color.class
-                ? darkTheme
+                ? tempColor[0] === "D"
                   ? `active Dbox ${color.class}`
                   : `active Lbox ${color.class}`
-                : darkTheme
+                : tempColor[0] === "D"
                 ? `Dbox ${color.class}`
                 : `Lbox ${color.class}`
               : userData?.color === color.class
-              ? darkTheme
+              ? userData.color[0] === "D"
                 ? `active Dbox ${color.class}`
                 : `active Lbox ${color.class}`
-              : darkTheme
+              : userData && userData.color[0] === "D"
               ? `Dbox ${color.class}`
               : `Lbox ${color.class}`
           }
@@ -94,14 +93,23 @@ const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
   };
 
   const handleChange = () => {
-    if (darkTheme) {
-      setTempColor("Lcolor1");
-      handleColorSwitch("Lcolor1");
+    if (tempColor.length > 0) {
+      if (tempColor[0] === "D") {
+        setTempColor("Lcolor1");
+        handleColorSwitch("Lcolor1");
+      } else {
+        setTempColor("Dcolor1");
+        handleColorSwitch("Dcolor1");
+      }
     } else {
-      setTempColor("Dcolor1");
-      handleColorSwitch("Dcolor1");
+      if (userData && userData.color[0] === "D") {
+        setTempColor("Lcolor1");
+        handleColorSwitch("Lcolor1");
+      } else {
+        setTempColor("Dcolor1");
+        handleColorSwitch("Dcolor1");
+      }
     }
-    setDarkTheme(!darkTheme);
   };
 
   useEffect(() => {
@@ -131,7 +139,15 @@ const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
           <input
             type="checkbox"
             id="dark-mode-checkbox"
-            checked={darkTheme ? true : false}
+            checked={
+              tempColor.length > 0
+                ? tempColor[0] === "D"
+                  ? true
+                  : false
+                : userData && userData.color[0] === "D"
+                ? true
+                : false
+            }
             onChange={() => handleChange()}
           />
           <svg viewBox="0 0 35.6 35.6">
@@ -150,7 +166,13 @@ const ThemeSelector = ({ currentID, tempColor, setTempColor }: propsType) => {
         </div>
       </div>
       <div className="background-selector">
-        {darkTheme ? displayColors(darkColors) : displayColors(lightColors)}
+        {tempColor.length > 0
+          ? tempColor[0] === "D"
+            ? displayColors(darkColors)
+            : displayColors(lightColors)
+          : userData && userData.color[0] === "D"
+          ? displayColors(darkColors)
+          : displayColors(lightColors)}
       </div>
     </div>
   );
