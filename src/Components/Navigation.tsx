@@ -22,81 +22,44 @@ const Navigation = ({ currentID, tempColor }: propsType) => {
     setActiveLocation(location.pathname.slice(1));
   }, [location.pathname]);
 
-  return (
+  const classSelector = (location: string): string => {
+    let classname = "";
+    activeLocation === location
+      ? tempColor.length > 0
+        ? tempColor[0] === "D"
+          ? (classname = "active darkLink Dshadow")
+          : (classname = "active lightLink Lshadow")
+        : userData?.color[0] === "D"
+        ? (classname = "active darkLink Dshadow")
+        : (classname = "active lightLink Lshadow")
+      : tempColor.length > 0
+      ? tempColor[0] === "D"
+        ? (classname = "darkLink Dshadow")
+        : (classname = "lightLink Lshadow")
+      : userData?.color[0] === "D"
+      ? (classname = "darkLink Dshadow")
+      : (classname = "lightLink Lshadow");
+
+    return classname;
+  };
+
+  const nav = (
     <nav aria-label="HomePage-Nav">
       <ul className="main-nav">
         <NavLink to="/home">
-          <li
-            className={
-              activeLocation === "home"
-                ? tempColor.length > 0
-                  ? tempColor[0] === "D"
-                    ? "active darkLink Dshadow"
-                    : "active lightLink Lshadow"
-                  : userData?.color[0] === "D"
-                  ? "active darkLink Dshadow"
-                  : "active lightLink Lshadow"
-                : tempColor.length > 0
-                ? tempColor[0] === "D"
-                  ? "darkLink Dshadow"
-                  : "lightLink Lshadow"
-                : userData?.color[0] === "D"
-                ? "darkLink Dshadow"
-                : "lightLink Lshadow"
-            }
-          >
-            Home
-          </li>
+          <li className={classSelector("home")}>Home</li>
         </NavLink>
         <NavLink to="/table">
-          <li
-            className={
-              activeLocation === "table"
-                ? tempColor.length > 0
-                  ? tempColor[0] === "D"
-                    ? "active darkLink Dshadow"
-                    : "active lightLink Lshadow"
-                  : userData?.color[0] === "D"
-                  ? "active darkLink Dshadow"
-                  : "active lightLink Lshadow"
-                : tempColor.length > 0
-                ? tempColor[0] === "D"
-                  ? "darkLink Dshadow"
-                  : "lightLink Lshadow"
-                : userData?.color[0] === "D"
-                ? "darkLink Dshadow"
-                : "lightLink Lshadow"
-            }
-          >
-            Coin Table
-          </li>
+          <li className={classSelector("table")}>Coin Table</li>
         </NavLink>
         <NavLink to="/search">
-          <li
-            className={
-              activeLocation === "search"
-                ? tempColor.length > 0
-                  ? tempColor[0] === "D"
-                    ? "active darkLink Dshadow"
-                    : "active lightLink Lshadow"
-                  : userData?.color[0] === "D"
-                  ? "active darkLink Dshadow"
-                  : "active lightLink Lshadow"
-                : tempColor.length > 0
-                ? tempColor[0] === "D"
-                  ? "darkLink Dshadow"
-                  : "lightLink Lshadow"
-                : userData?.color[0] === "D"
-                ? "darkLink Dshadow"
-                : "lightLink Lshadow"
-            }
-          >
-            Search a Coin
-          </li>
+          <li className={classSelector("search")}>Search a Coin</li>
         </NavLink>
       </ul>
     </nav>
   );
+
+  return nav;
 };
 
 export default Navigation;

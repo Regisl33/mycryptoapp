@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Tooltip, Treemap, TooltipProps } from "recharts";
 import {
   ValueType,
