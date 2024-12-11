@@ -6,6 +6,8 @@ import Footer from "./Footer";
 import ThemeSelector from "./ThemeSelector";
 import ParamFavorite from "./ParamFavorite";
 import { coinDataType } from "../Types/AppTypes";
+import { useColorMutation } from "../Features/LandingPage/UserSlice";
+import { colorMutation } from "../Types/LandingTypes";
 
 type propsType = {
   tempColor: string;
@@ -31,6 +33,26 @@ const Parameters = ({
     isError,
     error,
   } = useGetCurrentUserQuery(currentID as number);
+
+  const [colorMutation] = useColorMutation();
+
+  const handleColorSwitch = async (color: string) => {
+    if (currentID) {
+      let newColor: colorMutation = {
+        user: {
+          color,
+        },
+        id: currentID,
+      };
+
+      try {
+        setTempColor(color);
+        await colorMutation(newColor).unwrap();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -69,6 +91,7 @@ const Parameters = ({
           currentID={currentID as number}
           tempColor={tempColor}
           setTempColor={setTempColor}
+          handleColorSwitch={handleColorSwitch}
         />
         <ParamFavorite
           tempColor={tempColor}

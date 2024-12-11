@@ -1,20 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  AreaChart,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Area,
-  TooltipProps,
-} from "recharts";
 import { chartDataType, chartHeaderDataType } from "../Types/AppTypes";
 import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
-import {
-  NameType,
-  ValueType,
-} from "recharts/types/component/DefaultTooltipContent";
+import AreaChartGraph from "./AreaChartGraph";
 
 type propsType = {
   coinID: string;
@@ -67,32 +55,6 @@ const AreaChartComponent = ({ coinID, tempColor, currentID }: propsType) => {
     }
   }, [coinID, duration]);
 
-  const CustomTooltip = ({
-    active,
-    payload,
-  }: TooltipProps<ValueType, NameType>) => {
-    if (active && payload && payload.length > 0) {
-      return (
-        <div
-          className={
-            tempColor.length > 0
-              ? tempColor[0] === "D"
-                ? "dark-tooltip"
-                : "light-tooltip"
-              : userData?.color[0] === "D"
-              ? "dark-tooltip"
-              : "#light-tooltip"
-          }
-        >
-          <p>{payload[0].payload.date}</p>
-          <p>{payload[0].payload.price.toLocaleString()}$</p>
-        </div>
-      );
-    } else {
-      return null;
-    }
-  };
-
   return (
     <div className="coin-graph">
       <ul>
@@ -124,233 +86,20 @@ const AreaChartComponent = ({ coinID, tempColor, currentID }: propsType) => {
           );
         })}
       </ul>
-
-      <AreaChart
-        className="Big-Graph"
-        width={800}
-        height={250}
-        data={chartData}
-        margin={{ top: 10, right: 0, left: 10, bottom: 0 }}
-      >
-        <defs>
-          <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop
-              offset="7%"
-              stopColor={
-                tempColor.length > 0
-                  ? tempColor[0] === "D"
-                    ? "#fffaf7"
-                    : "#000000"
-                  : userData?.color[0] === "D"
-                  ? "#fffaf7"
-                  : "#000000"
-              }
-              stopOpacity={0.8}
-            />
-            <stop
-              offset="93%"
-              stopColor={
-                tempColor.length > 0
-                  ? tempColor[0] === "D"
-                    ? "#000000"
-                    : "#fffaf7"
-                  : userData?.color[0] === "D"
-                  ? "#000000"
-                  : "#fffaf7"
-              }
-              stopOpacity={0}
-            />
-          </linearGradient>
-        </defs>
-        <XAxis
-          dataKey="date"
-          tick={{
-            fill:
-              tempColor.length > 0
-                ? tempColor[0] === "D"
-                  ? "#fffaf7"
-                  : "#000000"
-                : userData?.color[0] === "D"
-                ? "#fffaf7"
-                : "#000000",
-          }}
-          tickLine={{
-            stroke:
-              tempColor.length > 0
-                ? tempColor[0] === "D"
-                  ? "#fffaf7"
-                  : "#000000"
-                : userData?.color[0] === "D"
-                ? "#fffaf7"
-                : "#000000",
-          }}
+      <div className="BigGraph">
+        <AreaChartGraph
+          currentID={currentID}
+          tempColor={tempColor}
+          chartData={chartData}
         />
-        <YAxis
-          domain={["auto", "auto"]}
-          tick={{
-            fill:
-              tempColor.length > 0
-                ? tempColor[0] === "D"
-                  ? "#fffaf7"
-                  : "#000000"
-                : userData?.color[0] === "D"
-                ? "#fffaf7"
-                : "#000000",
-          }}
-          tickLine={{
-            stroke:
-              tempColor.length > 0
-                ? tempColor[0] === "D"
-                  ? "#fffaf7"
-                  : "#000000"
-                : userData?.color[0] === "D"
-                ? "#fffaf7"
-                : "#000000",
-          }}
+      </div>
+      <div className="Little-Graph">
+        <AreaChartGraph
+          currentID={currentID}
+          tempColor={tempColor}
+          chartData={chartData}
         />
-        <CartesianGrid
-          strokeDasharray="3 3"
-          opacity={0.5}
-          stroke={
-            tempColor.length > 0
-              ? tempColor[0] === "D"
-                ? "#fffaf7"
-                : "#000000"
-              : userData?.color[0] === "D"
-              ? "#fffaf7"
-              : "#000000"
-          }
-        />
-        <Tooltip content={<CustomTooltip />} />
-        <Area
-          type="monotone"
-          dataKey="price"
-          stroke={
-            tempColor.length > 0
-              ? tempColor[0] === "D"
-                ? "#fffaf7"
-                : "#000000"
-              : userData?.color[0] === "D"
-              ? "#fffaf7"
-              : "#000000"
-          }
-          fillOpacity={1}
-          fill="url(#colorUv)"
-        />
-      </AreaChart>
-      <AreaChart
-        className="Little-Graph"
-        width={350}
-        height={450}
-        data={chartData}
-        margin={{ top: 10, right: 0, left: 10, bottom: 0 }}
-      >
-        <defs>
-          <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop
-              offset="7%"
-              stopColor={
-                tempColor.length > 0
-                  ? tempColor[0] === "D"
-                    ? "#fffaf7"
-                    : "#000000"
-                  : userData?.color[0] === "D"
-                  ? "#fffaf7"
-                  : "#000000"
-              }
-              stopOpacity={0.8}
-            />
-            <stop
-              offset="93%"
-              stopColor={
-                tempColor.length > 0
-                  ? tempColor[0] === "D"
-                    ? "#000000"
-                    : "#fffaf7"
-                  : userData?.color[0] === "D"
-                  ? "#000000"
-                  : "#fffaf7"
-              }
-              stopOpacity={0}
-            />
-          </linearGradient>
-        </defs>
-        <XAxis
-          dataKey="date"
-          tick={{
-            fill:
-              tempColor.length > 0
-                ? tempColor[0] === "D"
-                  ? "#fffaf7"
-                  : "#000000"
-                : userData?.color[0] === "D"
-                ? "#fffaf7"
-                : "#000000",
-          }}
-          tickLine={{
-            stroke:
-              tempColor.length > 0
-                ? tempColor[0] === "D"
-                  ? "#fffaf7"
-                  : "#000000"
-                : userData?.color[0] === "D"
-                ? "#fffaf7"
-                : "#000000",
-          }}
-        />
-        <YAxis
-          domain={["auto", "auto"]}
-          tick={{
-            fill:
-              tempColor.length > 0
-                ? tempColor[0] === "D"
-                  ? "#fffaf7"
-                  : "#000000"
-                : userData?.color[0] === "D"
-                ? "#fffaf7"
-                : "#000000",
-          }}
-          tickLine={{
-            stroke:
-              tempColor.length > 0
-                ? tempColor[0] === "D"
-                  ? "#fffaf7"
-                  : "#000000"
-                : userData?.color[0] === "D"
-                ? "#fffaf7"
-                : "#000000",
-          }}
-        />
-        <CartesianGrid
-          strokeDasharray="3 3"
-          opacity={0.5}
-          stroke={
-            tempColor.length > 0
-              ? tempColor[0] === "D"
-                ? "#fffaf7"
-                : "#000000"
-              : userData?.color[0] === "D"
-              ? "#fffaf7"
-              : "#000000"
-          }
-        />
-        <Tooltip content={<CustomTooltip />} />
-        <Area
-          type="monotone"
-          dataKey="price"
-          stroke={
-            tempColor.length > 0
-              ? tempColor[0] === "D"
-                ? "#fffaf7"
-                : "#000000"
-              : userData?.color[0] === "D"
-              ? "#fffaf7"
-              : "#000000"
-          }
-          fillOpacity={1}
-          fill="url(#colorUv)"
-        />
-      </AreaChart>
+      </div>
     </div>
   );
 };

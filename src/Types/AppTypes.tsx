@@ -63,3 +63,6 @@ export type homeFav = {
   fav: string;
   class: string;
 };
+export type coinProps = {
+  coin: coinDataType;
+};

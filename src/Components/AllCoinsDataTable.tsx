@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import { coinDataType } from "../Types/AppTypes";
 import { useAppSelector } from "../Store/Store";
 import TableDataRow from "./TableDataRow";
-import { tableColums } from "./TableColums";
+import { tableColums } from "./TableHeader";
 import TableHeader from "./TableHeader";
 import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
-import Footer from "./Footer";
-import Header from "./Header";
 import { sortSwitch } from "./SortSwitch";
 import SmallTable from "./SmallTable";
 import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
@@ -111,29 +109,19 @@ const AllCoinsDataTable = ({
   );
 
   const tablePage = (
-    <div
-      className={
-        tempColor.length > 0 && tempColor !== userData?.color
-          ? tempColor
-          : userData?.color
-      }
-    >
-      <Header currentID={currentID} tempColor={tempColor} />
-      <div className="main-container table-container">
-        <table className="table">
-          {tableHeader}
-          {tableBodySwitch}
-        </table>
-        <SmallTable
-          currentID={currentID}
-          tempColor={tempColor}
-          favArrayState={favArrayState}
-          data={data}
-          tempFavArray={tempFavArray}
-          setTempFavArray={setTempFavArray}
-        />
-      </div>
-      <Footer />
+    <div className="main-container table-container">
+      <table className="table">
+        {tableHeader}
+        {tableBodySwitch}
+      </table>
+      <SmallTable
+        currentID={currentID}
+        tempColor={tempColor}
+        favArrayState={favArrayState}
+        data={data}
+        tempFavArray={tempFavArray}
+        setTempFavArray={setTempFavArray}
+      />
     </div>
   );
 

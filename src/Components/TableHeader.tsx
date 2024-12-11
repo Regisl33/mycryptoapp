@@ -1,6 +1,25 @@
 import { useEffect } from "react";
 import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
 
+export const tableColums = [
+  "Rank",
+  "Favorite",
+  "Symbol",
+  "Logo",
+  "Name",
+  "Market Cap",
+  "Price",
+  "Volume",
+  "1h",
+  "1j",
+  "7j",
+  "14j",
+  "30j",
+  "200j",
+  "1y",
+  "Ath",
+];
+
 type propsType = {
   content: string;
   currentID: number;

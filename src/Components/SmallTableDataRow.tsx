@@ -2,6 +2,16 @@ import React from "react";
 import { coinDataType } from "../Types/AppTypes";
 import StarFavorite from "./StarFavorite";
 import { useNavigate } from "react-router";
+import MarketCap from "./Values/MarketCap";
+import Volume from "./Values/Volume";
+import Hours from "./Values/Hours";
+import Day from "./Values/Day";
+import Week from "./Values/Week";
+import Week2 from "./Values/Week2";
+import Months from "./Values/Months";
+import Months6 from "./Values/Months6";
+import Year from "./Values/Year";
+import Ath from "./Values/Ath";
 
 type propsType = {
   currentID: number;
@@ -25,11 +35,7 @@ const SmallTableDataRow = ({
       case "Market Cap":
         return (
           <td>
-            {coin.market_cap
-              ? coin.market_cap.toString().length > 11
-                ? (coin.market_cap / 1000000000).toFixed(3) + "G $"
-                : (coin.market_cap / 1000000).toFixed(3) + "M $"
-              : "-"}
+            <MarketCap coin={coin} />
           </td>
         );
       case "Price":
@@ -43,87 +49,61 @@ const SmallTableDataRow = ({
       case "Volume":
         return (
           <td>
-            {coin.total_volume
-              ? coin.total_volume.toString().length > 11
-                ? (coin.total_volume / 1000000000).toFixed(3) + "G $"
-                : (coin.total_volume / 1000000).toFixed(3) + "M $"
-              : "-"}
+            <Volume coin={coin} />
           </td>
         );
       case "1h":
         return (
           <td>
-            {coin.price_change_percentage_1h_in_currency
-              ? coin.price_change_percentage_1h_in_currency.toFixed(1) + "%"
-              : "-"}
+            <Hours coin={coin} />
           </td>
         );
       case "1j":
         return (
           <td>
-            {coin.price_change_percentage_24h_in_currency
-              ? coin.price_change_percentage_24h_in_currency.toFixed(1) + "%"
-              : "-"}
+            <Day coin={coin} />{" "}
           </td>
         );
       case "7j":
         return (
           <td>
-            {coin.price_change_percentage_7d_in_currency
-              ? coin.price_change_percentage_7d_in_currency.toFixed(1) + "%"
-              : "-"}
+            <Week coin={coin} />
           </td>
         );
       case "14j":
         return (
           <td>
-            {coin.price_change_percentage_14d_in_currency
-              ? coin.price_change_percentage_14d_in_currency.toFixed(1) + "%"
-              : "-"}
+            <Week2 coin={coin} />
           </td>
         );
       case "30j":
         return (
           <td>
-            {coin.price_change_percentage_30d_in_currency
-              ? coin.price_change_percentage_30d_in_currency.toFixed(1) + "%"
-              : "-"}
+            <Months coin={coin} />
           </td>
         );
       case "200j":
         return (
           <td>
-            {coin.price_change_percentage_200d_in_currency
-              ? coin.price_change_percentage_200d_in_currency.toFixed(1) + "%"
-              : "-"}
+            <Months6 coin={coin} />
           </td>
         );
       case "1y":
         return (
           <td>
-            {coin.price_change_percentage_1y_in_currency
-              ? coin.price_change_percentage_1y_in_currency.toFixed(1) + "%"
-              : "-"}
+            <Year coin={coin} />
           </td>
         );
       case "Ath":
         return (
           <td>
-            {coin.ath_change_percentage
-              ? coin.ath_change_percentage > -1
-                ? "ATH"
-                : coin.ath_change_percentage.toFixed(1) + "%"
-              : "-"}
+            <Ath coin={coin} />
           </td>
         );
       default:
         return (
           <td>
-            {coin.market_cap
-              ? coin.market_cap.toString().length > 11
-                ? (coin.market_cap / 1000000000).toFixed(3) + "G $"
-                : (coin.market_cap / 1000000).toFixed(3) + "M $"
-              : "-"}
+            <MarketCap coin={coin} />
           </td>
         );
     }

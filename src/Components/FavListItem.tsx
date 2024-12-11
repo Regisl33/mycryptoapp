@@ -1,4 +1,10 @@
 import { coinDataType } from "../Types/AppTypes";
+import Day from "./Values/Day";
+import Hours from "./Values/Hours";
+import MarketCap from "./Values/MarketCap";
+import Months from "./Values/Months";
+import Week from "./Values/Week";
+import Year from "./Values/Year";
 
 type propsType = {
   coin: coinDataType;
@@ -13,36 +19,23 @@ const FavListItem = ({ coin }: propsType) => {
         {coin.current_price ? coin.current_price.toLocaleString() + "$" : "-"}
       </li>
       <li className="bigscreen">
-        {coin.market_cap
-          ? (coin.market_cap / 1000000000).toFixed(2) + "G $"
-          : "-"}
+        <MarketCap coin={coin} />
       </li>
       <li>{coin.market_cap_rank}</li>
-
       <li>
-        {coin.price_change_percentage_1h_in_currency
-          ? coin.price_change_percentage_1h_in_currency.toFixed(1) + "%"
-          : "-"}
+        <Hours coin={coin} />
       </li>
       <li>
-        {coin.price_change_percentage_24h_in_currency
-          ? coin.price_change_percentage_24h_in_currency.toFixed(1) + "%"
-          : "-"}
+        <Day coin={coin} />
       </li>
       <li className="bigscreen">
-        {coin.price_change_percentage_7d_in_currency
-          ? coin.price_change_percentage_7d_in_currency.toFixed(1) + "%"
-          : "-"}
+        <Week coin={coin} />
       </li>
       <li className="bigscreen">
-        {coin.price_change_percentage_30d_in_currency
-          ? coin.price_change_percentage_30d_in_currency.toFixed(1) + "%"
-          : "-"}
+        <Months coin={coin} />
       </li>
       <li className="bigscreen">
-        {coin.price_change_percentage_1y_in_currency
-          ? coin.price_change_percentage_1y_in_currency.toFixed(1) + "%"
-          : "-"}
+        <Year coin={coin} />
       </li>
     </ul>
   );
