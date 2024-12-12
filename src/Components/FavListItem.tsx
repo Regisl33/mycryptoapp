@@ -1,10 +1,5 @@
 import { coinDataType } from "../Types/AppTypes";
-import Day from "./Values/Day";
-import Hours from "./Values/Hours";
-import MarketCap from "./Values/MarketCap";
-import Months from "./Values/Months";
-import Week from "./Values/Week";
-import Year from "./Values/Year";
+import DisplayOfValue from "./DisplayOfValue";
 
 type propsType = {
   coin: coinDataType;
@@ -19,23 +14,38 @@ const FavListItem = ({ coin }: propsType) => {
         {coin.current_price ? coin.current_price.toLocaleString() + "$" : "-"}
       </li>
       <li className="bigscreen">
-        <MarketCap coin={coin} />
+        <DisplayOfValue valueType="$" value={coin.market_cap} />
       </li>
       <li>{coin.market_cap_rank}</li>
       <li>
-        <Hours coin={coin} />
+        <DisplayOfValue
+          valueType="%"
+          value={coin.price_change_percentage_1h_in_currency}
+        />
       </li>
       <li>
-        <Day coin={coin} />
+        <DisplayOfValue
+          valueType="%"
+          value={coin.price_change_percentage_24h_in_currency}
+        />
       </li>
       <li className="bigscreen">
-        <Week coin={coin} />
+        <DisplayOfValue
+          valueType="%"
+          value={coin.price_change_percentage_7d_in_currency}
+        />
       </li>
       <li className="bigscreen">
-        <Months coin={coin} />
+        <DisplayOfValue
+          valueType="%"
+          value={coin.price_change_percentage_30d_in_currency}
+        />
       </li>
       <li className="bigscreen">
-        <Year coin={coin} />
+        <DisplayOfValue
+          valueType="%"
+          value={coin.price_change_percentage_1y_in_currency}
+        />
       </li>
     </ul>
   );

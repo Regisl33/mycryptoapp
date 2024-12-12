@@ -8,6 +8,7 @@ import { useAppSelector } from "../Store/Store";
 import { globalChartDataType } from "../Types/AppTypes";
 import { TiDeleteOutline } from "react-icons/ti";
 import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
+import { colorPicker } from "../Utils/ColorUtilities";
 
 type propsType = {
   tempColor: string;
@@ -19,14 +20,6 @@ const TodayRecap = ({ tempColor, currentID }: propsType) => {
   const [displayChart, setDisplayChart] = useState(false);
   const coinData = useAppSelector((state) => state.coinData.data);
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
-
-  const colorPicker = (num: number): string => {
-    if (num >= 0) {
-      return "rgb(0,255,102)";
-    } else {
-      return "rgb(255,51,0)";
-    }
-  };
 
   const dataManager = useCallback(() => {
     let data = [...coinData];

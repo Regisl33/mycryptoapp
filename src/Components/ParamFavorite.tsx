@@ -5,9 +5,9 @@ import {
   useGetCurrentUserQuery,
 } from "../Features/LandingPage/UserSlice";
 import { coinDataType } from "../Types/AppTypes";
-import { favoriteMutationType } from "../Types/LandingTypes";
 import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
 import { useAppSelector } from "../Store/Store";
+import { getNewFav, updateFavDB } from "../Utils/FavoritesUtilities";
 
 type propsType = {
   currentID: number;
@@ -29,18 +29,22 @@ const ParamFavorite = ({
     (state) => state.coinData.data
   );
 
+  const getShadow = (): string => {
+    let classes = "";
+    tempColor.length > 0
+      ? tempColor[0] === "D"
+        ? (classes = "Dshadow")
+        : (classes = "Lshadow")
+      : userData?.color[0] === "D"
+      ? (classes = "Dshadow")
+      : (classes = "Lshadow");
+
+    return classes;
+  };
+
   const updateUserFav = (arr: string[]) => {
-    let newFav: favoriteMutationType = {
-      user: {
-        favorites: arr,
-      },
-      id: currentID,
-    };
-    try {
-      favoriteMutation(newFav).unwrap();
-    } catch (err) {
-      console.log(err);
-    }
+    let newFav = getNewFav(arr, currentID);
+    updateFavDB(newFav);
   };
 
   const handleDeleteFavorite = (favID: string) => {
@@ -73,19 +77,7 @@ const ParamFavorite = ({
 
   return (
     <div className="favorite-list-container">
-      <h2
-        className={
-          tempColor.length > 0
-            ? tempColor[0] === "D"
-              ? "title Dshadow"
-              : "title Lshadow"
-            : userData?.color[0] === "D"
-            ? "title Dshadow"
-            : "title Lshadow"
-        }
-      >
-        Manage Your Favorites
-      </h2>
+      <h2 className={getShadow()}>Manage Your Favorites</h2>
       <ul className="param-fav">
         {tempFavArray.length > 0 ? (
           tempFavArray.map((fav) => (
@@ -102,19 +94,7 @@ const ParamFavorite = ({
             </li>
           ))
         ) : (
-          <p
-            className={
-              tempColor.length > 0
-                ? tempColor[0] === "D"
-                  ? "Dshadow"
-                  : "Lshadow"
-                : userData?.color[0] === "D"
-                ? "Dshadow"
-                : "Lshadow"
-            }
-          >
-            You don't have any favorite coin
-          </p>
+          <p className={getShadow()}>You don't have any favorite coin</p>
         )}
       </ul>
     </div>

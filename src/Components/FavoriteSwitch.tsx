@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
-import { FaRegStar } from "react-icons/fa6";
+import { useEffect, useState, useCallback } from "react";
 import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
-import { coinDataType } from "../Types/AppTypes";
-import { TiDeleteOutline } from "react-icons/ti";
 import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
 import { useAppSelector } from "../Store/Store";
+import { coinDataType } from "../Types/AppTypes";
 import { getNewFav, updateFavDB } from "../Utils/FavoritesUtilities";
 
 type propsType = {
@@ -12,14 +10,17 @@ type propsType = {
   coin: coinDataType;
   tempFavArray: coinDataType[];
   setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
+  getShadow: () => string;
 };
 
-const StarFavorite = ({
-  coin,
+const FavoriteSwitch = ({
   currentID,
+  coin,
   tempFavArray,
   setTempFavArray,
+  getShadow,
 }: propsType) => {
+  const [isFavorite, setIsFavorite] = useState(false);
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
 
   const coinData: coinDataType[] = useAppSelector(
@@ -79,57 +80,55 @@ const StarFavorite = ({
     }
   };
 
+  const handleFavChange = () => {
+    setIsFavorite(!isFavorite);
+    handleFavorite();
+  };
+
+  const handleFavoriteDisplay = useCallback(() => {
+    let isFav = false;
+    if (tempFavArray.length > 0) {
+      tempFavArray.map((fav) => (fav.id === coin.id ? (isFav = true) : null));
+    } else if (userData?.favorites && userData.favorites.length > 0) {
+      userData.favorites.map((fav) =>
+        fav === coin.id ? (isFav = true) : null
+      );
+    }
+    setIsFavorite(isFav);
+  }, [userData, tempFavArray, coin]);
+
   useEffect(() => {
     if (isError) {
       console.log(error);
     }
-  }, [error, isError]);
+  }, [isError, error]);
 
-  const iconReturn = (): JSX.Element => {
-    let isMatch = false;
-    if (tempFavArray.length > 0) {
-      tempFavArray.map((fav) => (fav.id === coin.id ? (isMatch = true) : null));
-      if (isMatch) {
-        return (
-          <td>
-            <TiDeleteOutline onClick={() => handleFavorite()} />
-          </td>
-        );
-      } else {
-        return (
-          <td>
-            <FaRegStar onClick={() => handleFavorite()} />
-          </td>
-        );
-      }
-    } else {
-      if (userData?.favorites) {
-        userData.favorites.map((fav) =>
-          fav === coin.id ? (isMatch = true) : null
-        );
-        if (isMatch) {
-          return (
-            <td>
-              <TiDeleteOutline onClick={() => handleFavorite()} />
-            </td>
-          );
-        } else {
-          return (
-            <td>
-              <FaRegStar onClick={() => handleFavorite()} />
-            </td>
-          );
-        }
-      } else {
-        return (
-          <td>
-            <FaRegStar onClick={() => handleFavorite()} />
-          </td>
-        );
-      }
-    }
-  };
-  return iconReturn();
+  useEffect(() => {
+    handleFavoriteDisplay();
+  }, [handleFavoriteDisplay]);
+
+  return (
+    <div className="fav-container">
+      {isFavorite ? (
+        <label htmlFor="Fav-Input" className={getShadow()}>
+          Remove From Favorite
+        </label>
+      ) : (
+        <label htmlFor="Fav-Input" className={getShadow()}>
+          Add To Favorite
+        </label>
+      )}
+      <div className="checkbox-wrapper-50">
+        <input
+          type="checkbox"
+          className="plus-minus"
+          id="Fav-Input"
+          checked={isFavorite}
+          onClick={() => handleFavChange()}
+        />
+      </div>
+    </div>
+  );
 };
 
-export default StarFavorite;
+export default FavoriteSwitch;

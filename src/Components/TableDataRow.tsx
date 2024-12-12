@@ -2,16 +2,7 @@ import React from "react";
 import { coinDataType } from "../Types/AppTypes";
 import StarFavorite from "./StarFavorite";
 import { useNavigate } from "react-router";
-import MarketCap from "./Values/MarketCap";
-import Volume from "./Values/Volume";
-import Hours from "./Values/Hours";
-import Day from "./Values/Day";
-import Week from "./Values/Week";
-import Week2 from "./Values/Week2";
-import Months from "./Values/Months";
-import Months6 from "./Values/Months6";
-import Year from "./Values/Year";
-import Ath from "./Values/Ath";
+import DisplayOfValue from "./DisplayOfValue";
 
 type propsType = {
   currentID: number;
@@ -44,37 +35,58 @@ const TableDataRow = ({
         {coin.name}
       </td>
       <td>
-        <MarketCap coin={coin} />
+        <DisplayOfValue valueType="$" value={coin.market_cap} />
       </td>
       <td>
         {coin.current_price ? coin.current_price.toLocaleString() + "$" : "-"}
       </td>
       <td>
-        <Volume coin={coin} />
+        <DisplayOfValue valueType="$" value={coin.total_volume} />
       </td>
       <td>
-        <Hours coin={coin} />
+        <DisplayOfValue
+          valueType="%"
+          value={coin.price_change_percentage_1h_in_currency}
+        />
       </td>
       <td>
-        <Day coin={coin} />
+        <DisplayOfValue
+          valueType="%"
+          value={coin.price_change_percentage_24h_in_currency}
+        />
       </td>
       <td>
-        <Week coin={coin} />
+        <DisplayOfValue
+          valueType="%"
+          value={coin.price_change_percentage_7d_in_currency}
+        />
       </td>
       <td>
-        <Week2 coin={coin} />
+        <DisplayOfValue
+          valueType="%"
+          value={coin.price_change_percentage_14d_in_currency}
+        />
       </td>
       <td>
-        <Months coin={coin} />
+        <DisplayOfValue
+          valueType="%"
+          value={coin.price_change_percentage_30d_in_currency}
+        />
       </td>
       <td>
-        <Months6 coin={coin} />
+        <DisplayOfValue
+          valueType="%"
+          value={coin.price_change_percentage_200d_in_currency}
+        />
       </td>
       <td>
-        <Year coin={coin} />
+        <DisplayOfValue
+          valueType="%"
+          value={coin.price_change_percentage_1y_in_currency}
+        />
       </td>
       <td>
-        <Ath coin={coin} />
+        <DisplayOfValue valueType="Date" value={coin.ath_change_percentage} />
       </td>
     </tr>
   );
