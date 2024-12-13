@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import LoggedInLayout from "../LoggedInLayout";
 import Home from "../Home";
 import Parameters from "../Parameters";
@@ -23,10 +23,10 @@ const LoggedInRouter = ({
   setTempColor,
   setCurrentID,
   setIsLoggedIn,
-}: propsType) => {
+}: propsType): JSX.Element => {
   const [tempFavArray, setTempFavArray] = useState<coinDataType[]>([]);
   const Router = (
-    <>
+    <Routes>
       <Route
         path="/"
         element={
@@ -97,7 +97,7 @@ const LoggedInRouter = ({
       </Route>
 
       <Route path="*" element={<ErrorNotFoundPage />} />
-    </>
+    </Routes>
   );
   return Router;
 };

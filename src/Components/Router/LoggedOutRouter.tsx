@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import LandingPage from "../LoginPages/LandingPage";
 import LandingMain from "../LoginPages/LandingMain";
 import LoginPage from "../LoginPages/LoginPage";
@@ -21,7 +21,7 @@ const LoggedOutRouter = ({
   currentID,
   setCurrentID,
   setIsLoggedIn,
-}: propsType) => {
+}: propsType): JSX.Element => {
   const [user, setUser] = useState<userType>({
     username: "",
     email: "",
@@ -29,7 +29,7 @@ const LoggedOutRouter = ({
   });
 
   const Router = (
-    <>
+    <Routes>
       <Route path="/" element={<LandingPage />}>
         <Route path="/" index element={<LandingMain />} />
         <Route
@@ -63,7 +63,7 @@ const LoggedOutRouter = ({
         />
       </Route>
       <Route path="*" element={<ErrorNotFoundPage />} />
-    </>
+    </Routes>
   );
   return Router;
 };

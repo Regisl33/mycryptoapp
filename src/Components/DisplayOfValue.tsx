@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { colorPicker } from "../Utils/ColorUtilities";
 
 type propsType = {
@@ -27,7 +26,7 @@ const DisplayOfValue = ({ value, valueType }: propsType) => {
     );
   };
 
-  const returnSwitch = (): ReactNode => {
+  const returnSwitch = (): JSX.Element => {
     switch (valueType) {
       case "$":
         return dollarValue();

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { fetchCoinData } from "./Features/CoinGeeckoData/CoinDataSlice";
 import { useAppDispatch } from "./Store/Store";
 import LoggedInRouter from "./Components/Router/LoggedInRouter";
@@ -27,23 +27,21 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Routes>
-        {isLoggedIn ? (
-          <LoggedInRouter
-            currentID={currentID}
-            tempColor={tempColor}
-            setTempColor={setTempColor}
-            setCurrentID={setCurrentID}
-            setIsLoggedIn={setIsLoggedIn}
-          />
-        ) : (
-          <LoggedOutRouter
-            currentID={currentID}
-            setCurrentID={setCurrentID}
-            setIsLoggedIn={setIsLoggedIn}
-          />
-        )}
-      </Routes>
+      {isLoggedIn ? (
+        <LoggedInRouter
+          currentID={currentID}
+          tempColor={tempColor}
+          setTempColor={setTempColor}
+          setCurrentID={setCurrentID}
+          setIsLoggedIn={setIsLoggedIn}
+        />
+      ) : (
+        <LoggedOutRouter
+          currentID={currentID}
+          setCurrentID={setCurrentID}
+          setIsLoggedIn={setIsLoggedIn}
+        />
+      )}
     </BrowserRouter>
   );
 };

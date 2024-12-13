@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { coinDataType } from "../Types/AppTypes";
 import { useAppSelector } from "../Store/Store";
 import TableDataRow from "./TableDataRow";
@@ -31,7 +31,7 @@ const AllCoinsDataTable = ({
   );
   const [data, setData] = useState<coinDataType[]>([]);
 
-  const handleFavSorting = () => {
+  const handleFavSorting = useCallback(() => {
     if (userData && tempFavArray.length > 0) {
       let favArray = [...tempFavArray];
       let tempArray = [...coinData];
@@ -54,11 +54,11 @@ const AllCoinsDataTable = ({
     } else {
       setData(coinData);
     }
-  };
+  }, [coinData, tempFavArray, userData]);
 
   useEffect(() => {
     handleFavSorting();
-  }, [coinData, tempFavArray, userData]);
+  }, [handleFavSorting]);
 
   useEffect(() => {
     if (isError) {

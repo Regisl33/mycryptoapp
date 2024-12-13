@@ -132,7 +132,7 @@ const SmallTableDataRow = ({
       />
       <td>{coin.symbol.toUpperCase()}</td>
       <td>
-        <img src={coin.image} alt={`${coin.name} image`} />
+        <img src={coin.image} alt={coin.name} />
       </td>
       <td className="pointer" onClick={() => navigate(`/coin/:${coin.id}`)}>
         {coin.name}

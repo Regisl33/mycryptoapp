@@ -5,7 +5,9 @@ import { coinDataType } from "../Types/AppTypes";
 import { TiDeleteOutline } from "react-icons/ti";
 import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
 import { useAppSelector } from "../Store/Store";
-import { getNewFav, updateFavDB } from "../Utils/FavoritesUtilities";
+import { getNewFav } from "../Utils/FavoritesUtilities";
+import { useFavoriteMutation } from "../Features/LandingPage/UserSlice";
+import { favoriteMutationType } from "../Types/LandingTypes";
 
 type propsType = {
   currentID: number;
@@ -21,10 +23,18 @@ const StarFavorite = ({
   setTempFavArray,
 }: propsType) => {
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
-
+  const [favoriteMutation] = useFavoriteMutation();
   const coinData: coinDataType[] = useAppSelector(
     (state) => state.coinData.data
   );
+
+  const updateFavDB = (value: favoriteMutationType) => {
+    try {
+      favoriteMutation(value).unwrap();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleAddDelete = (unique: boolean, favArray: string[]) => {
     if (userData) {
