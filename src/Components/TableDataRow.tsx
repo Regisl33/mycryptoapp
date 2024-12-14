@@ -1,26 +1,24 @@
-import React from "react";
-import { coinDataType } from "../Types/AppTypes";
-import StarFavorite from "./StarFavorite";
+//Import Dependencies
 import { useNavigate } from "react-router";
+//Import Components for the Favorite Star Button and The Display Value Components
+import StarFavorite from "./StarFavorite";
 import DisplayOfValue from "./DisplayOfValue";
-
-type propsType = {
-  currentID: number;
-  coin: coinDataType;
-  tempFavArray: coinDataType[];
-  setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
-};
+//Import Types
+import { IDCoinTempFavArrPropsType } from "../Types/AppTypes";
 
 const TableDataRow = ({
   coin,
   currentID,
   tempFavArray,
   setTempFavArray,
-}: propsType) => {
+}: IDCoinTempFavArrPropsType) => {
+  //Define Navigate
   const navigate = useNavigate();
-  return (
+  //Full Row of the Table, Every Value from the table is passed through DisplayOfValue Components
+  const fullRowReturn = (
     <tr>
       <td>{coin.market_cap_rank}</td>
+      {/* Star Favorite Component that Allows you to Manage your Favorite From the Table */}
       <StarFavorite
         currentID={currentID}
         coin={coin}
@@ -31,6 +29,7 @@ const TableDataRow = ({
       <td>
         <img src={coin.image} alt={coin.name} />
       </td>
+      {/* This Allows you to Click on the Name and get to the Individual Coin Page with Navigate */}
       <td className="pointer" onClick={() => navigate(`/coin/:${coin.id}`)}>
         {coin.name}
       </td>
@@ -90,6 +89,8 @@ const TableDataRow = ({
       </td>
     </tr>
   );
+
+  return fullRowReturn;
 };
 
 export default TableDataRow;

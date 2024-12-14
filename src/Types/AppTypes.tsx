@@ -66,3 +66,10 @@ export type homeFav = {
 export type coinProps = {
   coin: coinDataType;
 };
+//Props Type for UserID, the Current Coin, and the tempFavArray State
+export type IDCoinTempFavArrPropsType = {
+  currentID: number;
+  coin: coinDataType;
+  tempFavArray: coinDataType[];
+  setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
+};
