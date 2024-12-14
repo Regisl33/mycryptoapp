@@ -18,23 +18,24 @@ const ThemeSelector = ({
 }: propsType) => {
   //Get Current User Data
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
-  //this function handle every color switch for the temp color and the database update
+  //this function handle a color switch for the temp color and the database update
+  const colorFunc = (color: string) => {
+    setTempColor(color);
+    handleColorSwitch(color);
+  };
+  //this function handle the light and dark theme swtich using colorFunc
   const handleChange = () => {
     if (tempColor.length > 0) {
       if (tempColor[0] === "D") {
-        setTempColor("Lcolor1");
-        handleColorSwitch("Lcolor1");
+        colorFunc("Lcolor1");
       } else {
-        setTempColor("Dcolor1");
-        handleColorSwitch("Dcolor1");
+        colorFunc("Dcolor1");
       }
     } else {
       if (userData && userData.color[0] === "D") {
-        setTempColor("Lcolor1");
-        handleColorSwitch("Lcolor1");
+        colorFunc("Lcolor1");
       } else {
-        setTempColor("Dcolor1");
-        handleColorSwitch("Dcolor1");
+        colorFunc("Dcolor1");
       }
     }
   };
@@ -61,7 +62,7 @@ const ThemeSelector = ({
       Toggle Dark Theme
     </label>
   );
-  //checkbox to switch theme
+  //checkbox to switch theme using the handleChange function
   const themeCheckbox = (
     <div className="checkbox-wrapper-31">
       <input
