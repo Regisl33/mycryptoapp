@@ -5,7 +5,7 @@ import TableDataRow from "./TableDataRow";
 import { tableColums } from "./TableHeader";
 import TableHeader from "./TableHeader";
 import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
-import { sortSwitch } from "./SortSwitch";
+import { sortSwitch } from "../Utils/SortSwitch";
 import SmallTable from "./SmallTable";
 import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
 

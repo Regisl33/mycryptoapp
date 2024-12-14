@@ -1,5 +1,6 @@
+//Import Dependencies
 import { coinDataType } from "../Types/AppTypes";
-
+//Create and Export a Function that will Sort the CoinData Array Using the Selector Sort that is passed to it
 export const sortSwitch = (
   arr: coinDataType[],
   selectedSort: string

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import TableHeader from "./TableHeader";
 import { coinDataType } from "../Types/AppTypes";
-import { sortSwitch } from "./SortSwitch";
+import { sortSwitch } from "../Utils/SortSwitch";
 import SmallTableDataRow from "./SmallTableDataRow";
 import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { tableColums } from "./TableHeader";
 
 type propsType = {
   data: coinDataType[];
@@ -26,27 +27,9 @@ const SmallTable = ({
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
   const [displayData, setDisplayData] = useState("Market Cap");
   const [selectedSort, setSelectedSort] = useState("Rank");
-  const tableHeaderData: string[] = [
-    "Rank",
-    "Favorite",
-    "Symbol",
-    "Logo",
-    "Name",
-  ];
+  const tableHeaderData: string[] = tableColums.slice(0, 5);
 
-  const selectOptions: string[] = [
-    "Market Cap",
-    "Price",
-    "Volume",
-    "1h",
-    "1j",
-    "7j",
-    "14j",
-    "30j",
-    "200j",
-    "1y",
-    "Ath",
-  ];
+  const selectOptions: string[] = tableColums.slice(6, 16);
 
   const handleDataSwitch = (value: string) => {
     setDisplayData(value);
