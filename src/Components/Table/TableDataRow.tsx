@@ -2,9 +2,9 @@
 import { useNavigate } from "react-router";
 //Import Components for the Favorite Star Button and The Display Value Components
 import StarFavorite from "./StarFavorite";
-import { optionTD } from "../Utils/TableUtilities";
+import { optionTD } from "../../Utils/TableUtilities";
 //Import Types
-import { IDCoinTempFavArrPropsType } from "../Types/AppTypes";
+import { IDCoinTempFavArrPropsType } from "../../Types/AppTypes";
 
 const TableDataRow = ({
   coin,

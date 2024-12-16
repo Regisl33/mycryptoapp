@@ -1,7 +1,7 @@
 //Import Dependencies
 import { useEffect } from "react";
 //Import Custom Hook
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
 //Create and Export the Array with all Table Header for the Colums
 export const tableColums = [
   "Rank",

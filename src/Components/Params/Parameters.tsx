@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
-import Header from "./Header";
-import Footer from "./Footer";
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
+import Header from "../Header";
+import Footer from "../Footer";
 import ThemeSelector from "./ThemeSelector";
 import ParamFavorite from "./ParamFavorite";
-import { coinDataType } from "../Types/AppTypes";
-import { useColorMutation } from "../Features/LandingPage/UserSlice";
-import { colorMutation } from "../Types/LandingTypes";
+import { coinDataType } from "../../Types/AppTypes";
+import { useColorMutation } from "../../Features/LandingPage/UserSlice";
+import { colorMutation } from "../../Types/LandingTypes";
 
 type propsType = {
   tempColor: string;

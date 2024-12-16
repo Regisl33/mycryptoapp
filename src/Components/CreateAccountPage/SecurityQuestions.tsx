@@ -73,6 +73,7 @@ const SecurityQuestions = ({ user }: SecQuestionPropsType) => {
         answer3,
       },
       color: "Lcolor1",
+      range: 24,
       favorites: [],
     };
     await postData(fullUser);

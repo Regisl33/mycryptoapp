@@ -1,7 +1,7 @@
 //Import Dependencies
 import { useEffect } from "react";
 //Import Custom Hook
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
 //Props type for userId, TempColor, Changing TempColor and handeling the update of the color in the database
 type propsType = {
   currentID: number;

@@ -2,9 +2,9 @@
 import { useNavigate } from "react-router";
 //Import Components for the Favorite Star Button and The Display Value Components
 import StarFavorite from "./StarFavorite";
-import { optionTD } from "../Utils/TableUtilities";
+import { optionTD } from "../../Utils/TableUtilities";
 //Import Types
-import { coinDataType } from "../Types/AppTypes";
+import { coinDataType } from "../../Types/AppTypes";
 //Props Type for UserID, the Current Coin, and the tempFavArray State and the Current Data to Display in the Select
 type propsType = {
   currentID: number;

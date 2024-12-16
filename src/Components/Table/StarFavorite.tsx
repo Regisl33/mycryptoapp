@@ -4,17 +4,17 @@ import { useEffect } from "react";
 import {
   useGetCurrentUserQuery,
   useFavoriteMutation,
-} from "../Features/LandingPage/UserSlice";
-import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
-import { getNewFav } from "../Utils/FavoritesUtilities";
+} from "../../Features/LandingPage/UserSlice";
+import { getCurrentUserFavorite } from "../../Features/CoinGeeckoData/CoinDataSlice";
+import { getNewFav } from "../../Utils/FavoritesUtilities";
 //Import Custom Types useSelector
-import { useAppSelector } from "../Store/Store";
+import { useAppSelector } from "../../Store/Store";
 //Import Icons
 import { FaRegStar } from "react-icons/fa6";
 import { TiDeleteOutline } from "react-icons/ti";
-//Imports Custom Type
-import { IDCoinTempFavArrPropsType, coinDataType } from "../Types/AppTypes";
-import { favoriteMutationType } from "../Types/LandingTypes";
+//Import Custom Types
+import { IDCoinTempFavArrPropsType, coinDataType } from "../../Types/AppTypes";
+import { favoriteMutationType } from "../../Types/LandingTypes";
 
 const StarFavorite = ({
   coin,

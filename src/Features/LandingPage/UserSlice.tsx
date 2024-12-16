@@ -8,6 +8,7 @@ import {
   passwordResetType,
   favoriteMutationType,
   colorMutation,
+  rangeMutation,
 } from "../../Types/LandingTypes";
 
 //Define our User Adapter to Normalize our User Data, it takes the user Data from the Api and sorts it by ID
@@ -84,6 +85,16 @@ export const userSliceApi = UserApi.injectEndpoints({
       //It Invalidates only the User that was patched
       invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
     }),
+    //This Patches the Information of a User in the Api Following a Modification of the User's Default Range.
+    range: builder.mutation({
+      query: ({ user, id }: rangeMutation) => ({
+        url: `users/${id}`,
+        method: "PATCH",
+        body: user,
+      }),
+      //It Invalidates only the User that was patched
+      invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
+    }),
   }),
 });
 //Export All Custom RTK Query Hooks from our Api
@@ -94,4 +105,5 @@ export const {
   usePasswordResetMutation,
   useFavoriteMutation,
   useColorMutation,
+  useRangeMutation,
 } = userSliceApi;

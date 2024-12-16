@@ -1,33 +1,38 @@
-import React, { useEffect, useState } from "react";
+//Import Dependencies
+import { useEffect, useState } from "react";
+//Import Custom Hook and Function
+import {
+  useGetCurrentUserQuery,
+  useFavoriteMutation,
+} from "../../Features/LandingPage/UserSlice";
+import { getCurrentUserFavorite } from "../../Features/CoinGeeckoData/CoinDataSlice";
+import { getNewFav } from "../../Utils/FavoritesUtilities";
+//Import Custom Types useSelector
+import { useAppSelector } from "../../Store/Store";
+//Import Icon
 import { TiDeleteOutline } from "react-icons/ti";
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
-import { coinDataType } from "../Types/AppTypes";
-import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
-import { useAppSelector } from "../Store/Store";
-import { getNewFav } from "../Utils/FavoritesUtilities";
-import { useFavoriteMutation } from "../Features/LandingPage/UserSlice";
-import { favoriteMutationType } from "../Types/LandingTypes";
-
-type propsType = {
-  currentID: number;
-  tempColor: string;
-  tempFavArray: coinDataType[];
-  setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
-};
+//Import Custom Types
+import { coinDataType } from "../../Types/AppTypes";
+import { favoriteMutationType } from "../../Types/LandingTypes";
+import { IDColorTempFavArrPropsType } from "../../Types/AppTypes";
 
 const ParamFavorite = ({
   currentID,
   tempColor,
   tempFavArray,
   setTempFavArray,
-}: propsType) => {
+}: IDColorTempFavArrPropsType) => {
+  //Favorite Array State
   const [favoriteArray, setFavoriteArray] = useState<coinDataType[]>([]);
-  const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
+  //Define Favorite Mutation
   const [favoriteMutation] = useFavoriteMutation();
+  //Get Current User Data
+  const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
+  //Get Coin Data
   const coinData: coinDataType[] = useAppSelector(
     (state) => state.coinData.data
   );
-
+  //This Function Handle the Update of Favorite in the User API
   const updateFavDB = (value: favoriteMutationType) => {
     try {
       favoriteMutation(value).unwrap();
@@ -35,7 +40,7 @@ const ParamFavorite = ({
       console.log(err);
     }
   };
-
+  //This Function Displays the According Shadow
   const getShadow = (): string => {
     let classes = "";
     tempColor.length > 0
@@ -48,41 +53,44 @@ const ParamFavorite = ({
 
     return classes;
   };
-
+  //This Function Creates the Data and Post it in the User API using UpdateFavDB  and getNewFav Function
   const updateUserFav = (arr: string[]) => {
     let newFav = getNewFav(arr, currentID);
     updateFavDB(newFav);
   };
-
+  //This Function Handle the Whole Fav Delete Process, (tempFavArray and DB)
+  const handleUpdateFav = (arr1: string[], arr2: coinDataType[]) => {
+    updateUserFav(arr1);
+    setTempFavArray(arr2);
+  };
+  //This Function Handle the Deletion of a Favorite Using handleUpdateFav
   const handleDeleteFavorite = (favID: string) => {
     if (tempFavArray.length > 0) {
       let favArray = tempFavArray.filter((fav) => fav.id !== favID);
-      setTempFavArray(favArray);
       let newArray: string[] = [];
       favArray.map((coin) => newArray.push(coin.id));
-      updateUserFav(newArray);
+      handleUpdateFav(newArray, favArray);
     } else if (userData?.favorites && userData?.favorites.length > 0) {
       let favArray = userData.favorites.filter((fav) => fav !== favID);
       let newArray = getCurrentUserFavorite(favArray, coinData);
-      setTempFavArray(newArray);
-      updateUserFav(favArray);
+      handleUpdateFav(favArray, newArray);
     }
   };
-
+  //This useEffect makes sure their is no error with the userApi
   useEffect(() => {
     if (isError) {
       console.log(error);
     }
   }, [isError, error]);
-
+  //This useEffect Fetch the Current User Favorites
   useEffect(() => {
     if (userData?.favorites && userData.favorites.length > 0) {
       let newArray = getCurrentUserFavorite(userData.favorites, coinData);
       setFavoriteArray(newArray);
     }
   }, [userData, coinData]);
-
-  return (
+  //HTML Structure of the Manage Favorite Section in the Parameters
+  const manageFavDisplay = (
     <div className="favorite-list-container">
       <h2 className={getShadow()}>Manage Your Favorites</h2>
       <ul className="param-fav">
@@ -106,6 +114,8 @@ const ParamFavorite = ({
       </ul>
     </div>
   );
+
+  return manageFavDisplay;
 };
 
 export default ParamFavorite;

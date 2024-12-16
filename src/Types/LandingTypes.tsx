@@ -25,6 +25,7 @@ export type fullUserType = {
   password: string;
   questions: securityQuestionsType;
   color: string;
+  range: number;
   favorites: string[];
   passwordHistory?: passwordChangeType;
 };
@@ -67,6 +68,12 @@ export type favoriteMutationType = {
 export type colorMutation = {
   user: {
     color: string;
+  };
+  id: number;
+};
+export type rangeMutation = {
+  user: {
+    range: number;
   };
   id: number;
 };
