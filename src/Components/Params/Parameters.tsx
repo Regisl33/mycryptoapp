@@ -1,16 +1,22 @@
+//Import Dependencies
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
-import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
-import Header from "../Header";
-import Footer from "../Footer";
+//Import Custom Hook and Function
+import {
+  useGetCurrentUserQuery,
+  useColorMutation,
+} from "../../Features/LandingPage/UserSlice";
+//Import Components for the Theme Selector, the Range Selector and the Manage Favorite Screen
+import RangeSelector from "./RangeSelector";
 import ThemeSelector from "./ThemeSelector";
+import DisconnectBtn from "./DisconnectBtn";
 import ParamFavorite from "./ParamFavorite";
+//Import Custom Types
 import { coinDataType } from "../../Types/AppTypes";
-import { useColorMutation } from "../../Features/LandingPage/UserSlice";
 import { colorMutation } from "../../Types/LandingTypes";
-
+//Props Type for the Temp Color, Temp Fav Array and currentID State and the Setters for needReload and isLoggedIn
 type propsType = {
   tempColor: string;
+  setNeedReload: React.Dispatch<React.SetStateAction<boolean>>;
   setTempColor: React.Dispatch<React.SetStateAction<string>>;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentID: React.Dispatch<React.SetStateAction<number | undefined>>;
@@ -27,15 +33,17 @@ const Parameters = ({
   setTempColor,
   tempFavArray,
   setTempFavArray,
+  setNeedReload,
 }: propsType) => {
+  //Get Current User Data
   const {
     data: userData,
     isError,
     error,
   } = useGetCurrentUserQuery(currentID as number);
-
+  //Define Color Mutation
   const [colorMutation] = useColorMutation();
-
+  //Create the HandleColorSwitch Witch is Used in Background-Selector and Theme-Selector Components, it handle all temp and DB changes for the color
   const handleColorSwitch = async (color: string) => {
     if (currentID) {
       let newColor: colorMutation = {
@@ -53,71 +61,42 @@ const Parameters = ({
       }
     }
   };
-
-  const navigate = useNavigate();
-
-  const handleDisconnect = () => {
-    let disconnect: boolean = window.confirm(
-      "Do you really want to disconnect?"
-    );
-    if (disconnect) {
-      if (localStorage.selectedID) {
-        localStorage.removeItem("selectedID");
-      }
-      sessionStorage.clear();
-      setCurrentID(undefined);
-      navigate("/login");
-      setIsLoggedIn(false);
-    }
-  };
-
+  //This useEffect makes sure their is no error with the userApi
   useEffect(() => {
     if (isError) {
       console.log(error);
     }
   }, [isError, error]);
-
-  return (
-    <main
-      className={
-        tempColor.length > 0 && tempColor !== userData?.color
-          ? tempColor
-          : userData?.color
-      }
-    >
-      <Header currentID={currentID as number} tempColor={tempColor} />
-      <div className="main-container">
-        <ThemeSelector
-          currentID={currentID as number}
-          tempColor={tempColor}
-          setTempColor={setTempColor}
-          handleColorSwitch={handleColorSwitch}
-        />
-        <ParamFavorite
-          tempColor={tempColor}
-          currentID={currentID as number}
-          tempFavArray={tempFavArray}
-          setTempFavArray={setTempFavArray}
-        />
-
-        <button
-          className={
-            tempColor.length > 0
-              ? tempColor[0] === "D"
-                ? `${tempColor}-btn Dbtn logout-btn`
-                : `${tempColor}-btn Lbtn logout-btn`
-              : userData?.color[0] === "D"
-              ? `${userData?.color}-btn Dbtn logout-btn`
-              : `${userData?.color}-btn Lbtn logout-btn`
-          }
-          onClick={() => handleDisconnect()}
-        >
-          disconnect
-        </button>
-      </div>
-      <Footer />
-    </main>
+  //Full Parameters Page Structure
+  const ParameterPage = (
+    <div className="main-container">
+      <RangeSelector
+        currentID={currentID as number}
+        tempColor={tempColor}
+        setNeedReload={setNeedReload}
+      />
+      <ThemeSelector
+        currentID={currentID as number}
+        tempColor={tempColor}
+        setTempColor={setTempColor}
+        handleColorSwitch={handleColorSwitch}
+      />
+      <ParamFavorite
+        tempColor={tempColor}
+        currentID={currentID as number}
+        tempFavArray={tempFavArray}
+        setTempFavArray={setTempFavArray}
+      />
+      <DisconnectBtn
+        currentID={currentID}
+        tempColor={tempColor}
+        setCurrentID={setCurrentID}
+        setIsLoggedIn={setIsLoggedIn}
+      />
+    </div>
   );
+
+  return ParameterPage;
 };
 
 export default Parameters;

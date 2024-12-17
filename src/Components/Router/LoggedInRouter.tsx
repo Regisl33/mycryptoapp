@@ -25,6 +25,7 @@ const LoggedInRouter = ({
   setIsLoggedIn,
 }: propsType): JSX.Element => {
   const [tempFavArray, setTempFavArray] = useState<coinDataType[]>([]);
+  const [needReload, setNeedReload] = useState(false);
   const Router = (
     <Routes>
       <Route
@@ -51,6 +52,7 @@ const LoggedInRouter = ({
           element={
             <Parameters
               tempColor={tempColor}
+              setNeedReload={setNeedReload}
               setTempColor={setTempColor}
               setIsLoggedIn={setIsLoggedIn}
               setCurrentID={setCurrentID}

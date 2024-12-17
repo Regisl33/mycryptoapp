@@ -1,7 +1,11 @@
+//Import Dependencies
 import { useEffect } from "react";
-import { colorType } from "../Types/AppTypes";
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
-
+//Import Custom Hook
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
+//Import Custom Type
+import { colorType } from "../../Types/AppTypes";
+import BackgroundOptions from "./BackgroundOptions";
+//Props Type for User ID, Temp Color and the handleColorSwitch Function to Change the Current Background Theme
 type propsType = {
   currentID: number;
   tempColor: string;
@@ -13,7 +17,9 @@ const BackgroundSelector = ({
   tempColor,
   handleColorSwitch,
 }: propsType) => {
+  //Get Current User Data
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
+  //Define Light Colors
   const lightColors: colorType[] = [
     { class: "Lcolor1", color: "#0066ff" },
     { class: "Lcolor2", color: "#00ffff" },
@@ -23,7 +29,7 @@ const BackgroundSelector = ({
     { class: "Lcolor6", color: "#ccff00" },
     { class: "Lcolor7", color: "#ff9900" },
   ];
-
+  //Define Dark Colors
   const darkColors: colorType[] = [
     { class: "Dcolor1", color: "#000000" },
     { class: "Dcolor2", color: "#333333" },
@@ -33,61 +39,52 @@ const BackgroundSelector = ({
     { class: "Dcolor6", color: "#ff0000" },
     { class: "Dcolor7", color: "#cc3300" },
   ];
-
-  const displayColors = (arr: colorType[]) => {
-    return arr.map((color: colorType) => {
-      return (
-        <div
-          key={color.class}
-          className={
-            tempColor.length > 0 && tempColor !== userData?.color
-              ? tempColor === color.class
-                ? tempColor[0] === "D"
-                  ? `active Dbox ${color.class}`
-                  : `active Lbox ${color.class}`
-                : tempColor[0] === "D"
-                ? `Dbox ${color.class}`
-                : `Lbox ${color.class}`
-              : userData?.color === color.class
-              ? userData.color[0] === "D"
-                ? `active Dbox ${color.class}`
-                : `active Lbox ${color.class}`
-              : userData && userData.color[0] === "D"
-              ? `Dbox ${color.class}`
-              : `Lbox ${color.class}`
-          }
-          id={color.class}
-          onClick={() => handleColorSwitch(color.class)}
-        >
-          {tempColor.length > 0 && tempColor !== userData?.color
-            ? tempColor === color.class
-              ? "Selected"
-              : color.color
-            : userData?.color === color.class
-            ? "Selected"
-            : color.color}
-        </div>
-      );
-    });
-  };
-
+  //This useEffect makes sure their is no error with the userApi
   useEffect(() => {
     if (isError) {
       console.log(error);
     }
   }, [isError, error]);
-
-  return (
+  //Map the Dark Colors
+  const mappedDarkTheme = (
+    <>
+      {darkColors.map((color) => (
+        <BackgroundOptions
+          color={color}
+          currentID={currentID}
+          tempColor={tempColor}
+          handleColorSwitch={handleColorSwitch}
+        />
+      ))}
+    </>
+  );
+  //Map the Light Colors
+  const mappedLightTheme = (
+    <>
+      {lightColors.map((color) => (
+        <BackgroundOptions
+          color={color}
+          currentID={currentID}
+          tempColor={tempColor}
+          handleColorSwitch={handleColorSwitch}
+        />
+      ))}
+    </>
+  );
+  //Return the Colors Based on the Theme
+  const BackgroundSelectorDisplay = (
     <div className="background-selector">
       {tempColor.length > 0
         ? tempColor[0] === "D"
-          ? displayColors(darkColors)
-          : displayColors(lightColors)
+          ? mappedDarkTheme
+          : mappedLightTheme
         : userData && userData.color[0] === "D"
-        ? displayColors(darkColors)
-        : displayColors(lightColors)}
+        ? mappedDarkTheme
+        : mappedLightTheme}
     </div>
   );
+
+  return BackgroundSelectorDisplay;
 };
 
 export default BackgroundSelector;

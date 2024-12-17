@@ -80,3 +80,8 @@ export type IDColorTempFavArrPropsType = {
   tempFavArray: coinDataType[];
   setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
 };
+//User ID and Temp Color Props Type
+export type IDColorPropsType = {
+  currentID: number;
+  tempColor: string;
+};

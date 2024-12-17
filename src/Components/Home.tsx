@@ -1,7 +1,9 @@
+//Import Favorite and Today Graph Components
 import Favorites from "./Favorites";
 import TodayRecap from "./TodayRecap";
+//Import Custom Type
 import { coinDataType } from "../Types/AppTypes";
-
+//Props Type for UserID, Color and Favorite
 type propsType = {
   currentID: number;
   tempColor: string;
@@ -9,6 +11,7 @@ type propsType = {
 };
 
 const Home = ({ currentID, tempColor, tempFavArray }: propsType) => {
+  //Home Page Structure
   const homeContainer = (
     <div className="main-container">
       <Favorites
