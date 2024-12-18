@@ -2,12 +2,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { Tooltip, Treemap, TooltipProps } from "recharts";
 //Import Custom Hook and Function
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
-import { colorPicker } from "../Utils/ColorUtilities";
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
+import { colorPicker } from "../../Utils/ColorUtilities";
 //Import Custom Types useSelector
-import { useAppSelector } from "../Store/Store";
+import { useAppSelector } from "../../Store/Store";
 //Import Custom Types
-import { globalChartDataType } from "../Types/AppTypes";
+import { globalChartDataType } from "../../Types/AppTypes";
 import {
   ValueType,
   NameType,

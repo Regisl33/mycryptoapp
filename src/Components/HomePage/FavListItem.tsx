@@ -1,5 +1,5 @@
-import { coinDataType } from "../Types/AppTypes";
-import DisplayOfValue from "./DisplayOfValue";
+import { coinDataType } from "../../Types/AppTypes";
+import DisplayOfValue from "../DisplayOfValue";
 
 type propsType = {
   coin: coinDataType;

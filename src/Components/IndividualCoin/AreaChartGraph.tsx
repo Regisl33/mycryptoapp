@@ -3,7 +3,7 @@ import {
   ValueType,
   NameType,
 } from "recharts/types/component/DefaultTooltipContent";
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
 import {
   AreaChart,
   XAxis,
@@ -13,7 +13,7 @@ import {
   Area,
   TooltipProps,
 } from "recharts";
-import { chartDataType } from "../Types/AppTypes";
+import { chartDataType } from "../../Types/AppTypes";
 
 type propsType = {
   currentID: number;

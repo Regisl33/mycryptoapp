@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import LoggedInLayout from "../LoggedInLayout";
-import Home from "../Home";
+import LoggedInLayout from "../Layout/LoggedInLayout";
+import Home from "../HomePage/Home";
 import Parameters from "../Params/Parameters";
 import AllCoinsDataTable from "../Table/AllCoinsDataTable";
-import SearchPage from "../SearchPage";
-import IndividualCoinData from "../IndividualCoinData";
+import SearchPage from "../SearchPage/SearchPage";
+import IndividualCoinData from "../IndividualCoin/IndividualCoinData";
 import ErrorNotFoundPage from "../LoginPages/ErrorNotFoundPage";
 import { coinDataType } from "../../Types/AppTypes";
 

@@ -2,7 +2,7 @@
 import Favorites from "./Favorites";
 import TodayRecap from "./TodayRecap";
 //Import Custom Type
-import { coinDataType } from "../Types/AppTypes";
+import { coinDataType } from "../../Types/AppTypes";
 //Props Type for UserID, Color and Favorite
 type propsType = {
   currentID: number;

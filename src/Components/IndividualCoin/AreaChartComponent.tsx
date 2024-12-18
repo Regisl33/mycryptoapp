@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { chartDataType, chartHeaderDataType } from "../Types/AppTypes";
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
+import { chartDataType, chartHeaderDataType } from "../../Types/AppTypes";
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
 import AreaChartGraph from "./AreaChartGraph";
 
 type propsType = {

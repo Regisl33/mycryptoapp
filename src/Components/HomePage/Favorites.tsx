@@ -1,9 +1,9 @@
 import FavListItem from "./FavListItem";
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
 import { useEffect, useState } from "react";
-import { coinDataType, homeFav } from "../Types/AppTypes";
-import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
-import { useAppSelector } from "../Store/Store";
+import { coinDataType, homeFav } from "../../Types/AppTypes";
+import { getCurrentUserFavorite } from "../../Features/CoinGeeckoData/CoinDataSlice";
+import { useAppSelector } from "../../Store/Store";
 
 type propsType = {
   currentID: number;

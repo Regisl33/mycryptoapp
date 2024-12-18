@@ -1,37 +1,36 @@
-import React, { useEffect } from "react";
-import { useAppSelector } from "../Store/Store";
-import { coinDataType } from "../Types/AppTypes";
+//Import Dependencies
+import { useEffect } from "react";
 import { useParams } from "react-router";
+//Import Custom Hooks and Functions
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
+import { colorPicker } from "../../Utils/ColorUtilities";
+//Import Custom Types useSelector
+import { useAppSelector } from "../../Store/Store";
+//Import Graph, DisplayValue and Favorite Switch Components
 import AreaChartComponent from "./AreaChartComponent";
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
-import DisplayOfValue from "./DisplayOfValue";
-import { colorPicker } from "../Utils/ColorUtilities";
-import FavoriteSwitch from "./FavoriteSwitch";
-
-type propsType = {
-  currentID: number;
-  tempColor: string;
-  tempFavArray: coinDataType[];
-  setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
-};
+import DisplayOfValue from "../DisplayOfValue";
+import FavoriteSwitch from "../SearchPage/FavoriteSwitch";
+//Import Custom Type
+import { coinDataType, IDColorTempFavArrPropsType } from "../../Types/AppTypes";
 
 const IndividualCoinData = ({
   currentID,
   tempColor,
   tempFavArray,
   setTempFavArray,
-}: propsType) => {
+}: IDColorTempFavArrPropsType) => {
+  //Get Current User Data
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
+  //Get Coin Data
   const coinData: coinDataType[] = useAppSelector(
     (state) => state.coinData.data
   );
-
+  //Define CoinID from UseParams
   const { coinID } = useParams<{ coinID: string }>();
-
+  //Get the Current Coin Info From the CoinID Param
   const filteredCoin = coinData.filter((coin) => coinID?.slice(1) === coin.id);
-
   const coin = filteredCoin[0];
-
+  //This Function Displays the According Shadow With the Title Class
   const getTitleShadow = (): string => {
     let classes = "";
     tempColor.length > 0
@@ -44,6 +43,7 @@ const IndividualCoinData = ({
 
     return classes;
   };
+  //This Function Displays the According Shadow
   const getShadow = (): string => {
     let classes = "";
     tempColor.length > 0
@@ -56,14 +56,14 @@ const IndividualCoinData = ({
 
     return classes;
   };
-
+  //This useEffect makes sure their is no error with the userApi
   useEffect(() => {
     if (isError) {
       console.log(error);
     }
   }, [isError, error]);
 
-  return (
+  const fullPageStructure = (
     <div className="main-container">
       {coin && (
         <div className="coin-container">
@@ -84,13 +84,11 @@ const IndividualCoinData = ({
               getShadow={getShadow}
             />
           </div>
-
           <AreaChartComponent
             coinID={coin.id}
             tempColor={tempColor}
             currentID={currentID}
           />
-
           <p className="center">
             <span className={getShadow()}>Price:</span>{" "}
             {coin.current_price.toLocaleString()}$
@@ -139,6 +137,8 @@ const IndividualCoinData = ({
       )}
     </div>
   );
+
+  return fullPageStructure;
 };
 
 export default IndividualCoinData;

@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
-import { getCurrentUserFavorite } from "../Features/CoinGeeckoData/CoinDataSlice";
-import { useAppSelector } from "../Store/Store";
-import { coinDataType } from "../Types/AppTypes";
-import { getNewFav } from "../Utils/FavoritesUtilities";
-import { useFavoriteMutation } from "../Features/LandingPage/UserSlice";
-import { favoriteMutationType } from "../Types/LandingTypes";
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
+import { getCurrentUserFavorite } from "../../Features/CoinGeeckoData/CoinDataSlice";
+import { useAppSelector } from "../../Store/Store";
+import { coinDataType } from "../../Types/AppTypes";
+import { getNewFav } from "../../Utils/FavoritesUtilities";
+import { useFavoriteMutation } from "../../Features/LandingPage/UserSlice";
+import { favoriteMutationType } from "../../Types/LandingTypes";
 
 type propsType = {
   currentID: number;

@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 //Import Custom Hook
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
 //Import Custom Type
-import { IDColorPropsType } from "../Types/AppTypes";
+import { IDColorPropsType } from "../../Types/AppTypes";
 
 const Navigation = ({ currentID, tempColor }: IDColorPropsType) => {
   //Define the State for the Location

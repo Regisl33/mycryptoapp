@@ -2,12 +2,12 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 //Import Custom Hook
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
 //Import the Header and Footer Components
 import Header from "./Header";
 import Footer from "./Footer";
 //Import Custom Type
-import { IDColorPropsType } from "../Types/AppTypes";
+import { IDColorPropsType } from "../../Types/AppTypes";
 
 const LoggedInLayout = ({ currentID, tempColor }: IDColorPropsType) => {
   //Get Current User Data

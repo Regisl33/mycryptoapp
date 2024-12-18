@@ -1,13 +1,13 @@
 //Import Dependencies
 import { ChangeEvent, useState, useEffect } from "react";
 //Import Custom Hook
-import { useGetCurrentUserQuery } from "../Features/LandingPage/UserSlice";
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
 //Import Custom Types useSelector
-import { useAppSelector } from "../Store/Store";
+import { useAppSelector } from "../../Store/Store";
 //Import IndividualSearchCoin Component
 import IndividualSearchCoin from "./IndividualSearchCoin";
 //Import Custom Types
-import { coinDataType, IDColorTempFavArrPropsType } from "../Types/AppTypes";
+import { coinDataType, IDColorTempFavArrPropsType } from "../../Types/AppTypes";
 
 const SearchPage = ({
   currentID,
