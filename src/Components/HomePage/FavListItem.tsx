@@ -1,12 +1,15 @@
-import { coinDataType } from "../../Types/AppTypes";
+//Import Display Value Component
 import DisplayOfValue from "../DisplayOfValue";
-
+//Import Custom Type
+import { coinDataType } from "../../Types/AppTypes";
+//Props Type for Coin Data Type
 type propsType = {
   coin: coinDataType;
 };
 
 const FavListItem = ({ coin }: propsType) => {
-  return (
+  //Favorite Table Line Structure
+  const FavLineStructure = (
     <ul>
       <li>{coin.symbol.toUpperCase()}</li>
       <li className="bigscreen">{coin.name}</li>
@@ -49,6 +52,8 @@ const FavListItem = ({ coin }: propsType) => {
       </li>
     </ul>
   );
+
+  return FavLineStructure;
 };
 
 export default FavListItem;

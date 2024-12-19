@@ -1,9 +1,13 @@
+//Import Dependencies
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { chartDataType, chartHeaderDataType } from "../../Types/AppTypes";
+//Import Custom Hook
 import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
+//Import Components for the Graph
 import AreaChartGraph from "./AreaChartGraph";
-
+//Import Custom Types
+import { chartDataType, chartHeaderDataType } from "../../Types/AppTypes";
+//Props Type for User ID, Temp Color and Current Coin Data
 type propsType = {
   coinID: string;
   tempColor: string;
