@@ -15,8 +15,10 @@ type propsType = {
 };
 
 const AreaChartComponent = ({ coinID, tempColor, currentID }: propsType) => {
+  //Define Chart Data and Duration State
   const [chartData, setChartData] = useState<chartDataType[]>([]);
   const [duration, setDuration] = useState(30);
+  //Define headerData
   const headerData: chartHeaderDataType[] = [
     { duration: 1, label: "1 Day" },
     { duration: 3, label: "3 Days" },
@@ -27,13 +29,13 @@ const AreaChartComponent = ({ coinID, tempColor, currentID }: propsType) => {
     { duration: 3000, label: "Max" },
   ];
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
-
+  //This useEffect makes sure their is no error with the userApi
   useEffect(() => {
     if (isError) {
       console.log(error);
     }
   }, [isError, error]);
-
+  //This useEffect Fetch the Data Using Axios and Store the Usefull Data in the ChartData State
   useEffect(() => {
     let newArray: chartDataType[] = [];
     try {
@@ -58,38 +60,42 @@ const AreaChartComponent = ({ coinID, tempColor, currentID }: propsType) => {
       console.log(err);
     }
   }, [coinID, duration]);
-
-  return (
-    <div className="coin-graph">
-      <ul>
-        {headerData.map((header) => {
-          return (
-            <li
-              className={
-                duration === header.duration
-                  ? tempColor.length > 0
-                    ? tempColor[0] === "D"
-                      ? "active darkLink"
-                      : "active lightLink"
-                    : userData?.color[0] === "D"
+  //Header for Our Graph
+  const graphHeader = (
+    <ul>
+      {headerData.map((header) => {
+        return (
+          <li
+            className={
+              duration === header.duration
+                ? tempColor.length > 0
+                  ? tempColor[0] === "D"
                     ? "active darkLink"
                     : "active lightLink"
-                  : tempColor.length > 0
-                  ? tempColor[0] === "D"
-                    ? "darkLink"
-                    : "lightLink"
                   : userData?.color[0] === "D"
+                  ? "active darkLink"
+                  : "active lightLink"
+                : tempColor.length > 0
+                ? tempColor[0] === "D"
                   ? "darkLink"
                   : "lightLink"
-              }
-              key={header.label}
-              onClick={() => setDuration(header.duration)}
-            >
-              {header.label}
-            </li>
-          );
-        })}
-      </ul>
+                : userData?.color[0] === "D"
+                ? "darkLink"
+                : "lightLink"
+            }
+            key={header.label}
+            onClick={() => setDuration(header.duration)}
+          >
+            {header.label}
+          </li>
+        );
+      })}
+    </ul>
+  );
+  //Full Graph Structure
+  const fullGraphComponent = (
+    <div className="coin-graph">
+      {graphHeader}
       <div className="BigGraph">
         <AreaChartGraph
           currentID={currentID}
@@ -106,6 +112,8 @@ const AreaChartComponent = ({ coinID, tempColor, currentID }: propsType) => {
       </div>
     </div>
   );
+
+  return fullGraphComponent;
 };
 
 export default AreaChartComponent;

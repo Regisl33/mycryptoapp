@@ -1,9 +1,5 @@
+//Import Dependencies
 import { useEffect } from "react";
-import {
-  ValueType,
-  NameType,
-} from "recharts/types/component/DefaultTooltipContent";
-import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
 import {
   AreaChart,
   XAxis,
@@ -13,8 +9,15 @@ import {
   Area,
   TooltipProps,
 } from "recharts";
+//Import Custom Hook
+import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
+//Import Custom Type
 import { chartDataType } from "../../Types/AppTypes";
-
+import {
+  ValueType,
+  NameType,
+} from "recharts/types/component/DefaultTooltipContent";
+//Props Type for UserID, TempColor and ChartData
 type propsType = {
   currentID: number;
   tempColor: string;
@@ -22,14 +25,15 @@ type propsType = {
 };
 
 const AreaChartGraph = ({ currentID, tempColor, chartData }: propsType) => {
+  //Get Current User Data
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
-
+  //This useEffect makes sure their is no error with the userApi
   useEffect(() => {
     if (isError) {
       console.log(error);
     }
   }, [isError, error]);
-
+  //This Function Display the Appropriate Color to our Graph
   const getGraphColor = (): string => {
     let color = "";
     tempColor.length > 0
@@ -42,7 +46,7 @@ const AreaChartGraph = ({ currentID, tempColor, chartData }: propsType) => {
 
     return color;
   };
-
+  //Create Tooltip for our Graph
   const CustomTooltip = ({
     active,
     payload,
@@ -68,8 +72,8 @@ const AreaChartGraph = ({ currentID, tempColor, chartData }: propsType) => {
       return null;
     }
   };
-
-  return (
+  //Full Area Chart Graph
+  const fullAreaChart = (
     <AreaChart
       width={800}
       height={250}
@@ -115,6 +119,8 @@ const AreaChartGraph = ({ currentID, tempColor, chartData }: propsType) => {
       />
     </AreaChart>
   );
+
+  return fullAreaChart;
 };
 
 export default AreaChartGraph;

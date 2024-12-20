@@ -1,3 +1,4 @@
+//Full Coin Type
 export type coinDataType = {
   id: string;
   symbol: string;
@@ -37,32 +38,35 @@ export type coinDataType = {
   price_change_percentage_30d_in_currency: number;
   price_change_percentage_7d_in_currency: number;
 };
-
+//Type for the Data That is Passed to the Global Chart
 export type globalChartDataType = {
   name: string;
   price: number;
   size: number;
   fill: string;
 };
-
+//Type for the Data That is Passed to the Coin Chart
 export type chartDataType = {
   date: string;
   price: number;
 };
-
+//Type for the Data That is Passed to the Coin Chart Header Selector
 export type chartHeaderDataType = {
   duration: number;
   label: string;
 };
-
+//Type for the Color Array in the Theme and Background Selector
 export type colorType = {
   class: string;
   color: string;
 };
+//Type for the Favorite List in the Home Page
 export type homeFav = {
   fav: string;
   class: string;
 };
+//**********************PROPS TYPES*****************//
+//Props for Coin Data
 export type coinProps = {
   coin: coinDataType;
 };
