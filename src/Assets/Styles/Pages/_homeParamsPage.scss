@@ -81,13 +81,30 @@ footer {
     font-weight: 900;
   }
 }
+//Range-Container Structure Settings
+.range-container {
+  p {
+    margin: 25px;
+  }
+  .input-range-container {
+    @include justify(space-around);
+    .input-container {
+      @include justify(space-between);
+
+      input[type="text"] {
+        border: none;
+        box-shadow: none;
+      }
+    }
+  }
+}
 //Theme Container Structure Settings
 .theme-container {
   @include justify(center);
 
   label {
     letter-spacing: 1px;
-    margin-right: 15px;
+    margin: 15px;
   }
   input[type="checkbox"] {
     width: 15px;

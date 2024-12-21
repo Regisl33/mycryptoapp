@@ -1,10 +1,5 @@
-//Import Dependencies
-import { useEffect } from "react";
 //Import Custom Hook and Function
-import {
-  useGetCurrentUserQuery,
-  useColorMutation,
-} from "../../Features/LandingPage/UserSlice";
+import { useColorMutation } from "../../Features/LandingPage/UserSlice";
 //Import Components for the Theme Selector, the Range Selector and the Manage Favorite Screen
 import RangeSelector from "./RangeSelector";
 import ThemeSelector from "./ThemeSelector";
@@ -13,6 +8,7 @@ import ParamFavorite from "./ParamFavorite";
 //Import Custom Types
 import { coinDataType } from "../../Types/AppTypes";
 import { colorMutation } from "../../Types/LandingTypes";
+import BackgroundSelector from "./BackgroundSelector";
 //Props Type for the Temp Color, Temp Fav Array and currentID State and the Setters for needReload and isLoggedIn
 type propsType = {
   tempColor: string;
@@ -35,12 +31,6 @@ const Parameters = ({
   setTempFavArray,
   setNeedReload,
 }: propsType) => {
-  //Get Current User Data
-  const {
-    data: userData,
-    isError,
-    error,
-  } = useGetCurrentUserQuery(currentID as number);
   //Define Color Mutation
   const [colorMutation] = useColorMutation();
   //Create the HandleColorSwitch Witch is Used in Background-Selector and Theme-Selector Components, it handle all temp and DB changes for the color
@@ -61,12 +51,6 @@ const Parameters = ({
       }
     }
   };
-  //This useEffect makes sure their is no error with the userApi
-  useEffect(() => {
-    if (isError) {
-      console.log(error);
-    }
-  }, [isError, error]);
   //Full Parameters Page Structure
   const ParameterPage = (
     <div className="main-container">
@@ -79,6 +63,11 @@ const Parameters = ({
         currentID={currentID as number}
         tempColor={tempColor}
         setTempColor={setTempColor}
+        handleColorSwitch={handleColorSwitch}
+      />
+      <BackgroundSelector
+        currentID={currentID as number}
+        tempColor={tempColor}
         handleColorSwitch={handleColorSwitch}
       />
       <ParamFavorite

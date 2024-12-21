@@ -70,6 +70,7 @@ const LoggedInRouter = ({
               tempColor={tempColor}
               tempFavArray={tempFavArray}
               setTempFavArray={setTempFavArray}
+              needReload={needReload}
             />
           }
         />

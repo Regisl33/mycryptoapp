@@ -10,7 +10,7 @@ const DisplayOfValue = ({ value, valueType }: propsType) => {
   //Display of $ Value
   const dollarValue = () => {
     return (
-      <span style={{ color: colorPicker(value) }}>
+      <span>
         {value
           ? value.toString().length > 11
             ? (value / 1000000000).toFixed(3) + "G $"
@@ -21,7 +21,11 @@ const DisplayOfValue = ({ value, valueType }: propsType) => {
   };
   //Display of % value
   const percentValue = () => {
-    return <span>{value ? value.toFixed(1) + "%" : "-"}</span>;
+    return (
+      <span style={{ color: colorPicker(value) }}>
+        {value ? value.toFixed(1) + "%" : "-"}
+      </span>
+    );
   };
   //Display of "Date" Value
   const dateValue = () => {

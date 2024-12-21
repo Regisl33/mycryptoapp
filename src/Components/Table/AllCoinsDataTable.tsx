@@ -11,14 +11,22 @@ import TableHeader, { tableColums } from "./TableHeader";
 import SmallTable from "./SmallTable";
 //Import Custom Type
 import { coinDataType } from "../../Types/AppTypes";
-import { IDColorTempFavArrPropsType } from "../../Types/AppTypes";
+//Props Type for UserID, the tempColor, need Reload and the tempFavArray State
+export type propsType = {
+  currentID: number;
+  tempColor: string;
+  tempFavArray: coinDataType[];
+  setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
+  needReload?: boolean;
+};
 
 const AllCoinsDataTable = ({
   currentID,
   tempColor,
   tempFavArray,
   setTempFavArray,
-}: IDColorTempFavArrPropsType) => {
+  needReload,
+}: propsType) => {
   //Selected Sort, Favorite and Data State used to Sort the Coin With the Favorite Always on Top
   const [selectedSort, setselectedSort] = useState("Rank");
   const [favArrayState, setFavArrayState] = useState<coinDataType[]>([]);
@@ -73,6 +81,12 @@ const AllCoinsDataTable = ({
       console.log(error);
     }
   }, [error, isError]);
+  //This UseEffect Test if needReload is true and if so it reloads the page
+  useEffect(() => {
+    if (needReload) {
+      window.location.reload();
+    }
+  }, [needReload]);
   //Header for our Table
   const tableHeader = (
     <thead>

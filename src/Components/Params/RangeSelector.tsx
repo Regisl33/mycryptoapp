@@ -92,7 +92,7 @@ const RangeSelector = ({ currentID, tempColor, setNeedReload }: propsType) => {
           : "Lshadow"
       }
     >
-      Default Amount of Coin Displayed in Tables
+      Default Amount of Coin Displayed in Tables:
     </label>
   );
   //Range-Value Range Input
@@ -111,9 +111,13 @@ const RangeSelector = ({ currentID, tempColor, setNeedReload }: propsType) => {
   //Full Feature Structure, add the Error Message if Needed
   const RangeContainerStructure = (
     <div className="range-container">
-      {inputLabel}
-      {RangeInput}
-      {textInput}
+      <div className="input-range-container">
+        {inputLabel}
+        <div className="input-container">
+          {RangeInput}
+          {textInput}
+        </div>
+      </div>
       <p>{errorMessage.length > 0 ? errorMessage : null}</p>
     </div>
   );
