@@ -1,0 +1,58 @@
+.GlobalGraph {
+  @include justify(center);
+  margin-top: 50px;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+}
+
+.graph-btn,
+.smallGlobalGraph {
+  display: none;
+  @media screen and (max-width: 800px) {
+    display: block;
+  }
+}
+.graph-btn {
+  margin: 15px auto;
+}
+.smallGlobalGraph {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  span {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 2;
+  }
+}
+
+.tooltip-container {
+  color: $landingLight;
+  background: $Dcolor1;
+  padding: 25px;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 75%,
+    60% 75%,
+    50% 100%,
+    40% 75%,
+    0% 75%
+  );
+
+  span {
+    margin-left: 5px;
+  }
+}
+.bigscreen {
+  @media screen and (max-width: 650px) {
+    display: none;
+  }
+}

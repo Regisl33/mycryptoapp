@@ -1,0 +1,150 @@
+//Logged In Header
+.account-header {
+  position: relative;
+  height: 15vh;
+
+  h1 {
+    text-transform: capitalize;
+    padding: 20px auto 40px;
+    margin-bottom: 10px;
+  }
+  a,
+  a:visited {
+    color: inherit;
+    text-decoration: none;
+    position: absolute;
+    top: 45%;
+    left: 2%;
+
+    &:hover {
+      transform: scale(105%);
+    }
+
+    svg {
+      font-size: 1.5rem;
+    }
+  }
+}
+//Logged In Footer
+footer {
+  height: 5vh;
+
+  @media screen and (max-width: 420px) {
+    font-size: 0.8rem;
+  }
+
+  p {
+    margin: 10px;
+  }
+}
+//Navigation
+.main-nav {
+  @include justify(space-evenly);
+
+  a,
+  a:visited {
+    color: inherit;
+    text-decoration: none;
+    letter-spacing: 1px;
+    position: relative;
+  }
+}
+//Main Settings
+.main-container {
+  min-height: 80vh;
+  padding: 5px;
+}
+//Favorite Home Display
+.fav-home-container {
+  width: 90%;
+  margin: 0 auto;
+
+  @media screen and (max-width: 950px) {
+    font-size: 0.7rem;
+  }
+
+  h2 {
+    margin-bottom: 35px;
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    place-items: center;
+    margin: 10px auto;
+
+    @media screen and (max-width: 650px) {
+      grid-template-columns: 20% 20% 20% 20% 20%;
+    }
+  }
+  .FavListHeader {
+    font-weight: 900;
+  }
+}
+//Theme Container Structure Settings
+.theme-container {
+  @include justify(center);
+
+  label {
+    letter-spacing: 1px;
+    margin-right: 15px;
+  }
+  input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+  }
+}
+//Background Choices Container
+.background-selector {
+  @include justify(space-around);
+  margin: 45px auto;
+  width: 100%;
+  max-width: 900px;
+}
+//Manage Favorite Settings
+.favorite-list-container {
+  @include justify(center);
+  flex-direction: column;
+}
+.param-fav {
+  width: 100%;
+  max-width: 250px;
+  margin: 25px auto 35px;
+  @include justify(center);
+  flex-direction: column;
+  gap: 5px;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+
+  li {
+    @include justify(space-between);
+    width: 100%;
+
+    svg {
+      cursor: pointer;
+      font-size: 1.5rem;
+
+      &:hover {
+        transform: scale(108%);
+      }
+    }
+  }
+}
+.logout-btn {
+  margin: 0 auto;
+  display: block;
+}
+.page404 {
+  @include justify(center);
+  height: 100vh;
+  letter-spacing: 1px;
+
+  u {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}
+.main-footer {
+  @include justify(space-evenly);
+  height: 5vh;
+}

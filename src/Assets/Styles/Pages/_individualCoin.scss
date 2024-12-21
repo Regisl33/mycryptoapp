@@ -84,29 +84,3 @@
     display: block;
   }
 }
-.dark-tooltip,
-.light-tooltip {
-  clip-path: polygon(
-    0% 0%,
-    100% 0%,
-    100% 75%,
-    60% 75%,
-    50% 100%,
-    40% 75%,
-    0% 75%
-  );
-  padding: 5px 10px 35px;
-
-  p {
-    margin: 5px;
-    text-align: center;
-  }
-}
-.dark-tooltip {
-  background: $landingLight;
-  color: $Dcolor1;
-}
-.light-tooltip {
-  background: $Dcolor1;
-  color: $landingLight;
-}
