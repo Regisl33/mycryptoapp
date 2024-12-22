@@ -4,7 +4,7 @@
       "id": "0",
       "username": "test",
       "email": "test@test.com",
-      "password": "Test123!",
+      "password": "Test1234!",
       "questions": {
         "question1": "What is the name of your best friend from high school?",
         "question2": "What is your mother's maiden name?",
@@ -14,16 +14,33 @@
         "answer3": "test3"
       },
       "passwordHistory": {
-        "oldPassword": "Test123!4",
-        "resetDate": 1728697063905
+        "oldPassword": "Test123!",
+        "resetDate": 1734841623586
       },
-      "color": "Lcolor1",
+      "color": "Dcolor1",
       "favorites": [
         "ripple",
         "bitcoin",
         "binancecoin"
       ],
-      "range": 94
+      "range": 79
+    },
+    {
+      "id": 1,
+      "username": "reg33",
+      "email": "reg33gaming@gmail.com",
+      "password": "Reglbb11!",
+      "questions": {
+        "question1": "What is the name of your best friend from high school?",
+        "question2": "What was the name of your first pet?",
+        "question3": "In what city were you born?",
+        "answer1": "test",
+        "answer2": "test1",
+        "answer3": "test3"
+      },
+      "color": "Lcolor1",
+      "range": 24,
+      "favorites": []
     }
   ]
 }

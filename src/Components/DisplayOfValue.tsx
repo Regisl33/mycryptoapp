@@ -30,7 +30,15 @@ const DisplayOfValue = ({ value, valueType }: propsType) => {
   //Display of "Date" Value
   const dateValue = () => {
     return (
-      <span>{value ? (value > -1 ? "ATH" : value.toFixed(1) + "%") : "-"}</span>
+      <span
+        style={
+          value && value > -1
+            ? { color: colorPicker(1) }
+            : { color: colorPicker(-1) }
+        }
+      >
+        {value ? (value > -1 ? "ATH" : value.toFixed(1) + "%") : "-"}
+      </span>
     );
   };
   //This Function Decide How the Data is Displayed Based on The Value Type

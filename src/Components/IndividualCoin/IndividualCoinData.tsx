@@ -102,19 +102,20 @@ const IndividualCoinData = ({
             </div>
             <div className="grid-container2">
               <h3 className={getTitleShadow()}>Total Supply:</h3>
-              <DisplayOfValue valueType="%" value={coin.total_supply} />
+              <DisplayOfValue valueType="$" value={coin.total_supply} />
               <h3 className={getTitleShadow()}>Max Supply:</h3>
-              <DisplayOfValue valueType="%" value={coin.max_supply} />
+              <DisplayOfValue valueType="$" value={coin.max_supply} />
               <h3 className={getTitleShadow()}>Circulating Supply:</h3>
-              <DisplayOfValue valueType="%" value={coin.circulating_supply} />
+              <DisplayOfValue valueType="$" value={coin.circulating_supply} />
             </div>
             <div className="grid-container2">
               <h3 className={getTitleShadow()}>ATH:</h3>
               <span>{coin.ath.toLocaleString()}$</span>
               <h3 className={getTitleShadow()}>ATH %:</h3>
-              <span style={{ color: colorPicker(coin.atl_change_percentage) }}>
-                {coin.ath_change_percentage.toFixed(1) + "%"}
-              </span>
+              <DisplayOfValue
+                valueType="Date"
+                value={coin.ath_change_percentage}
+              />
               <h3 className={getTitleShadow()}>Date:</h3>
               <span>{coin.ath_date.slice(0, 10)}</span>
             </div>

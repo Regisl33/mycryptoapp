@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 //Import Custom Hooks and Functions
 import { optionTD } from "../../Utils/TableUtilities";
 import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
-import { colorPicker } from "../../Utils/ColorUtilities";
 //Import DisplayValue and Favorite Switch Component
 import DisplayOfValue from "../DisplayOfValue";
 import FavoriteSwitch from "../SearchPage/FavoriteSwitch";
@@ -84,9 +83,7 @@ const IndividualSearchCoin = ({
           </tr>
           <tr>
             <th className={getShadow()}>Ath:</th>
-            <td style={{ color: colorPicker(coin.atl_change_percentage) }}>
-              {coin.ath_change_percentage.toFixed(1) + "%"}
-            </td>
+            {optionTD("Date", coin.ath_change_percentage)}
             <th className={getShadow()}>Ath Date:</th>
             <td>{coin.ath_date.slice(0, 10)}</td>
           </tr>
@@ -116,8 +113,8 @@ const IndividualSearchCoin = ({
           coin={coin}
           getShadow={getShadow}
         />
+        {coinInfoTable}
       </div>
-      {coinInfoTable}
     </div>
   );
 

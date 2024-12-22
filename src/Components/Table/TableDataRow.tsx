@@ -45,7 +45,7 @@ const TableDataRow = ({
       {optionTD("%", coin.price_change_percentage_30d_in_currency)}
       {optionTD("%", coin.price_change_percentage_200d_in_currency)}
       {optionTD("%", coin.price_change_percentage_1y_in_currency)}
-      {optionTD("Date", coin.ath)}
+      {optionTD("Date", coin.ath_change_percentage)}
     </tr>
   );
 

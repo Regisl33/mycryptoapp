@@ -68,17 +68,19 @@ const SmallTable = ({
       className={
         tempColor.length > 0
           ? tempColor[0] === "D"
-            ? "Dshadow"
-            : "Lshadow"
+            ? "Dshadow selectHeader"
+            : "Lshadow selectHeader"
           : userData?.color[0] === "D"
-          ? "Dshadow"
-          : "Lshadow"
+          ? "Dshadow selectHeader"
+          : "Lshadow selectHeader"
       }
     >
-      {/* Display the Selected Option in the Last Colum Table Header */}
-      {displayData}
-      {/* Display the Custom Select Dropdown Icon */}
-      <RiArrowDropDownLine />
+      <div className="header-select-container">
+        {/* Display the Selected Option in the Last Colum Table Header */}
+        {displayData}
+        {/* Display the Custom Select Dropdown Icon */}
+        <RiArrowDropDownLine />
+      </div>
       {/* Map the Select Option in a List  */}
       <ul
         className={
@@ -92,7 +94,11 @@ const SmallTable = ({
         }
       >
         {selectOptions.map((option) => (
-          <li onClick={() => handleDataSwitch(option)} key={option}>
+          <li
+            className="pointer"
+            onClick={() => handleDataSwitch(option)}
+            key={option}
+          >
             {option}
           </li>
         ))}

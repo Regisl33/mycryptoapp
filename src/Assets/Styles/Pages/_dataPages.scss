@@ -59,6 +59,36 @@
       &:hover ul {
         display: block;
       }
+    }
+  }
+  tr {
+    margin: 1px;
+  }
+  img {
+    height: 25px;
+    width: 25px;
+  }
+  svg {
+    cursor: pointer;
+  }
+}
+.smallTable {
+  display: none;
+  width: 95%;
+
+  table {
+    width: 95%;
+
+    .selectHeader {
+      position: relative;
+
+      &:hover ul {
+        display: block;
+      }
+
+      .header-select-container {
+        @include justify(center);
+      }
 
       svg {
         font-size: 2rem;
@@ -66,7 +96,6 @@
 
       ul {
         display: none;
-        text-align: center;
         position: absolute;
         bottom: 0;
         right: 50%;
@@ -93,24 +122,6 @@
         }
       }
     }
-  }
-  tr {
-    margin: 1px;
-  }
-  img {
-    height: 25px;
-    width: 25px;
-  }
-  svg {
-    cursor: pointer;
-  }
-}
-.smallTable {
-  display: none;
-  width: 95%;
-
-  table {
-    width: 95%;
   }
 
   @media screen and (max-width: 1150px) {

@@ -55,7 +55,7 @@ const SmallTableDataRow = ({
       case "1y":
         return optionTD("%", coin.price_change_percentage_1y_in_currency);
       case "Ath":
-        return optionTD("Date", coin.ath);
+        return optionTD("Date", coin.ath_change_percentage);
       default:
         return optionTD("$", coin.market_cap);
     }
