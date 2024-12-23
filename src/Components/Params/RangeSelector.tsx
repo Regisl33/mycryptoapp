@@ -9,7 +9,7 @@ import {
 import { rangeMutation } from "../../Types/LandingTypes";
 //Props Type for UserID, Temp Color and Setter for needReload
 type propsType = {
-  currentID: number;
+  currentID: string;
   tempColor: string;
   setNeedReload: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -92,7 +92,7 @@ const RangeSelector = ({ currentID, tempColor, setNeedReload }: propsType) => {
           : "Lshadow"
       }
     >
-      Default Amount of Coin Displayed in Tables:
+      Default Amount of Coin Displayed in Tables :
     </label>
   );
   //Range-Value Range Input

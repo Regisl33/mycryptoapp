@@ -17,30 +17,33 @@
         "oldPassword": "Test123!",
         "resetDate": 1734841623586
       },
-      "color": "Dcolor1",
+      "color": "Lcolor1",
       "favorites": [
+        "tether",
         "ripple",
         "bitcoin",
         "binancecoin"
       ],
-      "range": 79
+      "range": 38
     },
     {
-      "id": 1,
+      "id": "1",
       "username": "reg33",
       "email": "reg33gaming@gmail.com",
       "password": "Reglbb11!",
       "questions": {
         "question1": "What is the name of your best friend from high school?",
-        "question2": "What was the name of your first pet?",
-        "question3": "In what city were you born?",
-        "answer1": "test",
-        "answer2": "test1",
-        "answer3": "test3"
+        "question2": "What is the name of the street you grew up on?",
+        "question3": "What is your father's middle name?",
+        "answer1": "test1",
+        "answer2": "test3",
+        "answer3": "test2"
       },
       "color": "Lcolor1",
-      "range": 24,
-      "favorites": []
+      "range": 2,
+      "favorites": [
+        "ethereum"
+      ]
     }
   ]
 }

@@ -12,7 +12,7 @@ import { coinDataType } from "../../Types/AppTypes";
 //Props Type UserID, Temp Color, Current Coin Data and the Temp Fav Array State
 type propsType = {
   coin: coinDataType;
-  currentID: number;
+  currentID: string;
   tempColor: string;
   tempFavArray: coinDataType[];
   setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;

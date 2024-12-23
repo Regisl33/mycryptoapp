@@ -13,7 +13,7 @@ import SmallTable from "./SmallTable";
 import { coinDataType } from "../../Types/AppTypes";
 //Props Type for UserID, the tempColor, need Reload and the tempFavArray State
 export type propsType = {
-  currentID: number;
+  currentID: string;
   tempColor: string;
   tempFavArray: coinDataType[];
   setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;

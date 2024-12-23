@@ -10,10 +10,10 @@ import ErrorNotFoundPage from "../LoginPages/ErrorNotFoundPage";
 import { coinDataType } from "../../Types/AppTypes";
 
 type propsType = {
-  currentID: number | undefined;
+  currentID: string | undefined;
   tempColor: string;
   setTempColor: React.Dispatch<React.SetStateAction<string>>;
-  setCurrentID: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setCurrentID: React.Dispatch<React.SetStateAction<string | undefined>>;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -32,7 +32,7 @@ const LoggedInRouter = ({
         path="/"
         element={
           <LoggedInLayout
-            currentID={currentID as number}
+            currentID={currentID as string}
             tempColor={tempColor}
           />
         }
@@ -41,7 +41,7 @@ const LoggedInRouter = ({
           path="/home"
           element={
             <Home
-              currentID={currentID as number}
+              currentID={currentID as string}
               tempColor={tempColor}
               tempFavArray={tempFavArray}
             />
@@ -66,7 +66,7 @@ const LoggedInRouter = ({
           path="/table"
           element={
             <AllCoinsDataTable
-              currentID={currentID as number}
+              currentID={currentID as string}
               tempColor={tempColor}
               tempFavArray={tempFavArray}
               setTempFavArray={setTempFavArray}
@@ -78,7 +78,7 @@ const LoggedInRouter = ({
           path="/search"
           element={
             <SearchPage
-              currentID={currentID as number}
+              currentID={currentID as string}
               tempColor={tempColor}
               tempFavArray={tempFavArray}
               setTempFavArray={setTempFavArray}
@@ -90,7 +90,7 @@ const LoggedInRouter = ({
           path="/coin/:coinID"
           element={
             <IndividualCoinData
-              currentID={currentID as number}
+              currentID={currentID as string}
               tempColor={tempColor}
               tempFavArray={tempFavArray}
               setTempFavArray={setTempFavArray}

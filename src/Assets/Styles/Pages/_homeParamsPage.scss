@@ -84,16 +84,29 @@ footer {
 //Range-Container Structure Settings
 .range-container {
   p {
-    margin: 25px;
+    color: red;
+  }
+  label {
+    margin: 20px;
+    letter-spacing: 1px;
   }
   .input-range-container {
-    @include justify(space-around);
+    @include justify(center);
+
+    @media screen and (max-width: 830px) {
+      flex-direction: column;
+    }
+
     .input-container {
-      @include justify(space-between);
+      @include justify(space-around);
 
       input[type="text"] {
         border: none;
         box-shadow: none;
+        padding: 5px;
+      }
+      input[type="range"] {
+        margin-left: 45px;
       }
     }
   }
@@ -101,6 +114,7 @@ footer {
 //Theme Container Structure Settings
 .theme-container {
   @include justify(center);
+  margin-top: 10px;
 
   label {
     letter-spacing: 1px;

@@ -30,7 +30,7 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
     data: userData,
     error,
     isError,
-  } = useGetCurrentUserQuery(currentID as number);
+  } = useGetCurrentUserQuery(currentID as string);
   //Define Password Reset Mutation
   const [passwordReset] = usePasswordResetMutation();
   //Define Navigate
@@ -39,7 +39,7 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
   const handleReset = async (
     oldPassword: string,
     password: string,
-    id: number
+    id: string
   ) => {
     let passwordHistory: passwordChangeType = {
       oldPassword,
@@ -72,7 +72,7 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
             "You must use different password then the last 2 passwords you've used"
           );
         } else {
-          await handleReset(userData.password, password, currentID as number);
+          await handleReset(userData.password, password, currentID as string);
           setIsSubmited(true);
         }
       } else if (userData.password === password) {
@@ -80,7 +80,7 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
           "You must use different password then the last 2 passwords you've used"
         );
       } else {
-        await handleReset(userData.password, password, currentID as number);
+        await handleReset(userData.password, password, currentID as string);
         setIsSubmited(true);
       }
     } else {

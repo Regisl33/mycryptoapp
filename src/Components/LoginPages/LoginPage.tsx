@@ -9,7 +9,7 @@ import LoginUsername from "./LoginUsername";
 //PropsType need To be able to change the current User ID and the Login State.
 type LoginPropsType = {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  setCurrentID: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setCurrentID: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 const LoginPage = ({ setIsLoggedIn, setCurrentID }: LoginPropsType) => {
@@ -27,7 +27,7 @@ const LoginPage = ({ setIsLoggedIn, setCurrentID }: LoginPropsType) => {
   //Get Users data from BD
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
   //Login Function, gets the user ID and change the current user ID and the login state, place the user id in the session storage, than navigate to the user home page.
-  const HandleLogin = (id: number) => {
+  const HandleLogin = (id: string) => {
     setErrorMessage("");
     if (memorizeUser) {
       //Test if the user want to staty logged in!
@@ -47,11 +47,11 @@ const LoginPage = ({ setIsLoggedIn, setCurrentID }: LoginPropsType) => {
     e.preventDefault();
     if (userApiData?.ids) {
       let accountID = userApiData.ids.filter(
-        (id) => userApiData.entities[id].username === username
+        (id) => userApiData.entities[parseInt(id)].username === username
       );
       if (accountID.length > 0) {
-        userApiData.entities[accountID[0]].password === password
-          ? HandleLogin(userApiData.entities[accountID[0]].id)
+        userApiData.entities[parseInt(accountID[0])].password === password
+          ? HandleLogin(userApiData.entities[parseInt(accountID[0])].id)
           : setErrorMessage("incorrect password!");
       } else {
         setErrorMessage("We couldn't find an account with this username");

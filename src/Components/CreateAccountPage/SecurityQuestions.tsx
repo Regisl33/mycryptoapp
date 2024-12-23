@@ -60,7 +60,7 @@ const SecurityQuestions = ({ user }: SecQuestionPropsType) => {
     let fullQuestion2: string = getFullQuestion(question2);
     let fullQuestion3: string = getFullQuestion(question3);
     let fullUser: fullUserType = {
-      id: userData?.ids ? userData?.ids.length : 0,
+      id: userData?.ids ? userData.ids.length.toString() : "0",
       username: user.username,
       email: user.email,
       password: user.password,

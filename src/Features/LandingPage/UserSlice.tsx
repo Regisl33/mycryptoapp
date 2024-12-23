@@ -14,7 +14,7 @@ import {
 //Define our User Adapter to Normalize our User Data, it takes the user Data from the Api and sorts it by ID
 const userAdapter = createEntityAdapter({
   selectId: (user: fullUserType) => user.id,
-  sortComparer: (a, b) => a.id - b.id,
+  sortComparer: (a, b) => parseInt(a.id) - parseInt(b.id),
 });
 //Initialise the state
 const initialState = userAdapter.getInitialState();
@@ -39,7 +39,7 @@ export const userSliceApi = UserApi.injectEndpoints({
     }),
     //This Fetch one User based on his ID and returns it without saving it in the store
     getCurrentUser: builder.query({
-      query: (id: number) => `/users/${id}`,
+      query: (id: string) => `/users/${id}`,
       transformResponse: (res: fullUserType) => {
         let currentUser = res;
         return currentUser;

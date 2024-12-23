@@ -14,7 +14,7 @@ import { coinDataType } from "../../Types/AppTypes";
 import { favoriteMutationType } from "../../Types/LandingTypes";
 //Props Type for UserID, Current Coin Data, the Temp Fav Array State and the Get Shadow Function
 type propsType = {
-  currentID: number;
+  currentID: string;
   coin: coinDataType;
   tempFavArray: coinDataType[];
   setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;

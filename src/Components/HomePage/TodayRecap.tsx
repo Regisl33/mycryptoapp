@@ -17,7 +17,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 //props Type for the UserID and tempBackgroundColor
 type propsType = {
   tempColor: string;
-  currentID: number;
+  currentID: string;
 };
 
 const TodayRecap = ({ tempColor, currentID }: propsType) => {

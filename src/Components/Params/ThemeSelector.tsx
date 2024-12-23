@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
 //Props type for userId, TempColor, Changing TempColor and handeling the update of the color in the database
 type propsType = {
-  currentID: number;
+  currentID: string;
   tempColor: string;
   setTempColor: React.Dispatch<React.SetStateAction<string>>;
   handleColorSwitch: (color: string) => Promise<void>;

@@ -12,8 +12,8 @@ import ErrorNotFoundPage from "../LoginPages/ErrorNotFoundPage";
 import { userType } from "../../Types/LandingTypes";
 
 type propsType = {
-  currentID: number | undefined;
-  setCurrentID: React.Dispatch<React.SetStateAction<number | undefined>>;
+  currentID: string | undefined;
+  setCurrentID: React.Dispatch<React.SetStateAction<string | undefined>>;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -47,11 +47,11 @@ const LoggedOutRouter = ({
         />
         <Route
           path="/security-verification"
-          element={<ResetVerification currentID={currentID as number} />}
+          element={<ResetVerification currentID={currentID as string} />}
         />
         <Route
           path="/password-reset"
-          element={<ResetPassword currentID={currentID as number} />}
+          element={<ResetPassword currentID={currentID as string} />}
         />
         <Route
           path="/create-account"

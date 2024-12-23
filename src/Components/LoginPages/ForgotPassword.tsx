@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetAllUsersQuery } from "../../Features/LandingPage/UserSlice";
 //PropsType to set the userID for the password Reset
 type forgotPasswordPropsType = {
-  setCurrentID: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setCurrentID: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 const ForgotPassword = ({ setCurrentID }: forgotPasswordPropsType) => {
@@ -19,7 +19,7 @@ const ForgotPassword = ({ setCurrentID }: forgotPasswordPropsType) => {
   const { data: userApiData, error, isError } = useGetAllUsersQuery("User");
   //Username and Email Regex Pattern
   const usernameRegex = /^[a-zA-Z0-9]+$/;
-  const emailRegex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
+  const emailRegex = new RegExp(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g);
   //Submit Function, it checks if the value entered is a username or an Email, than it checks if the username or Email is found in the database. If so it set it as the current ID, if not it sets the error message accordingly
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -28,7 +28,7 @@ const ForgotPassword = ({ setCurrentID }: forgotPasswordPropsType) => {
     //Username Tester
     let userMatch: boolean = false;
     //Current Account ID
-    let accountID: number | null = null;
+    let accountID: string | null = null;
     //Typescript security Check to see is we got the data before testing it, set the error message if we didn't get the data
     if (!isError && userApiData?.ids) {
       //Test if the input is an Email?

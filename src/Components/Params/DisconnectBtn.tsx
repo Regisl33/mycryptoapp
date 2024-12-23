@@ -5,10 +5,10 @@ import { useNavigate } from "react-router";
 import { useGetCurrentUserQuery } from "../../Features/LandingPage/UserSlice";
 //Props Type for UserID, Temp Color, and the Setters for needReload and isLoggedIn
 type propsType = {
-  currentID: number | undefined;
+  currentID: string | undefined;
   tempColor: string;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  setCurrentID: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setCurrentID: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 const DisconnectBtn = ({
@@ -22,7 +22,7 @@ const DisconnectBtn = ({
     data: userData,
     isError,
     error,
-  } = useGetCurrentUserQuery(currentID as number);
+  } = useGetCurrentUserQuery(currentID as string);
   //Define Navigate
   const navigate = useNavigate();
   //This Function Handle the Disconnection of a User

@@ -7,7 +7,7 @@ import { optionTD } from "../../Utils/TableUtilities";
 import { coinDataType } from "../../Types/AppTypes";
 //Props Type for UserID, the Current Coin, and the tempFavArray State and the Current Data to Display in the Select
 type propsType = {
-  currentID: number;
+  currentID: string;
   coin: coinDataType;
   tempFavArray: coinDataType[];
   setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;

@@ -5,7 +5,7 @@ import TodayRecap from "./TodayRecap";
 import { coinDataType } from "../../Types/AppTypes";
 //Props Type for UserID, Color and Favorite
 type propsType = {
-  currentID: number;
+  currentID: string;
   tempColor: string;
   tempFavArray: coinDataType[];
 };

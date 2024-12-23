@@ -19,12 +19,20 @@ import {
 } from "recharts/types/component/DefaultTooltipContent";
 //Props Type for UserID, TempColor and ChartData
 type propsType = {
-  currentID: number;
+  currentID: string;
   tempColor: string;
   chartData: chartDataType[];
+  width: number;
+  height: number;
 };
 
-const AreaChartGraph = ({ currentID, tempColor, chartData }: propsType) => {
+const AreaChartGraph = ({
+  currentID,
+  tempColor,
+  chartData,
+  height,
+  width,
+}: propsType) => {
   //Get Current User Data
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
   //This useEffect makes sure their is no error with the userApi
@@ -61,7 +69,7 @@ const AreaChartGraph = ({ currentID, tempColor, chartData }: propsType) => {
                 : "light-tooltip"
               : userData?.color[0] === "D"
               ? "dark-tooltip"
-              : "#light-tooltip"
+              : "light-tooltip"
           }
         >
           <p>{payload[0].payload.date}</p>
@@ -75,8 +83,8 @@ const AreaChartGraph = ({ currentID, tempColor, chartData }: propsType) => {
   //Full Area Chart Graph
   const fullAreaChart = (
     <AreaChart
-      width={800}
-      height={250}
+      width={width}
+      height={height}
       data={chartData}
       margin={{ top: 10, right: 0, left: 10, bottom: 0 }}
     >

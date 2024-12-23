@@ -14,7 +14,7 @@ import { coinDataType } from "../../Types/AppTypes";
 type propsType = {
   data: coinDataType[];
   favArrayState: coinDataType[];
-  currentID: number;
+  currentID: string;
   tempColor: string;
   tempFavArray: coinDataType[];
   setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;

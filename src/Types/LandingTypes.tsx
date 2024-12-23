@@ -20,7 +20,7 @@ export type passwordChangeType = {
 };
 //Type for the Full User Info in the DB
 export type fullUserType = {
-  id: number;
+  id: string;
   username: string;
   email: string;
   password: string;
@@ -38,33 +38,33 @@ type passwordChangeEventType = {
 //Type for the Password Reset Full Event
 export type passwordResetType = {
   passwordChange: passwordChangeEventType;
-  id: number;
+  id: string;
 };
 //Type for the Favorite Mutation Full Event
 export type favoriteMutationType = {
   user: {
     favorites: string[];
   };
-  id: number;
+  id: string;
 };
 //Type for the Color Mutation Full Event
 export type colorMutation = {
   user: {
     color: string;
   };
-  id: number;
+  id: string;
 };
 //Type for the Range Mutation Full Event
 export type rangeMutation = {
   user: {
     range: number;
   };
-  id: number;
+  id: string;
 };
 //**********************PROPS TYPES*****************//
 //Type for Current ID Props
 export type currentIDPropsType = {
-  currentID: number | undefined;
+  currentID: string | undefined;
 };
 //Type for userType in a Props
 export type SecQuestionPropsType = {

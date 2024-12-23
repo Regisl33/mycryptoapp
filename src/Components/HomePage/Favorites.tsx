@@ -11,7 +11,7 @@ import FavListItem from "./FavListItem";
 import { coinDataType, homeFav } from "../../Types/AppTypes";
 //Props Type for UserID, Temp Color and Temp Fav Array
 type propsType = {
-  currentID: number;
+  currentID: string;
   tempColor: string;
   tempFavArray: coinDataType[];
 };

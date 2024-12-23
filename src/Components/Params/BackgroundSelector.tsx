@@ -7,7 +7,7 @@ import { colorType } from "../../Types/AppTypes";
 import BackgroundOptions from "./BackgroundOptions";
 //Props Type for User ID, Temp Color and the handleColorSwitch Function to Change the Current Background Theme
 type propsType = {
-  currentID: number;
+  currentID: string;
   tempColor: string;
   handleColorSwitch: (color: string) => Promise<void>;
 };

@@ -72,20 +72,20 @@ export type coinProps = {
 };
 //Props Type for UserID, the Current Coin, and the tempFavArray State
 export type IDCoinTempFavArrPropsType = {
-  currentID: number;
+  currentID: string;
   coin: coinDataType;
   tempFavArray: coinDataType[];
   setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
 };
 //Props Type for UserID, the tempColor, and the tempFavArray State
 export type IDColorTempFavArrPropsType = {
-  currentID: number;
+  currentID: string;
   tempColor: string;
   tempFavArray: coinDataType[];
   setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
 };
 //User ID and Temp Color Props Type
 export type IDColorPropsType = {
-  currentID: number;
+  currentID: string;
   tempColor: string;
 };

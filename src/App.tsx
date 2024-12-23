@@ -7,7 +7,7 @@ import LoggedOutRouter from "./Components/Router/LoggedOutRouter";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentID, setCurrentID] = useState<number>();
+  const [currentID, setCurrentID] = useState<string>();
   const [tempColor, setTempColor] = useState("");
 
   const dispatch = useAppDispatch();

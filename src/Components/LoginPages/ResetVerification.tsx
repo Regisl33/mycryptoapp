@@ -26,7 +26,7 @@ const ResetVerification = ({ currentID }: currentIDPropsType) => {
     data: userData,
     isError,
     error,
-  } = useGetCurrentUserQuery(currentID as number);
+  } = useGetCurrentUserQuery(currentID as string);
   //Define Navigate
   const navigate = useNavigate();
   //Get the questions for the current User

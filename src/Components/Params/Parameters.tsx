@@ -15,8 +15,8 @@ type propsType = {
   setNeedReload: React.Dispatch<React.SetStateAction<boolean>>;
   setTempColor: React.Dispatch<React.SetStateAction<string>>;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  setCurrentID: React.Dispatch<React.SetStateAction<number | undefined>>;
-  currentID: number | undefined;
+  setCurrentID: React.Dispatch<React.SetStateAction<string | undefined>>;
+  currentID: string | undefined;
   tempFavArray: coinDataType[];
   setTempFavArray: React.Dispatch<React.SetStateAction<coinDataType[]>>;
 };
@@ -55,24 +55,24 @@ const Parameters = ({
   const ParameterPage = (
     <div className="main-container">
       <RangeSelector
-        currentID={currentID as number}
+        currentID={currentID as string}
         tempColor={tempColor}
         setNeedReload={setNeedReload}
       />
       <ThemeSelector
-        currentID={currentID as number}
+        currentID={currentID as string}
         tempColor={tempColor}
         setTempColor={setTempColor}
         handleColorSwitch={handleColorSwitch}
       />
       <BackgroundSelector
-        currentID={currentID as number}
+        currentID={currentID as string}
         tempColor={tempColor}
         handleColorSwitch={handleColorSwitch}
       />
       <ParamFavorite
         tempColor={tempColor}
-        currentID={currentID as number}
+        currentID={currentID as string}
         tempFavArray={tempFavArray}
         setTempFavArray={setTempFavArray}
       />

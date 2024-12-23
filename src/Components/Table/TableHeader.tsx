@@ -24,7 +24,7 @@ export const tableColums = [
 //Props Type for Content(header Text), userID, tempColor, and the Selected Sort State
 type propsType = {
   content: string;
-  currentID: number;
+  currentID: string;
   selectedSort: string;
   tempColor: String;
   setSelectedSort: React.Dispatch<React.SetStateAction<string>>;

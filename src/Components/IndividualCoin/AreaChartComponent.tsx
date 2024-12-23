@@ -11,7 +11,7 @@ import { chartDataType, chartHeaderDataType } from "../../Types/AppTypes";
 type propsType = {
   coinID: string;
   tempColor: string;
-  currentID: number;
+  currentID: string;
 };
 
 const AreaChartComponent = ({ coinID, tempColor, currentID }: propsType) => {
@@ -96,11 +96,13 @@ const AreaChartComponent = ({ coinID, tempColor, currentID }: propsType) => {
   const fullGraphComponent = (
     <div className="coin-graph">
       {graphHeader}
-      <div className="BigGraph">
+      <div className="Big-Graph">
         <AreaChartGraph
           currentID={currentID}
           tempColor={tempColor}
           chartData={chartData}
+          height={250}
+          width={800}
         />
       </div>
       <div className="Little-Graph">
@@ -108,6 +110,8 @@ const AreaChartComponent = ({ coinID, tempColor, currentID }: propsType) => {
           currentID={currentID}
           tempColor={tempColor}
           chartData={chartData}
+          height={600}
+          width={350}
         />
       </div>
     </div>
