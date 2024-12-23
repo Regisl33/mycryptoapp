@@ -1,115 +1,62 @@
+//Light Background Color Classes
 .Lcolor1 {
   color: $Dcolor1;
   background: $Lcolor1;
-
-  option {
-    background: $Lcolor1;
-  }
 }
 .Lcolor2 {
   color: $Dcolor1;
   background: $Lcolor2;
-
-  option {
-    background: $Lcolor2;
-  }
 }
 .Lcolor3 {
   color: $Dcolor1;
   background: $Lcolor3;
-
-  option {
-    background: $Lcolor3;
-  }
 }
 .Lcolor4 {
   color: $Dcolor1;
   background: $Lcolor4;
-
-  option {
-    background: $Lcolor4;
-  }
 }
 .Lcolor5 {
   color: $Dcolor1;
   background: $Lcolor5;
-
-  option {
-    background: $Lcolor5;
-  }
 }
 .Lcolor6 {
   color: $Dcolor1;
   background: $Lcolor6;
-
-  option {
-    background: $Lcolor6;
-  }
 }
 .Lcolor7 {
   color: $Dcolor1;
   background: $Lcolor7;
-
-  option {
-    background: $Lcolor7;
-  }
 }
+//Dark Background Color Classes
 .Dcolor1 {
   color: $landingLight;
   background: $Dcolor1;
-
-  option {
-    background: $Dcolor1;
-  }
 }
 .Dcolor2 {
   color: $landingLight;
   background: $Dcolor2;
-
-  option {
-    background: $Dcolor2;
-  }
 }
 .Dcolor3 {
   color: $landingLight;
   background: $Dcolor3;
-
-  option {
-    background: $Dcolor3;
-  }
 }
 .Dcolor4 {
   color: $landingLight;
   background: $Dcolor4;
-
-  option {
-    background: $Dcolor4;
-  }
 }
 .Dcolor5 {
   color: $landingLight;
   background: $Dcolor5;
-
-  option {
-    background: $Dcolor5;
-  }
 }
 .Dcolor6 {
   color: $landingLight;
   background: $Dcolor6;
-
-  option {
-    background: $Dcolor6;
-  }
 }
 .Dcolor7 {
   color: $landingLight;
   background: $Dcolor7;
-
-  option {
-    background: $Dcolor7;
-  }
 }
+//Light Button Color Classes
 .Lcolor1-btn {
   &::before {
     background: $Lbtn1;
@@ -145,6 +92,7 @@
     background: $Lbtn7;
   }
 }
+//Dark Button Color Classes
 .Dcolor1-btn {
   &::before {
     background: $Dbtn1;
@@ -180,144 +128,65 @@
     background: $Dbtn7;
   }
 }
-
-.Lcolor1-select {
-  border: 2px solid $Dcolor1;
-  border-radius: 5px;
-  background: $Lcolor1;
+//Light Theme Select Ul
+.Lselect {
+  border: 1px solid $Dcolor1;
   text-shadow: 2px 3px 3px $darkShadows;
-
+  //Option Border
   li {
-    border: 1px solid $Dcolor1;
+    border-bottom: 1px solid $Dcolor1;
   }
+}
+//Light Select Background Color
+.Lcolor1-select {
+  background: $Lcolor1;
 }
 .Lcolor2-select {
-  border: 2px solid $Dcolor1;
-  border-radius: 5px;
   background: $Lcolor2;
-  text-shadow: 2px 3px 3px $darkShadows;
-
-  li {
-    border: 1px solid $Dcolor1;
-  }
 }
 .Lcolor3-select {
-  border: 2px solid $Dcolor1;
-  border-radius: 5px;
   background: $Lcolor3;
-  text-shadow: 2px 3px 3px $darkShadows;
-
-  li {
-    border: 1px solid $Dcolor1;
-  }
 }
 .Lcolor4-select {
-  border: 2px solid $Dcolor1;
-  border-radius: 5px;
   background: $Lcolor4;
-  text-shadow: 2px 3px 3px $darkShadows;
-
-  li {
-    border: 1px solid $Dcolor1;
-  }
 }
 .Lcolor5-select {
-  border: 2px solid $Dcolor1;
-  border-radius: 5px;
   background: $Lcolor5;
-  text-shadow: 2px 3px 3px $darkShadows;
-
-  li {
-    border: 1px solid $Dcolor1;
-  }
 }
 .Lcolor6-select {
-  border: 2px solid $Dcolor1;
-  border-radius: 5px;
   background: $Lcolor6;
-  text-shadow: 2px 3px 3px $darkShadows;
-
-  li {
-    border: 1px solid $Dcolor1;
-  }
 }
 .Lcolor7-select {
-  border: 2px solid $Dcolor1;
-  border-radius: 5px;
   background: $Lcolor7;
-  text-shadow: 2px 3px 3px $darkShadows;
-
+}
+//Dark Theme Select Ul
+.Dselect {
+  border: 1px solid $landingLight;
+  text-shadow: 2px 3px 3px $landingShadows;
+  //Option Border
   li {
-    border: 1px solid $Dcolor1;
+    border-bottom: 1px solid $landingLight;
   }
 }
+//Dark Select Background Color
 .Dcolor1-select {
-  border: 2px solid $landingLight;
-  border-radius: 5px;
   background: $Dcolor1;
-  text-shadow: 2px 3px 3px $landingShadows;
-
-  li {
-    border: 1px solid $landingLight;
-  }
 }
 .Dcolor2-select {
-  border: 2px solid $landingLight;
-  border-radius: 5px;
   background: $Dcolor2;
-  text-shadow: 2px 3px 3px $landingShadows;
-
-  li {
-    border: 1px solid $landingLight;
-  }
 }
 .Dcolor3-select {
-  border: 2px solid $landingLight;
-  border-radius: 5px;
   background: $Dcolor3;
-  text-shadow: 2px 3px 3px $landingShadows;
-
-  li {
-    border: 1px solid $landingLight;
-  }
 }
 .Dcolor4-select {
-  border: 2px solid $landingLight;
-  border-radius: 5px;
   background: $Dcolor4;
-  text-shadow: 2px 3px 3px $landingShadows;
-
-  li {
-    border: 1px solid $landingLight;
-  }
 }
 .Dcolor5-select {
-  border: 2px solid $landingLight;
-  border-radius: 5px;
   background: $Dcolor5;
-  text-shadow: 2px 3px 3px $landingShadows;
-
-  li {
-    border: 1px solid $landingLight;
-  }
 }
 .Dcolor6-select {
-  border: 2px solid $landingLight;
-  border-radius: 5px;
   background: $Dcolor6;
-  text-shadow: 2px 3px 3px $landingShadows;
-
-  li {
-    border: 1px solid $landingLight;
-  }
 }
 .Dcolor7-select {
-  border: 2px solid $landingLight;
-  border-radius: 5px;
   background: $Dcolor7;
-  text-shadow: 2px 3px 3px $landingShadows;
-
-  li {
-    border: 1px solid $landingLight;
-  }
 }

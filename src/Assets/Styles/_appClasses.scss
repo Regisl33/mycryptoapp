@@ -1,51 +1,23 @@
-.Dcoin-result {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  border-radius: 15px;
-  border: 1px solid $landingLight;
-  width: 90%;
-  max-width: 1200px;
-  margin: 10px auto;
-  padding: 5px;
-  transition: 0.3s ease;
-  box-shadow: 2px 3px 10px 2px $landingShadows;
-
-  img {
-    width: 125px;
-    height: 125px;
-    border-radius: 10px;
-  }
-
-  &:hover {
-    transform: scale(102%);
-  }
-
-  h2 {
-    cursor: pointer;
-  }
-  @media screen and (max-width: 850px) {
-    font-size: 0.8rem;
-  }
-}
+//Search Coin Box Result
+.Dcoin-result,
 .Lcoin-result {
   display: grid;
   grid-template-columns: 30% 70%;
   border-radius: 15px;
-  border: 1px solid $Dcolor1;
   width: 90%;
   max-width: 1200px;
   margin: 10px auto;
   padding: 5px;
   transition: 0.3s ease;
-  box-shadow: 2px 3px 10px 2px $darkShadows;
 
   &:hover {
     transform: scale(102%);
   }
 
-  h2 {
-    cursor: pointer;
+  @media screen and (max-width: 850px) {
+    font-size: 0.8rem;
   }
+
   img {
     width: 125px;
     height: 125px;
@@ -57,42 +29,29 @@
       width: 75px;
     }
   }
-  @media screen and (max-width: 850px) {
-    font-size: 0.8rem;
-  }
-}
-.Linput {
-  text-align: center;
-  background: none;
-  outline: none;
-  border-radius: 20px;
-  border: 1px solid $Dcolor1;
-  font-size: 1.2rem;
-  padding: 12px 25px;
-  transition: 0.2s ease;
-  box-shadow: 2px 3px 10px 2px $darkShadows;
-  color: inherit;
 
-  &:focus {
-    transform: scale(105%);
-  }
-  &:hover {
-    transform: scale(108%);
-  }
-  &::placeholder {
-    color: $Dcolor1;
+  h2 {
+    cursor: pointer;
   }
 }
+.Dcoin-result {
+  border: 1px solid $landingLight;
+  box-shadow: 2px 3px 10px 2px $landingShadows;
+}
+.Lcoin-result {
+  border: 1px solid $Dcolor1;
+  box-shadow: 2px 3px 10px 2px $darkShadows;
+}
+//Search Input Class
+.Linput,
 .Dinput {
   text-align: center;
   background: none;
   outline: none;
   border-radius: 20px;
-  border: 1px solid $landingLight;
   font-size: 1.2rem;
   padding: 12px 25px;
   transition: 0.2s ease;
-  box-shadow: 2px 3px 10px 2px $landingShadows;
   color: inherit;
 
   &:focus {
@@ -101,45 +60,27 @@
   &:hover {
     transform: scale(108%);
   }
+}
+.Linput {
+  border: 1px solid $Dcolor1;
+  box-shadow: 2px 3px 10px 2px $darkShadows;
+
+  &::placeholder {
+    color: $Dcolor1;
+  }
+}
+.Dinput {
+  border: 1px solid $landingLight;
+  box-shadow: 2px 3px 10px 2px $landingShadows;
+
   &::placeholder {
     color: $landingLight;
   }
 }
-.Lbtn {
-  background: none;
-  border: 1px solid $Dcolor1;
-  border-radius: 20px;
-  padding: 15px 20px;
-  color: inherit;
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
-  text-transform: capitalize;
-  letter-spacing: 1px;
-  font-family: inherit;
-  font-size: 1rem;
-  box-shadow: 2px 3px 10px 2px $darkShadows;
-  position: relative;
-  z-index: 1;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 100%;
-    width: 0;
-    transition: 0.4s ease-in-out;
-    border-radius: 20px;
-    z-index: -1;
-  }
-  &:hover::before {
-    width: 100%;
-  }
-}
+//Btn Class
+.Lbtn,
 .Dbtn {
   background: none;
-  border: 1px solid $landingLight;
   border-radius: 20px;
   padding: 15px 20px;
   color: inherit;
@@ -149,7 +90,6 @@
   letter-spacing: 1px;
   font-family: inherit;
   font-size: 1rem;
-  box-shadow: 2px 3px 10px 2px $landingShadows;
   position: relative;
   z-index: 1;
 
@@ -169,50 +109,50 @@
     width: 100%;
   }
 }
+.Lbtn {
+  border: 1px solid $Dcolor1;
+  box-shadow: 2px 3px 10px 2px $darkShadows;
+}
+.Dbtn {
+  border: 1px solid $landingLight;
+  box-shadow: 2px 3px 10px 2px $landingShadows;
+}
+//Background Selector Boxes
 .background-selector {
+  //The Active Class Transform the Scale of Each Box
   .active {
     transform: scale(105%);
   }
 
-  .Lbox {
-    @include justify(center);
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    border: 1px solid $Dcolor1;
-    cursor: pointer;
-    transition: 0.2s ease;
-    box-shadow: 2px 3px 10px 2px $darkShadows;
-
-    &:hover {
-      transform: scale(105%);
-    }
-    @media screen and (max-width: 720px) {
-      width: 50px;
-      height: 50px;
-      font-size: 0.6rem;
-    }
-  }
+  .Lbox,
   .Dbox {
     @include justify(center);
     width: 100px;
     height: 100px;
     border-radius: 10px;
-    border: 1px solid $landingLight;
     cursor: pointer;
     transition: 0.2s ease;
-    box-shadow: 2px 3px 10px 2px $landingShadows;
 
     &:hover {
       transform: scale(105%);
     }
+
     @media screen and (max-width: 720px) {
       width: 50px;
       height: 50px;
       font-size: 0.6rem;
     }
   }
+  .Lbox {
+    border: 1px solid $Dcolor1;
+    box-shadow: 2px 3px 10px 2px $darkShadows;
+  }
+  .Dbox {
+    border: 1px solid $landingLight;
+    box-shadow: 2px 3px 10px 2px $landingShadows;
+  }
 }
+//Tooltip Classes
 .dark-tooltip,
 .light-tooltip {
   clip-path: polygon(
@@ -228,7 +168,6 @@
 
   p {
     margin: 5px;
-    text-align: center;
   }
 }
 .dark-tooltip {
@@ -245,16 +184,18 @@
     width: 100% !important;
   }
 }
-
-.darkLink {
+//Link for the Navs
+.darkLink,
+.lightLink {
   position: relative;
+  letter-spacing: 1px;
   cursor: pointer;
 
   &::after {
     content: "";
     width: 0;
     height: 2px;
-    background: $landingLight;
+
     position: absolute;
     bottom: -5px;
     left: 50%;
@@ -268,32 +209,15 @@
   &:hover::after {
     opacity: 1;
     width: 100%;
+  }
+}
+.darkLink {
+  &::after {
+    background: $landingLight;
   }
 }
 .lightLink {
-  position: relative;
-  cursor: pointer;
-
   &::after {
-    content: "";
-    width: 0;
-    height: 2px;
     background: $Dcolor1;
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    opacity: 0;
-    transition: 0.3s ease-in-out;
-    transform: translateX(-50%);
   }
-  &:hover {
-    transform: scale(102%), translateX(-50%);
-  }
-  &:hover::after {
-    opacity: 1;
-    width: 100%;
-  }
-}
-.pointer {
-  cursor: pointer;
 }

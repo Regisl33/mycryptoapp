@@ -54,17 +54,19 @@ const Parameters = ({
   //Full Parameters Page Structure
   const ParameterPage = (
     <div className="main-container">
-      <RangeSelector
-        currentID={currentID as string}
-        tempColor={tempColor}
-        setNeedReload={setNeedReload}
-      />
-      <ThemeSelector
-        currentID={currentID as string}
-        tempColor={tempColor}
-        setTempColor={setTempColor}
-        handleColorSwitch={handleColorSwitch}
-      />
+      <div className="label-container">
+        <RangeSelector
+          currentID={currentID as string}
+          tempColor={tempColor}
+          setNeedReload={setNeedReload}
+        />
+        <ThemeSelector
+          currentID={currentID as string}
+          tempColor={tempColor}
+          setTempColor={setTempColor}
+          handleColorSwitch={handleColorSwitch}
+        />
+      </div>
       <BackgroundSelector
         currentID={currentID as string}
         tempColor={tempColor}

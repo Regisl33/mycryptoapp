@@ -39,7 +39,6 @@ $Dbtn4: #4d4d94;
 $Dbtn5: #704db8;
 $Dbtn6: #ff4d4d;
 $Dbtn7: #db704d;
-
 //Fonts
 @font-face {
   font-family: "font1";
@@ -52,7 +51,6 @@ $Dbtn7: #db704d;
 //Fonts Variable
 $font1: "font1", sans-serif;
 $font2: "font2", sans-serif;
-
 //Mixin
 @mixin justify($content) {
   display: flex;
@@ -88,7 +86,6 @@ body {
 .title {
   font-family: $font2;
   letter-spacing: 1px;
-  text-align: center;
 }
 .Lshadow {
   text-shadow: 2px 3px 3px $darkShadows;
@@ -101,4 +98,7 @@ body {
 }
 .Dbshadow {
   box-shadow: 2px 3px 10px 2px $landingShadows;
+}
+.pointer {
+  cursor: pointer;
 }

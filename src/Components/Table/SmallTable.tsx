@@ -6,7 +6,8 @@ import { sortSwitch } from "../../Utils/SortSwitch";
 //Import Components For the Header and the Small Row
 import TableHeader, { tableColums } from "./TableHeader";
 import SmallTableDataRow from "./SmallTableDataRow";
-//Import Icon
+//Import Icons
+import { TbArrowBadgeLeft } from "react-icons/tb";
 import { RiArrowDropDownLine } from "react-icons/ri";
 //Import Custom Type
 import { coinDataType } from "../../Types/AppTypes";
@@ -86,11 +87,11 @@ const SmallTable = ({
         className={
           tempColor.length > 0
             ? tempColor[0] === "D"
-              ? `${tempColor}-select`
-              : `${tempColor}-select`
+              ? `${tempColor}-select Dselect`
+              : `${tempColor}-select Lselect`
             : userData?.color[0] === "D"
-            ? `${userData?.color}-select`
-            : `${userData?.color}-select`
+            ? `${userData?.color}-select Dselect`
+            : `${userData?.color}-select Lselect`
         }
       >
         {selectOptions.map((option) => (
@@ -100,6 +101,9 @@ const SmallTable = ({
             key={option}
           >
             {option}
+            <span>
+              <TbArrowBadgeLeft />
+            </span>
           </li>
         ))}
       </ul>

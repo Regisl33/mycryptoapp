@@ -2,12 +2,13 @@
 .account-header {
   position: relative;
   height: 15vh;
-
+  //Site Dynamic Title
   h1 {
     text-transform: capitalize;
     padding: 20px auto 40px;
     margin-bottom: 10px;
   }
+  //Param Icon Nav
   a,
   a:visited {
     color: inherit;
@@ -19,7 +20,6 @@
     &:hover {
       transform: scale(105%);
     }
-
     svg {
       font-size: 1.5rem;
     }
@@ -28,11 +28,11 @@
 //Logged In Footer
 footer {
   height: 5vh;
-
+  @include justify(space-evenly);
+  //Mobile Settings
   @media screen and (max-width: 420px) {
     font-size: 0.8rem;
   }
-
   p {
     margin: 10px;
   }
@@ -43,9 +43,7 @@ footer {
 
   a,
   a:visited {
-    color: inherit;
     text-decoration: none;
-    letter-spacing: 1px;
     position: relative;
   }
 }
@@ -82,13 +80,15 @@ footer {
   }
 }
 //Range-Container Structure Settings
-.range-container {
-  p {
-    color: red;
-  }
+.label-container {
   label {
     margin: 20px;
     letter-spacing: 1px;
+  }
+}
+.range-container {
+  p {
+    color: red;
   }
   .input-range-container {
     @include justify(center);
@@ -104,9 +104,8 @@ footer {
         border: none;
         box-shadow: none;
         padding: 5px;
-      }
-      input[type="range"] {
-        margin-left: 45px;
+        text-align: center;
+        max-width: 75px;
       }
     }
   }
@@ -116,10 +115,6 @@ footer {
   @include justify(center);
   margin-top: 10px;
 
-  label {
-    letter-spacing: 1px;
-    margin: 15px;
-  }
   input[type="checkbox"] {
     width: 15px;
     height: 15px;
@@ -161,10 +156,12 @@ footer {
     }
   }
 }
+//Disconnect Button Style
 .logout-btn {
   margin: 0 auto;
   display: block;
 }
+//Error Page
 .page404 {
   @include justify(center);
   height: 100vh;
@@ -174,8 +171,4 @@ footer {
     margin-left: 10px;
     cursor: pointer;
   }
-}
-.main-footer {
-  @include justify(space-evenly);
-  height: 5vh;
 }

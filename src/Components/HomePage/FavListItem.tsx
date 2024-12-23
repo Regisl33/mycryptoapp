@@ -1,3 +1,5 @@
+//Import Dependencies
+import { useNavigate } from "react-router";
 //Import Display Value Component
 import DisplayOfValue from "../DisplayOfValue";
 //Import Custom Type
@@ -8,10 +10,14 @@ type propsType = {
 };
 
 const FavListItem = ({ coin }: propsType) => {
+  //Define Navigate
+  const navigate = useNavigate();
   //Favorite Table Line Structure
   const FavLineStructure = (
     <ul>
-      <li>{coin.symbol.toUpperCase()}</li>
+      <li className="pointer" onClick={() => navigate(`/coin/:${coin.id}`)}>
+        {coin.symbol.toUpperCase()}
+      </li>
       <li className="bigscreen">{coin.name}</li>
       <li>
         {coin.current_price ? coin.current_price.toLocaleString() + "$" : "-"}
