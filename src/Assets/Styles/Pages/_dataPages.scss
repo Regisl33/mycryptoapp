@@ -37,8 +37,6 @@
   @include justify(center);
   //Big Table Media Queries
   .table {
-    width: 95%;
-
     @media screen and (max-width: 1400px) {
       font-size: 0.8rem;
     }
@@ -46,75 +44,68 @@
       display: none;
     }
   }
-  //Table Header
-  thead {
-    margin-bottom: 5px;
-  }
   //Table Body
-  tr {
-    margin: 1px;
+  table {
+    width: 95%;
   }
   img {
     height: 25px;
     width: 25px;
   }
 }
+//Mobile Settings Table
 .smallTable {
   display: none;
   width: 95%;
+  //Custom Select Style
+  .selectHeader {
+    position: relative;
 
-  table {
-    width: 95%;
+    &:hover ul {
+      display: block;
+    }
 
-    .selectHeader {
-      position: relative;
+    .header-select-container {
+      @include justify(center);
+    }
 
-      &:hover ul {
+    svg {
+      font-size: 2rem;
+    }
+
+    ul {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      transform: translate(50%, 100%);
+      width: 150px;
+      border-radius: 5px;
+
+      @media screen and (max-width: 600px) {
+        right: 0;
+        transform: translate(0, 100%);
+      }
+
+      &:hover {
         display: block;
       }
 
-      .header-select-container {
+      li {
+        padding: 5px 10px;
+        cursor: pointer;
+        letter-spacing: 1px;
         @include justify(center);
-      }
+        transition: 0.3s ease;
 
-      svg {
-        font-size: 2rem;
-      }
-
-      ul {
-        display: none;
-        position: absolute;
-        bottom: 0;
-        right: 50%;
-        transform: translate(50%, 100%);
-        width: 150px;
-        border-radius: 5px;
-
-        @media screen and (max-width: 600px) {
-          right: 0;
-          transform: translate(0, 100%);
-        }
-
-        &:hover {
-          display: block;
-        }
-
-        li {
-          padding: 5px 10px;
-          cursor: pointer;
-          letter-spacing: 1px;
+        &:hover span {
           @include justify(center);
-          transition: 0.3s ease;
+        }
+        span {
+          display: none;
 
-          &:hover span {
-            @include justify(center);
-          }
-          span {
-            display: none;
-
-            svg {
-              font-size: 1.5rem;
-            }
+          svg {
+            font-size: 1.5rem;
           }
         }
       }
@@ -131,7 +122,7 @@
     font-size: 0.6rem;
   }
 }
-
+//Individual Coin Logo
 .Coin-Name-Logo {
   @include justify(center);
   gap: 10px;
@@ -141,6 +132,7 @@
     width: 30px;
   }
 }
+//Individual Coin Header With Favorite and Logo
 .top-container {
   display: grid;
   grid-template-columns: 33% 33% 33%;
@@ -152,12 +144,13 @@
     grid-template-rows: 1fr 1fr;
   }
 }
+//Individual Coin Graph Container
 .coin-graph {
   @include justify(center);
   flex-direction: column;
   width: 95%;
   margin: 0 auto;
-
+  //Indidual Graph Header
   ul {
     @include justify(space-evenly);
     margin: 10px auto;
@@ -169,11 +162,7 @@
     }
   }
 }
-
-.center {
-  text-align: center;
-  margin: 15px auto;
-}
+//Individual Coin Table Grid Container
 .grid-container {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -186,17 +175,12 @@
     grid-template-rows: 1fr 1fr 1fr 1fr;
   }
 }
-
 .grid-container2 {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 10px;
   margin-bottom: 15px;
-
-  span {
-    text-align: center;
-  }
 
   @media screen and (max-width: 600px) {
     grid-template-columns: 100%;
