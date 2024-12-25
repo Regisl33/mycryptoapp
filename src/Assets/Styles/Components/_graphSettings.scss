@@ -1,3 +1,4 @@
+//Today Graph Style
 .GlobalGraph {
   @include justify(center);
   margin-top: 50px;
@@ -6,7 +7,7 @@
     display: none;
   }
 }
-
+//Mobile Setting for the button and the Small Graph for Today Recap
 .graph-btn,
 .smallGlobalGraph {
   display: none;
@@ -14,9 +15,11 @@
     display: block;
   }
 }
+//Mobile Setting for Graph Button
 .graph-btn {
   margin: 15px auto;
 }
+//Mobile Setting for the Small Graph and the X Button to Close the Graph
 .smallGlobalGraph {
   position: absolute;
   top: 50%;
@@ -32,7 +35,7 @@
     z-index: 2;
   }
 }
-
+//Style for the Graph Custom Tooltip
 .tooltip-container {
   color: $landingLight;
   background: $Dcolor1;
@@ -51,19 +54,23 @@
     margin-left: 5px;
   }
 }
+//Class to make the Big Graph for Today Disapear in Mobile Settings
 .bigscreen {
   @media screen and (max-width: 650px) {
     display: none;
   }
 }
+//This Center our Graph
 .recharts-wrapper {
   @include justify(center);
 }
+//Makes the Big Coin Graph Disapear in Mobile Setting
 .Big-Graph {
   @media screen and (max-width: 800px) {
     display: none;
   }
 }
+//Small Graph for Mobile Settings
 .Little-Graph {
   display: none;
 
