@@ -1,5 +1,7 @@
+//Import Dependecies
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+//Import All the Components that will be Routed
 import LandingPage from "../LoginPages/LandingPage";
 import LandingMain from "../LoginPages/LandingMain";
 import LoginPage from "../LoginPages/LoginPage";
@@ -9,8 +11,10 @@ import ResetPassword from "../LoginPages/ResetPassword";
 import CreateAccount from "../CreateAccountPage/CreateAccount";
 import SecurityQuestions from "../CreateAccountPage/SecurityQuestions";
 import ErrorNotFoundPage from "../LoginPages/ErrorNotFoundPage";
+//Import Custom Type
 import { userType } from "../../Types/LandingTypes";
 
+//Props Type for User ID, and the Setters for User ID and IsLoggedIn
 type propsType = {
   currentID: string | undefined;
   setCurrentID: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -22,12 +26,13 @@ const LoggedOutRouter = ({
   setCurrentID,
   setIsLoggedIn,
 }: propsType): JSX.Element => {
+  //Define the User Variable
   const [user, setUser] = useState<userType>({
     username: "",
     email: "",
     password: "",
   });
-
+  //Define our Router when Logged Out
   const Router = (
     <Routes>
       <Route path="/" element={<LandingPage />}>

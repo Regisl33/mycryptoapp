@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+//Import Dependecies
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+//Import All the Components that will be Routed
 import LoggedInLayout from "../Layout/LoggedInLayout";
 import Home from "../HomePage/Home";
 import Parameters from "../Params/Parameters";
@@ -7,8 +9,9 @@ import AllCoinsDataTable from "../Table/AllCoinsDataTable";
 import SearchPage from "../SearchPage/SearchPage";
 import IndividualCoinData from "../IndividualCoin/IndividualCoinData";
 import ErrorNotFoundPage from "../LoginPages/ErrorNotFoundPage";
+//Import Custom Type
 import { coinDataType } from "../../Types/AppTypes";
-
+//Props Type for User ID, Temp Color, and the Setters for Temp Color, User ID and IsLoggedIn
 type propsType = {
   currentID: string | undefined;
   tempColor: string;
@@ -24,8 +27,10 @@ const LoggedInRouter = ({
   setCurrentID,
   setIsLoggedIn,
 }: propsType): JSX.Element => {
+  //Define TempFavArray and Need Reload State
   const [tempFavArray, setTempFavArray] = useState<coinDataType[]>([]);
   const [needReload, setNeedReload] = useState(false);
+  //Define our Router when Logged In
   const Router = (
     <Routes>
       <Route

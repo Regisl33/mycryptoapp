@@ -58,24 +58,14 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
       console.log(error);
     }
   };
-
+  //This Function Handle the User DB Update when the Form is Submitted
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
-    if (userData) {
-      if (userData.passwordHistory) {
-        if (
-          userData.passwordHistory?.oldPassword === password ||
-          userData.password === password
-        ) {
-          setPasswordErrorMessage(
-            "You must use different password then the last 2 passwords you've used"
-          );
-        } else {
-          await handleReset(userData.password, password, currentID as string);
-          setIsSubmited(true);
-        }
-      } else if (userData.password === password) {
+    if (userData && userData.passwordHistory) {
+      if (
+        userData.passwordHistory?.oldPassword === password ||
+        userData.password === password
+      ) {
         setPasswordErrorMessage(
           "You must use different password then the last 2 passwords you've used"
         );
@@ -83,26 +73,29 @@ const ResetPassword = ({ currentID }: currentIDPropsType) => {
         await handleReset(userData.password, password, currentID as string);
         setIsSubmited(true);
       }
-    } else {
-      console.log(
-        "This Error Should Never Occur Due To Previous Verification But if it Does it because we couldn't get Api Data or the user ID"
+    } else if (userData && userData.password === password) {
+      setPasswordErrorMessage(
+        "You must use different password then the last 2 passwords you've used"
       );
+    } else if (userData) {
+      await handleReset(userData.password, password, currentID as string);
+      setIsSubmited(true);
     }
   };
-
+  //This useEffect Makes Sure that There is a User ID
   useEffect(() => {
     if (!currentID) {
       navigate("/login");
     }
   }, [currentID, navigate]);
-
+  //This useEffect makes sure their is no error with the userApi
   useEffect(() => {
     if (isError) {
       setPasswordErrorMessage("We couldn't reach the server");
       console.log(error);
     }
   }, [error, isError]);
-
+  //This Returns The Content of the Component
   const content = isSubmited ? (
     <HandleReturnLogin text="Your password has been reset!" />
   ) : (
