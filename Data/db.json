@@ -39,11 +39,11 @@
         "answer2": "test3",
         "answer3": "test2"
       },
-      "color": "Dcolor7",
-      "range": 136,
+      "color": "Lcolor1",
+      "range": 47,
       "favorites": [
-        "bitcoin",
-        "ethereum"
+        "chainlink",
+        "dogecoin"
       ]
     }
   ]

@@ -14,7 +14,7 @@ const DisplayOfValue = ({ value, valueType }: propsType) => {
         {value
           ? value.toString().length > 11
             ? (value / 1000000000).toFixed(3) + "G $"
-            : (value / 1000000).toFixed(3) + "M $"
+            : (value / 1000000).toFixed(2) + "M $"
           : "-"}
       </span>
     );

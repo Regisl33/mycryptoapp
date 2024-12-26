@@ -16,7 +16,7 @@ type propsType = {
 
 const RangeSelector = ({ currentID, tempColor, setNeedReload }: propsType) => {
   //Define States for the Range Value and the Error Message if Needed
-  const [rangeValue, setRangeValue] = useState(24);
+  const [rangeValue, setRangeValue] = useState<number | undefined>();
   const [errorMessage, setErrorMessage] = useState("");
   //Get Current User Data
   const { data: userData, isError, error } = useGetCurrentUserQuery(currentID);
@@ -55,8 +55,10 @@ const RangeSelector = ({ currentID, tempColor, setNeedReload }: propsType) => {
   useEffect(() => {
     if (isError) {
       console.log(error);
+    } else if (userData) {
+      setRangeValue(userData.range);
     }
-  }, [isError, error]);
+  }, [userData, isError, error]);
   //Text-Range Value-Input
   const textInput = (
     <input

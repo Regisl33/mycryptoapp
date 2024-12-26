@@ -57,7 +57,7 @@ footer {
   width: 90%;
   margin: 0 auto;
 
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1060px) {
     font-size: 0.7rem;
   }
 
@@ -71,12 +71,18 @@ footer {
     place-items: center;
     margin: 10px auto;
 
-    @media screen and (max-width: 650px) {
+    @media screen and (max-width: 750px) {
       grid-template-columns: 20% 20% 20% 20% 20%;
     }
   }
   .FavListHeader {
     font-weight: 900;
+  }
+}
+//Class to make the Big Graph for Today Disapear in Mobile Settings
+.bigscreen {
+  @media screen and (max-width: 750px) {
+    display: none;
   }
 }
 //Range-Container Structure Settings
